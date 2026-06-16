@@ -147,7 +147,7 @@ benign" against "strip noise" is in the source.
 
 ## 3. Receding horizon — TE
 
-`sib/wrapper.py :: ForgeActionHeadPolicy`
+`sib/wrapper.py` (receding-horizon consensus policy wrapper)
 
 Position-aligned exponential consensus over overlapping action chunks — newer
 predictions weighted higher. Inference-time only; trains nothing. **Present in both
@@ -256,13 +256,13 @@ sib/
   transforms.py       orthonormal DCT-II / IDCT (Parseval-tested)
   libero_v.py         LIBERO-V sim perturbations + condition grid
   corruptions.py      image-space sensor-noise corruptions (device-safe)
-  wrapper.py          SIBPolicy, ForgeActionHeadPolicy (consensus), receding-horizon eval
+  wrapper.py          SIBPolicy + consensus policy wrapper, receding-horizon eval
   data.py · losses.py · metrics.py · recording.py · waterfill.py · utils.py
 scripts/
   finetune_rib.py     RIB training (robustness-shaped consistency)
   train_rasf.py       RASF training (conservative self-referential denoiser)
   finetune_ib.py      naive connector-bottleneck baseline training
-  eval_libero_v.py    unified eval: vanilla | sib | ib | baseline | aegis (+ --forge-ensemble TE)
+  eval_libero_v.py    unified eval: vanilla | sib | ib | baseline | aegis (+ receding-horizon consensus / TE)
   eval.py             clean / corruption / action-noise eval + recording
 configs/              on86 configs (sib_on86, rasf_on86, ib_on86, libero_v, ...)
 results/

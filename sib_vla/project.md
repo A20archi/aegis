@@ -10,7 +10,7 @@
 > **Naming (read first).** `AEGIS` is the **internal** name used in this repo and in
 > these working docs. **Externally** (deck / paper / slides) the method is labeled
 > **"SmolVLA+SIB"** and the baseline is **"SmolVLA"**. Do **not** surface in external
-> materials: the internal component names (RIB/RASF/TE), ForgeVLA, the "forge"
+> materials: the internal component names (RIB/RASF/TE), the internal training
 > recipe, the internal levers, or temporal-ensembling-as-a-named-lever. Both the
 > AEGIS arm and the baseline arm share the consensus step; it is not a surfaced
 > lever. See `results/RESULTS_TRACKER.md` for the external-labeling rule.
@@ -183,7 +183,7 @@ sib/
   transforms.py       orthonormal DCT-II / IDCT (Parseval-tested)
   libero_v.py         LIBERO-V sim perturbations (viewpoint/lighting/texture) + grid
   corruptions.py      image-space sensor-noise corruptions
-  wrapper.py          SIBPolicy + ForgeActionHeadPolicy (receding-horizon consensus, TE)
+  wrapper.py          SIBPolicy + consensus policy wrapper (receding-horizon consensus, TE)
 scripts/
   finetune_rib.py     train RIB by robustness-shaped consistency
   train_rasf.py       train RASF as a conservative self-referential denoiser
