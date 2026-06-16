@@ -1,0 +1,21 @@
+# Paper-protocol eval for LIBERO-Long (libero_10): mirrors SmolVLA §4 exactly.
+#
+# Paper: n=10 trials/task, n_action_steps=1, episode_length=520
+#   TASK_SUITE_MAX_STEPS["libero_10"] = 520 (verified via lerobot)
+#   Same checkpoint covers all 4 LIBERO suites.
+#   Expected: ~0.71 (paper), community ceiling TBD.
+
+inherit: base_long.yaml
+n_action_steps: 1
+eval_n_envs: 10
+episodes_per_task: 10
+episode_length: 520
+per_task_build: true
+seeds: [42]
+
+record:
+  enabled: true
+  video: true
+  videos_per_task: 2
+  fps: 10
+output_dir: results/long

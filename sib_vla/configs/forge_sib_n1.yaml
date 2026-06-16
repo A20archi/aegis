@@ -1,0 +1,5 @@
+# Forge recipe (L2: n=1, L3: soft-clamp, L5: temporal ensemble) applied to
+# the action head, followed by SIB module. Uses the vanilla SIB checkpoint.
+inherit: sib.yaml
+n_action_steps: 1
+output_dir: results

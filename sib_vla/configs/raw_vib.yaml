@@ -1,0 +1,8 @@
+# Make-or-break baseline: same Gaussian channel + rate, but NO DCT (C = I).
+# Isolates whether the spectral basis is the active ingredient.
+inherit: base.yaml
+name: raw_vib
+module: raw_vib
+beta: 1.0e-3
+sigma_mode: global
+decode: mmse

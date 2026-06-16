@@ -1,0 +1,15 @@
+{
+  "name": "gain_no_rate",
+  "config": "gain_no_rate",
+  "corruption": null,
+  "n_episodes": 200,
+  "n_success": 106,
+  "success_rate": 0.53,
+  "success_wilson95": [
+    0.46091557335361155,
+    0.5979536662912893
+  ],
+  "rms_jerk_mean": 0.09607824034367071,
+  "hf_energy_fraction_mean": 0.002074957449596881,
+  "total_bits": null
+}

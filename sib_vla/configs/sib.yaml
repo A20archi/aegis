@@ -1,0 +1,8 @@
+# Full method: DCT + per-band Gaussian channel + variational rate.
+inherit: base.yaml
+name: sib
+module: sib
+beta: 1.0e-3        # mid value for the MVE; the sweep overrides this
+rotation: none      # set to pca only if Stage 1 Gate B fails
+sigma_mode: global  # {global, context}
+decode: mmse        # {mmse, stochastic} at eval; training is always stochastic

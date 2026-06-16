@@ -1,0 +1,266 @@
+
+=== FORGE PIPELINE START  2026. 06. 12. (금) 21:47:57 KST ===
+
+=== [1/4] Forge fine-tune (L1+L3+L4) ===
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 21:48:02.857960: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 21:48:02.920795: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[forge] loading SmolVLA ...
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[forge] backbone 507.5M @ lr=2.0e-06  head 97.5M @ lr=2.0e-05
+[forge] loading dataset ...
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+[forge] training 10000 steps  aug_p=0.3  ema=0.9999  batch=32
+[forge] step=     0/10000  loss=0.0819  lr_bb=2.0e-06 lr_hd=2.0e-05
+[forge] step=   100/10000  loss=0.0596  lr_bb=2.0e-06 lr_hd=2.0e-05
+[forge] step=   200/10000  loss=0.0581  lr_bb=2.0e-06 lr_hd=2.0e-05
+[forge] step=   300/10000  loss=0.0609  lr_bb=2.0e-06 lr_hd=2.0e-05
+[forge] step=   400/10000  loss=0.0600  lr_bb=2.0e-06 lr_hd=2.0e-05
+[forge] step=   500/10000  loss=0.0567  lr_bb=2.0e-06 lr_hd=2.0e-05
+[forge] step=   600/10000  loss=0.0676  lr_bb=2.0e-06 lr_hd=2.0e-05
+[forge] step=   700/10000  loss=0.0644  lr_bb=2.0e-06 lr_hd=2.0e-05
+[forge] step=   800/10000  loss=0.0599  lr_bb=2.0e-06 lr_hd=2.0e-05
+[forge] step=   900/10000  loss=0.0585  lr_bb=2.0e-06 lr_hd=2.0e-05
+[forge] step=  1000/10000  loss=0.0517  lr_bb=2.0e-06 lr_hd=2.0e-05
+[forge] step=  1100/10000  loss=0.0597  lr_bb=1.9e-06 lr_hd=1.9e-05
+[forge] step=  1200/10000  loss=0.0742  lr_bb=1.9e-06 lr_hd=1.9e-05
+[forge] step=  1300/10000  loss=0.0622  lr_bb=1.9e-06 lr_hd=1.9e-05
+[forge] step=  1400/10000  loss=0.0609  lr_bb=1.9e-06 lr_hd=1.9e-05
+[forge] step=  1500/10000  loss=0.0600  lr_bb=1.9e-06 lr_hd=1.9e-05
+[forge] step=  1600/10000  loss=0.0714  lr_bb=1.9e-06 lr_hd=1.9e-05
+[forge] step=  1700/10000  loss=0.0609  lr_bb=1.9e-06 lr_hd=1.9e-05
+[forge] step=  1800/10000  loss=0.0678  lr_bb=1.9e-06 lr_hd=1.8e-05
+[forge] step=  1900/10000  loss=0.0613  lr_bb=1.8e-06 lr_hd=1.8e-05
+[forge] step=  2000/10000  loss=0.0520  lr_bb=1.8e-06 lr_hd=1.8e-05
+[forge] step=  2100/10000  loss=0.0528  lr_bb=1.8e-06 lr_hd=1.8e-05
+[forge] step=  2200/10000  loss=0.0621  lr_bb=1.8e-06 lr_hd=1.8e-05
+[forge] step=  2300/10000  loss=0.0513  lr_bb=1.8e-06 lr_hd=1.8e-05
+[forge] step=  2400/10000  loss=0.0544  lr_bb=1.8e-06 lr_hd=1.7e-05
+[forge] step=  2500/10000  loss=0.0562  lr_bb=1.7e-06 lr_hd=1.7e-05
+[forge] step=  2600/10000  loss=0.0615  lr_bb=1.7e-06 lr_hd=1.7e-05
+[forge] step=  2700/10000  loss=0.0547  lr_bb=1.7e-06 lr_hd=1.7e-05
+[forge] step=  2800/10000  loss=0.0544  lr_bb=1.7e-06 lr_hd=1.6e-05
+[forge] step=  2900/10000  loss=0.0577  lr_bb=1.7e-06 lr_hd=1.6e-05
+[forge] step=  3000/10000  loss=0.0557  lr_bb=1.6e-06 lr_hd=1.6e-05
+[forge] step=  3100/10000  loss=0.0590  lr_bb=1.6e-06 lr_hd=1.6e-05
+[forge] step=  3200/10000  loss=0.0635  lr_bb=1.6e-06 lr_hd=1.5e-05
+[forge] step=  3300/10000  loss=0.0525  lr_bb=1.6e-06 lr_hd=1.5e-05
+[forge] step=  3400/10000  loss=0.0562  lr_bb=1.5e-06 lr_hd=1.5e-05
+[forge] step=  3500/10000  loss=0.0606  lr_bb=1.5e-06 lr_hd=1.5e-05
+[forge] step=  3600/10000  loss=0.0526  lr_bb=1.5e-06 lr_hd=1.4e-05
+[forge] step=  3700/10000  loss=0.0641  lr_bb=1.5e-06 lr_hd=1.4e-05
+[forge] step=  3800/10000  loss=0.0666  lr_bb=1.4e-06 lr_hd=1.4e-05
+[forge] step=  3900/10000  loss=0.0489  lr_bb=1.4e-06 lr_hd=1.3e-05
+[forge] step=  4000/10000  loss=0.0561  lr_bb=1.4e-06 lr_hd=1.3e-05
+[forge] step=  4100/10000  loss=0.0570  lr_bb=1.4e-06 lr_hd=1.3e-05
+[forge] step=  4200/10000  loss=0.0494  lr_bb=1.3e-06 lr_hd=1.3e-05
+[forge] step=  4300/10000  loss=0.0493  lr_bb=1.3e-06 lr_hd=1.2e-05
+[forge] step=  4400/10000  loss=0.0551  lr_bb=1.3e-06 lr_hd=1.2e-05
+[forge] step=  4500/10000  loss=0.0616  lr_bb=1.2e-06 lr_hd=1.2e-05
+[forge] step=  4600/10000  loss=0.0594  lr_bb=1.2e-06 lr_hd=1.1e-05
+[forge] step=  4700/10000  loss=0.0619  lr_bb=1.2e-06 lr_hd=1.1e-05
+[forge] step=  4800/10000  loss=0.0570  lr_bb=1.2e-06 lr_hd=1.1e-05
+[forge] step=  4900/10000  loss=0.0564  lr_bb=1.1e-06 lr_hd=1.0e-05
+[forge] step=  5000/10000  loss=0.0493  lr_bb=1.1e-06 lr_hd=1.0e-05
+[forge] step=  5100/10000  loss=0.0526  lr_bb=1.1e-06 lr_hd=9.8e-06
+[forge] step=  5200/10000  loss=0.0601  lr_bb=1.0e-06 lr_hd=9.5e-06
+[forge] step=  5300/10000  loss=0.0497  lr_bb=1.0e-06 lr_hd=9.2e-06
+[forge] step=  5400/10000  loss=0.0638  lr_bb=9.9e-07 lr_hd=8.9e-06
+[forge] step=  5500/10000  loss=0.0548  lr_bb=9.6e-07 lr_hd=8.5e-06
+[forge] step=  5600/10000  loss=0.0649  lr_bb=9.3e-07 lr_hd=8.2e-06
+[forge] step=  5700/10000  loss=0.0529  lr_bb=9.0e-07 lr_hd=7.9e-06
+[forge] step=  5800/10000  loss=0.0669  lr_bb=8.8e-07 lr_hd=7.6e-06
+[forge] step=  5900/10000  loss=0.0610  lr_bb=8.5e-07 lr_hd=7.3e-06
+[forge] step=  6000/10000  loss=0.0542  lr_bb=8.2e-07 lr_hd=7.0e-06
+[forge] step=  6100/10000  loss=0.0582  lr_bb=7.9e-07 lr_hd=6.7e-06
+[forge] step=  6200/10000  loss=0.0523  lr_bb=7.7e-07 lr_hd=6.5e-06
+[forge] step=  6300/10000  loss=0.0602  lr_bb=7.4e-07 lr_hd=6.2e-06
+[forge] step=  6400/10000  loss=0.0607  lr_bb=7.2e-07 lr_hd=5.9e-06
+[forge] step=  6500/10000  loss=0.0706  lr_bb=6.9e-07 lr_hd=5.6e-06
+[forge] step=  6600/10000  loss=0.0652  lr_bb=6.7e-07 lr_hd=5.3e-06
+[forge] step=  6700/10000  loss=0.0581  lr_bb=6.4e-07 lr_hd=5.1e-06
+[forge] step=  6800/10000  loss=0.0530  lr_bb=6.2e-07 lr_hd=4.8e-06
+[forge] step=  6900/10000  loss=0.0532  lr_bb=5.9e-07 lr_hd=4.5e-06
+[forge] step=  7000/10000  loss=0.0448  lr_bb=5.7e-07 lr_hd=4.3e-06
+[forge] step=  7100/10000  loss=0.0532  lr_bb=5.5e-07 lr_hd=4.0e-06
+[forge] step=  7200/10000  loss=0.0461  lr_bb=5.3e-07 lr_hd=3.8e-06
+[forge] step=  7300/10000  loss=0.0577  lr_bb=5.0e-07 lr_hd=3.6e-06
+[forge] step=  7400/10000  loss=0.0567  lr_bb=4.8e-07 lr_hd=3.3e-06
+[forge] step=  7500/10000  loss=0.0694  lr_bb=4.6e-07 lr_hd=3.1e-06
+[forge] step=  7600/10000  loss=0.0567  lr_bb=4.4e-07 lr_hd=2.9e-06
+[forge] step=  7700/10000  loss=0.0470  lr_bb=4.2e-07 lr_hd=2.7e-06
+[forge] step=  7800/10000  loss=0.0537  lr_bb=4.1e-07 lr_hd=2.5e-06
+[forge] step=  7900/10000  loss=0.0519  lr_bb=3.9e-07 lr_hd=2.3e-06
+[forge] step=  8000/10000  loss=0.0528  lr_bb=3.7e-07 lr_hd=2.1e-06
+[forge] step=  8100/10000  loss=0.0602  lr_bb=3.6e-07 lr_hd=1.9e-06
+[forge] step=  8200/10000  loss=0.0522  lr_bb=3.4e-07 lr_hd=1.7e-06
+[forge] step=  8300/10000  loss=0.0485  lr_bb=3.3e-07 lr_hd=1.6e-06
+[forge] step=  8400/10000  loss=0.0638  lr_bb=3.1e-07 lr_hd=1.4e-06
+[forge] step=  8500/10000  loss=0.0591  lr_bb=3.0e-07 lr_hd=1.3e-06
+[forge] step=  8600/10000  loss=0.0565  lr_bb=2.9e-07 lr_hd=1.1e-06
+[forge] step=  8700/10000  loss=0.0608  lr_bb=2.7e-07 lr_hd=1.0e-06
+[forge] step=  8800/10000  loss=0.0494  lr_bb=2.6e-07 lr_hd=8.9e-07
+[forge] step=  8900/10000  loss=0.0490  lr_bb=2.5e-07 lr_hd=7.8e-07
+[forge] step=  9000/10000  loss=0.0538  lr_bb=2.4e-07 lr_hd=6.8e-07
+[forge] step=  9100/10000  loss=0.0563  lr_bb=2.4e-07 lr_hd=5.9e-07
+[forge] step=  9200/10000  loss=0.0559  lr_bb=2.3e-07 lr_hd=5.1e-07
+[forge] step=  9300/10000  loss=0.0596  lr_bb=2.2e-07 lr_hd=4.4e-07
+[forge] step=  9400/10000  loss=0.0530  lr_bb=2.2e-07 lr_hd=3.7e-07
+[forge] step=  9500/10000  loss=0.0564  lr_bb=2.1e-07 lr_hd=3.2e-07
+[forge] step=  9600/10000  loss=0.0555  lr_bb=2.1e-07 lr_hd=2.8e-07
+[forge] step=  9700/10000  loss=0.0500  lr_bb=2.0e-07 lr_hd=2.4e-07
+[forge] step=  9800/10000  loss=0.0604  lr_bb=2.0e-07 lr_hd=2.2e-07
+[forge] step=  9900/10000  loss=0.0531  lr_bb=2.0e-07 lr_hd=2.0e-07
+[forge] applying EMA shadow weights ...
+[forge] EMA model saved -> results/smolvla_forge
+[forge] copied policy_preprocessor.json (from HF cache)
+[forge] copied policy_postprocessor.json (from HF cache)
+[forge] copied policy_preprocessor_step_5_normalizer_processor.safetensors (from HF cache)
+[forge] copied policy_postprocessor_step_1_unnormalizer_processor.safetensors (from HF cache)
+[forge] injected 'type': 'smolvla' into config.json
+[forge] done. final loss=0.0531
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+
+=== [2/4] estimate_lambda on forge model ===
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-13 00:42:01.700709: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-13 00:42:01.762261: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights from local directory
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+[estimate_lambda] cached 5000 chunks, lambda (50, 7) -> results/forge_ft; low-3-band energy = 0.852
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+
+=== [3/4] train SIB on forge model (beta=1e-4) ===
+[train] forge_sib_b1e-4: 60 logged steps; saved -> results/forge_ft/forge_sib_b1e-4.pt
+
+=== [4/4] eval forge+SIB at n=1 ===
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-13 00:52:37.177499: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-13 00:52:37.237857: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights from local directory
+[eval] n_action_steps=1 (chunk H=50, d=7)
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+WARNING:robosuite_logs:To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[eval] 20 distinct init-state episodes/task x 10 tasks (per-task build)
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=0 | n_envs=20
+[eval]   libero_spatial_0: 1/20  | running 1/20 = 0.050
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[1]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=1 | n_envs=20
+[eval]   libero_spatial_1: 5/20  | running 6/40 = 0.150
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[2]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=2 | n_envs=20
+[eval]   libero_spatial_2: 3/20  | running 9/60 = 0.150
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[3]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=3 | n_envs=20
+[eval]   libero_spatial_3: 5/20  | running 14/80 = 0.175
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[4]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=4 | n_envs=20
+[eval]   libero_spatial_4: 9/20  | running 23/100 = 0.230
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[5]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=5 | n_envs=20
+[eval]   libero_spatial_5: 18/20  | running 41/120 = 0.342
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[6]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=6 | n_envs=20
+[eval]   libero_spatial_6: 14/20  | running 55/140 = 0.393
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[7]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=7 | n_envs=20
+[eval]   libero_spatial_7: 16/20  | running 71/160 = 0.444
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[8]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=8 | n_envs=20
+[eval]   libero_spatial_8: 14/20  | running 85/180 = 0.472
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[9]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=9 | n_envs=20
+[eval]   libero_spatial_9: 5/20  | running 90/200 = 0.450
+[eval] rollout artefacts -> results/videos/forge_sib_n1/index.json
+[eval] forge_sib_n1: success=0.450 [0.383,0.519] n=200  jerk=0.7778
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+
+=== FORGE PIPELINE DONE  2026. 06. 13. (토) 02:30:54 KST ===
+forge_sib_n1                              SR=0.450  n=200
+gain_no_rate                              SR=0.530  n=200
+jerk                                      SR=0.570  n=200
+lowpass                                   SR=0.550  n=200
+lowpass                                   SR=0.540  n=200
+lowpass                                   SR=0.525  n=200
+lowpass                                   SR=0.510  n=200
+lowpass                                   SR=0.500  n=200
+lowpass                                   SR=0.255  n=200
+paper_eval_seed42                         SR=0.720  n=100
+raw_vib_b1e-3                             SR=0.360  n=200
+raw_vib_b1e-3                             SR=0.290  n=200
+raw_vib_b1e-3                             SR=0.095  n=200
+sib_adaptive                              SR=0.540  n=200
+sib_adaptive                              SR=0.530  n=200
+sib_adaptive                              SR=0.515  n=200
+sib_b1e-2                                 SR=0.335  n=200
+sib_b1e-4                                 SR=0.595  n=200
+sib_b1e-4                                 SR=0.585  n=200
+sib_b1e-4                                 SR=0.555  n=200
+sib_b1e-4                                 SR=0.525  n=200
+sib_b3e-4                                 SR=0.555  n=200
+sib_lora_n4                               SR=0.580  n=200
+sib_n25                                   SR=0.535  n=200
+sib_n25                                   SR=0.520  n=200
+sib_n25                                   SR=0.525  n=200
+sib_n25                                   SR=0.380  n=200
+sib_n25                                   SR=0.210  n=200
+sib_pe_n1                                 SR=0.225  n=200
+sib_pe_n10                                SR=0.610  n=200
+sib_pe_n5                                 SR=0.600  n=200
+sib_spatial_ema                           SR=0.555  n=200
+vanilla_n1                                SR=0.720  n=200
+vanilla_n10                               SR=0.610  n=200
+vanilla_n25                               SR=0.570  n=200
+vanilla_n25                               SR=0.545  n=200
+vanilla_n25                               SR=0.550  n=200
+vanilla_n25                               SR=0.545  n=200
+vanilla_n25                               SR=0.535  n=200
+vanilla_n25                               SR=0.520  n=200
+vanilla_n25                               SR=0.420  n=200
+vanilla_n25                               SR=0.280  n=200
+vanilla_n4                                SR=0.660  n=200
+vanilla_n5                                SR=0.605  n=200

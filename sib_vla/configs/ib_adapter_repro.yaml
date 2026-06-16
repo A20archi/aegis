@@ -1,0 +1,7 @@
+# Fused IB-Adapter (StableVLA) in the visual connector, built on the bs=256
+# repro checkpoint. Inherits the IB-Adapter hyperparams (n_heads=8, D_out=960,
+# n_action_steps=1) from ib_adapter.yaml; only the base checkpoint + output_dir
+# change. The `checkpoint:` line is re-resolved at runtime by run_after_baseline.sh.
+inherit: ib_adapter.yaml
+checkpoint: outputs/smolvla_spatial_repro/checkpoints/last/pretrained_model
+output_dir: results/ib_repro

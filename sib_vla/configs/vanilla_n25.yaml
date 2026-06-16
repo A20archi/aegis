@@ -1,0 +1,15 @@
+# MIN baseline: frozen SmolVLA executing 25/50 chunk steps open-loop before
+# re-querying (n_action_steps=25). Same 20-init-state protocol as vanilla_n1 so the
+# MAX (closed-loop) and MIN (open-loop) baselines are matched. The SIB's floor goal
+# is to beat THIS; its stretch goal is to beat vanilla_n1 while staying open-loop.
+inherit: vanilla.yaml
+n_action_steps: 25
+eval_n_envs: 20
+episodes_per_task: 20
+per_task_build: true
+record:
+  enabled: true
+  video: true
+  videos_per_task: 3
+  fps: 10
+output_dir: results

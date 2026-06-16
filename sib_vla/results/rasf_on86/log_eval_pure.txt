@@ -1,0 +1,73 @@
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-15 03:23:33.533311: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-15 03:23:33.594396: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+`torch_dtype` is deprecated! Use `dtype` instead!
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+WARNING:robosuite_logs:To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+Reducing the number of VLM layers to 16 ...
+Loading weights from local directory
+[eval] n_action_steps=1 (chunk H=50, d=7)
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[eval] 20 distinct init-state episodes/task x 10 tasks (per-task build)
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=0 | n_envs=20
+[eval]   libero_spatial_0: 14/20  | running 14/20 = 0.700
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[1]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=1 | n_envs=20
+[eval]   libero_spatial_1: 20/20  | running 34/40 = 0.850
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[2]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=2 | n_envs=20
+[eval]   libero_spatial_2: 18/20  | running 52/60 = 0.867
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[3]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=3 | n_envs=20
+[eval]   libero_spatial_3: 16/20  | running 68/80 = 0.850
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[4]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=4 | n_envs=20
+[eval]   libero_spatial_4: 16/20  | running 84/100 = 0.840
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[5]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=5 | n_envs=20
+[eval]   libero_spatial_5: 4/20  | running 88/120 = 0.733
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[6]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=6 | n_envs=20
+[eval]   libero_spatial_6: 17/20  | running 105/140 = 0.750
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[7]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=7 | n_envs=20
+[eval]   libero_spatial_7: 18/20  | running 123/160 = 0.769
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[8]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=8 | n_envs=20
+[eval]   libero_spatial_8: 17/20  | running 140/180 = 0.778
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[9]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=9 | n_envs=20
+[eval]   libero_spatial_9: 17/20  | running 157/200 = 0.785
+[eval] rasf_on86_pure: success=0.785 [0.723,0.836] n=200  jerk=0.6586

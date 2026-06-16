@@ -1,0 +1,5 @@
+# Forge fine-tuned SmolVLA + SIB. Used for estimate_lambda and SIB training.
+inherit: sib.yaml
+checkpoint: /home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/results/smolvla_forge
+output_dir: results/forge_ft
+preserve_energy: true

@@ -1,0 +1,3 @@
+armed 2026-06-13 21:15:40
+grid: viewpoint{S,M,L}+lighting+texture+noise{motion,zoom,fog,glass,gaussian}=10 conditions
+methods: vanilla, sib(pure), ib | EPS default 10/task | validated 2026-06-13

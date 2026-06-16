@@ -1,0 +1,14 @@
+# Cadence diagnostic: closed-loop (checkpoint default n_action_steps=1).
+# Paired with _cad_n25 on the SAME tasks/init-states/seeds to isolate the
+# effect of open-loop chunk execution on the baseline success rate.
+inherit: vanilla.yaml
+tasks: [0, 2, 4]
+eval_n_envs: 4
+episodes_per_task: 4
+n_action_steps: 1
+record:
+  enabled: true
+  video: true
+  videos_per_task: 2
+  fps: 10
+output_dir: /tmp/sib_cad

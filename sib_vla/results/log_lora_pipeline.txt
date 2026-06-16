@@ -1,0 +1,557 @@
+[pipeline] START  2026. 06. 12. (금) 16:24:58 KST
+
+=== [0/5] vanilla n=4 calibration ===
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 16:25:04.280410: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 16:25:04.352611: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[eval] n_action_steps=4 (chunk H=50, d=7)
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+WARNING:robosuite_logs:To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[eval] 20 distinct init-state episodes/task x 10 tasks (per-task build)
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=0 | n_envs=20
+[eval]   libero_spatial_0: 12/20  | running 12/20 = 0.600
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[1]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=1 | n_envs=20
+[eval]   libero_spatial_1: 17/20  | running 29/40 = 0.725
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[2]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=2 | n_envs=20
+[eval]   libero_spatial_2: 15/20  | running 44/60 = 0.733
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[3]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=3 | n_envs=20
+[eval]   libero_spatial_3: 12/20  | running 56/80 = 0.700
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[4]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=4 | n_envs=20
+[eval]   libero_spatial_4: 12/20  | running 68/100 = 0.680
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[5]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=5 | n_envs=20
+[eval]   libero_spatial_5: 8/20  | running 76/120 = 0.633
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[6]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=6 | n_envs=20
+[eval]   libero_spatial_6: 15/20  | running 91/140 = 0.650
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[7]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=7 | n_envs=20
+[eval]   libero_spatial_7: 9/20  | running 100/160 = 0.625
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[8]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=8 | n_envs=20
+[eval]   libero_spatial_8: 19/20  | running 119/180 = 0.661
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[9]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=9 | n_envs=20
+[eval]   libero_spatial_9: 13/20  | running 132/200 = 0.660
+[eval] rollout artefacts -> results/videos/vanilla_n4/index.json
+[eval] vanilla_n4: success=0.660 [0.592,0.722] n=200  jerk=0.4912
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+
+=== [1/5] LoRA fine-tuning SmolVLA ===
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 17:51:12.867955: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 17:51:12.929463: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[lora] loading SmolVLA...
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+trainable params: 1,176,576 || all params: 606,110,752 || trainable%: 0.1941
+[lora] loading dataset...
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+[lora] training for 4000 steps  lr=0.0002  rank=16  batch=8
+[lora] step=    0/4000  loss=0.0656  lr=2.00e-04
+[lora] step=   50/4000  loss=0.0765  lr=2.00e-04
+[lora] step=  100/4000  loss=0.0861  lr=2.00e-04
+[lora] step=  150/4000  loss=0.0724  lr=1.99e-04
+[lora] step=  200/4000  loss=0.0643  lr=1.99e-04
+[lora] step=  250/4000  loss=0.1092  lr=1.98e-04
+[lora] step=  300/4000  loss=0.1001  lr=1.97e-04
+[lora] step=  350/4000  loss=0.0839  lr=1.97e-04
+[lora] step=  400/4000  loss=0.0895  lr=1.96e-04
+[lora] step=  450/4000  loss=0.0665  lr=1.94e-04
+[lora] step=  500/4000  loss=0.0960  lr=1.93e-04
+[lora] step=  550/4000  loss=0.0957  lr=1.92e-04
+[lora] step=  600/4000  loss=0.0807  lr=1.90e-04
+[lora] step=  650/4000  loss=0.1063  lr=1.88e-04
+[lora] step=  700/4000  loss=0.0778  lr=1.87e-04
+[lora] step=  750/4000  loss=0.0872  lr=1.85e-04
+[lora] step=  800/4000  loss=0.0493  lr=1.83e-04
+[lora] step=  850/4000  loss=0.0859  lr=1.81e-04
+[lora] step=  900/4000  loss=0.0766  lr=1.78e-04
+[lora] step=  950/4000  loss=0.0697  lr=1.76e-04
+[lora] step= 1000/4000  loss=0.0902  lr=1.74e-04
+[lora] step= 1050/4000  loss=0.0766  lr=1.71e-04
+[lora] step= 1100/4000  loss=0.0788  lr=1.68e-04
+[lora] step= 1150/4000  loss=0.0772  lr=1.66e-04
+[lora] step= 1200/4000  loss=0.0792  lr=1.63e-04
+[lora] step= 1250/4000  loss=0.0840  lr=1.60e-04
+[lora] step= 1300/4000  loss=0.0618  lr=1.57e-04
+[lora] step= 1350/4000  loss=0.0613  lr=1.54e-04
+[lora] step= 1400/4000  loss=0.0641  lr=1.51e-04
+[lora] step= 1450/4000  loss=0.0739  lr=1.48e-04
+[lora] step= 1500/4000  loss=0.0971  lr=1.44e-04
+[lora] step= 1550/4000  loss=0.0751  lr=1.41e-04
+[lora] step= 1600/4000  loss=0.0712  lr=1.38e-04
+[lora] step= 1650/4000  loss=0.0678  lr=1.34e-04
+[lora] step= 1700/4000  loss=0.0837  lr=1.31e-04
+[lora] step= 1750/4000  loss=0.0856  lr=1.27e-04
+[lora] step= 1800/4000  loss=0.1002  lr=1.24e-04
+[lora] step= 1850/4000  loss=0.0876  lr=1.21e-04
+[lora] step= 1900/4000  loss=0.0566  lr=1.17e-04
+[lora] step= 1950/4000  loss=0.0943  lr=1.13e-04
+[lora] step= 2000/4000  loss=0.0915  lr=1.10e-04
+[lora] step= 2050/4000  loss=0.0746  lr=1.06e-04
+[lora] step= 2100/4000  loss=0.0845  lr=1.03e-04
+[lora] step= 2150/4000  loss=0.0661  lr=9.94e-05
+[lora] step= 2200/4000  loss=0.0774  lr=9.59e-05
+[lora] step= 2250/4000  loss=0.0916  lr=9.24e-05
+[lora] step= 2300/4000  loss=0.0767  lr=8.89e-05
+[lora] step= 2350/4000  loss=0.1038  lr=8.55e-05
+[lora] step= 2400/4000  loss=0.0875  lr=8.21e-05
+[lora] step= 2450/4000  loss=0.0664  lr=7.88e-05
+[lora] step= 2500/4000  loss=0.0569  lr=7.55e-05
+[lora] step= 2550/4000  loss=0.0804  lr=7.23e-05
+[lora] step= 2600/4000  loss=0.0915  lr=6.91e-05
+[lora] step= 2650/4000  loss=0.0872  lr=6.60e-05
+[lora] step= 2700/4000  loss=0.0632  lr=6.29e-05
+[lora] step= 2750/4000  loss=0.0813  lr=5.99e-05
+[lora] step= 2800/4000  loss=0.0642  lr=5.70e-05
+[lora] step= 2850/4000  loss=0.0634  lr=5.42e-05
+[lora] step= 2900/4000  loss=0.0574  lr=5.15e-05
+[lora] step= 2950/4000  loss=0.0910  lr=4.89e-05
+[lora] step= 3000/4000  loss=0.1778  lr=4.63e-05
+[lora] step= 3050/4000  loss=0.0845  lr=4.39e-05
+[lora] step= 3100/4000  loss=0.0976  lr=4.15e-05
+[lora] step= 3150/4000  loss=0.0874  lr=3.93e-05
+[lora] step= 3200/4000  loss=0.0666  lr=3.71e-05
+[lora] step= 3250/4000  loss=0.0594  lr=3.51e-05
+[lora] step= 3300/4000  loss=0.1341  lr=3.32e-05
+[lora] step= 3350/4000  loss=0.0801  lr=3.14e-05
+[lora] step= 3400/4000  loss=0.0767  lr=2.98e-05
+[lora] step= 3450/4000  loss=0.0630  lr=2.82e-05
+[lora] step= 3500/4000  loss=0.1018  lr=2.68e-05
+[lora] step= 3550/4000  loss=0.0620  lr=2.55e-05
+[lora] step= 3600/4000  loss=0.0537  lr=2.44e-05
+[lora] step= 3650/4000  loss=0.0815  lr=2.34e-05
+[lora] step= 3700/4000  loss=0.0902  lr=2.25e-05
+[lora] step= 3750/4000  loss=0.1021  lr=2.17e-05
+[lora] step= 3800/4000  loss=0.0779  lr=2.11e-05
+[lora] step= 3850/4000  loss=0.0752  lr=2.06e-05
+[lora] step= 3900/4000  loss=0.0592  lr=2.03e-05
+[lora] step= 3950/4000  loss=0.0743  lr=2.01e-05
+[lora] merging adapters...
+[lora] merged model saved -> results/smolvla_lora
+[lora] done. final loss=0.0743
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+
+=== [2/5] estimate_lambda on LoRA model ===
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 18:16:46.357106: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 18:16:46.421637: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Traceback (most recent call last):
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/scripts/estimate_lambda.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/scripts/estimate_lambda.py", line 115, in main
+    policy, preprocessor, _, H, d = load_smolvla(cfg["checkpoint"], str(device))
+                                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/sib/wrapper.py", line 212, in load_smolvla
+    policy = SmolVLAPolicy.from_pretrained(checkpoint).to(device).eval()
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/policies/pretrained.py", line 96, in from_pretrained
+    config = PreTrainedConfig.from_pretrained(
+        pretrained_name_or_path=pretrained_name_or_path,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/configs/policies.py", line 211, in from_pretrained
+    orig_config = draccus.parse(cls, config_file, args=[])
+  File "/home/user/anaconda3/lib/python3.13/site-packages/draccus/argparsing.py", line 214, in parse
+    return parser.parse_args(args)
+           ~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/draccus/argparsing.py", line 102, in parse_args
+    args, _ = self.parse_known_args(args, namespace, is_parse_args=True)
+              ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/draccus/argparsing.py", line 139, in parse_known_args
+    parsed_t = self._postprocessing(parsed_args)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/draccus/argparsing.py", line 183, in _postprocessing
+    cfg = decoding.decode(self.config_class, deflat_d)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/draccus/parsers/registry_utils.py", line 78, in wrapper
+    return base_func(*args, **kw)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/draccus/parsers/decoding.py", line 63, in decode
+    return get_decoding_fn(cls)(raw_value, ())  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/draccus/parsers/decoding.py", line 200, in decode_choice_class
+    raise ParsingError(f"Expected a dict with a '{CHOICE_TYPE_KEY}' key for {cls}, got {raw_value}")
+draccus.utils.ParsingError: Expected a dict with a 'type' key for <class 'lerobot.configs.policies.PreTrainedConfig'>, got {'n_obs_steps': 1, 'input_features': {'observation.images.image': {'type': 'VISUAL', 'shape': [3, 256, 256]}, 'observation.images.image2': {'type': 'VISUAL', 'shape': [3, 256, 256]}, 'observation.state': {'type': 'STATE', 'shape': [8]}}, 'output_features': {'action': {'type': 'ACTION', 'shape': [7]}}, 'device': 'cuda', 'use_amp': False, 'use_peft': False, 'push_to_hub': True, 'repo_id': 'None', 'private': None, 'tags': None, 'license': None, 'pretrained_path': None, 'chunk_size': 50, 'n_action_steps': 1, 'normalization_mapping': {'VISUAL': 'IDENTITY', 'STATE': 'MEAN_STD', 'ACTION': 'MEAN_STD'}, 'max_state_dim': 32, 'max_action_dim': 32, 'resize_imgs_with_padding': [512, 512], 'empty_cameras': 0, 'adapt_to_pi_aloha': False, 'use_delta_joint_actions_aloha': False, 'tokenizer_max_length': 48, 'num_steps': 10, 'use_cache': True, 'freeze_vision_encoder': True, 'train_expert_only': True, 'train_state_proj': True, 'optimizer_lr': 0.0001, 'optimizer_betas': [0.9, 0.95], 'optimizer_eps': 1e-08, 'optimizer_weight_decay': 1e-10, 'optimizer_grad_clip_norm': 10.0, 'scheduler_warmup_steps': 1000, 'scheduler_decay_steps': 30000, 'scheduler_decay_lr': 2.5e-06, 'vlm_model_name': 'HuggingFaceTB/SmolVLM2-500M-Instruct', 'load_vlm_weights': True, 'add_image_special_tokens': False, 'attention_mode': 'cross_attn', 'prefix_length': 0, 'pad_language_to': 'longest', 'num_expert_layers': -1, 'num_vlm_layers': 0, 'self_attn_every_n_layers': 2, 'expert_width_multiplier': 0.5, 'min_period': 0.004, 'max_period': 4.0, 'rtc_config': None}
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+
+[pipeline] RESUMING from Phase 2  2026. 06. 12. (금) 18:49:17 KST
+
+=== [2/5] estimate_lambda on LoRA model ===
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 18:49:22.682965: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 18:49:22.744859: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights from local directory
+Traceback (most recent call last):
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/scripts/estimate_lambda.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/scripts/estimate_lambda.py", line 115, in main
+    policy, preprocessor, _, H, d = load_smolvla(cfg["checkpoint"], str(device))
+                                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/sib/wrapper.py", line 213, in load_smolvla
+    preprocessor, postprocessor = make_pre_post_processors(policy.config, checkpoint)
+                                  ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/policies/factory.py", line 267, in make_pre_post_processors
+    PolicyProcessorPipeline.from_pretrained(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path=pretrained_path,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        to_output=transition_to_batch,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ),
+    ^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/processor/pipeline.py", line 567, in from_pretrained
+    loaded_config, base_path = cls._load_config(model_id, config_filename, hub_download_kwargs)
+                               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/processor/pipeline.py", line 638, in _load_config
+    cls._suggest_processor_migration(model_id, f"Config file '{config_filename}' not found")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/processor/pipeline.py", line 1212, in _suggest_processor_migration
+    raise ProcessorMigrationError(model_path, migration_command, original_error)
+lerobot.processor.pipeline.ProcessorMigrationError: Model 'results/smolvla_lora' requires migration to processor format. Run: python src/lerobot/processor/migrate_policy_normalization.py --pretrained-path results/smolvla_lora
+
+Original error: Config file 'policy_preprocessor.json' not found
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+
+[pipeline] RESUMING from Phase 2  2026. 06. 12. (금) 18:50:31 KST
+
+=== [2/5] estimate_lambda on LoRA model ===
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 18:50:36.569606: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 18:50:36.632903: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights from local directory
+Traceback (most recent call last):
+  File "/home/user/anaconda3/lib/python3.13/site-packages/huggingface_hub/utils/_http.py", line 403, in hf_raise_for_status
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://huggingface.co/results/smolvla_lora/resolve/main/policy_preprocessor_step_5_normalizer_processor.safetensors
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/scripts/estimate_lambda.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/scripts/estimate_lambda.py", line 115, in main
+    policy, preprocessor, _, H, d = load_smolvla(cfg["checkpoint"], str(device))
+                                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/sib/wrapper.py", line 213, in load_smolvla
+    preprocessor, postprocessor = make_pre_post_processors(policy.config, checkpoint)
+                                  ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/policies/factory.py", line 267, in make_pre_post_processors
+    PolicyProcessorPipeline.from_pretrained(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path=pretrained_path,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        to_output=transition_to_batch,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ),
+    ^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/processor/pipeline.py", line 573, in from_pretrained
+    steps, validated_overrides = cls._build_steps_with_overrides(
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        loaded_config, overrides or {}, model_id, base_path, hub_download_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/processor/pipeline.py", line 781, in _build_steps_with_overrides
+    cls._load_step_state(step_instance, step_entry, model_id, base_path, hub_download_kwargs)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/processor/pipeline.py", line 976, in _load_step_state
+    state_path = hf_hub_download(
+        repo_id=model_id,
+    ...<2 lines>...
+        **hub_download_kwargs,
+    )
+  File "/home/user/anaconda3/lib/python3.13/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+        # Destination
+    ...<14 lines>...
+        force_download=force_download,
+    )
+  File "/home/user/anaconda3/lib/python3.13/site-packages/huggingface_hub/file_download.py", line 1121, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/huggingface_hub/file_download.py", line 1662, in _raise_on_head_call_error
+    raise head_call_error
+  File "/home/user/anaconda3/lib/python3.13/site-packages/huggingface_hub/file_download.py", line 1550, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+        url=url, proxies=proxies, timeout=etag_timeout, headers=headers, token=token, endpoint=endpoint
+    )
+  File "/home/user/anaconda3/lib/python3.13/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/huggingface_hub/file_download.py", line 1467, in get_hf_file_metadata
+    r = _request_wrapper(
+        method="HEAD",
+    ...<5 lines>...
+        timeout=timeout,
+    )
+  File "/home/user/anaconda3/lib/python3.13/site-packages/huggingface_hub/file_download.py", line 283, in _request_wrapper
+    response = _request_wrapper(
+        method=method,
+    ...<2 lines>...
+        **params,
+    )
+  File "/home/user/anaconda3/lib/python3.13/site-packages/huggingface_hub/file_download.py", line 307, in _request_wrapper
+    hf_raise_for_status(response)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/huggingface_hub/utils/_http.py", line 453, in hf_raise_for_status
+    raise _format(RepositoryNotFoundError, message, response) from e
+huggingface_hub.errors.RepositoryNotFoundError: 404 Client Error. (Request ID: Root=1-6a2bd686-7c5b111a6ac3eedc16875b29;d7d10822-7f27-4806-9637-07bcca85b93a)
+
+Repository Not Found for url: https://huggingface.co/results/smolvla_lora/resolve/main/policy_preprocessor_step_5_normalizer_processor.safetensors.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated. For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+
+[pipeline] RESUMING from Phase 2  2026. 06. 12. (금) 18:53:53 KST
+
+=== [2/5] estimate_lambda on LoRA model ===
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 18:53:58.231234: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 18:53:58.294983: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights from local directory
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+[estimate_lambda] cached 5000 chunks, lambda (50, 7) -> results/sib_lora; low-3-band energy = 0.855
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+
+=== [3/5] train SIB on LoRA model (beta=1e-4) ===
+[train] sib_lora_b1e-4: 60 logged steps; saved -> results/sib_lora/sib_lora_b1e-4.pt
+
+=== [4/5] vanilla+LoRA n=4 SKIPPED ===
+
+=== [5/5] eval SIB+LoRA n=4 ===
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 19:04:35.603318: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 19:04:35.664115: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights from local directory
+[eval] n_action_steps=4 (chunk H=50, d=7)
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+WARNING:robosuite_logs:To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[eval] 20 distinct init-state episodes/task x 10 tasks (per-task build)
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=0 | n_envs=20
+[eval]   libero_spatial_0: 14/20  | running 14/20 = 0.700
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[1]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=1 | n_envs=20
+[eval]   libero_spatial_1: 14/20  | running 28/40 = 0.700
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[2]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=2 | n_envs=20
+[eval]   libero_spatial_2: 7/20  | running 35/60 = 0.583
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[3]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=3 | n_envs=20
+[eval]   libero_spatial_3: 6/20  | running 41/80 = 0.512
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[4]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=4 | n_envs=20
+[eval]   libero_spatial_4: 13/20  | running 54/100 = 0.540
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[5]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=5 | n_envs=20
+[eval]   libero_spatial_5: 13/20  | running 67/120 = 0.558
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[6]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=6 | n_envs=20
+[sib_n4] Waiting for Phase 5 to finish...
+[eval]   libero_spatial_6: 16/20  | running 83/140 = 0.593
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[7]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=7 | n_envs=20
+[eval]   libero_spatial_7: 8/20  | running 91/160 = 0.569
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[8]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=8 | n_envs=20
+[eval]   libero_spatial_8: 14/20  | running 105/180 = 0.583
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[9]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=9 | n_envs=20
+[eval]   libero_spatial_9: 11/20  | running 116/200 = 0.580
+[eval] rollout artefacts -> results/videos/sib_lora_n4/index.json
+[eval] sib_lora_n4: success=0.580 [0.511,0.646] n=200  jerk=0.2635
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+
+[pipeline] ALL DONE  2026. 06. 12. (금) 20:23:00 KST
+gain_no_rate                              SR=0.530  n=200
+jerk                                      SR=0.570  n=200
+lowpass                                   SR=0.550  n=200
+lowpass                                   SR=0.540  n=200
+lowpass                                   SR=0.525  n=200
+lowpass                                   SR=0.510  n=200
+lowpass                                   SR=0.500  n=200
+lowpass                                   SR=0.255  n=200
+raw_vib_b1e-3                             SR=0.360  n=200
+raw_vib_b1e-3                             SR=0.290  n=200
+raw_vib_b1e-3                             SR=0.095  n=200
+sib_adaptive                              SR=0.540  n=200
+sib_adaptive                              SR=0.530  n=200
+sib_adaptive                              SR=0.515  n=200
+sib_b1e-2                                 SR=0.335  n=200
+sib_b1e-4                                 SR=0.595  n=200
+sib_b1e-4                                 SR=0.585  n=200
+sib_b1e-4                                 SR=0.555  n=200
+sib_b1e-4                                 SR=0.525  n=200
+sib_b3e-4                                 SR=0.555  n=200
+sib_lora_n4                               SR=0.580  n=200
+sib_n25                                   SR=0.535  n=200
+sib_n25                                   SR=0.520  n=200
+sib_n25                                   SR=0.525  n=200
+sib_n25                                   SR=0.380  n=200
+sib_n25                                   SR=0.210  n=200
+sib_pe_n1                                 SR=0.225  n=200
+sib_pe_n10                                SR=0.610  n=200
+sib_pe_n5                                 SR=0.600  n=200
+sib_spatial_ema                           SR=0.555  n=200
+vanilla_n1                                SR=0.720  n=200
+vanilla_n10                               SR=0.610  n=200
+vanilla_n25                               SR=0.570  n=200
+vanilla_n25                               SR=0.545  n=200
+vanilla_n25                               SR=0.550  n=200
+vanilla_n25                               SR=0.545  n=200
+vanilla_n25                               SR=0.535  n=200
+vanilla_n25                               SR=0.520  n=200
+vanilla_n25                               SR=0.420  n=200
+vanilla_n25                               SR=0.280  n=200
+vanilla_n4                                SR=0.660  n=200
+vanilla_n5                                SR=0.605  n=200
+[sib_n4] Phase 5 done. Starting vanilla+SIB at n=4  2026. 06. 12. (금) 20:23:21 KST
+
+=== [EXTRA] vanilla+SIB n=4 (vanilla smolvla + sib_b1e-4.pt at n=4) ===
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 20:23:26.014511: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 20:23:26.074882: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[eval] n_action_steps=4 (chunk H=50, d=7)
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+WARNING:robosuite_logs:To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[eval] 20 distinct init-state episodes/task x 10 tasks (per-task build)
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=0 | n_envs=20
+[eval]   libero_spatial_0: 13/20  | running 13/20 = 0.650
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[1]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=1 | n_envs=20
+[eval]   libero_spatial_1: 14/20  | running 27/40 = 0.675
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[2]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=2 | n_envs=20
+[eval]   libero_spatial_2: 11/20  | running 38/60 = 0.633
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[3]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=3 | n_envs=20
+[eval]   libero_spatial_3: 9/20  | running 47/80 = 0.588
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[4]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=4 | n_envs=20

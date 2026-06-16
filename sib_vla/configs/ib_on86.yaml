@@ -1,0 +1,8 @@
+# Visual IB-Adapter (StableVLA) layered on the 86% generalist base.
+# Inject into the connector of the from-base 79% checkpoint, train IB + lm_expert.
+inherit: base.yaml
+checkpoint: outputs/smolvla_spatial_repro/checkpoints/020000/pretrained_model
+output_dir: results/ib_on86
+n_action_steps: 1
+record:
+  enabled: false

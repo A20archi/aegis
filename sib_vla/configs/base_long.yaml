@@ -1,0 +1,42 @@
+# LIBERO-Long (libero_10) base config.
+# Published SmolVLA SR: ~0.71 at n=1. Expected at n=25: ~0.65-0.68.
+# 10 long-horizon tasks, 50 init states each, 520-step horizon.
+# Same checkpoint works (HuggingFaceVLA/libero dataset covers all 4 suites).
+
+suite: libero_10
+checkpoint: HuggingFaceVLA/smolvla_libero
+repo_id: HuggingFaceVLA/libero
+dataset_root: null
+fps: 10
+
+chunk_size: 50
+n_action_steps: 25
+episode_length: 520           # LIBERO-Long default (vs 280 for Spatial)
+
+seeds: [42, 123, 456]
+episodes_per_task: 20
+eval_n_envs: 20
+per_task_build: true
+
+device: cuda
+n_gpus: 1
+batch_size: 32
+output_dir: results/long      # separate output dir from Spatial
+
+lambda:
+  n_samples: 5000
+  episode_indices_file: results/long/libero10_episode_indices.json  # filter to libero_10 only
+
+train:
+  steps: 30000
+  batch_size: 256
+  lr: 1.0e-3
+  grad_clip: 1.0
+  log_every: 500
+
+record:
+  enabled: true
+  video: true
+  videos_per_task: 3
+  fps: 10
+  camera_key: null

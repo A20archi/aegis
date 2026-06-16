@@ -1,0 +1,47 @@
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-15 10:58:02.413973: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-15 10:58:02.478279: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[rib] loading SmolVLA ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+Reducing the number of VLM layers to 16 ...
+Loading weights from local directory
+[rib] injected RobustIB  params=2.56M  d_z=512  fusion_coeff init=0.500 (vanilla at init)
+[rib] RIB 2.56M @ lr=3.0e-04  lm_expert @ lr=2.0e-05  beta=0.0001  corrupt_frac=0.6
+[rib] loading dataset ...
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+[rib] training 12000 steps  bs=32
+[rib] step=     0/12000  loss=0.0805  task=0.0805  kl=0.351  coeff=+0.500  lr=3.0e-04
+[rib] step=   100/12000  loss=0.0975  task=0.0974  kl=0.281  coeff=+0.500  lr=3.0e-04
+[rib] step=   200/12000  loss=0.0848  task=0.0848  kl=0.183  coeff=+0.500  lr=3.0e-04
+[rib] step=   300/12000  loss=0.0820  task=0.0820  kl=0.041  coeff=+0.500  lr=3.0e-04
+[rib] step=   400/12000  loss=0.0750  task=0.0750  kl=0.035  coeff=+0.500  lr=3.0e-04
+[rib] step=   500/12000  loss=0.0824  task=0.0824  kl=0.075  coeff=+0.500  lr=3.0e-04
+[rib] step=   600/12000  loss=0.0927  task=0.0927  kl=0.052  coeff=+0.500  lr=3.0e-04
+[rib] step=   700/12000  loss=0.0769  task=0.0769  kl=0.112  coeff=+0.500  lr=3.0e-04
+[rib] step=   800/12000  loss=0.1039  task=0.1039  kl=0.143  coeff=+0.500  lr=3.0e-04
+[rib] step=   900/12000  loss=0.0673  task=0.0673  kl=0.044  coeff=+0.500  lr=3.0e-04
+[rib] step=  1000/12000  loss=0.0783  task=0.0783  kl=0.049  coeff=+0.500  lr=2.9e-04
+[rib] step=  1100/12000  loss=0.0830  task=0.0830  kl=0.066  coeff=+0.500  lr=2.9e-04
+[rib] step=  1200/12000  loss=0.0724  task=0.0724  kl=0.053  coeff=+0.500  lr=2.9e-04
+[rib] step=  1300/12000  loss=0.0681  task=0.0680  kl=0.143  coeff=+0.500  lr=2.9e-04
+[rib] step=  1400/12000  loss=0.0820  task=0.0820  kl=0.108  coeff=+0.500  lr=2.9e-04
+[rib] step=  1500/12000  loss=0.0754  task=0.0754  kl=0.070  coeff=+0.500  lr=2.9e-04
+[rib] step=  1600/12000  loss=0.0822  task=0.0822  kl=0.053  coeff=+0.500  lr=2.9e-04
+[rib] step=  1700/12000  loss=0.0803  task=0.0803  kl=0.155  coeff=+0.500  lr=2.9e-04
+[rib] step=  1800/12000  loss=0.0754  task=0.0754  kl=0.059  coeff=+0.500  lr=2.8e-04
+[rib] step=  1900/12000  loss=0.0758  task=0.0758  kl=0.144  coeff=+0.500  lr=2.8e-04
+[rib] step=  2000/12000  loss=0.0725  task=0.0725  kl=0.042  coeff=+0.500  lr=2.8e-04
+[rib] step=  2100/12000  loss=0.0745  task=0.0745  kl=0.049  coeff=+0.500  lr=2.8e-04
+[rib] step=  2200/12000  loss=0.0846  task=0.0846  kl=0.031  coeff=+0.500  lr=2.8e-04
+[rib] step=  2300/12000  loss=0.0628  task=0.0627  kl=0.088  coeff=+0.500  lr=2.7e-04
+[rib] step=  2400/12000  loss=0.0868  task=0.0868  kl=0.194  coeff=+0.500  lr=2.7e-04
+[rib] step=  2500/12000  loss=0.0907  task=0.0907  kl=0.053  coeff=+0.500  lr=2.7e-04
+[rib] step=  2600/12000  loss=0.0667  task=0.0667  kl=0.031  coeff=+0.500  lr=2.7e-04
+[rib] step=  2700/12000  loss=0.0750  task=0.0750  kl=0.167  coeff=+0.500  lr=2.6e-04
+[rib] step=  2800/12000  loss=0.0786  task=0.0785  kl=0.051  coeff=+0.500  lr=2.6e-04
+[rib] step=  2900/12000  loss=0.0778  task=0.0778  kl=0.068  coeff=+0.500  lr=2.6e-04
+[rib] step=  3000/12000  loss=0.0834  task=0.0834  kl=0.091  coeff=+0.500  lr=2.6e-04
+[rib] >>> checkpoint saved at step 3000 -> results/ib_on86/rib_on86.pt

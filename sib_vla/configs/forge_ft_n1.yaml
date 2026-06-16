@@ -1,0 +1,6 @@
+# Forge fine-tuned SmolVLA + SIB at n=25 cadence — final eval config.
+inherit: sib.yaml
+checkpoint: /home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/results/smolvla_forge
+n_action_steps: 1
+preserve_energy: true
+output_dir: results

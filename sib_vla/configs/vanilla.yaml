@@ -1,0 +1,4 @@
+# Frozen SmolVLA, no bottleneck. Eval with no --weights (identity passthrough).
+inherit: base.yaml
+name: vanilla
+module: none

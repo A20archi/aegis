@@ -1,0 +1,4 @@
+run_name,seconds,gpu_hours,n_gpus,status
+eval_repro_n10,4190.1,1.1639,1,ok
+eval_repro_n1,5436.9,1.5102,1,ok
+eval_gen_tempens_n1,4950.4,1.3751,1,ok

@@ -1,0 +1,6 @@
+# SIB trained on top of LoRA-adapted SmolVLA.
+# Used by estimate_lambda.py and train.py — output_dir is separate so the
+# LoRA chunk cache / lambda / SIB checkpoint don't overwrite the vanilla ones.
+inherit: sib.yaml
+checkpoint: /home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/results/smolvla_lora
+output_dir: results/sib_lora

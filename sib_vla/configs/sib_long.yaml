@@ -1,0 +1,7 @@
+inherit: base_long.yaml
+name: sib_long
+module: sib
+beta: 1.0e-4
+sigma_mode: global
+decode: mmse
+rotation: none

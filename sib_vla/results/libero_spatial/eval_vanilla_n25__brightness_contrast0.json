@@ -1,0 +1,15 @@
+{
+  "name": "vanilla_n25",
+  "config": "none",
+  "corruption": "brightness_contrast:0",
+  "n_episodes": 200,
+  "n_success": 107,
+  "success_rate": 0.535,
+  "success_wilson95": [
+    0.46586521028994954,
+    0.6028155692957681
+  ],
+  "rms_jerk_mean": 0.43915394824885695,
+  "hf_energy_fraction_mean": 0.02947396185109363,
+  "total_bits": null
+}

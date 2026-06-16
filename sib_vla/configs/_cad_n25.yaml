@@ -1,0 +1,13 @@
+# Cadence diagnostic: open-loop execution of 25/50 chunk steps (project setting).
+# Paired with _cad_n1 -- identical tasks/init-states/seeds, only cadence differs.
+inherit: vanilla.yaml
+tasks: [0, 2, 4]
+eval_n_envs: 4
+episodes_per_task: 4
+n_action_steps: 25
+record:
+  enabled: true
+  video: true
+  videos_per_task: 2
+  fps: 10
+output_dir: /tmp/sib_cad

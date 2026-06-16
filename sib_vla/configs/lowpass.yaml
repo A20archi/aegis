@@ -1,0 +1,5 @@
+# Fixed low-pass DCT truncation; grid-search `cutoff` (keep bands k < cutoff).
+inherit: base.yaml
+name: lowpass
+module: lowpass
+cutoff: 8           # grid-searched; sweep over {2,4,8,16,25}

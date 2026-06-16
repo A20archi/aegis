@@ -1,0 +1,3 @@
+run_name,seconds,gpu_hours,n_gpus,status
+estimate_lambda,487.3,0.1353,1,ok
+train_sib_on86_b1e4,108.1,0.0300,1,ok

@@ -1,0 +1,4 @@
+inherit: sib.yaml
+name: sib_spatial_ema
+beta: 1.0e-4
+output_dir: results

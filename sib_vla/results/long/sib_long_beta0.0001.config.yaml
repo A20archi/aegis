@@ -1,0 +1,41 @@
+batch_size: 32
+beta: 0.0001
+checkpoint: HuggingFaceVLA/smolvla_libero
+chunk_size: 50
+dataset_root: null
+decode: mmse
+device: cuda
+episode_length: 520
+episodes_per_task: 20
+eval_n_envs: 20
+fps: 10
+lambda:
+  episode_indices_file: results/long/libero10_episode_indices.json
+  n_samples: 5000
+module: sib
+n_action_steps: 25
+n_gpus: 1
+name: sib_long
+output_dir: results/long
+per_task_build: true
+record:
+  camera_key: null
+  enabled: true
+  fps: 10
+  video: true
+  videos_per_task: 3
+repo_id: HuggingFaceVLA/libero
+rotation: none
+seed_used: 42
+seeds:
+- 42
+- 123
+- 456
+sigma_mode: global
+suite: libero_10
+train:
+  batch_size: 256
+  grad_clip: 1.0
+  log_every: 500
+  lr: 0.001
+  steps: 30000

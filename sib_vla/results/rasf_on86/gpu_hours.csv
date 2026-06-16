@@ -1,0 +1,3 @@
+run_name,seconds,gpu_hours,n_gpus,status
+eval_rasf_on86_tempens,4563.3,1.2676,1,ok
+eval_rasf_on86_pure,5418.4,1.5051,1,ok

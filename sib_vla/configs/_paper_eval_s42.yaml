@@ -1,0 +1,2 @@
+inherit: paper_eval.yaml
+seeds: [42]

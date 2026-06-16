@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sib-vla"
+version = "0.1.0"
+description = "Spectral Information Bottleneck for a frozen flow-matching VLA action head"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.2",
+    "numpy",
+    "scipy",
+    "einops",
+    "pyyaml",
+    "matplotlib",
+    "pandas",
+    "tqdm",
+    "tabulate",
+]
+
+[project.optional-dependencies]
+lerobot = ["lerobot==0.4.3"]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+include = ["sib*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,21 @@
+{
+  "name": "libero_v_aegis_viewpoint_medium",
+  "method": "aegis",
+  "condition": "viewpoint_medium",
+  "axis": "viewpoint",
+  "n_episodes": 20,
+  "n_success": 4,
+  "success_rate": 0.2,
+  "success_wilson95": [
+    0.0806563532712,
+    0.41602172202575993
+  ],
+  "rms_jerk_mean": 0.09914507768379391,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 20,
+      "success_rate": 0.2
+    }
+  ]
+}

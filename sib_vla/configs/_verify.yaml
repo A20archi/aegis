@@ -1,0 +1,9 @@
+inherit: vanilla.yaml
+eval_n_envs: 4
+episodes_per_task: 4
+record:
+  enabled: true
+  video: true
+  videos_per_task: 2
+  fps: 10
+output_dir: /tmp/sib_verify

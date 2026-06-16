@@ -1,0 +1,21 @@
+{
+  "name": "libero_v_baseline_lighting_1",
+  "method": "baseline",
+  "condition": "lighting_1",
+  "axis": "lighting",
+  "n_episodes": 20,
+  "n_success": 17,
+  "success_rate": 0.85,
+  "success_wilson95": [
+    0.6395767041130426,
+    0.9476322080405041
+  ],
+  "rms_jerk_mean": 0.07397835476972907,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 20,
+      "success_rate": 0.85
+    }
+  ]
+}

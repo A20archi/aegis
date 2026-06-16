@@ -1,0 +1,15 @@
+{
+  "name": "sib_b1e-2",
+  "config": "sib",
+  "corruption": null,
+  "n_episodes": 200,
+  "n_success": 67,
+  "success_rate": 0.335,
+  "success_wilson95": [
+    0.2732398096874265,
+    0.4029793722656195
+  ],
+  "rms_jerk_mean": 0.10182154028374198,
+  "hf_energy_fraction_mean": 0.003129584123190803,
+  "total_bits": 24.51137351989746
+}

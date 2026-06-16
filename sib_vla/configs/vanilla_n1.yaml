@@ -1,0 +1,16 @@
+# MAX baseline: frozen SmolVLA at its NATIVE cadence (n_action_steps=1, closed-loop
+# -- the setting HuggingFaceVLA/smolvla_libero is documented at ~0.70-0.80 on
+# LIBERO-Spatial). Protocol: 20 distinct init states/task x 10 tasks = 200 episodes
+# (Wilson CI ~+/-6% at p=0.75; matched across all evals for clean paired comparison).
+# Per-task sequential build yields incremental per-task results. SIB must beat this.
+inherit: vanilla.yaml
+n_action_steps: 1
+eval_n_envs: 20
+episodes_per_task: 20
+per_task_build: true
+record:
+  enabled: true
+  video: true
+  videos_per_task: 3
+  fps: 10
+output_dir: results

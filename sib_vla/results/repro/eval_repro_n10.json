@@ -1,0 +1,87 @@
+{
+  "name": "repro_n10",
+  "config": "vanilla",
+  "corruption": null,
+  "n_episodes": 200,
+  "n_success": 158,
+  "success_rate": 0.79,
+  "success_wilson95": [
+    0.7283526118460081,
+    0.8407167047213658
+  ],
+  "rms_jerk_mean": 0.38314323388999055,
+  "hf_energy_fraction_mean": 0.02228796094846543,
+  "total_bits": null,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 20,
+      "n_success": 16,
+      "success_rate": 0.8,
+      "rms_jerk_mean": 0.4762930527347347
+    },
+    {
+      "task_id": 1,
+      "n": 20,
+      "n_success": 20,
+      "success_rate": 1.0,
+      "rms_jerk_mean": 0.2720453700004714
+    },
+    {
+      "task_id": 2,
+      "n": 20,
+      "n_success": 17,
+      "success_rate": 0.85,
+      "rms_jerk_mean": 0.322222408441008
+    },
+    {
+      "task_id": 3,
+      "n": 20,
+      "n_success": 16,
+      "success_rate": 0.8,
+      "rms_jerk_mean": 0.3481977796879742
+    },
+    {
+      "task_id": 4,
+      "n": 20,
+      "n_success": 16,
+      "success_rate": 0.8,
+      "rms_jerk_mean": 0.34064356766278514
+    },
+    {
+      "task_id": 5,
+      "n": 20,
+      "n_success": 8,
+      "success_rate": 0.4,
+      "rms_jerk_mean": 0.6097207222914754
+    },
+    {
+      "task_id": 6,
+      "n": 20,
+      "n_success": 15,
+      "success_rate": 0.75,
+      "rms_jerk_mean": 0.40602788367424303
+    },
+    {
+      "task_id": 7,
+      "n": 20,
+      "n_success": 18,
+      "success_rate": 0.9,
+      "rms_jerk_mean": 0.31239865198058997
+    },
+    {
+      "task_id": 8,
+      "n": 20,
+      "n_success": 16,
+      "success_rate": 0.8,
+      "rms_jerk_mean": 0.3504191890150374
+    },
+    {
+      "task_id": 9,
+      "n": 20,
+      "n_success": 16,
+      "success_rate": 0.8,
+      "rms_jerk_mean": 0.39346371341158537
+    }
+  ]
+}

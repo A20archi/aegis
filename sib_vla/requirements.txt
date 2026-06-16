@@ -1,0 +1,15 @@
+# Pin the version actually used (record exact build in your run log).
+lerobot==0.4.3
+torch>=2.2
+torchvision
+numpy
+scipy
+einops
+pyyaml
+matplotlib
+pandas
+tqdm
+tabulate        # pandas.DataFrame.to_markdown
+pytest
+# LIBERO eval stack (per LeRobot's LIBERO docs): robosuite / libero env deps.
+# Install those separately following the LeRobot LIBERO instructions.

@@ -1,0 +1,38 @@
+[rasf] cache=results/sib_on86/chunk_cache.pt  N=5000 H=50 d=7  |A_pred-A_gt| rms=0.575
+[rasf] RASF params=3.3K  gate init strength=0.000
+[rasf] training 8000 steps  bs=256  w_smooth=0.05 w_anchor=0.02 clean_frac=0.5
+[rasf] step=    0/8000  loss=0.7072  correct=0.3566 clean=0.3338 smooth=0.3367  gate=0.001
+[rasf] step=  250/8000  loss=0.6103  correct=0.3073 clean=0.2932 smooth=0.1925  gate=0.246
+[rasf] step=  500/8000  loss=0.6233  correct=0.3133 clean=0.3038 smooth=0.1169  gate=0.409
+[rasf] step=  750/8000  loss=0.5919  correct=0.2966 clean=0.2910 smooth=0.0745  gate=0.520
+[rasf] step= 1000/8000  loss=0.5767  correct=0.2894 clean=0.2841 smooth=0.0506  gate=0.593
+[rasf] step= 1250/8000  loss=0.5419  correct=0.2713 clean=0.2679 smooth=0.0394  gate=0.648
+[rasf] step= 1500/8000  loss=0.5472  correct=0.2745 clean=0.2705 smooth=0.0305  gate=0.689
+[rasf] step= 1750/8000  loss=0.5795  correct=0.2903 clean=0.2871 smooth=0.0245  gate=0.721
+[rasf] step= 2000/8000  loss=0.5739  correct=0.2875 clean=0.2846 smooth=0.0201  gate=0.747
+[rasf] step= 2250/8000  loss=0.5914  correct=0.2967 clean=0.2931 smooth=0.0155  gate=0.768
+[rasf] step= 2500/8000  loss=0.5074  correct=0.2542 clean=0.2517 smooth=0.0132  gate=0.785
+[rasf] step= 2750/8000  loss=0.5710  correct=0.2855 clean=0.2841 smooth=0.0120  gate=0.799
+[rasf] step= 3000/8000  loss=0.5775  correct=0.2893 clean=0.2866 smooth=0.0107  gate=0.811
+[rasf] step= 3250/8000  loss=0.5196  correct=0.2601 clean=0.2582 smooth=0.0087  gate=0.822
+[rasf] step= 3500/8000  loss=0.5717  correct=0.2865 clean=0.2839 smooth=0.0081  gate=0.830
+[rasf] step= 3750/8000  loss=0.5220  correct=0.2618 clean=0.2589 smooth=0.0070  gate=0.838
+[rasf] step= 4000/8000  loss=0.5957  correct=0.2982 clean=0.2962 smooth=0.0072  gate=0.845
+[rasf] step= 4250/8000  loss=0.5476  correct=0.2744 clean=0.2720 smooth=0.0060  gate=0.851
+[rasf] step= 4500/8000  loss=0.5978  correct=0.2994 clean=0.2971 smooth=0.0054  gate=0.856
+[rasf] step= 4750/8000  loss=0.5993  correct=0.3006 clean=0.2975 smooth=0.0054  gate=0.861
+[rasf] step= 5000/8000  loss=0.5343  correct=0.2671 clean=0.2660 smooth=0.0047  gate=0.864
+[rasf] step= 5250/8000  loss=0.5443  correct=0.2727 clean=0.2703 smooth=0.0047  gate=0.868
+[rasf] step= 5500/8000  loss=0.5511  correct=0.2760 clean=0.2738 smooth=0.0043  gate=0.871
+[rasf] step= 5750/8000  loss=0.5806  correct=0.2911 clean=0.2883 smooth=0.0041  gate=0.874
+[rasf] step= 6000/8000  loss=0.5341  correct=0.2675 clean=0.2654 smooth=0.0040  gate=0.876
+[rasf] step= 6250/8000  loss=0.5751  correct=0.2878 clean=0.2860 smooth=0.0040  gate=0.878
+[rasf] step= 6500/8000  loss=0.5177  correct=0.2600 clean=0.2565 smooth=0.0038  gate=0.879
+[rasf] step= 6750/8000  loss=0.5768  correct=0.2889 clean=0.2867 smooth=0.0038  gate=0.881
+[rasf] step= 7000/8000  loss=0.5287  correct=0.2650 clean=0.2626 smooth=0.0036  gate=0.882
+[rasf] step= 7250/8000  loss=0.5834  correct=0.2925 clean=0.2897 smooth=0.0035  gate=0.883
+[rasf] step= 7500/8000  loss=0.5552  correct=0.2780 clean=0.2759 smooth=0.0038  gate=0.884
+[rasf] step= 7750/8000  loss=0.5741  correct=0.2875 clean=0.2853 smooth=0.0037  gate=0.885
+[rasf] step= 7999/8000  loss=0.5732  correct=0.2874 clean=0.2846 smooth=0.0032  gate=0.885
+[rasf] saved -> results/rasf_on86/rasf_on86.pt
+[rasf] final per-dim gate (tanh): [0.88, 0.835, 0.79, 0.921, 0.934, 0.928, 0.909]

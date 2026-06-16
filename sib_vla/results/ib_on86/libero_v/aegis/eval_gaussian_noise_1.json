@@ -1,0 +1,21 @@
+{
+  "name": "libero_v_aegis_gaussian_noise_1",
+  "method": "aegis",
+  "condition": "gaussian_noise_1",
+  "axis": "noise",
+  "n_episodes": 20,
+  "n_success": 15,
+  "success_rate": 0.75,
+  "success_wilson95": [
+    0.5312949900419365,
+    0.888139947210597
+  ],
+  "rms_jerk_mean": 0.08482280070267643,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 20,
+      "success_rate": 0.75
+    }
+  ]
+}

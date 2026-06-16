@@ -1,0 +1,15 @@
+{
+  "name": "sib_adaptive",
+  "config": "sib",
+  "corruption": "action_noise:0.1",
+  "n_episodes": 200,
+  "n_success": 106,
+  "success_rate": 0.53,
+  "success_wilson95": [
+    0.46091557335361155,
+    0.5979536662912893
+  ],
+  "rms_jerk_mean": 0.1296640930024107,
+  "hf_energy_fraction_mean": 0.002678262188941547,
+  "total_bits": 121.04051208496094
+}

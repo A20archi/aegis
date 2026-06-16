@@ -1,0 +1,57 @@
+# ===== AEGIS repo: code + configs + small results only =====
+# Large model weights / checkpoints (regenerable; exceed GitHub 100MB cap)
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.onnx
+outputs/
+**/checkpoints/
+**/pretrained_model/
+
+# Datasets / caches
+data/
+datasets/
+*.npz
+*.hdf5
+*.h5
+*.lmdb
+*.arrow
+
+# Videos / recordings / sims
+*.mp4
+*.avi
+*.gif
+videos/
+results/videos/
+
+# Archives / transfer bundles
+*.tar
+*.tar.gz
+*.tar.zst
+*.zip
+*.7z
+transfer/
+
+# Python envs / caches
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+*.egg-info/
+
+# Secrets / local
+.env
+*.pem
+*.key
+wandb/
+
+# Keep: *.py *.sh *.yaml *.yml *.md, configs/, and results/**/*.json (small eval JSONs + trackers)
+
+# in-progress eval/ablation outputs (excluded per request)
+sib_vla/results/allsuites/
+sib_vla/results/diag_long/

@@ -1,0 +1,208 @@
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-14 16:08:11.910041: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-14 16:08:11.970306: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+INFO 2026-06-14 16:08:19 ot_train.py:195 {'batch_size': 128,
+ 'checkpoint_path': None,
+ 'dataset': {'episodes': None,
+             'image_transforms': {'enable': False,
+                                  'max_num_transforms': 3,
+                                  'random_order': False,
+                                  'tfs': {'affine': {'kwargs': {'degrees': [-5.0,
+                                                                            5.0],
+                                                                'translate': [0.05,
+                                                                              0.05]},
+                                                     'type': 'RandomAffine',
+                                                     'weight': 1.0},
+                                          'brightness': {'kwargs': {'brightness': [0.8,
+                                                                                   1.2]},
+                                                         'type': 'ColorJitter',
+                                                         'weight': 1.0},
+                                          'contrast': {'kwargs': {'contrast': [0.8,
+                                                                               1.2]},
+                                                       'type': 'ColorJitter',
+                                                       'weight': 1.0},
+                                          'hue': {'kwargs': {'hue': [-0.05,
+                                                                     0.05]},
+                                                  'type': 'ColorJitter',
+                                                  'weight': 1.0},
+                                          'saturation': {'kwargs': {'saturation': [0.5,
+                                                                                   1.5]},
+                                                         'type': 'ColorJitter',
+                                                         'weight': 1.0},
+                                          'sharpness': {'kwargs': {'sharpness': [0.5,
+                                                                                 1.5]},
+                                                        'type': 'SharpnessJitter',
+                                                        'weight': 1.0}}},
+             'repo_id': 'lerobot/libero_spatial_image',
+             'revision': None,
+             'root': None,
+             'streaming': False,
+             'use_imagenet_stats': True,
+             'video_backend': 'pyav'},
+ 'env': None,
+ 'eval': {'batch_size': 50, 'n_episodes': 50, 'use_async_envs': False},
+ 'eval_freq': 100000000,
+ 'job_name': 'smolvla',
+ 'log_freq': 100,
+ 'num_workers': 24,
+ 'optimizer': {'betas': [0.9, 0.95],
+               'eps': 1e-08,
+               'grad_clip_norm': 10.0,
+               'lr': 5e-05,
+               'type': 'adamw',
+               'weight_decay': 1e-10},
+ 'output_dir': 'outputs/smolvla_spatial_ft',
+ 'peft': None,
+ 'policy': {'adapt_to_pi_aloha': False,
+            'add_image_special_tokens': False,
+            'attention_mode': 'cross_attn',
+            'chunk_size': 50,
+            'device': 'cuda',
+            'empty_cameras': 0,
+            'expert_width_multiplier': 0.75,
+            'freeze_vision_encoder': True,
+            'input_features': {'observation.images.image': {'shape': [3,
+                                                                      256,
+                                                                      256],
+                                                            'type': <FeatureType.VISUAL: 'VISUAL'>},
+                               'observation.images.image2': {'shape': [3,
+                                                                       256,
+                                                                       256],
+                                                             'type': <FeatureType.VISUAL: 'VISUAL'>},
+                               'observation.state': {'shape': [8],
+                                                     'type': <FeatureType.STATE: 'STATE'>}},
+            'license': None,
+            'load_vlm_weights': True,
+            'max_action_dim': 32,
+            'max_period': 4.0,
+            'max_state_dim': 32,
+            'min_period': 0.004,
+            'n_action_steps': 50,
+            'n_obs_steps': 1,
+            'normalization_mapping': {'ACTION': <NormalizationMode.MEAN_STD: 'MEAN_STD'>,
+                                      'STATE': <NormalizationMode.MEAN_STD: 'MEAN_STD'>,
+                                      'VISUAL': <NormalizationMode.IDENTITY: 'IDENTITY'>},
+            'num_expert_layers': -1,
+            'num_steps': 10,
+            'num_vlm_layers': 16,
+            'optimizer_betas': [0.9, 0.95],
+            'optimizer_eps': 1e-08,
+            'optimizer_grad_clip_norm': 10.0,
+            'optimizer_lr': 5e-05,
+            'optimizer_weight_decay': 1e-10,
+            'output_features': {'action': {'shape': [7],
+                                           'type': <FeatureType.ACTION: 'ACTION'>}},
+            'pad_language_to': 'longest',
+            'prefix_length': -1,
+            'pretrained_path': 'outputs/smolvla_spatial_repro/checkpoints/020000/pretrained_model',
+            'private': None,
+            'push_to_hub': False,
+            'repo_id': None,
+            'resize_imgs_with_padding': [512, 512],
+            'rtc_config': None,
+            'scheduler_decay_lr': 2.5e-06,
+            'scheduler_decay_steps': 4000,
+            'scheduler_warmup_steps': 300,
+            'self_attn_every_n_layers': 2,
+            'tags': None,
+            'tokenizer_max_length': 48,
+            'train_expert_only': True,
+            'train_state_proj': True,
+            'type': 'smolvla',
+            'use_amp': False,
+            'use_cache': True,
+            'use_delta_joint_actions_aloha': False,
+            'use_peft': False,
+            'vlm_model_name': 'HuggingFaceTB/SmolVLM2-500M-Instruct'},
+ 'rabc_epsilon': 1e-06,
+ 'rabc_head_mode': 'sparse',
+ 'rabc_kappa': 0.01,
+ 'rabc_progress_path': None,
+ 'rename_map': {'observation.images.wrist_image': 'observation.images.image2'},
+ 'resume': False,
+ 'save_checkpoint': True,
+ 'save_freq': 1000,
+ 'scheduler': {'decay_lr': 2.5e-06,
+               'num_decay_steps': 4000,
+               'num_warmup_steps': 300,
+               'peak_lr': 5e-05,
+               'type': 'cosine_decay_with_warmup'},
+ 'seed': 1000,
+ 'steps': 4000,
+ 'tolerance_s': 0.0001,
+ 'use_policy_training_preset': True,
+ 'use_rabc': False,
+ 'wandb': {'disable_artifact': False,
+           'enable': False,
+           'entity': None,
+           'mode': None,
+           'notes': None,
+           'project': 'lerobot',
+           'run_id': None}}
+INFO 2026-06-14 16:08:19 ot_train.py:203 Logs will be saved locally.
+INFO 2026-06-14 16:08:19 ot_train.py:215 Creating dataset
+INFO 2026-06-14 16:08:19 ot_train.py:233 Creating policy
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 2026-06-14 16:08:38 ot_train.py:288 Creating optimizer and scheduler
+INFO 2026-06-14 16:08:38 ot_train.py:323 Output dir: outputs/smolvla_spatial_ft
+INFO 2026-06-14 16:08:38 ot_train.py:330 cfg.steps=4000 (4K)
+INFO 2026-06-14 16:08:38 ot_train.py:331 dataset.num_frames=52970 (53K)
+INFO 2026-06-14 16:08:38 ot_train.py:332 dataset.num_episodes=432
+INFO 2026-06-14 16:08:38 ot_train.py:335 Effective batch size: 128 x 1 = 128
+INFO 2026-06-14 16:08:38 ot_train.py:336 num_learnable_params=99880992 (100M)
+INFO 2026-06-14 16:08:38 ot_train.py:337 num_total_params=450046176 (450M)
+INFO 2026-06-14 16:08:38 ot_train.py:393 Start offline training on a fixed dataset, with effective batch size: 128
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+Reducing the number of VLM layers to 16 ...
+Loading weights from local directory
+INFO 2026-06-14 16:12:10 ot_train.py:423 step:100 smpl:13K ep:104 epch:0.24 loss:0.120 grdn:0.684 lr:8.6e-06 updt_s:1.146 data_s:0.976
+INFO 2026-06-14 16:14:43 ot_train.py:423 step:200 smpl:26K ep:209 epch:0.48 loss:0.095 grdn:0.394 lr:2.5e-05 updt_s:1.129 data_s:0.391
+INFO 2026-06-14 16:17:24 ot_train.py:423 step:300 smpl:38K ep:313 epch:0.72 loss:0.092 grdn:0.435 lr:4.2e-05 updt_s:1.124 data_s:0.487
+INFO 2026-06-14 16:19:55 ot_train.py:423 step:400 smpl:51K ep:418 epch:0.97 loss:0.091 grdn:0.446 lr:4.9e-05 updt_s:1.117 data_s:0.386
+INFO 2026-06-14 16:23:11 ot_train.py:423 step:500 smpl:64K ep:522 epch:1.21 loss:0.090 grdn:0.427 lr:4.9e-05 updt_s:1.129 data_s:0.830
+INFO 2026-06-14 16:25:51 ot_train.py:423 step:600 smpl:77K ep:626 epch:1.45 loss:0.088 grdn:0.448 lr:4.8e-05 updt_s:1.138 data_s:0.455
+INFO 2026-06-14 16:28:29 ot_train.py:423 step:700 smpl:90K ep:731 epch:1.69 loss:0.088 grdn:0.430 lr:4.7e-05 updt_s:1.134 data_s:0.445
+INFO 2026-06-14 16:31:16 ot_train.py:423 step:800 smpl:102K ep:835 epch:1.93 loss:0.087 grdn:0.417 lr:4.6e-05 updt_s:1.124 data_s:0.546
+INFO 2026-06-14 16:34:40 ot_train.py:423 step:900 smpl:115K ep:940 epch:2.17 loss:0.085 grdn:0.389 lr:4.5e-05 updt_s:1.122 data_s:0.916
+INFO 2026-06-14 16:37:19 ot_train.py:423 step:1K smpl:128K ep:1K epch:2.42 loss:0.084 grdn:0.400 lr:4.4e-05 updt_s:1.144 data_s:0.439
+INFO 2026-06-14 16:37:19 ot_train.py:443 Checkpoint policy after step 1000
+INFO 2026-06-14 16:40:01 ot_train.py:423 step:1K smpl:141K ep:1K epch:2.66 loss:0.084 grdn:0.410 lr:4.2e-05 updt_s:1.148 data_s:0.429
+INFO 2026-06-14 16:42:36 ot_train.py:423 step:1K smpl:154K ep:1K epch:2.90 loss:0.083 grdn:0.405 lr:4.1e-05 updt_s:1.146 data_s:0.405
+INFO 2026-06-14 16:46:00 ot_train.py:423 step:1K smpl:166K ep:1K epch:3.14 loss:0.082 grdn:0.405 lr:3.9e-05 updt_s:1.119 data_s:0.911
+INFO 2026-06-14 16:48:40 ot_train.py:423 step:1K smpl:179K ep:1K epch:3.38 loss:0.081 grdn:0.410 lr:3.8e-05 updt_s:1.145 data_s:0.456
+INFO 2026-06-14 16:51:15 ot_train.py:423 step:2K smpl:192K ep:2K epch:3.62 loss:0.080 grdn:0.382 lr:3.6e-05 updt_s:1.142 data_s:0.404
+INFO 2026-06-14 16:53:52 ot_train.py:423 step:2K smpl:205K ep:2K epch:3.87 loss:0.080 grdn:0.390 lr:3.4e-05 updt_s:1.141 data_s:0.421
+INFO 2026-06-14 16:57:21 ot_train.py:423 step:2K smpl:218K ep:2K epch:4.11 loss:0.080 grdn:0.387 lr:3.3e-05 updt_s:1.117 data_s:0.970
+INFO 2026-06-14 16:59:58 ot_train.py:423 step:2K smpl:230K ep:2K epch:4.35 loss:0.079 grdn:0.363 lr:3.1e-05 updt_s:1.144 data_s:0.426
+INFO 2026-06-14 17:02:47 ot_train.py:423 step:2K smpl:243K ep:2K epch:4.59 loss:0.078 grdn:0.378 lr:2.9e-05 updt_s:1.143 data_s:0.542
+INFO 2026-06-14 17:05:25 ot_train.py:423 step:2K smpl:256K ep:2K epch:4.83 loss:0.077 grdn:0.365 lr:2.7e-05 updt_s:1.145 data_s:0.429
+INFO 2026-06-14 17:05:25 ot_train.py:443 Checkpoint policy after step 2000
+INFO 2026-06-14 17:08:45 ot_train.py:423 step:2K smpl:269K ep:2K epch:5.07 loss:0.077 grdn:0.367 lr:2.5e-05 updt_s:1.113 data_s:0.846
+INFO 2026-06-14 17:11:30 ot_train.py:423 step:2K smpl:282K ep:2K epch:5.32 loss:0.076 grdn:0.368 lr:2.3e-05 updt_s:1.138 data_s:0.510
+INFO 2026-06-14 17:14:03 ot_train.py:423 step:2K smpl:294K ep:2K epch:5.56 loss:0.077 grdn:0.368 lr:2.2e-05 updt_s:1.148 data_s:0.380
+INFO 2026-06-14 17:16:41 ot_train.py:423 step:2K smpl:307K ep:3K epch:5.80 loss:0.076 grdn:0.354 lr:2.0e-05 updt_s:1.143 data_s:0.431
+INFO 2026-06-14 17:20:03 ot_train.py:423 step:2K smpl:320K ep:3K epch:6.04 loss:0.076 grdn:0.352 lr:1.8e-05 updt_s:1.114 data_s:0.904
+INFO 2026-06-14 17:22:44 ot_train.py:423 step:3K smpl:333K ep:3K epch:6.28 loss:0.075 grdn:0.345 lr:1.6e-05 updt_s:1.142 data_s:0.460
+INFO 2026-06-14 17:25:30 ot_train.py:423 step:3K smpl:346K ep:3K epch:6.52 loss:0.075 grdn:0.340 lr:1.5e-05 updt_s:1.142 data_s:0.517
+INFO 2026-06-14 17:28:11 ot_train.py:423 step:3K smpl:358K ep:3K epch:6.77 loss:0.075 grdn:0.321 lr:1.3e-05 updt_s:1.142 data_s:0.462
+INFO 2026-06-14 17:31:30 ot_train.py:423 step:3K smpl:371K ep:3K epch:7.01 loss:0.075 grdn:0.322 lr:1.2e-05 updt_s:1.119 data_s:0.870
+INFO 2026-06-14 17:34:12 ot_train.py:423 step:3K smpl:384K ep:3K epch:7.25 loss:0.074 grdn:0.322 lr:1.0e-05 updt_s:1.135 data_s:0.477
+INFO 2026-06-14 17:34:12 ot_train.py:443 Checkpoint policy after step 3000
+INFO 2026-06-14 17:36:53 ot_train.py:423 step:3K smpl:397K ep:3K epch:7.49 loss:0.074 grdn:0.323 lr:8.8e-06 updt_s:1.150 data_s:0.413
+INFO 2026-06-14 17:39:29 ot_train.py:423 step:3K smpl:410K ep:3K epch:7.73 loss:0.074 grdn:0.316 lr:7.6e-06 updt_s:1.147 data_s:0.416
+INFO 2026-06-14 17:42:09 ot_train.py:423 step:3K smpl:422K ep:3K epch:7.97 loss:0.074 grdn:0.307 lr:6.5e-06 updt_s:1.130 data_s:0.457
+INFO 2026-06-14 17:45:34 ot_train.py:423 step:3K smpl:435K ep:4K epch:8.22 loss:0.073 grdn:0.300 lr:5.5e-06 updt_s:1.123 data_s:0.924
+INFO 2026-06-14 17:48:11 ot_train.py:423 step:4K smpl:448K ep:4K epch:8.46 loss:0.074 grdn:0.305 lr:4.7e-06 updt_s:1.141 data_s:0.429
+INFO 2026-06-14 17:50:47 ot_train.py:423 step:4K smpl:461K ep:4K epch:8.70 loss:0.074 grdn:0.300 lr:4.0e-06 updt_s:1.141 data_s:0.413
+INFO 2026-06-14 17:53:31 ot_train.py:423 step:4K smpl:474K ep:4K epch:8.94 loss:0.074 grdn:0.300 lr:3.4e-06 updt_s:1.137 data_s:0.498
+INFO 2026-06-14 17:56:57 ot_train.py:423 step:4K smpl:486K ep:4K epch:9.18 loss:0.073 grdn:0.293 lr:3.0e-06 updt_s:1.128 data_s:0.931
+INFO 2026-06-14 17:59:33 ot_train.py:423 step:4K smpl:499K ep:4K epch:9.42 loss:0.073 grdn:0.294 lr:2.7e-06 updt_s:1.144 data_s:0.410
+INFO 2026-06-14 18:02:14 ot_train.py:423 step:4K smpl:512K ep:4K epch:9.67 loss:0.073 grdn:0.292 lr:2.5e-06 updt_s:1.150 data_s:0.458
+INFO 2026-06-14 18:02:14 ot_train.py:443 Checkpoint policy after step 4000
+INFO 2026-06-14 18:02:17 ot_train.py:514 End of training
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe

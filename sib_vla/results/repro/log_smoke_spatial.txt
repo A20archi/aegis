@@ -1,0 +1,171 @@
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-14 15:50:42.564335: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-14 15:50:42.623540: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+INFO 2026-06-14 15:50:49 ot_train.py:195 {'batch_size': 64,
+ 'checkpoint_path': None,
+ 'dataset': {'episodes': None,
+             'image_transforms': {'enable': False,
+                                  'max_num_transforms': 3,
+                                  'random_order': False,
+                                  'tfs': {'affine': {'kwargs': {'degrees': [-5.0,
+                                                                            5.0],
+                                                                'translate': [0.05,
+                                                                              0.05]},
+                                                     'type': 'RandomAffine',
+                                                     'weight': 1.0},
+                                          'brightness': {'kwargs': {'brightness': [0.8,
+                                                                                   1.2]},
+                                                         'type': 'ColorJitter',
+                                                         'weight': 1.0},
+                                          'contrast': {'kwargs': {'contrast': [0.8,
+                                                                               1.2]},
+                                                       'type': 'ColorJitter',
+                                                       'weight': 1.0},
+                                          'hue': {'kwargs': {'hue': [-0.05,
+                                                                     0.05]},
+                                                  'type': 'ColorJitter',
+                                                  'weight': 1.0},
+                                          'saturation': {'kwargs': {'saturation': [0.5,
+                                                                                   1.5]},
+                                                         'type': 'ColorJitter',
+                                                         'weight': 1.0},
+                                          'sharpness': {'kwargs': {'sharpness': [0.5,
+                                                                                 1.5]},
+                                                        'type': 'SharpnessJitter',
+                                                        'weight': 1.0}}},
+             'repo_id': 'lerobot/libero_spatial_image',
+             'revision': None,
+             'root': None,
+             'streaming': False,
+             'use_imagenet_stats': True,
+             'video_backend': 'pyav'},
+ 'env': None,
+ 'eval': {'batch_size': 50, 'n_episodes': 50, 'use_async_envs': False},
+ 'eval_freq': 1000000,
+ 'job_name': 'smolvla',
+ 'log_freq': 1,
+ 'num_workers': 16,
+ 'optimizer': {'betas': [0.9, 0.95],
+               'eps': 1e-08,
+               'grad_clip_norm': 10.0,
+               'lr': 0.0001,
+               'type': 'adamw',
+               'weight_decay': 1e-10},
+ 'output_dir': 'outputs/_smoke_spatial',
+ 'peft': None,
+ 'policy': {'adapt_to_pi_aloha': False,
+            'add_image_special_tokens': False,
+            'attention_mode': 'cross_attn',
+            'chunk_size': 50,
+            'device': 'cuda',
+            'empty_cameras': 0,
+            'expert_width_multiplier': 0.75,
+            'freeze_vision_encoder': True,
+            'input_features': {'observation.images.image': {'shape': [3,
+                                                                      256,
+                                                                      256],
+                                                            'type': <FeatureType.VISUAL: 'VISUAL'>},
+                               'observation.images.image2': {'shape': [3,
+                                                                       256,
+                                                                       256],
+                                                             'type': <FeatureType.VISUAL: 'VISUAL'>},
+                               'observation.state': {'shape': [8],
+                                                     'type': <FeatureType.STATE: 'STATE'>}},
+            'license': None,
+            'load_vlm_weights': True,
+            'max_action_dim': 32,
+            'max_period': 4.0,
+            'max_state_dim': 32,
+            'min_period': 0.004,
+            'n_action_steps': 50,
+            'n_obs_steps': 1,
+            'normalization_mapping': {'ACTION': <NormalizationMode.MEAN_STD: 'MEAN_STD'>,
+                                      'STATE': <NormalizationMode.MEAN_STD: 'MEAN_STD'>,
+                                      'VISUAL': <NormalizationMode.IDENTITY: 'IDENTITY'>},
+            'num_expert_layers': -1,
+            'num_steps': 10,
+            'num_vlm_layers': 16,
+            'optimizer_betas': [0.9, 0.95],
+            'optimizer_eps': 1e-08,
+            'optimizer_grad_clip_norm': 10.0,
+            'optimizer_lr': 0.0001,
+            'optimizer_weight_decay': 1e-10,
+            'output_features': {'action': {'shape': [7],
+                                           'type': <FeatureType.ACTION: 'ACTION'>}},
+            'pad_language_to': 'longest',
+            'prefix_length': -1,
+            'pretrained_path': 'outputs/smolvla_spatial_repro/checkpoints/020000/pretrained_model',
+            'private': None,
+            'push_to_hub': False,
+            'repo_id': None,
+            'resize_imgs_with_padding': [512, 512],
+            'rtc_config': None,
+            'scheduler_decay_lr': 2.5e-06,
+            'scheduler_decay_steps': 20000,
+            'scheduler_warmup_steps': 1000,
+            'self_attn_every_n_layers': 2,
+            'tags': None,
+            'tokenizer_max_length': 48,
+            'train_expert_only': True,
+            'train_state_proj': True,
+            'type': 'smolvla',
+            'use_amp': False,
+            'use_cache': True,
+            'use_delta_joint_actions_aloha': False,
+            'use_peft': False,
+            'vlm_model_name': 'HuggingFaceTB/SmolVLM2-500M-Instruct'},
+ 'rabc_epsilon': 1e-06,
+ 'rabc_head_mode': 'sparse',
+ 'rabc_kappa': 0.01,
+ 'rabc_progress_path': None,
+ 'rename_map': {'observation.images.wrist_image': 'observation.images.image2'},
+ 'resume': False,
+ 'save_checkpoint': True,
+ 'save_freq': 1000000,
+ 'scheduler': {'decay_lr': 2.5e-06,
+               'num_decay_steps': 20000,
+               'num_warmup_steps': 1000,
+               'peak_lr': 0.0001,
+               'type': 'cosine_decay_with_warmup'},
+ 'seed': 1000,
+ 'steps': 4,
+ 'tolerance_s': 0.0001,
+ 'use_policy_training_preset': True,
+ 'use_rabc': False,
+ 'wandb': {'disable_artifact': False,
+           'enable': False,
+           'entity': None,
+           'mode': None,
+           'notes': None,
+           'project': 'lerobot',
+           'run_id': None}}
+INFO 2026-06-14 15:50:49 ot_train.py:203 Logs will be saved locally.
+INFO 2026-06-14 15:50:49 ot_train.py:215 Creating dataset
+Fetching 75 files:   0%|          | 0/75 [00:00<?, ?it/s]Fetching 75 files:   8%|▊         | 6/75 [01:10<13:29, 11.74s/it]Fetching 75 files:  17%|█▋        | 13/75 [01:53<08:30,  8.23s/it]Fetching 75 files:  39%|███▊      | 29/75 [02:23<03:03,  3.99s/it]Fetching 75 files:  48%|████▊     | 36/75 [02:39<02:14,  3.45s/it]Fetching 75 files:  49%|████▉     | 37/75 [02:46<02:19,  3.66s/it]Fetching 75 files:  51%|█████     | 38/75 [03:06<03:00,  4.89s/it]Fetching 75 files:  52%|█████▏    | 39/75 [03:14<03:08,  5.24s/it]Fetching 75 files:  53%|█████▎    | 40/75 [03:18<02:58,  5.10s/it]Fetching 75 files:  55%|█████▍    | 41/75 [03:52<05:15,  9.27s/it]Fetching 75 files:  60%|██████    | 45/75 [03:55<02:43,  5.45s/it]Fetching 75 files:  64%|██████▍   | 48/75 [04:34<03:33,  7.92s/it]Fetching 75 files:  65%|██████▌   | 49/75 [04:53<04:03,  9.36s/it]Fetching 75 files:  68%|██████▊   | 51/75 [04:54<02:45,  6.88s/it]Fetching 75 files:  75%|███████▍  | 56/75 [05:47<02:47,  8.81s/it]Fetching 75 files:  76%|███████▌  | 57/75 [05:51<02:26,  8.16s/it]Fetching 75 files:  77%|███████▋  | 58/75 [05:52<02:00,  7.10s/it]Fetching 75 files:  81%|████████▏ | 61/75 [06:02<01:18,  5.64s/it]Fetching 75 files:  85%|████████▌ | 64/75 [06:54<01:48,  9.82s/it]Fetching 75 files:  87%|████████▋ | 65/75 [06:56<01:26,  8.64s/it]Fetching 75 files:  91%|█████████ | 68/75 [06:58<00:39,  5.58s/it]Fetching 75 files:  93%|█████████▎| 70/75 [06:59<00:20,  4.18s/it]Fetching 75 files: 100%|██████████| 75/75 [06:59<00:00,  5.59s/it]
+INFO 2026-06-14 15:58:10 ot_train.py:233 Creating policy
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 2026-06-14 15:58:30 ot_train.py:288 Creating optimizer and scheduler
+INFO 2026-06-14 15:58:30 hedulers.py:105 Auto-scaling LR scheduler: num_training_steps (4) < num_decay_steps (20000). Scaling warmup: 1000 → 0, decay: 20000 → 4 (scale factor: 0.000)
+INFO 2026-06-14 15:58:30 ot_train.py:323 Output dir: outputs/_smoke_spatial
+INFO 2026-06-14 15:58:30 ot_train.py:330 cfg.steps=4 (4)
+INFO 2026-06-14 15:58:30 ot_train.py:331 dataset.num_frames=52970 (53K)
+INFO 2026-06-14 15:58:30 ot_train.py:332 dataset.num_episodes=432
+INFO 2026-06-14 15:58:30 ot_train.py:335 Effective batch size: 64 x 1 = 64
+INFO 2026-06-14 15:58:30 ot_train.py:336 num_learnable_params=99880992 (100M)
+INFO 2026-06-14 15:58:30 ot_train.py:337 num_total_params=450046176 (450M)
+INFO 2026-06-14 15:58:30 ot_train.py:393 Start offline training on a fixed dataset, with effective batch size: 64
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+Reducing the number of VLM layers to 16 ...
+Loading weights from local directory
+INFO 2026-06-14 15:58:52 ot_train.py:423 step:1 smpl:64 ep:1 epch:0.00 loss:0.140 grdn:1.424 lr:8.6e-05 updt_s:1.591 data_s:20.899
+INFO 2026-06-14 15:58:53 ot_train.py:423 step:2 smpl:128 ep:1 epch:0.00 loss:0.871 grdn:7.832 lr:5.1e-05 updt_s:0.577 data_s:0.019
+INFO 2026-06-14 15:58:54 ot_train.py:423 step:3 smpl:192 ep:2 epch:0.00 loss:0.296 grdn:1.832 lr:1.7e-05 updt_s:0.555 data_s:0.018
+INFO 2026-06-14 15:58:54 ot_train.py:423 step:4 smpl:256 ep:2 epch:0.00 loss:0.267 grdn:1.640 lr:2.5e-06 updt_s:0.554 data_s:0.018
+INFO 2026-06-14 15:58:54 ot_train.py:443 Checkpoint policy after step 4
+INFO 2026-06-14 15:58:57 ot_train.py:514 End of training
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe

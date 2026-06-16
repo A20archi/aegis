@@ -1,0 +1,14 @@
+### ACTION-NOISE SWEEP (rerun, device-fix) start 목 14:17
+>>> [14:17] vanilla_n25 @ 0.05
+>>> [14:17] lowpass @ 0.05
+>>> [14:17] sib_b1e-4 @ 0.05
+>>> [14:17] sib_adaptive @ 0.05
+>>> [15:28] vanilla_n25 @ 0.1
+>>> [15:30] lowpass @ 0.1
+>>> [15:30] sib_b1e-4 @ 0.1
+>>> [15:32] sib_adaptive @ 0.1
+>>> [16:40] vanilla_n25 @ 0.2
+>>> [16:41] lowpass @ 0.2
+>>> [16:42] sib_b1e-4 @ 0.2
+>>> [16:46] sib_adaptive @ 0.2
+### ACTION-NOISE RERUN DONE 목 17:58

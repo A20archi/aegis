@@ -1,0 +1,5 @@
+# Vanilla cadence-sweep point: open-loop horizon = 10 steps. Maps the reactivity
+# curve between MAX (n=1, 0.720) and MIN (n=25, 0.570) — locates the cadence where
+# success approaches MAX, i.e. the target for a magnitude-preserving SIB.
+inherit: vanilla.yaml
+n_action_steps: 10

@@ -1,0 +1,9 @@
+# POST-LoRA SIB: spectral bottleneck on top of the LoRA-adapted repro
+# checkpoint. checkpoint points at the merged model produced by finetune_lora.py
+# (lora_repro.yaml stage). This is the SIB variant with a real shot at moving SR
+# (LoRA adapts the policy weights; SIB then regularises the action spectrum).
+inherit: sib.yaml
+checkpoint: results/sib_lora_repro/smolvla_lora
+output_dir: results/sib_lora_repro
+n_action_steps: 1
+beta: 1.0e-4

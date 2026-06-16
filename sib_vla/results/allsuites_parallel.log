@@ -1,0 +1,11 @@
+[17:47:52] === 4-suite parallel eval: EP=50 CONC=4 (8 jobs) ===
+[17:47:52] START long/baseline
+[17:47:52] START long/aegis
+[17:47:52] START spatial/aegis
+[17:47:52] START spatial/baseline
+[19:23:59] DONE  spatial/baseline
+[19:23:59] START object/baseline
+[19:23:59] START goal/baseline
+[19:23:59] START goal/aegis
+[19:23:59] START object/aegis
+[19:25:57] DONE  spatial/aegis

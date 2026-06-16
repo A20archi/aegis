@@ -1,0 +1,29 @@
+# IB-Adapter fine-tuning + eval config.
+# Inherits shared settings from base.yaml (values replicated here for clarity).
+
+suite: libero_spatial
+checkpoint: HuggingFaceVLA/smolvla_libero
+repo_id: HuggingFaceVLA/libero
+dataset_root: null
+fps: 10
+
+chunk_size: 50
+n_action_steps: 1     # n=1 for fair comparison with baseline (paper eval protocol)
+
+seeds: [42, 123, 456]
+episodes_per_task: 20
+eval_n_envs: 20
+per_task_build: true
+episode_length: 300
+
+device: cuda
+n_gpus: 1
+output_dir: results/ib_adapter
+
+ib_adapter:
+  n_heads: 8          # D=960 → d=120 per head
+  D_out: 960
+  lr_ib: 2.0e-4       # IB-Adapter params + fusion_coeff
+  lr_head: 2.0e-5     # lm_expert action head
+  steps: 10000
+  batch_size: 32

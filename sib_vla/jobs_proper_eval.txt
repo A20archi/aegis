@@ -1,0 +1,4 @@
+# Proper eval: n=1, 50 init states/task, 280-step horizon (matches SmolVLA paper)
+# tag | config | weights | corruption | action_noise
+vanilla_n1_proper|configs/proper_eval.yaml|||
+sib_b1e-4_proper|configs/proper_eval.yaml|results/sib_b1e-4.pt||

@@ -1,0 +1,15 @@
+{
+  "name": "jerk",
+  "config": "jerk",
+  "corruption": null,
+  "n_episodes": 200,
+  "n_success": 114,
+  "success_rate": 0.57,
+  "success_wilson95": [
+    0.500703604055383,
+    0.636657955116052
+  ],
+  "rms_jerk_mean": 0.09248358507181308,
+  "hf_energy_fraction_mean": 0.0018603983163972828,
+  "total_bits": null
+}

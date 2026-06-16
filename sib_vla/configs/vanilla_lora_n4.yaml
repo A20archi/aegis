@@ -1,0 +1,6 @@
+# Vanilla SmolVLA after LoRA fine-tuning, evaluated at n=4 (matches the 84% baseline cadence).
+# Run after finetune_lora.py saves results/smolvla_lora/.
+inherit: vanilla.yaml
+checkpoint: results/smolvla_lora
+n_action_steps: 4
+output_dir: results

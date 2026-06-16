@@ -1,0 +1,8 @@
+inherit: base.yaml
+checkpoint: outputs/smolvla_spatial_repro/checkpoints/020000/pretrained_model
+output_dir: results/allsuites/spatial
+suite: libero_spatial
+episode_length: 220
+n_action_steps: 1
+record:
+  enabled: false

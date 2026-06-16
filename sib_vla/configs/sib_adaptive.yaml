@@ -1,0 +1,9 @@
+# Noise-adaptive SIB: input-adaptive sigma (estimates the action-noise floor from
+# the signal-free high bands and suppresses harder when noisier) + magnitude
+# preservation. Trained as a denoiser (train_action_noise) so it learns to cancel
+# action-space perturbations. The variant meant to BEAT a fixed low-pass under noise.
+inherit: sib.yaml
+adaptive_sigma: true
+noise_band_frac: 0.5
+preserve_energy: true
+train_action_noise: 0.2

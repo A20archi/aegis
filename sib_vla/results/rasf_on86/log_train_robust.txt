@@ -1,0 +1,44 @@
+[rasf] cache=results/sib_on86/chunk_cache.pt  N=5000 H=50 d=7  (target = policy's OWN clean prediction; no ground truth)
+[rasf] RASF params=3.3K  gate_max=0.95  gain_floor=0.05  gate init strength=0.000
+[rasf] training 8000 steps  bs=256  W_clean=5.0 W_denoise=1.5 W_gain=0.05 noise_std_max=0.5
+[rasf] step=    0/8000  loss=0.1376  clean_rms|dA|=0.0000  denoise=0.0917  g_clean=0.983  gate=0.001
+[rasf] step=  250/8000  loss=0.0696  clean_rms|dA|=0.0121  denoise=0.0446  g_clean=0.937  gate=0.325
+[rasf] step=  500/8000  loss=0.0653  clean_rms|dA|=0.0137  denoise=0.0422  g_clean=0.968  gate=0.482
+[rasf] step=  750/8000  loss=0.0527  clean_rms|dA|=0.0069  denoise=0.0346  g_clean=0.988  gate=0.574
+[rasf] step= 1000/8000  loss=0.0491  clean_rms|dA|=0.0116  denoise=0.0317  g_clean=0.980  gate=0.635
+[rasf] step= 1250/8000  loss=0.0484  clean_rms|dA|=0.0128  denoise=0.0310  g_clean=0.972  gate=0.678
+[rasf] step= 1500/8000  loss=0.0470  clean_rms|dA|=0.0099  denoise=0.0305  g_clean=0.980  gate=0.710
+[rasf] step= 1750/8000  loss=0.0478  clean_rms|dA|=0.0144  denoise=0.0305  g_clean=0.973  gate=0.735
+[rasf] step= 2000/8000  loss=0.0436  clean_rms|dA|=0.0125  denoise=0.0280  g_clean=0.980  gate=0.754
+[rasf] step= 2250/8000  loss=0.0459  clean_rms|dA|=0.0131  denoise=0.0294  g_clean=0.975  gate=0.769
+[rasf] step= 2500/8000  loss=0.0429  clean_rms|dA|=0.0077  denoise=0.0279  g_clean=0.987  gate=0.782
+[rasf] step= 2750/8000  loss=0.0457  clean_rms|dA|=0.0101  denoise=0.0295  g_clean=0.980  gate=0.792
+[rasf] step= 3000/8000  loss=0.0451  clean_rms|dA|=0.0086  denoise=0.0293  g_clean=0.984  gate=0.801
+[rasf] step= 3250/8000  loss=0.0439  clean_rms|dA|=0.0091  denoise=0.0284  g_clean=0.981  gate=0.809
+[rasf] step= 3500/8000  loss=0.0427  clean_rms|dA|=0.0087  denoise=0.0276  g_clean=0.980  gate=0.815
+[rasf] step= 3750/8000  loss=0.0457  clean_rms|dA|=0.0084  denoise=0.0297  g_clean=0.981  gate=0.820
+[rasf] step= 4000/8000  loss=0.0460  clean_rms|dA|=0.0156  denoise=0.0292  g_clean=0.977  gate=0.825
+[rasf] step= 4250/8000  loss=0.0450  clean_rms|dA|=0.0082  denoise=0.0292  g_clean=0.986  gate=0.829
+[rasf] step= 4500/8000  loss=0.0474  clean_rms|dA|=0.0052  denoise=0.0310  g_clean=0.991  gate=0.833
+[rasf] step= 4750/8000  loss=0.0471  clean_rms|dA|=0.0078  denoise=0.0306  g_clean=0.985  gate=0.836
+[rasf] step= 5000/8000  loss=0.0421  clean_rms|dA|=0.0095  denoise=0.0271  g_clean=0.982  gate=0.839
+[rasf] step= 5250/8000  loss=0.0494  clean_rms|dA|=0.0087  denoise=0.0321  g_clean=0.984  gate=0.841
+[rasf] step= 5500/8000  loss=0.0463  clean_rms|dA|=0.0084  denoise=0.0300  g_clean=0.983  gate=0.843
+[rasf] step= 5750/8000  loss=0.0453  clean_rms|dA|=0.0088  denoise=0.0293  g_clean=0.979  gate=0.845
+[rasf] step= 6000/8000  loss=0.0434  clean_rms|dA|=0.0098  denoise=0.0280  g_clean=0.983  gate=0.847
+[rasf] step= 6250/8000  loss=0.0413  clean_rms|dA|=0.0080  denoise=0.0267  g_clean=0.986  gate=0.848
+[rasf] step= 6500/8000  loss=0.0448  clean_rms|dA|=0.0063  denoise=0.0292  g_clean=0.986  gate=0.849
+[rasf] step= 6750/8000  loss=0.0407  clean_rms|dA|=0.0075  denoise=0.0264  g_clean=0.985  gate=0.850
+[rasf] step= 7000/8000  loss=0.0410  clean_rms|dA|=0.0091  denoise=0.0264  g_clean=0.980  gate=0.851
+[rasf] step= 7250/8000  loss=0.0453  clean_rms|dA|=0.0094  denoise=0.0292  g_clean=0.978  gate=0.852
+[rasf] step= 7500/8000  loss=0.0428  clean_rms|dA|=0.0078  denoise=0.0277  g_clean=0.982  gate=0.852
+[rasf] step= 7750/8000  loss=0.0420  clean_rms|dA|=0.0052  denoise=0.0273  g_clean=0.988  gate=0.853
+[rasf] step= 7999/8000  loss=0.0447  clean_rms|dA|=0.0066  denoise=0.0291  g_clean=0.986  gate=0.853
+[rasf] saved -> results/rasf_on86/rasf_on86.pt
+[rasf] === CLEAN-PRESERVATION VALIDATION (full cache) ===
+[rasf]   rms|A_hat-A| = 0.0078  (want < 0.02)
+[rasf]   max|A_hat-A| = 0.5339
+[rasf]   mean g_clean = 0.984  (want > 0.90, all-pass)
+[rasf]   energy kept  = 99.8%  (want ~100%)
+[rasf]   per-dim residual strength = [0.896, 0.908, 0.904, 0.829, 0.831, 0.906, 0.7]
+[rasf]   VERDICT: PASS (conservative)

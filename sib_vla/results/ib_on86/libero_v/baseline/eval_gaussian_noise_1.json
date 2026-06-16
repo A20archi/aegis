@@ -1,0 +1,21 @@
+{
+  "name": "libero_v_baseline_gaussian_noise_1",
+  "method": "baseline",
+  "condition": "gaussian_noise_1",
+  "axis": "noise",
+  "n_episodes": 20,
+  "n_success": 16,
+  "success_rate": 0.8,
+  "success_wilson95": [
+    0.5839782779742401,
+    0.9193436467288
+  ],
+  "rms_jerk_mean": 0.07045053694889136,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 20,
+      "success_rate": 0.8
+    }
+  ]
+}

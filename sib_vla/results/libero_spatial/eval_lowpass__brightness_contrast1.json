@@ -1,0 +1,15 @@
+{
+  "name": "lowpass",
+  "config": "lowpass",
+  "corruption": "brightness_contrast:1",
+  "n_episodes": 200,
+  "n_success": 100,
+  "success_rate": 0.5,
+  "success_wilson95": [
+    0.43135962209034523,
+    0.5686403779096547
+  ],
+  "rms_jerk_mean": 0.11628662613922003,
+  "hf_energy_fraction_mean": 0.002400477752686022,
+  "total_bits": null
+}

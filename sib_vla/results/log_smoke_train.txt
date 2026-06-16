@@ -1,0 +1,161 @@
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-13 19:23:44.512769: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-13 19:23:44.576265: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+INFO 2026-06-13 19:23:52 ot_train.py:195 {'batch_size': 256,
+ 'checkpoint_path': None,
+ 'dataset': {'episodes': None,
+             'image_transforms': {'enable': False,
+                                  'max_num_transforms': 3,
+                                  'random_order': False,
+                                  'tfs': {'affine': {'kwargs': {'degrees': [-5.0,
+                                                                            5.0],
+                                                                'translate': [0.05,
+                                                                              0.05]},
+                                                     'type': 'RandomAffine',
+                                                     'weight': 1.0},
+                                          'brightness': {'kwargs': {'brightness': [0.8,
+                                                                                   1.2]},
+                                                         'type': 'ColorJitter',
+                                                         'weight': 1.0},
+                                          'contrast': {'kwargs': {'contrast': [0.8,
+                                                                               1.2]},
+                                                       'type': 'ColorJitter',
+                                                       'weight': 1.0},
+                                          'hue': {'kwargs': {'hue': [-0.05,
+                                                                     0.05]},
+                                                  'type': 'ColorJitter',
+                                                  'weight': 1.0},
+                                          'saturation': {'kwargs': {'saturation': [0.5,
+                                                                                   1.5]},
+                                                         'type': 'ColorJitter',
+                                                         'weight': 1.0},
+                                          'sharpness': {'kwargs': {'sharpness': [0.5,
+                                                                                 1.5]},
+                                                        'type': 'SharpnessJitter',
+                                                        'weight': 1.0}}},
+             'repo_id': 'HuggingFaceVLA/libero',
+             'revision': None,
+             'root': None,
+             'streaming': False,
+             'use_imagenet_stats': True,
+             'video_backend': 'pyav'},
+ 'env': None,
+ 'eval': {'batch_size': 50, 'n_episodes': 50, 'use_async_envs': False},
+ 'eval_freq': 1000000,
+ 'job_name': 'smolvla',
+ 'log_freq': 1,
+ 'num_workers': 8,
+ 'optimizer': {'betas': [0.9, 0.95],
+               'eps': 1e-08,
+               'grad_clip_norm': 10,
+               'lr': 0.0001,
+               'type': 'adamw',
+               'weight_decay': 1e-10},
+ 'output_dir': 'outputs/_smoke_test',
+ 'peft': None,
+ 'policy': {'adapt_to_pi_aloha': False,
+            'add_image_special_tokens': False,
+            'attention_mode': 'cross_attn',
+            'chunk_size': 50,
+            'device': 'cuda',
+            'empty_cameras': 0,
+            'expert_width_multiplier': 0.75,
+            'freeze_vision_encoder': True,
+            'input_features': {},
+            'license': None,
+            'load_vlm_weights': True,
+            'max_action_dim': 32,
+            'max_period': 4.0,
+            'max_state_dim': 32,
+            'min_period': 0.004,
+            'n_action_steps': 50,
+            'n_obs_steps': 1,
+            'normalization_mapping': {'ACTION': <NormalizationMode.MEAN_STD: 'MEAN_STD'>,
+                                      'STATE': <NormalizationMode.MEAN_STD: 'MEAN_STD'>,
+                                      'VISUAL': <NormalizationMode.IDENTITY: 'IDENTITY'>},
+            'num_expert_layers': -1,
+            'num_steps': 10,
+            'num_vlm_layers': 16,
+            'optimizer_betas': [0.9, 0.95],
+            'optimizer_eps': 1e-08,
+            'optimizer_grad_clip_norm': 10,
+            'optimizer_lr': 0.0001,
+            'optimizer_weight_decay': 1e-10,
+            'output_features': {},
+            'pad_language_to': 'longest',
+            'prefix_length': -1,
+            'pretrained_path': None,
+            'private': None,
+            'push_to_hub': False,
+            'repo_id': None,
+            'resize_imgs_with_padding': [512, 512],
+            'rtc_config': None,
+            'scheduler_decay_lr': 2.5e-06,
+            'scheduler_decay_steps': 30000,
+            'scheduler_warmup_steps': 1000,
+            'self_attn_every_n_layers': 2,
+            'tags': None,
+            'tokenizer_max_length': 48,
+            'train_expert_only': True,
+            'train_state_proj': True,
+            'type': 'smolvla',
+            'use_amp': False,
+            'use_cache': True,
+            'use_delta_joint_actions_aloha': False,
+            'use_peft': False,
+            'vlm_model_name': 'HuggingFaceTB/SmolVLM2-500M-Instruct'},
+ 'rabc_epsilon': 1e-06,
+ 'rabc_head_mode': 'sparse',
+ 'rabc_kappa': 0.01,
+ 'rabc_progress_path': None,
+ 'rename_map': {},
+ 'resume': False,
+ 'save_checkpoint': True,
+ 'save_freq': 1000000,
+ 'scheduler': {'decay_lr': 2.5e-06,
+               'num_decay_steps': 30000,
+               'num_warmup_steps': 1000,
+               'peak_lr': 0.0001,
+               'type': 'cosine_decay_with_warmup'},
+ 'seed': 1000,
+ 'steps': 6,
+ 'tolerance_s': 0.0001,
+ 'use_policy_training_preset': True,
+ 'use_rabc': False,
+ 'wandb': {'disable_artifact': False,
+           'enable': False,
+           'entity': None,
+           'mode': None,
+           'notes': None,
+           'project': 'lerobot',
+           'run_id': None}}
+INFO 2026-06-13 19:23:52 ot_train.py:203 Logs will be saved locally.
+INFO 2026-06-13 19:23:52 ot_train.py:215 Creating dataset
+INFO 2026-06-13 19:23:52 ot_train.py:233 Creating policy
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 2026-06-13 19:24:11 ot_train.py:288 Creating optimizer and scheduler
+INFO 2026-06-13 19:24:11 hedulers.py:105 Auto-scaling LR scheduler: num_training_steps (6) < num_decay_steps (30000). Scaling warmup: 1000 → 0, decay: 30000 → 6 (scale factor: 0.000)
+INFO 2026-06-13 19:24:11 ot_train.py:323 Output dir: outputs/_smoke_test
+INFO 2026-06-13 19:24:11 ot_train.py:330 cfg.steps=6 (6)
+INFO 2026-06-13 19:24:11 ot_train.py:331 dataset.num_frames=273465 (273K)
+INFO 2026-06-13 19:24:11 ot_train.py:332 dataset.num_episodes=1693
+INFO 2026-06-13 19:24:11 ot_train.py:335 Effective batch size: 256 x 1 = 256
+INFO 2026-06-13 19:24:11 ot_train.py:336 num_learnable_params=99880992 (100M)
+INFO 2026-06-13 19:24:11 ot_train.py:337 num_total_params=450046176 (450M)
+INFO 2026-06-13 19:24:11 ot_train.py:393 Start offline training on a fixed dataset, with effective batch size: 256
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+Reducing the number of VLM layers to 16 ...
+INFO 2026-06-13 19:25:31 ot_train.py:423 step:1 smpl:256 ep:2 epch:0.00 loss:1.611 grdn:8.869 lr:9.3e-05 updt_s:4.470 data_s:76.317
+INFO 2026-06-13 19:25:34 ot_train.py:423 step:2 smpl:512 ep:3 epch:0.00 loss:2.674 grdn:14.553 lr:7.6e-05 updt_s:2.122 data_s:0.075
+INFO 2026-06-13 19:25:36 ot_train.py:423 step:3 smpl:768 ep:5 epch:0.00 loss:1.719 grdn:8.174 lr:5.1e-05 updt_s:2.123 data_s:0.064
+INFO 2026-06-13 19:25:38 ot_train.py:423 step:4 smpl:1K ep:6 epch:0.00 loss:1.330 grdn:4.244 lr:2.7e-05 updt_s:2.118 data_s:0.062
+INFO 2026-06-13 19:25:40 ot_train.py:423 step:5 smpl:1K ep:8 epch:0.00 loss:1.229 grdn:2.354 lr:9.0e-06 updt_s:2.127 data_s:0.064
+INFO 2026-06-13 19:25:42 ot_train.py:423 step:6 smpl:2K ep:10 epch:0.01 loss:1.194 grdn:1.742 lr:2.5e-06 updt_s:2.128 data_s:0.061
+INFO 2026-06-13 19:25:42 ot_train.py:443 Checkpoint policy after step 6
+INFO 2026-06-13 19:25:45 ot_train.py:514 End of training
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe

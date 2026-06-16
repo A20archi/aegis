@@ -1,0 +1,3 @@
+inherit: base_long.yaml
+name: vanilla_long
+module: gain_no_rate

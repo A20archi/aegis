@@ -1,0 +1,12 @@
+# RASF (SIB v2: Residual Adaptive Spectral Filter) on the 86% generalist base.
+inherit: base.yaml
+checkpoint: outputs/smolvla_spatial_repro/checkpoints/020000/pretrained_model
+output_dir: results/rasf_on86
+module: rasf
+n_action_steps: 1
+# Robustness variant: open the caps so the adaptive gate can strongly attenuate
+# DETECTED-noise bands (safe — g≈1 on clean keeps the residual ~0 regardless).
+rasf_gain_floor: 0.05      # was 0.30: let noise bands be nearly nulled
+rasf_gate_max: 0.95        # was 0.60: allow near-full spectral correction
+record:
+  enabled: false

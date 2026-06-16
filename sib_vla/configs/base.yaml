@@ -1,0 +1,56 @@
+# Shared configuration. Method configs inherit this and overlay their keys.
+# Values marked VERIFY depend on your checkpoint / dataset / sim and must be
+# confirmed before a real run.
+
+suite: libero_spatial               # primary; libero_long for the stress test
+checkpoint: HuggingFaceVLA/smolvla_libero  # LIBERO-finetuned SmolVLA (verified config)
+repo_id: HuggingFaceVLA/libero      # matches the checkpoint's image keys (image/image2)
+dataset_root: null                  # local LeRobotDataset root, or null to fetch
+fps: 10                             # verified from dataset metadata
+
+chunk_size: 50                   # SmolVLA chunk horizon H (verified on HuggingFaceVLA/smolvla_libero)
+n_action_steps: 25               # execute 25 of the 50-step chunk before re-querying
+                                 # (checkpoint default is 1; 25 is ~25x cheaper to eval and
+                                 #  actually executes the bottleneck-smoothed chunk steps)
+
+seeds: [42, 123, 456]
+episodes_per_task: 20            # LIBERO ties init_state[i] to sub-env i, so this
+eval_n_envs: 20                  # MUST equal eval_n_envs: one batch = this many DISTINCT
+                                 # init states. 20/task x 10 = 200 eps (Wilson ~+/-6%).
+per_task_build: true             # build one task's envs at a time (Sync n=20 ~1.89s/step;
+                                 # avoids the slow/huge eager all-tasks build).
+episode_length: 300              # LIBERO max episode length
+
+device: cuda
+n_gpus: 1
+batch_size: 32                   # policy forward batch for the precompute
+output_dir: results
+
+lambda:
+  n_samples: 5000                # predicted chunks used to estimate lambda + cache
+
+train:
+  steps: 30000
+  batch_size: 256                # bottleneck trains on cached tensors
+  lr: 1.0e-3
+  grad_clip: 1.0
+  log_every: 500
+
+stage1:
+  low_band_energy_threshold: 0.95  # Gate A: weak allocation story if low-3 >= this
+  offdiag_threshold: 0.20          # Gate B: bands correlated -> rotation pca
+
+corruptions:                       # eval-time only (Section 7)
+  - gaussian_noise:0
+  - gaussian_noise:1
+  - gaussian_blur:0
+  - gaussian_blur:1
+  - brightness_contrast:0
+  - brightness_contrast:1
+
+record:                            # keep rollout videos + trajectory traces
+  enabled: true
+  video: true
+  videos_per_task: 3               # cap mp4s per task (disk); traces saved for all
+  fps: 10
+  camera_key: null                 # null -> first image key in the obs batch

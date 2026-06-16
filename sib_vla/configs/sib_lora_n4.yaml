@@ -1,0 +1,5 @@
+# SIB+LoRA eval at n=4 — the apples-to-apples comparison against SmolVLA's 84%.
+# Weights: results/sib_lora/sib_lora_b1e-4.pt (produced by train.py with --config sib_lora.yaml)
+inherit: sib_lora.yaml
+n_action_steps: 4
+output_dir: results

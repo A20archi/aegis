@@ -1,0 +1,5 @@
+inherit: vanilla_n25.yaml
+episode_length: 80
+record:
+  enabled: false
+output_dir: /tmp/sib_conctest

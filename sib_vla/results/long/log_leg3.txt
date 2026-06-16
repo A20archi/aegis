@@ -1,0 +1,444 @@
+usage: eval.py [-h] --config CONFIG [--weights WEIGHTS]
+               [--corruption CORRUPTION] [--action-noise ACTION_NOISE]
+               [--tag TAG] [--tasks TASKS] [--n-action-steps N_ACTION_STEPS]
+eval.py: error: unrecognized arguments: --action_noise 0.05
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 09:14:19.497048: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 09:14:19.560900: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[eval] n_action_steps=25 (chunk H=50, d=7)
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+WARNING:robosuite_logs:To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[eval] 20 distinct init-state episodes/task x 10 tasks (per-task build)
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=0 | n_envs=20
+[eval]   libero_10_0: 4/20  | running 4/20 = 0.200
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[1]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=1 | n_envs=20
+[eval]   libero_10_1: 9/20  | running 13/40 = 0.325
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[2]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=2 | n_envs=20
+[eval]   libero_10_2: 15/20  | running 28/60 = 0.467
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[3]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=3 | n_envs=20
+[eval]   libero_10_3: 12/20  | running 40/80 = 0.500
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[4]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=4 | n_envs=20
+[eval]   libero_10_4: 2/20  | running 42/100 = 0.420
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[5]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=5 | n_envs=20
+[eval]   libero_10_5: 16/20  | running 58/120 = 0.483
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[6]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=6 | n_envs=20
+[eval]   libero_10_6: 9/20  | running 67/140 = 0.479
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[7]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=7 | n_envs=20
+[eval]   libero_10_7: 3/20  | running 70/160 = 0.438
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[8]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=8 | n_envs=20
+[eval]   libero_10_8: 3/20  | running 73/180 = 0.406
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[9]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=9 | n_envs=20
+[eval]   libero_10_9: 5/20  | running 78/200 = 0.390
+[eval] rollout artefacts -> results/long/videos/vanilla_long__action_noise0.05/index.json
+[eval] vanilla_long__action_noise0.05__action_noise0.05: success=0.390 [0.325,0.459] n=200  jerk=0.4505
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 10:37:52.148742: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 10:37:52.209229: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[eval] n_action_steps=25 (chunk H=50, d=7)
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+WARNING:robosuite_logs:To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[eval] 20 distinct init-state episodes/task x 10 tasks (per-task build)
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=0 | n_envs=20
+[eval]   libero_10_0: 8/20  | running 8/20 = 0.400
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[1]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=1 | n_envs=20
+[eval]   libero_10_1: 7/20  | running 15/40 = 0.375
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[2]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=2 | n_envs=20
+[eval]   libero_10_2: 13/20  | running 28/60 = 0.467
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[3]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=3 | n_envs=20
+[eval]   libero_10_3: 10/20  | running 38/80 = 0.475
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[4]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=4 | n_envs=20
+[eval]   libero_10_4: 2/20  | running 40/100 = 0.400
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[5]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=5 | n_envs=20
+[eval]   libero_10_5: 18/20  | running 58/120 = 0.483
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[6]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=6 | n_envs=20
+[eval]   libero_10_6: 7/20  | running 65/140 = 0.464
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[7]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=7 | n_envs=20
+[eval]   libero_10_7: 7/20  | running 72/160 = 0.450
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[8]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=8 | n_envs=20
+[eval]   libero_10_8: 6/20  | running 78/180 = 0.433
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[9]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=9 | n_envs=20
+[eval]   libero_10_9: 5/20  | running 83/200 = 0.415
+[eval] rollout artefacts -> results/long/videos/sib_long__action_noise0.05/index.json
+[eval] sib_long__action_noise0.05__action_noise0.05: success=0.415 [0.349,0.484] n=200  jerk=0.1134
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 12:00:56.592071: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 12:00:56.654884: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[eval] n_action_steps=25 (chunk H=50, d=7)
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+WARNING:robosuite_logs:To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[eval] 20 distinct init-state episodes/task x 10 tasks (per-task build)
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=0 | n_envs=20
+[eval]   libero_10_0: 5/20  | running 5/20 = 0.250
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[1]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=1 | n_envs=20
+[eval]   libero_10_1: 9/20  | running 14/40 = 0.350
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[2]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=2 | n_envs=20
+[eval]   libero_10_2: 16/20  | running 30/60 = 0.500
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[3]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=3 | n_envs=20
+[eval]   libero_10_3: 13/20  | running 43/80 = 0.537
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[4]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=4 | n_envs=20
+[eval]   libero_10_4: 1/20  | running 44/100 = 0.440
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[5]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=5 | n_envs=20
+[eval]   libero_10_5: 18/20  | running 62/120 = 0.517
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[6]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=6 | n_envs=20
+[eval]   libero_10_6: 10/20  | running 72/140 = 0.514
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[7]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=7 | n_envs=20
+[eval]   libero_10_7: 4/20  | running 76/160 = 0.475
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[8]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=8 | n_envs=20
+[eval]   libero_10_8: 4/20  | running 80/180 = 0.444
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[9]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=9 | n_envs=20
+[eval]   libero_10_9: 7/20  | running 87/200 = 0.435
+[eval] rollout artefacts -> results/long/videos/vanilla_long__action_noise0.1/index.json
+[eval] vanilla_long__action_noise0.1__action_noise0.1: success=0.435 [0.368,0.504] n=200  jerk=0.5019
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 13:17:57.632022: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 13:17:57.693523: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[eval] n_action_steps=25 (chunk H=50, d=7)
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+WARNING:robosuite_logs:To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[eval] 20 distinct init-state episodes/task x 10 tasks (per-task build)
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=0 | n_envs=20
+[eval]   libero_10_0: 4/20  | running 4/20 = 0.200
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[1]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=1 | n_envs=20
+[eval]   libero_10_1: 5/20  | running 9/40 = 0.225
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[2]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=2 | n_envs=20
+[eval]   libero_10_2: 11/20  | running 20/60 = 0.333
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[3]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=3 | n_envs=20
+[eval]   libero_10_3: 13/20  | running 33/80 = 0.412
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[4]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=4 | n_envs=20
+[eval]   libero_10_4: 1/20  | running 34/100 = 0.340
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[5]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=5 | n_envs=20
+[eval]   libero_10_5: 17/20  | running 51/120 = 0.425
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[6]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=6 | n_envs=20
+[eval]   libero_10_6: 4/20  | running 55/140 = 0.393
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[7]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=7 | n_envs=20
+[eval]   libero_10_7: 3/20  | running 58/160 = 0.362
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[8]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=8 | n_envs=20
+[eval]   libero_10_8: 3/20  | running 61/180 = 0.339
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[9]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=9 | n_envs=20
+[eval]   libero_10_9: 7/20  | running 68/200 = 0.340
+[eval] rollout artefacts -> results/long/videos/sib_long__action_noise0.1/index.json
+[eval] sib_long__action_noise0.1__action_noise0.1: success=0.340 [0.278,0.408] n=200  jerk=0.113
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 14:34:46.798864: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 14:34:46.862508: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[eval] n_action_steps=25 (chunk H=50, d=7)
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+WARNING:robosuite_logs:To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[eval] 20 distinct init-state episodes/task x 10 tasks (per-task build)
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=0 | n_envs=20
+[eval]   libero_10_0: 6/20  | running 6/20 = 0.300
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[1]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=1 | n_envs=20
+[eval]   libero_10_1: 6/20  | running 12/40 = 0.300
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[2]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=2 | n_envs=20
+[eval]   libero_10_2: 13/20  | running 25/60 = 0.417
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[3]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=3 | n_envs=20
+[eval]   libero_10_3: 13/20  | running 38/80 = 0.475
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[4]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=4 | n_envs=20
+[eval]   libero_10_4: 2/20  | running 40/100 = 0.400
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[5]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=5 | n_envs=20
+[eval]   libero_10_5: 16/20  | running 56/120 = 0.467
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[6]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=6 | n_envs=20
+[eval]   libero_10_6: 7/20  | running 63/140 = 0.450
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[7]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=7 | n_envs=20
+[eval]   libero_10_7: 5/20  | running 68/160 = 0.425
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[8]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=8 | n_envs=20
+[eval]   libero_10_8: 7/20  | running 75/180 = 0.417
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[9]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=9 | n_envs=20
+[eval]   libero_10_9: 7/20  | running 82/200 = 0.410
+[eval] rollout artefacts -> results/long/videos/vanilla_long__action_noise0.2/index.json
+[eval] vanilla_long__action_noise0.2__action_noise0.2: success=0.410 [0.344,0.479] n=200  jerk=0.6176
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-12 15:55:44.637122: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-12 15:55:44.701989: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+[eval] n_action_steps=25 (chunk H=50, d=7)
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+WARNING:robosuite_logs:To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[eval] 20 distinct init-state episodes/task x 10 tasks (per-task build)
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=0 | n_envs=20
+[eval]   libero_10_0: 4/20  | running 4/20 = 0.200
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[1]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=1 | n_envs=20
+[eval]   libero_10_1: 6/20  | running 10/40 = 0.250
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[2]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=2 | n_envs=20
+[eval]   libero_10_2: 14/20  | running 24/60 = 0.400
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[3]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=3 | n_envs=20
+[eval]   libero_10_3: 11/20  | running 35/80 = 0.438
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[4]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=4 | n_envs=20
+[eval]   libero_10_4: 2/20  | running 37/100 = 0.370
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[5]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=5 | n_envs=20
+[eval]   libero_10_5: 17/20  | running 54/120 = 0.450
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[6]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=6 | n_envs=20
+[eval]   libero_10_6: 4/20  | running 58/140 = 0.414
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[7]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=7 | n_envs=20
+[eval]   libero_10_7: 4/20  | running 62/160 = 0.388
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[8]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=8 | n_envs=20
+[eval]   libero_10_8: 2/20  | running 64/180 = 0.356
+Creating LIBERO envs | suites=['libero_10'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[9]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_10 | task_id=9 | n_envs=20
+[eval]   libero_10_9: 4/20  | running 68/200 = 0.340
+[eval] rollout artefacts -> results/long/videos/sib_long__action_noise0.2/index.json
+[eval] sib_long__action_noise0.2__action_noise0.2: success=0.340 [0.278,0.408] n=200  jerk=0.1157
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe

@@ -1,0 +1,2 @@
+run_name,seconds,gpu_hours,n_gpus,status
+finetune_ib,10422.3,2.8951,1,ok

@@ -1,0 +1,231 @@
+================================================================
+[Phase 1] Fine-tuning IB-Adapter for 10000 steps
+================================================================
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-13 08:11:41.526109: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-13 08:11:41.587727: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[ib] loading SmolVLA ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+[ib] injecting Fused IB-Adapter into connector ...
+[ib] IB-Adapter 347.5K @ lr=2.0e-04  lm_expert 96.7M @ lr=2.0e-05
+[ib] fusion_coeff init = 0.000  (tanh(0)=0 → starts as vanilla SmolVLA)
+[ib] loading dataset ...
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+[ib] training 10000 steps  batch=32  n_heads=8
+[ib] step=     0/10000  loss=0.0702  coeff=0.000  lr_ib=2.0e-04 lr_hd=2.0e-05
+[ib] step=   100/10000  loss=0.0770  coeff=-0.001  lr_ib=2.0e-04 lr_hd=2.0e-05
+[ib] step=   200/10000  loss=0.0773  coeff=0.000  lr_ib=2.0e-04 lr_hd=2.0e-05
+[ib] step=   300/10000  loss=0.0681  coeff=0.000  lr_ib=2.0e-04 lr_hd=2.0e-05
+[ib] step=   400/10000  loss=0.0723  coeff=-0.001  lr_ib=2.0e-04 lr_hd=2.0e-05
+[ib] step=   500/10000  loss=0.0728  coeff=0.000  lr_ib=2.0e-04 lr_hd=2.0e-05
+[ib] step=   600/10000  loss=0.0803  coeff=0.000  lr_ib=2.0e-04 lr_hd=2.0e-05
+[ib] step=   700/10000  loss=0.0911  coeff=0.001  lr_ib=2.0e-04 lr_hd=2.0e-05
+[ib] step=   800/10000  loss=0.0637  coeff=-0.000  lr_ib=2.0e-04 lr_hd=2.0e-05
+[ib] step=   900/10000  loss=0.0707  coeff=-0.000  lr_ib=2.0e-04 lr_hd=2.0e-05
+[ib] step=  1000/10000  loss=0.0786  coeff=0.001  lr_ib=2.0e-04 lr_hd=2.0e-05
+[ib] step=  1100/10000  loss=0.0923  coeff=0.000  lr_ib=1.9e-04 lr_hd=1.9e-05
+[ib] step=  1200/10000  loss=0.0725  coeff=-0.001  lr_ib=1.9e-04 lr_hd=1.9e-05
+[ib] step=  1300/10000  loss=0.0805  coeff=-0.001  lr_ib=1.9e-04 lr_hd=1.9e-05
+[ib] step=  1400/10000  loss=0.0753  coeff=0.000  lr_ib=1.9e-04 lr_hd=1.9e-05
+[ib] step=  1500/10000  loss=0.0816  coeff=-0.001  lr_ib=1.9e-04 lr_hd=1.9e-05
+[ib] step=  1600/10000  loss=0.0725  coeff=0.001  lr_ib=1.9e-04 lr_hd=1.9e-05
+[ib] step=  1700/10000  loss=0.0781  coeff=-0.001  lr_ib=1.9e-04 lr_hd=1.9e-05
+[ib] step=  1800/10000  loss=0.0740  coeff=-0.001  lr_ib=1.8e-04 lr_hd=1.9e-05
+[ib] step=  1900/10000  loss=0.0900  coeff=-0.001  lr_ib=1.8e-04 lr_hd=1.8e-05
+[ib] step=  2000/10000  loss=0.0763  coeff=0.000  lr_ib=1.8e-04 lr_hd=1.8e-05
+[ib] step=  2100/10000  loss=0.0820  coeff=-0.000  lr_ib=1.8e-04 lr_hd=1.8e-05
+[ib] step=  2200/10000  loss=0.0832  coeff=-0.002  lr_ib=1.8e-04 lr_hd=1.8e-05
+[ib] step=  2300/10000  loss=0.0863  coeff=-0.000  lr_ib=1.8e-04 lr_hd=1.8e-05
+[ib] step=  2400/10000  loss=0.0774  coeff=-0.000  lr_ib=1.7e-04 lr_hd=1.8e-05
+[ib] step=  2500/10000  loss=0.0756  coeff=-0.002  lr_ib=1.7e-04 lr_hd=1.7e-05
+[ib] step=  2600/10000  loss=0.0692  coeff=-0.000  lr_ib=1.7e-04 lr_hd=1.7e-05
+[ib] step=  2700/10000  loss=0.0792  coeff=-0.002  lr_ib=1.7e-04 lr_hd=1.7e-05
+[ib] step=  2800/10000  loss=0.0687  coeff=-0.001  lr_ib=1.6e-04 lr_hd=1.7e-05
+[ib] step=  2900/10000  loss=0.0870  coeff=0.001  lr_ib=1.6e-04 lr_hd=1.7e-05
+[ib] step=  3000/10000  loss=0.0844  coeff=-0.000  lr_ib=1.6e-04 lr_hd=1.6e-05
+[ib] step=  3100/10000  loss=0.0706  coeff=-0.002  lr_ib=1.6e-04 lr_hd=1.6e-05
+[ib] step=  3200/10000  loss=0.0842  coeff=-0.002  lr_ib=1.5e-04 lr_hd=1.6e-05
+[ib] step=  3300/10000  loss=0.0841  coeff=-0.001  lr_ib=1.5e-04 lr_hd=1.6e-05
+[ib] step=  3400/10000  loss=0.0886  coeff=-0.001  lr_ib=1.5e-04 lr_hd=1.5e-05
+[ib] step=  3500/10000  loss=0.0736  coeff=-0.001  lr_ib=1.5e-04 lr_hd=1.5e-05
+[ib] step=  3600/10000  loss=0.0661  coeff=-0.003  lr_ib=1.4e-04 lr_hd=1.5e-05
+[ib] step=  3700/10000  loss=0.0760  coeff=-0.003  lr_ib=1.4e-04 lr_hd=1.5e-05
+[ib] step=  3800/10000  loss=0.0628  coeff=-0.003  lr_ib=1.4e-04 lr_hd=1.4e-05
+[ib] step=  3900/10000  loss=0.0705  coeff=-0.003  lr_ib=1.3e-04 lr_hd=1.4e-05
+[ib] step=  4000/10000  loss=0.0847  coeff=-0.002  lr_ib=1.3e-04 lr_hd=1.4e-05
+[ib] step=  4100/10000  loss=0.0818  coeff=-0.002  lr_ib=1.3e-04 lr_hd=1.4e-05
+[ib] step=  4200/10000  loss=0.0720  coeff=-0.003  lr_ib=1.3e-04 lr_hd=1.3e-05
+[ib] step=  4300/10000  loss=0.0921  coeff=-0.001  lr_ib=1.2e-04 lr_hd=1.3e-05
+[ib] step=  4400/10000  loss=0.0818  coeff=-0.003  lr_ib=1.2e-04 lr_hd=1.3e-05
+[ib] step=  4500/10000  loss=0.0714  coeff=-0.004  lr_ib=1.2e-04 lr_hd=1.2e-05
+[ib] step=  4600/10000  loss=0.0751  coeff=-0.004  lr_ib=1.1e-04 lr_hd=1.2e-05
+[ib] step=  4700/10000  loss=0.0769  coeff=-0.003  lr_ib=1.1e-04 lr_hd=1.2e-05
+[ib] step=  4800/10000  loss=0.0739  coeff=-0.003  lr_ib=1.1e-04 lr_hd=1.2e-05
+[ib] step=  4900/10000  loss=0.0797  coeff=-0.003  lr_ib=1.0e-04 lr_hd=1.1e-05
+[ib] step=  5000/10000  loss=0.0727  coeff=-0.003  lr_ib=1.0e-04 lr_hd=1.1e-05
+[ib] step=  5100/10000  loss=0.0869  coeff=-0.002  lr_ib=9.8e-05 lr_hd=1.1e-05
+[ib] step=  5200/10000  loss=0.0751  coeff=-0.002  lr_ib=9.5e-05 lr_hd=1.0e-05
+[ib] step=  5300/10000  loss=0.0735  coeff=-0.003  lr_ib=9.2e-05 lr_hd=1.0e-05
+[ib] step=  5400/10000  loss=0.0762  coeff=-0.003  lr_ib=8.9e-05 lr_hd=9.9e-06
+[ib] step=  5500/10000  loss=0.0791  coeff=-0.004  lr_ib=8.5e-05 lr_hd=9.6e-06
+[ib] step=  5600/10000  loss=0.0835  coeff=-0.003  lr_ib=8.2e-05 lr_hd=9.3e-06
+[ib] step=  5700/10000  loss=0.0755  coeff=-0.003  lr_ib=7.9e-05 lr_hd=9.0e-06
+[ib] step=  5800/10000  loss=0.0992  coeff=-0.004  lr_ib=7.6e-05 lr_hd=8.8e-06
+[ib] step=  5900/10000  loss=0.0812  coeff=-0.002  lr_ib=7.3e-05 lr_hd=8.5e-06
+[ib] step=  6000/10000  loss=0.0692  coeff=-0.003  lr_ib=7.0e-05 lr_hd=8.2e-06
+[ib] step=  6100/10000  loss=0.0972  coeff=-0.003  lr_ib=6.7e-05 lr_hd=7.9e-06
+[ib] step=  6200/10000  loss=0.0760  coeff=-0.004  lr_ib=6.5e-05 lr_hd=7.7e-06
+[ib] step=  6300/10000  loss=0.0790  coeff=-0.004  lr_ib=6.2e-05 lr_hd=7.4e-06
+[ib] step=  6400/10000  loss=0.0877  coeff=-0.004  lr_ib=5.9e-05 lr_hd=7.2e-06
+[ib] step=  6500/10000  loss=0.0828  coeff=-0.004  lr_ib=5.6e-05 lr_hd=6.9e-06
+[ib] step=  6600/10000  loss=0.0762  coeff=-0.004  lr_ib=5.3e-05 lr_hd=6.7e-06
+[ib] step=  6700/10000  loss=0.0803  coeff=-0.004  lr_ib=5.1e-05 lr_hd=6.4e-06
+[ib] step=  6800/10000  loss=0.0798  coeff=-0.004  lr_ib=4.8e-05 lr_hd=6.2e-06
+[ib] step=  6900/10000  loss=0.0746  coeff=-0.004  lr_ib=4.5e-05 lr_hd=5.9e-06
+[ib] step=  7000/10000  loss=0.0861  coeff=-0.004  lr_ib=4.3e-05 lr_hd=5.7e-06
+[ib] step=  7100/10000  loss=0.0754  coeff=-0.005  lr_ib=4.0e-05 lr_hd=5.5e-06
+[ib] step=  7200/10000  loss=0.0755  coeff=-0.005  lr_ib=3.8e-05 lr_hd=5.3e-06
+[ib] step=  7300/10000  loss=0.0745  coeff=-0.005  lr_ib=3.6e-05 lr_hd=5.0e-06
+[ib] step=  7400/10000  loss=0.0795  coeff=-0.005  lr_ib=3.3e-05 lr_hd=4.8e-06
+[ib] step=  7500/10000  loss=0.0613  coeff=-0.005  lr_ib=3.1e-05 lr_hd=4.6e-06
+[ib] step=  7600/10000  loss=0.0841  coeff=-0.005  lr_ib=2.9e-05 lr_hd=4.4e-06
+[ib] step=  7700/10000  loss=0.0802  coeff=-0.005  lr_ib=2.7e-05 lr_hd=4.2e-06
+[ib] step=  7800/10000  loss=0.0742  coeff=-0.005  lr_ib=2.5e-05 lr_hd=4.1e-06
+[ib] step=  7900/10000  loss=0.0817  coeff=-0.005  lr_ib=2.3e-05 lr_hd=3.9e-06
+[ib] step=  8000/10000  loss=0.0734  coeff=-0.005  lr_ib=2.1e-05 lr_hd=3.7e-06
+[ib] step=  8100/10000  loss=0.0788  coeff=-0.005  lr_ib=1.9e-05 lr_hd=3.6e-06
+[ib] step=  8200/10000  loss=0.0844  coeff=-0.006  lr_ib=1.7e-05 lr_hd=3.4e-06
+[ib] step=  8300/10000  loss=0.0762  coeff=-0.006  lr_ib=1.6e-05 lr_hd=3.3e-06
+[ib] step=  8400/10000  loss=0.0870  coeff=-0.006  lr_ib=1.4e-05 lr_hd=3.1e-06
+[ib] step=  8500/10000  loss=0.0776  coeff=-0.006  lr_ib=1.3e-05 lr_hd=3.0e-06
+[ib] step=  8600/10000  loss=0.0745  coeff=-0.006  lr_ib=1.1e-05 lr_hd=2.9e-06
+[ib] step=  8700/10000  loss=0.0724  coeff=-0.006  lr_ib=1.0e-05 lr_hd=2.7e-06
+[ib] step=  8800/10000  loss=0.0868  coeff=-0.006  lr_ib=8.9e-06 lr_hd=2.6e-06
+[ib] step=  8900/10000  loss=0.0878  coeff=-0.006  lr_ib=7.8e-06 lr_hd=2.5e-06
+[ib] step=  9000/10000  loss=0.0789  coeff=-0.006  lr_ib=6.8e-06 lr_hd=2.4e-06
+[ib] step=  9100/10000  loss=0.0695  coeff=-0.006  lr_ib=5.9e-06 lr_hd=2.4e-06
+[ib] step=  9200/10000  loss=0.0845  coeff=-0.006  lr_ib=5.1e-06 lr_hd=2.3e-06
+[ib] step=  9300/10000  loss=0.0782  coeff=-0.006  lr_ib=4.4e-06 lr_hd=2.2e-06
+[ib] step=  9400/10000  loss=0.0778  coeff=-0.006  lr_ib=3.7e-06 lr_hd=2.2e-06
+[ib] step=  9500/10000  loss=0.0764  coeff=-0.006  lr_ib=3.2e-06 lr_hd=2.1e-06
+[ib] step=  9600/10000  loss=0.0799  coeff=-0.006  lr_ib=2.8e-06 lr_hd=2.1e-06
+[ib] step=  9700/10000  loss=0.0740  coeff=-0.006  lr_ib=2.4e-06 lr_hd=2.0e-06
+[ib] step=  9800/10000  loss=0.0784  coeff=-0.006  lr_ib=2.2e-06 lr_hd=2.0e-06
+[ib] step=  9900/10000  loss=0.0781  coeff=-0.006  lr_ib=2.0e-06 lr_hd=2.0e-06
+[ib] saved -> results/ib_adapter/smolvla_ib.pt
+[ib] done. final loss=0.0781  fusion_coeff=-0.006
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe
+
+[Phase 1] Done. Weights at: results/ib_adapter/smolvla_ib.pt
+================================================================
+[Phase 2] Evaluating SmolVLA + IB-Adapter  (n=1, LIBERO-Spatial)
+================================================================
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-13 11:04:15.795310: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-13 11:04:15.860662: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[eval_ib] loading SmolVLA ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+[ib] loaded weights from results/ib_adapter/smolvla_ib.pt  fusion_coeff=-0.006  step=10000
+[eval_ib] IB-Adapter loaded  fusion_coeff=-0.006
+[eval_ib] n_action_steps=1  chunk H=50  d=7
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+WARNING:robosuite_logs:No private macro file found!
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+WARNING:robosuite_logs:It is recommended to use a private macro file
+[robosuite WARNING] To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+WARNING:robosuite_logs:To setup, run: python /home/user/anaconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[eval_ib] 20 ep/task x 10 tasks  n_envs=20  suite=libero_spatial
+Creating LIBERO envs | suites=['libero_spatial'] | n_envs(per task)=20 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_spatial | task_id=0 | n_envs=20
+Traceback (most recent call last):
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/scripts/eval_ib.py", line 228, in <module>
+    main()
+    ~~~~^^
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/scripts/eval_ib.py", line 185, in main
+    s, j, h = rollout_task(
+              ~~~~~~~~~~~~^
+        env, policy, preprocessor, postprocessor,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        env_preprocessor, env_postprocessor,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        n_episodes=min(eps_per_task, n_envs),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        device=device, seed_base=cfg["seeds"][0])
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/scripts/eval_ib.py", line 67, in rollout_task
+    action = policy.select_action(observation)   # SmolVLA's native method
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/policies/smolvla/modeling_smolvla.py", line 342, in select_action
+    actions = self._get_action_chunk(batch, noise)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/policies/smolvla/modeling_smolvla.py", line 291, in _get_action_chunk
+    actions = self.model.sample_actions(
+        images, img_masks, lang_tokens, lang_masks, state, noise=noise, **kwargs
+    )
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/policies/smolvla/modeling_smolvla.py", line 812, in sample_actions
+    prefix_embs, prefix_pad_masks, prefix_att_masks = self.embed_prefix(
+                                                      ~~~~~~~~~~~~~~~~~^
+        images, img_masks, lang_tokens, lang_masks, state=state
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/policies/smolvla/modeling_smolvla.py", line 647, in embed_prefix
+    img_emb = self.vlm_with_expert.embed_image(img)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/lerobot/policies/smolvla/smolvlm_with_expert.py", line 192, in embed_image
+    image_hidden_states = self.get_vlm_model().connector(image_hidden_states)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/transformers/models/smolvlm/modeling_smolvlm.py", line 470, in forward
+    image_hidden_states = self.modality_projection(image_hidden_states)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/transformers/models/smolvlm/modeling_smolvlm.py", line 448, in forward
+    return self.proj(x)
+           ~~~~~~~~~^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/sib/ib_adapter.py", line 142, in forward
+    z_ib  = self.ib(z_mlp)                            # (B, N, D_out)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/sib/ib_adapter.py", line 90, in forward
+    Q_h = self.W_q[h](X_h)                      # (B, N, d)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/user/anaconda3/lib/python3.13/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument mat2 in method wrapper_CUDA_mm)
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe

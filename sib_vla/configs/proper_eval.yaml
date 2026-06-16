@@ -1,0 +1,9 @@
+# Proper eval matching SmolVLA paper protocol:
+#   n_action_steps=1  (checkpoint default, fully closed-loop)
+#   50 init states per task x 10 tasks = 500 episodes
+#   episode_length=280 (LIBERO-Spatial default from TASK_SUITE_MAX_STEPS)
+inherit: base.yaml
+n_action_steps: 1
+episodes_per_task: 50
+eval_n_envs: 50
+episode_length: 280

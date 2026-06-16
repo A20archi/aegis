@@ -1,0 +1,9 @@
+# Pure SIB (spectral bottleneck on the FROZEN action head) built on the
+# bs=256 repro checkpoint. The `checkpoint:` line is re-resolved at runtime by
+# run_after_baseline.sh (handles checkpoints/last vs highest numbered step).
+# Eval headline at n=1 (apples-to-apples vs the repro baseline's n=1 eval).
+inherit: sib.yaml
+checkpoint: outputs/smolvla_spatial_repro/checkpoints/last/pretrained_model
+output_dir: results/sib_repro
+n_action_steps: 1
+beta: 1.0e-3

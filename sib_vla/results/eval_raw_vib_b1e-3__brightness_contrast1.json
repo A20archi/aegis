@@ -1,0 +1,15 @@
+{
+  "name": "raw_vib_b1e-3",
+  "config": "raw_vib",
+  "corruption": "brightness_contrast:1",
+  "n_episodes": 200,
+  "n_success": 58,
+  "success_rate": 0.29,
+  "success_wilson95": [
+    0.2315392689125782,
+    0.3563760535731166
+  ],
+  "rms_jerk_mean": 0.40004951303370695,
+  "hf_energy_fraction_mean": 0.039412216867107136,
+  "total_bits": 286.7510986328125
+}

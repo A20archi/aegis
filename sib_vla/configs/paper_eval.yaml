@@ -1,0 +1,33 @@
+# Paper-protocol eval: mirrors SmolVLA (arXiv 2506.01844) §4 exactly.
+#
+# Paper quotes:
+#   "we evaluate with 10 trials per task" -> episodes_per_task=10, eval_n_envs=10
+#   "sampling new observations and predicting a new action after each executed action"
+#       -> n_action_steps=1 (checkpoint config default; we set it explicitly here)
+#   episode_length=280 -> TASK_SUITE_MAX_STEPS["libero_spatial"] in lerobot/envs/libero.py
+#   control_mode=relative (LiberoEnv default, matches HuggingFaceVLA/libero training data)
+#
+# LIBERO geometry: 50 init_states per task; sub-env i maps permanently to init_state[i].
+# With eval_n_envs=10 the env uses init_states 0-9, exactly matching the paper protocol
+# (which also uses the first 10 states, as no offset or shuffle is documented).
+#
+# Statistical note: n=100 total episodes gives Wilson 95% CI of ~+/-10% at p=0.72.
+# Run 3 seeds and average to get a stable estimate. DO NOT report a single seed.
+#
+# Expected result from HuggingFaceVLA/smolvla_libero: ~0.72 (community ceiling).
+# The paper's 0.90 came from a different internal checkpoint -- see Issue #2294.
+
+inherit: vanilla.yaml
+n_action_steps: 1          # paper: per-action re-query
+eval_n_envs: 10            # 10 parallel envs = init_states 0-9 (paper's 10 trials)
+episodes_per_task: 10      # matches "10 trials per task"
+episode_length: 280        # TASK_SUITE_MAX_STEPS["libero_spatial"] = 280
+per_task_build: true       # builds one task at a time; avoids huge eager build
+seeds: [42, 123, 456]      # run all 3 seeds separately; report mean +/- std
+
+record:
+  enabled: true
+  video: true
+  videos_per_task: 2
+  fps: 10
+output_dir: results

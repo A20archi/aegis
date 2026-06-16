@@ -1,0 +1,4 @@
+[2026-06-13 20:36:25] [orch] orchestrator started (pid 1786106). Target: SIB(pure+LoRA) + IB-Adapter on repro ckpt, n=1.
+[2026-06-13 20:36:25] [orch] waiting for baseline (results/repro/eval_repro_n1.json) ...
+[2026-06-14 13:07:19] [orch] FATAL: run_repro_pipeline.sh is gone but results/repro/eval_repro_n1.json never appeared.
+[2026-06-14 13:07:19] [orch]        baseline likely crashed. NOT launching method runs. Inspect results/repro/.

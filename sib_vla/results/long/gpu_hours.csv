@@ -1,0 +1,15 @@
+run_name,seconds,gpu_hours,n_gpus,status
+estimate_lambda,3592.5,0.9979,1,ok
+train_sib_long_beta0.0001,117.0,0.0325,1,ok
+estimate_lambda,1212.0,0.3367,1,ok
+eval_sib_long,4844.9,1.3458,1,ok
+eval_vanilla_long,4858.9,1.3497,1,ok
+eval_vanilla_long__action_noise0.05,4976.2,1.3823,1,ok
+eval_sib_long__action_noise0.05,4948.3,1.3745,1,ok
+eval_sib_long_ema,4944.6,1.3735,1,ok
+eval_vanilla_long__action_noise0.1,4585.4,1.2737,1,ok
+eval_sib_long__action_noise0.1,4573.9,1.2705,1,ok
+eval_vanilla_long__action_noise0.2,4821.6,1.3393,1,ok
+eval_vanilla_long__action_noise0.2,4906.7,1.3630,1,ok
+eval_sib_long__action_noise0.2,4952.0,1.3755,1,ok
+eval_sib_long__action_noise0.2,5045.8,1.4016,1,ok

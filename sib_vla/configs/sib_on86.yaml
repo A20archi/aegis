@@ -1,0 +1,13 @@
+# SIB (action-space spectral bottleneck) layered on the 86% generalist base.
+# checkpoint = our from-base retrain (79% n=1 / 86% with temporal ensemble).
+inherit: base.yaml
+name: sib_on86
+module: sib
+beta: 1.0e-4
+rotation: none
+sigma_mode: global
+decode: mmse
+checkpoint: outputs/smolvla_spatial_repro/checkpoints/020000/pretrained_model
+output_dir: results/sib_on86
+record:
+  enabled: false

@@ -1,0 +1,5 @@
+# Learned per-band gain in [0,1], beta = 0 (no channel, no rate term).
+inherit: base.yaml
+name: gain_no_rate
+module: gain_no_rate
+beta: 0.0

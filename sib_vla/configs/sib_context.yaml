@@ -1,0 +1,12 @@
+# Context-conditioned SIB: per-sample rate allocation from proprioceptive state.
+# sigma_mode=context adds a small MLP head that predicts per-(band,dim) sigma^2
+# from the observation.state vector, so bit allocation adapts to task context.
+inherit: base.yaml
+name: sib_context
+module: sib
+beta: 1.0e-4               # same beta as best global model
+sigma_mode: context        # enables context MLP head in WienerOperator
+context_dim: 8             # observation.state dim for LIBERO (verified from dataset)
+decode: mmse
+
+output_dir: results/context  # separate dir so chunk_cache.pt includes state context

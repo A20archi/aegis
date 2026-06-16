@@ -1,0 +1,7 @@
+# PRE-LoRA config: used ONLY by finetune_lora.py to LoRA-adapt the repro
+# checkpoint. Writes the merged model to <output_dir>/smolvla_lora, which the
+# POST-LoRA config (sib_lora_repro.yaml) then points its checkpoint at.
+# The `checkpoint:` line is re-resolved at runtime by run_after_baseline.sh.
+inherit: base.yaml
+checkpoint: outputs/smolvla_spatial_repro/checkpoints/last/pretrained_model
+output_dir: results/sib_lora_repro

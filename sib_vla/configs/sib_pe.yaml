@@ -1,0 +1,6 @@
+# Magnitude-preserving SIB: same DCT + Gaussian-channel + rate, but A_hat is
+# rescaled per (sample, dim) to the input's over-time RMS. Removes the MMSE
+# under-actuation that breaks SIB at low n_action_steps, while keeping the
+# learned spectral smoothing. The lever for chasing MAX via a more reactive cadence.
+inherit: sib.yaml
+preserve_energy: true

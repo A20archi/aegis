@@ -1,0 +1,6 @@
+# LIBERO-V (4-axis robustness) eval config. Points at the repro checkpoint
+# (re-resolved at runtime by run_libero_v.sh). output_dir inherited = results,
+# so eval_libero_v.py writes results/libero_v/<method>/.
+inherit: base.yaml
+checkpoint: outputs/smolvla_spatial_repro/checkpoints/last/pretrained_model
+n_action_steps: 1

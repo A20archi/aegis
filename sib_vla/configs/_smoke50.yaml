@@ -1,0 +1,13 @@
+# Mechanics/memory smoke: per-task build at n_envs=50, n_action_steps=1, 1 task,
+# short episodes (40 steps) just to confirm the batch-50 forward fits GPU and the
+# per-task build + iterate path works. NOT a results run.
+inherit: vanilla.yaml
+tasks: [0]
+n_action_steps: 1
+eval_n_envs: 50
+episodes_per_task: 50
+per_task_build: true
+episode_length: 40
+record:
+  enabled: false
+output_dir: /tmp/sib_smoke50

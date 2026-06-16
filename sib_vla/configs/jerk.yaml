@@ -1,0 +1,5 @@
+# Smoothness baseline: same per-band gain module, jerk penalty instead of rate.
+inherit: base.yaml
+name: jerk
+module: jerk
+gamma: 1.0          # weight on mean squared third difference of A_hat

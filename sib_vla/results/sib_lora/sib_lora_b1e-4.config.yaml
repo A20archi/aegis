@@ -1,0 +1,50 @@
+batch_size: 32
+beta: 0.0001
+checkpoint: /home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/results/smolvla_lora
+chunk_size: 50
+corruptions:
+- gaussian_noise:0
+- gaussian_noise:1
+- gaussian_blur:0
+- gaussian_blur:1
+- brightness_contrast:0
+- brightness_contrast:1
+dataset_root: null
+decode: mmse
+device: cuda
+episode_length: 300
+episodes_per_task: 20
+eval_n_envs: 20
+fps: 10
+lambda:
+  n_samples: 5000
+module: sib
+n_action_steps: 25
+n_gpus: 1
+name: sib
+output_dir: results/sib_lora
+per_task_build: true
+record:
+  camera_key: null
+  enabled: true
+  fps: 10
+  video: true
+  videos_per_task: 3
+repo_id: HuggingFaceVLA/libero
+rotation: none
+seed_used: 42
+seeds:
+- 42
+- 123
+- 456
+sigma_mode: global
+stage1:
+  low_band_energy_threshold: 0.95
+  offdiag_threshold: 0.2
+suite: libero_spatial
+train:
+  batch_size: 256
+  grad_clip: 1.0
+  log_every: 500
+  lr: 0.001
+  steps: 30000

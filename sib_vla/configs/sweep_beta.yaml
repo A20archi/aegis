@@ -1,0 +1,5 @@
+# Stage 3 rate-distortion frontier. Tune the range after the Stage 2 MVE.
+inherit: base.yaml
+name: sweep_beta
+method_config: configs/sib.yaml
+betas: [0.0, 1.0e-4, 1.0e-3, 1.0e-2, 1.0e-1]

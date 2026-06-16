@@ -1,0 +1,6 @@
+run_name,seconds,gpu_hours,n_gpus,status
+estimate_lambda,9.7,0.0027,1,error
+estimate_lambda,28.1,0.0078,1,error
+estimate_lambda,29.3,0.0081,1,error
+estimate_lambda,502.5,0.1396,1,ok
+train_sib_lora_b1e-4,127.1,0.0353,1,ok
