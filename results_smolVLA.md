@@ -118,8 +118,9 @@ All task objects shifted by a fixed offset in world-x (physically validated; obj
 ## 5. Honest scope & caveats
 
 - Robustness is **Spatial-only** (the modules' training distribution). Cross-suite robustness (Object/Goal corrupted) is the obvious generalization test — not yet run.
-- The **RIB / IB-bottleneck leg is prior art** (StableVLA's IB-Adapter, arXiv 2605.18287) — present it as a *reproduced baseline*, not a novelty claim. The novel core is **RASF (spectral action filtering)** + the empirical small-VLA robustness result + the integrated, identity-safe composition.
 - Reproduction gap: both arms ~5–10pp under paper clean SR (clearest on Spatial).
+
+_(Related-work positioning and citations are maintained separately in `contributions_and_novelty.md`.)_
 
 ---
 
