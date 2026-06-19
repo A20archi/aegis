@@ -1,0 +1,2 @@
+run_name,seconds,gpu_hours,n_gpus,status
+finetune_lora,5140.3,1.4279,1,ok

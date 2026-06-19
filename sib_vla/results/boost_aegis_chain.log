@@ -1,0 +1,21 @@
+[15:15:43] AEGIS-chain armed; waiting for baseline sweep to finish...
+[00:07:49] baseline sweep finished -> starting AEGIS-on-boosted
+[00:07:49] GPU free=21740MiB >= 9000 -> go
+[00:07:49] START aegis long (serial, OOM-guarded)
+[03:06:47] DONE aegis long SR=53.5
+[03:06:47] GPU free=56116MiB >= 9000 -> go
+[03:06:47] START aegis spatial (serial, OOM-guarded)
+[04:28:47] DONE aegis spatial SR=86.0
+[04:28:47] GPU free=60864MiB >= 9000 -> go
+[04:28:47] START aegis object (serial, OOM-guarded)
+[05:27:46] DONE aegis object SR=95.0
+[05:27:46] GPU free=60252MiB >= 9000 -> go
+[05:27:46] START aegis goal (serial, OOM-guarded)
+[06:36:00] DONE aegis goal SR=91.0
+[06:36:00] === BOOST+AEGIS 4-suite complete ===
+suite      boostBase   boost+AEGIS     gap
+spatial         83.0          86.0    +3.0
+object          94.5          95.0    +0.5
+goal            90.5          91.0    +0.5
+long             --           53.5      - 
+  boost+AEGIS AVG 81.38  (paper 87.3)

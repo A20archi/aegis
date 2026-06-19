@@ -1,0 +1,66 @@
+{
+  "name": "libero_v_aegis_motion_blur_1",
+  "method": "aegis",
+  "condition": "motion_blur_1",
+  "axis": "noise",
+  "n_episodes": 200,
+  "n_success": 100,
+  "success_rate": 0.5,
+  "success_wilson95": [
+    0.43135962209034523,
+    0.5686403779096547
+  ],
+  "rms_jerk_mean": 0.06895642650282864,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 20,
+      "success_rate": 0.8
+    },
+    {
+      "task_id": 1,
+      "n": 20,
+      "success_rate": 0.4
+    },
+    {
+      "task_id": 2,
+      "n": 20,
+      "success_rate": 0.55
+    },
+    {
+      "task_id": 3,
+      "n": 20,
+      "success_rate": 0.5
+    },
+    {
+      "task_id": 4,
+      "n": 20,
+      "success_rate": 0.45
+    },
+    {
+      "task_id": 5,
+      "n": 20,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 6,
+      "n": 20,
+      "success_rate": 0.8
+    },
+    {
+      "task_id": 7,
+      "n": 20,
+      "success_rate": 0.1
+    },
+    {
+      "task_id": 8,
+      "n": 20,
+      "success_rate": 0.95
+    },
+    {
+      "task_id": 9,
+      "n": 20,
+      "success_rate": 0.45
+    }
+  ]
+}

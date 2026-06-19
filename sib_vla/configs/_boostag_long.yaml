@@ -1,0 +1,8 @@
+inherit: base.yaml
+checkpoint: results/lora_boost/smolvla_lora_boost
+output_dir: results/boost_aegis/long
+suite: libero_10
+episode_length: 520
+n_action_steps: 1
+record:
+  enabled: false

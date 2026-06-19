@@ -1,0 +1,8 @@
+inherit: base.yaml
+checkpoint: /home/user/Desktop/aryan/aryan/ckpt_official_smolvla_libero
+output_dir: results/official_base/spatial
+suite: libero_spatial
+episode_length: 220
+n_action_steps: 1
+record:
+  enabled: false

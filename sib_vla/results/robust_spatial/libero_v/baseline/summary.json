@@ -1,0 +1,10 @@
+{
+  "method": "baseline",
+  "conditions": [
+    {
+      "label": "object_offset_5",
+      "sr": 0.51,
+      "n": 100
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-17 22:50:45.755892: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-17 22:50:45.821069: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[lora] loading SmolVLA...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+Reducing the number of VLM layers to 16 ...
+Loading weights from local directory
+trainable params: 1,485,312 || all params: 451,531,488 || trainable%: 0.3289
+[lora] loading dataset...
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+[lora] training for 2000 steps  lr=0.0002  rank=32  batch=32
+[lora] step=    0/2000  loss=0.0740  lr=2.00e-04
+[lora] step=   50/2000  loss=0.0658  lr=2.00e-04
+[lora] step=  100/2000  loss=0.0749  lr=1.99e-04
+[lora] step=  150/2000  loss=0.0711  lr=1.97e-04
+[lora] step=  200/2000  loss=0.0604  lr=1.96e-04
+[lora] step=  250/2000  loss=0.0726  lr=1.93e-04
+[lora] step=  300/2000  loss=0.0698  lr=1.90e-04
+[lora] step=  350/2000  loss=0.0728  lr=1.87e-04
+[lora] step=  400/2000  loss=0.0762  lr=1.83e-04
+[lora] step=  450/2000  loss=0.0644  lr=1.78e-04
+[lora] step=  500/2000  loss=0.0682  lr=1.74e-04
+[lora] step=  550/2000  loss=0.0703  lr=1.68e-04
+[lora] step=  600/2000  loss=0.0858  lr=1.63e-04
+[lora] step=  650/2000  loss=0.0777  lr=1.57e-04
+[lora] step=  700/2000  loss=0.0709  lr=1.51e-04
+[lora] step=  750/2000  loss=0.0716  lr=1.44e-04
+[lora] step=  800/2000  loss=0.0617  lr=1.38e-04
+[lora] step=  850/2000  loss=0.0691  lr=1.31e-04
+[lora] step=  900/2000  loss=0.0706  lr=1.24e-04
+[lora] step=  950/2000  loss=0.0799  lr=1.17e-04
+[lora] step= 1000/2000  loss=0.0720  lr=1.10e-04
+[lora] saved intermediate adapter -> results/lora_boost/adapter_s1000
+[lora] step= 1050/2000  loss=0.0647  lr=1.03e-04
+[lora] step= 1100/2000  loss=0.0657  lr=9.58e-05
+[lora] step= 1150/2000  loss=0.0715  lr=8.89e-05
+[lora] step= 1200/2000  loss=0.0773  lr=8.21e-05
+[lora] step= 1250/2000  loss=0.0681  lr=7.54e-05
+[lora] step= 1300/2000  loss=0.0683  lr=6.90e-05
+[lora] step= 1350/2000  loss=0.0622  lr=6.29e-05
+[lora] step= 1400/2000  loss=0.0700  lr=5.70e-05
+[lora] step= 1450/2000  loss=0.0612  lr=5.14e-05
+[lora] step= 1500/2000  loss=0.0760  lr=4.63e-05
+[lora] step= 1550/2000  loss=0.0615  lr=4.15e-05
+[lora] step= 1600/2000  loss=0.0735  lr=3.71e-05
+[lora] step= 1650/2000  loss=0.0758  lr=3.32e-05
+[lora] step= 1700/2000  loss=0.0675  lr=2.97e-05
+[lora] step= 1750/2000  loss=0.0715  lr=2.68e-05
+[lora] step= 1800/2000  loss=0.0674  lr=2.44e-05
+[lora] step= 1850/2000  loss=0.0640  lr=2.25e-05
+[lora] step= 1900/2000  loss=0.0789  lr=2.11e-05
+[lora] step= 1950/2000  loss=0.0636  lr=2.03e-05
+[lora] merging adapters...
+[lora] merged model saved -> results/lora_boost/smolvla_lora_boost
+[lora] done. final loss=0.0636
+Exception ignored in: <_io.BufferedWriter name=24>
+BrokenPipeError: [Errno 32] Broken pipe

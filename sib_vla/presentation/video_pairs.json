@@ -1,0 +1,72 @@
+[
+  {
+    "condition": "clean",
+    "task": "clean_t0",
+    "base_mp4": "results/videos/libv_baseline/clean/clean_t0/ep000.mp4",
+    "base_success": false,
+    "base_poster": "presentation/posters/clean_base.jpg",
+    "aegis_mp4": "results/videos/libv_aegis/clean/clean_t0/ep001.mp4",
+    "aegis_success": true,
+    "aegis_poster": "presentation/posters/clean_aegis.jpg"
+  },
+  {
+    "condition": "motion_blur_1",
+    "task": "motion_blur_1_t0",
+    "base_mp4": "results/videos/libv_baseline_libero_spatial/motion_blur_1/motion_blur_1_t0/ep000.mp4",
+    "base_success": false,
+    "base_poster": "presentation/posters/motion_blur_1_base.jpg",
+    "aegis_mp4": "results/videos/libv_aegis_libero_spatial/motion_blur_1/motion_blur_1_t0/ep000.mp4",
+    "aegis_success": true,
+    "aegis_poster": "presentation/posters/motion_blur_1_aegis.jpg"
+  },
+  {
+    "condition": "gaussian_noise_1",
+    "task": "gaussian_noise_1_t1",
+    "base_mp4": "results/videos/libv_baseline_libero_spatial/gaussian_noise_1/gaussian_noise_1_t1/ep000.mp4",
+    "base_success": false,
+    "base_poster": "presentation/posters/gaussian_noise_1_base.jpg",
+    "aegis_mp4": "results/videos/libv_aegis_libero_spatial/gaussian_noise_1/gaussian_noise_1_t1/ep001.mp4",
+    "aegis_success": true,
+    "aegis_poster": "presentation/posters/gaussian_noise_1_aegis.jpg"
+  },
+  {
+    "condition": "lighting_1",
+    "task": "lighting_1_t2",
+    "base_mp4": "results/videos/libv_baseline_libero_spatial/lighting_1/lighting_1_t2/ep000.mp4",
+    "base_success": false,
+    "base_poster": "presentation/posters/lighting_1_base.jpg",
+    "aegis_mp4": "results/videos/libv_aegis_libero_spatial/lighting_1/lighting_1_t2/ep001.mp4",
+    "aegis_success": true,
+    "aegis_poster": "presentation/posters/lighting_1_aegis.jpg"
+  },
+  {
+    "condition": "texture_1",
+    "task": "texture_1_t5",
+    "base_mp4": "results/videos/libv_baseline_libero_spatial/texture_1/texture_1_t5/ep001.mp4",
+    "base_success": false,
+    "base_poster": "presentation/posters/texture_1_base.jpg",
+    "aegis_mp4": "results/videos/libv_aegis_libero_spatial/texture_1/texture_1_t5/ep000.mp4",
+    "aegis_success": true,
+    "aegis_poster": "presentation/posters/texture_1_aegis.jpg"
+  },
+  {
+    "condition": "viewpoint_medium",
+    "task": "viewpoint_medium_t3",
+    "base_mp4": "results/videos/libv_baseline_libero_spatial/viewpoint_medium/viewpoint_medium_t3/ep000.mp4",
+    "base_success": false,
+    "base_poster": "presentation/posters/viewpoint_medium_base.jpg",
+    "aegis_mp4": "results/videos/libv_aegis_libero_spatial/viewpoint_medium/viewpoint_medium_t3/ep000.mp4",
+    "aegis_success": true,
+    "aegis_poster": "presentation/posters/viewpoint_medium_aegis.jpg"
+  },
+  {
+    "condition": "object_offset_5",
+    "task": "object_offset_5_t2",
+    "base_mp4": "results/videos/libv_baseline_libero_spatial/object_offset_5/object_offset_5_t2/ep000.mp4",
+    "base_success": false,
+    "base_poster": "presentation/posters/object_offset_5_base.jpg",
+    "aegis_mp4": "results/videos/libv_aegis_libero_spatial/object_offset_5/object_offset_5_t2/ep000.mp4",
+    "aegis_success": true,
+    "aegis_poster": "presentation/posters/object_offset_5_aegis.jpg"
+  }
+]

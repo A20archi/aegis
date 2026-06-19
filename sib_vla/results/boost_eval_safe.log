@@ -1,0 +1,19 @@
+[15:02:52] GPU free=22179MiB >= 15500 -> go
+[15:02:52] START long (serial, OOM-guarded)
+run_boost_eval_safe.sh: line 21: 124268 Killed                  $PY scripts/eval_libero_v.py --config "configs/_boost_$name.yaml" --method baseline $TE --n-action-steps 1 --episodes "$EP" --only clean > "$od/baseline.log" 2>&1
+[17:27:29] DONE long SR=ERR
+[17:27:29] GPU free=9437MiB < 15500, waiting...
+[17:28:29] GPU free=804MiB < 15500, waiting...
+[17:29:29] GPU free=80563MiB >= 15500 -> go
+[17:29:29] START spatial (serial, OOM-guarded)
+[19:39:27] DONE spatial SR=83.0
+[19:39:27] GPU free=20698MiB >= 15500 -> go
+[19:39:27] START object (serial, OOM-guarded)
+[21:49:44] DONE object SR=94.5
+[21:49:44] GPU free=21968MiB >= 15500 -> go
+[21:49:44] START goal (serial, OOM-guarded)
+[00:07:19] DONE goal SR=90.5
+[00:07:19] === BOOST 4-suite (OOM-guarded) complete ===
+  spatial   83.0 (was 85.5, -2.5)
+  object    94.5 (was 97.5, -3.0)
+  goal      90.5 (was 93.5, -3.0)

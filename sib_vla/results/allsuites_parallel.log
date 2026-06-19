@@ -9,3 +9,16 @@
 [19:23:59] START goal/aegis
 [19:23:59] START object/aegis
 [19:25:57] DONE  spatial/aegis
+[21:23:52] DONE  object/aegis
+[21:28:49] DONE  goal/aegis
+[21:29:37] DONE  object/baseline
+[21:30:18] DONE  long/aegis
+[21:32:35] DONE  long/baseline
+[21:36:52] DONE  goal/baseline
+[21:36:52] === ALL EVALS DONE -> summary ===
+   suite   base+TE    AEGIS
+ spatial      80.5     85.5
+  object      97.5     95.0
+    goal      91.5     93.5
+    long      64.5     56.5
+     AVG      83.5     82.6   (paper target 87.3)

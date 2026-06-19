@@ -1,0 +1,66 @@
+{
+  "name": "libero_v_baseline_clean",
+  "method": "baseline",
+  "condition": "clean",
+  "axis": "noise",
+  "n_episodes": 200,
+  "n_success": 181,
+  "success_rate": 0.905,
+  "success_wilson95": [
+    0.8563973488560237,
+    0.9383373863501365
+  ],
+  "rms_jerk_mean": 0.05234779613026505,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 20,
+      "success_rate": 0.85
+    },
+    {
+      "task_id": 1,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 2,
+      "n": 20,
+      "success_rate": 0.75
+    },
+    {
+      "task_id": 3,
+      "n": 20,
+      "success_rate": 0.9
+    },
+    {
+      "task_id": 4,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 5,
+      "n": 20,
+      "success_rate": 0.95
+    },
+    {
+      "task_id": 6,
+      "n": 20,
+      "success_rate": 0.75
+    },
+    {
+      "task_id": 7,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 8,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 9,
+      "n": 20,
+      "success_rate": 0.85
+    }
+  ]
+}

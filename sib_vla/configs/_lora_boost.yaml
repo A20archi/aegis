@@ -1,0 +1,9 @@
+inherit: base.yaml
+# SR booster: LoRA finetune the 85.25 base (spatial_repro, best Long=64.5) on the
+# FULL libero (all 4 suites -> lifts Long most, no forgetting). Merged back to a
+# from_pretrained ckpt so eval_libero_v --method baseline/aegis loads it unchanged.
+checkpoint: outputs/smolvla_spatial_repro/checkpoints/020000/pretrained_model
+repo_id: HuggingFaceVLA/libero
+dataset_root: null
+output_dir: results/lora_boost
+seeds: [42]

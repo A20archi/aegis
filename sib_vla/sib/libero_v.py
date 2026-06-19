@@ -174,7 +174,26 @@ def apply_texture(libero_env, severity: int):
     sim.forward()
 
 
-_DISPATCH = {"viewpoint": apply_viewpoint, "lighting": apply_lighting, "texture": apply_texture}
+def apply_object_offset(libero_env, offset_m):
+    """Shift every manipulable (free-joint) object by +offset_m metres in world-x.
+    Behavior-cloning probe: if SR is invariant to this the policy ignores object
+    position (memorised); if SR responds, it is genuinely perception-conditioned.
+    Re-applied after each reset, so it shifts that episode's fresh init position."""
+    sim = _sim(libero_env); m = sim.model; d = sim.data
+    moved = []
+    for j in range(m.njnt):
+        if int(m.jnt_type[j]) == 0:           # mjJNT_FREE == 0  -> a movable object
+            adr = int(m.jnt_qposadr[j])
+            d.qpos[adr] += float(offset_m)    # +x shift (qpos[adr:adr+3] = xyz)
+            moved.append(m.joint_id2name(j) if hasattr(m, "joint_id2name") else j)
+    sim.forward()
+    if not getattr(libero_env, "_lv_offset_logged", False):
+        print(f"[libero_v] object_offset {offset_m*100:.0f}cm -> shifted {len(moved)} free bodies: {moved[:6]}", flush=True)
+        libero_env._lv_offset_logged = True
+
+
+_DISPATCH = {"viewpoint": apply_viewpoint, "lighting": apply_lighting,
+             "texture": apply_texture, "object_offset": apply_object_offset}
 
 
 def _apply_spec(libero_env, spec: dict):
@@ -183,6 +202,8 @@ def _apply_spec(libero_env, spec: dict):
     fn = _DISPATCH[axis]
     if axis == "viewpoint":
         fn(libero_env, spec.get("level", "medium"))
+    elif axis == "object_offset":
+        fn(libero_env, spec.get("offset", 0.03))
     else:
         fn(libero_env, spec.get("severity", 1))
 
@@ -240,6 +261,9 @@ def libero_v_grid(compact: bool = True):
     # axis 3: texture
     for s in sevs:
         grid.append((f"texture_{s}", {"sim": {"axis": "texture", "severity": s}}))
+    # axis 3b: object-position offset (behavior-cloning / spatial-generalization probe)
+    for cm in (3, 5):
+        grid.append((f"object_offset_{cm}", {"sim": {"axis": "object_offset", "offset": cm / 100.0}}))
     # axis 4: sensor noise (image-space)
     noise = [("motion_blur", 1), ("zoom_blur", 1), ("fog", 1), ("glass_blur", 1)]
     for fam, sev in noise:

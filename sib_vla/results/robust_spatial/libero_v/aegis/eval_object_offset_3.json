@@ -1,0 +1,66 @@
+{
+  "name": "libero_v_aegis_object_offset_3",
+  "method": "aegis",
+  "condition": "object_offset_3",
+  "axis": "object_offset",
+  "n_episodes": 100,
+  "n_success": 78,
+  "success_rate": 0.78,
+  "success_wilson95": [
+    0.6892946528499969,
+    0.849988254963442
+  ],
+  "rms_jerk_mean": 0.060962618508891585,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 10,
+      "success_rate": 0.9
+    },
+    {
+      "task_id": 1,
+      "n": 10,
+      "success_rate": 0.9
+    },
+    {
+      "task_id": 2,
+      "n": 10,
+      "success_rate": 0.9
+    },
+    {
+      "task_id": 3,
+      "n": 10,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 4,
+      "n": 10,
+      "success_rate": 0.8
+    },
+    {
+      "task_id": 5,
+      "n": 10,
+      "success_rate": 0.5
+    },
+    {
+      "task_id": 6,
+      "n": 10,
+      "success_rate": 0.8
+    },
+    {
+      "task_id": 7,
+      "n": 10,
+      "success_rate": 0.7
+    },
+    {
+      "task_id": 8,
+      "n": 10,
+      "success_rate": 0.6
+    },
+    {
+      "task_id": 9,
+      "n": 10,
+      "success_rate": 0.7
+    }
+  ]
+}

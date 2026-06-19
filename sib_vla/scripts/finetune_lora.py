@@ -48,6 +48,9 @@ def main():
     ap.add_argument("--batch-size", type=int, default=32)
     ap.add_argument("--out-name", default="smolvla_lora",
                     help="subdirectory under output_dir for the saved model")
+    ap.add_argument("--episodes-json", default=None,
+                    help="JSON list of episode indices to restrict training to "
+                         "(e.g. results/long_episode_idx.json for Long-only finetune)")
     args = ap.parse_args()
 
     torch.backends.cuda.matmul.allow_tf32 = True
@@ -92,15 +95,20 @@ def main():
     # 3. Load LIBERO training dataset
     # ------------------------------------------------------------------
     print("[lora] loading dataset...", flush=True)
+    episodes = None
+    if args.episodes_json:
+        import json as _json
+        episodes = _json.load(open(args.episodes_json))
+        print(f"[lora] restricting to {len(episodes)} episodes from {args.episodes_json}", flush=True)
     dataset = build_lerobot_dataset(
-        cfg["repo_id"], H, cfg["fps"], root=cfg.get("dataset_root")
+        cfg["repo_id"], H, cfg["fps"], root=cfg.get("dataset_root"), episodes=episodes
     )
 
     loader = DataLoader(
         dataset,
         batch_size=args.batch_size,
         shuffle=True,
-        num_workers=8,
+        num_workers=4,            # was 8 — cut host-RAM (pyav video decode) to dodge OOM-killer
         drop_last=True,
         pin_memory=True,
         persistent_workers=True,
@@ -146,6 +154,12 @@ def main():
                           flush=True)
                     history.append({"step": step, "loss": float(loss.item()),
                                     "lr": float(scheduler.get_last_lr()[0])})
+
+                # intermediate adapter save -> a SIGKILL/OOM no longer loses everything
+                if step > 0 and step % 1000 == 0:
+                    adir = base_out / f"adapter_s{step}"
+                    policy.save_pretrained(str(adir))
+                    print(f"[lora] saved intermediate adapter -> {adir}", flush=True)
 
                 step += 1
                 if step >= args.steps:

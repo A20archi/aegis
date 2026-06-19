@@ -1,0 +1,10 @@
+{
+  "method": "aegis",
+  "conditions": [
+    {
+      "label": "object_offset_5",
+      "sr": 0.57,
+      "n": 100
+    }
+  ]
+}

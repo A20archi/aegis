@@ -1,0 +1,8 @@
+inherit: base.yaml
+checkpoint: results/lora_boost/smolvla_lora_boost
+output_dir: results/boost_aegis/spatial
+suite: libero_spatial
+episode_length: 220
+n_action_steps: 1
+record:
+  enabled: false

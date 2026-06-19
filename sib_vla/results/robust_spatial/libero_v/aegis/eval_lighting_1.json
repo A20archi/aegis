@@ -1,0 +1,66 @@
+{
+  "name": "libero_v_aegis_lighting_1",
+  "method": "aegis",
+  "condition": "lighting_1",
+  "axis": "lighting",
+  "n_episodes": 200,
+  "n_success": 169,
+  "success_rate": 0.845,
+  "success_wilson95": [
+    0.7883919410627441,
+    0.8886043148536146
+  ],
+  "rms_jerk_mean": 0.05816950920789834,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 20,
+      "success_rate": 0.9
+    },
+    {
+      "task_id": 1,
+      "n": 20,
+      "success_rate": 0.95
+    },
+    {
+      "task_id": 2,
+      "n": 20,
+      "success_rate": 0.9
+    },
+    {
+      "task_id": 3,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 4,
+      "n": 20,
+      "success_rate": 0.8
+    },
+    {
+      "task_id": 5,
+      "n": 20,
+      "success_rate": 0.35
+    },
+    {
+      "task_id": 6,
+      "n": 20,
+      "success_rate": 0.75
+    },
+    {
+      "task_id": 7,
+      "n": 20,
+      "success_rate": 0.9
+    },
+    {
+      "task_id": 8,
+      "n": 20,
+      "success_rate": 0.95
+    },
+    {
+      "task_id": 9,
+      "n": 20,
+      "success_rate": 0.95
+    }
+  ]
+}

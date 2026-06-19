@@ -1,0 +1,66 @@
+{
+  "name": "libero_v_aegis_clean",
+  "method": "aegis",
+  "condition": "clean",
+  "axis": "noise",
+  "n_episodes": 200,
+  "n_success": 190,
+  "success_rate": 0.95,
+  "success_wilson95": [
+    0.9104209437021562,
+    0.9726176509713551
+  ],
+  "rms_jerk_mean": 0.05542493321249053,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 1,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 2,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 3,
+      "n": 20,
+      "success_rate": 0.5
+    },
+    {
+      "task_id": 4,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 5,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 6,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 7,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 8,
+      "n": 20,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 9,
+      "n": 20,
+      "success_rate": 1.0
+    }
+  ]
+}

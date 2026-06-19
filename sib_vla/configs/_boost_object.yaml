@@ -1,0 +1,8 @@
+inherit: base.yaml
+checkpoint: results/lora_boost/smolvla_lora_boost
+output_dir: results/boost_base/object
+suite: libero_object
+episode_length: 280
+n_action_steps: 1
+record:
+  enabled: false

@@ -1,0 +1,83 @@
+/home/user/anaconda3/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.3.2) doesn't match a supported version!
+  warnings.warn(
+2026-06-17 18:31:35.273841: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-06-17 18:31:35.342900: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[lora] loading SmolVLA...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+Reducing the number of VLM layers to 16 ...
+Loading weights from local directory
+trainable params: 1,485,312 || all params: 451,531,488 || trainable%: 0.3289
+[lora] loading dataset...
+WARNING:root:'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+[lora] training for 4000 steps  lr=0.0002  rank=32  batch=32
+[lora] step=    0/4000  loss=0.0740  lr=2.00e-04
+[lora] step=   50/4000  loss=0.0657  lr=2.00e-04
+[lora] step=  100/4000  loss=0.0747  lr=2.00e-04
+[lora] step=  150/4000  loss=0.0710  lr=1.99e-04
+[lora] step=  200/4000  loss=0.0603  lr=1.99e-04
+[lora] step=  250/4000  loss=0.0725  lr=1.98e-04
+[lora] step=  300/4000  loss=0.0699  lr=1.97e-04
+[lora] step=  350/4000  loss=0.0726  lr=1.97e-04
+[lora] step=  400/4000  loss=0.0763  lr=1.96e-04
+[lora] step=  450/4000  loss=0.0643  lr=1.94e-04
+[lora] step=  500/4000  loss=0.0685  lr=1.93e-04
+[lora] step=  550/4000  loss=0.0708  lr=1.92e-04
+[lora] step=  600/4000  loss=0.0856  lr=1.90e-04
+[lora] step=  650/4000  loss=0.0783  lr=1.88e-04
+[lora] step=  700/4000  loss=0.0710  lr=1.87e-04
+[lora] step=  750/4000  loss=0.0716  lr=1.85e-04
+[lora] step=  800/4000  loss=0.0616  lr=1.83e-04
+[lora] step=  850/4000  loss=0.0691  lr=1.81e-04
+[lora] step=  900/4000  loss=0.0706  lr=1.78e-04
+[lora] step=  950/4000  loss=0.0804  lr=1.76e-04
+[lora] step= 1000/4000  loss=0.0728  lr=1.74e-04
+[lora] step= 1050/4000  loss=0.0650  lr=1.71e-04
+[lora] step= 1100/4000  loss=0.0661  lr=1.68e-04
+[lora] step= 1150/4000  loss=0.0722  lr=1.66e-04
+[lora] step= 1200/4000  loss=0.0775  lr=1.63e-04
+[lora] step= 1250/4000  loss=0.0686  lr=1.60e-04
+[lora] step= 1300/4000  loss=0.0683  lr=1.57e-04
+[lora] step= 1350/4000  loss=0.0623  lr=1.54e-04
+[lora] step= 1400/4000  loss=0.0706  lr=1.51e-04
+[lora] step= 1450/4000  loss=0.0616  lr=1.48e-04
+[lora] step= 1500/4000  loss=0.0765  lr=1.44e-04
+[lora] step= 1550/4000  loss=0.0617  lr=1.41e-04
+[lora] step= 1600/4000  loss=0.0741  lr=1.38e-04
+[lora] step= 1650/4000  loss=0.0756  lr=1.34e-04
+[lora] step= 1700/4000  loss=0.0675  lr=1.31e-04
+[lora] step= 1750/4000  loss=0.0717  lr=1.27e-04
+[lora] step= 1800/4000  loss=0.0673  lr=1.24e-04
+[lora] step= 1850/4000  loss=0.0645  lr=1.21e-04
+[lora] step= 1900/4000  loss=0.0791  lr=1.17e-04
+[lora] step= 1950/4000  loss=0.0654  lr=1.13e-04
+[lora] step= 2000/4000  loss=0.0711  lr=1.10e-04
+[lora] step= 2050/4000  loss=0.0656  lr=1.06e-04
+[lora] step= 2100/4000  loss=0.0726  lr=1.03e-04
+[lora] step= 2150/4000  loss=0.0649  lr=9.94e-05
+[lora] step= 2200/4000  loss=0.0636  lr=9.59e-05
+[lora] step= 2250/4000  loss=0.0609  lr=9.24e-05
+[lora] step= 2300/4000  loss=0.0733  lr=8.89e-05
+[lora] step= 2350/4000  loss=0.0805  lr=8.55e-05
+[lora] step= 2400/4000  loss=0.0768  lr=8.21e-05
+[lora] step= 2450/4000  loss=0.0630  lr=7.88e-05
+[lora] step= 2500/4000  loss=0.0726  lr=7.55e-05
+[lora] step= 2550/4000  loss=0.0750  lr=7.23e-05
+[lora] step= 2600/4000  loss=0.0767  lr=6.91e-05
+[lora] step= 2650/4000  loss=0.0563  lr=6.60e-05
+[lora] step= 2700/4000  loss=0.0786  lr=6.29e-05
+[lora] step= 2750/4000  loss=0.0710  lr=5.99e-05
+[lora] step= 2800/4000  loss=0.0711  lr=5.70e-05
+[lora] step= 2850/4000  loss=0.0822  lr=5.42e-05
+[lora] step= 2900/4000  loss=0.0685  lr=5.15e-05
+[lora] step= 2950/4000  loss=0.0680  lr=4.89e-05
+[lora] step= 3000/4000  loss=0.0578  lr=4.63e-05
+[lora] step= 3050/4000  loss=0.0744  lr=4.39e-05
+[lora] step= 3100/4000  loss=0.0776  lr=4.15e-05
+[lora] step= 3150/4000  loss=0.0611  lr=3.93e-05
+[lora] step= 3200/4000  loss=0.0710  lr=3.71e-05
+[lora] step= 3250/4000  loss=0.0777  lr=3.51e-05
+[lora] step= 3300/4000  loss=0.0716  lr=3.32e-05
+[lora] step= 3350/4000  loss=0.0731  lr=3.14e-05
+[lora] step= 3400/4000  loss=0.0844  lr=2.98e-05
