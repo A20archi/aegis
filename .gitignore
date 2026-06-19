@@ -55,3 +55,6 @@ wandb/
 # in-progress eval/ablation outputs (excluded per request)
 sib_vla/results/allsuites/
 sib_vla/results/diag_long/
+
+# manim render cache (regenerable from manim_aegis.py)
+sib_vla/presentation/_manim/
