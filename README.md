@@ -1,7 +1,8 @@
 <div align="center">
 
 # AEGIS
-### Additive, Provably-Safe Robustness for Frozen Vision-Language-Action Policies
+### Adaptive Entropy-Gated Information Sieve
+#### Additive, Provably-Safe Robustness for Frozen Vision-Language-Action Policies
 
 **A rate-limited information bottleneck applied at two interfaces of a *frozen* VLA — perception and action — both exact pass-throughs at initialization, so robustness is strictly additive and per-suite gating is provably safe.**
 
@@ -10,7 +11,7 @@
 [![Robustness](https://img.shields.io/badge/LIBERO--V-+33.3%20pts%20%7C%200%20regressions-orange)]()
 [![Status](https://img.shields.io/badge/paper-in%20preparation-lightgrey)]()
 
-*Internal name **AEGIS** = **RIB** (perception) + **RASF** (action) + **TE** (temporal consensus). External label "SmolVLA+SIB".*
+***AEGIS** — **A**daptive **E**ntropy-**G**ated **I**nformation **S**ieve = **RIB** (perception) + **RASF** (action) + **TE** (temporal consensus). External label "SmolVLA+SIB".*
 
 </div>
 
@@ -246,8 +247,8 @@ A preprint is in preparation. In the meantime:
 
 ```bibtex
 @misc{aegis2026,
-  title  = {AEGIS: Additive, Provably-Safe Robustness for Frozen Vision-Language-Action Policies
-            via a Dual-Locus Rate-Limited Information Bottleneck},
+  title  = {AEGIS: An Adaptive Entropy-Gated Information Sieve for Additive, Provably-Safe
+            Robustness in Frozen Vision-Language-Action Policies},
   author = {Saptarshi and collaborators},
   year   = {2026},
   note   = {Preprint in preparation},
