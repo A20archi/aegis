@@ -1,0 +1,43 @@
+[2026-06-21 00:50:25] AUTO-PILOT START
+[2026-06-21 00:50:25] SmolVLA: waiting on validate build to settle
+[2026-06-21 00:50:25] GR00T: launching L4 wiring smoke
+[2026-06-21 00:51:36] GR00T wiring smoke: FAIL/UNCONFIRMED
+[2026-06-21 00:52:09] SmolVLA validate: FAIL -> stopping chain
+[2026-06-21 00:52:09] AUTO-PILOT COMPLETE
+[2026-06-21 00:53:50] AUTO-PILOT START
+[2026-06-21 00:53:50] SmolVLA: waiting on validate build to settle
+[2026-06-21 00:53:50] GR00T: launching L4 structure dump (find true projection)
+[2026-06-21 00:53:50] SmolVLA validate: FAIL -> stopping chain
+[2026-06-21 00:54:55] AUTO-PILOT START (SmolVLA robustness chain)
+[2026-06-21 00:54:55] Stage A: launching validate build
+[2026-06-21 01:01:58] Stage A validate: FAIL -> stop
+[2026-06-21 01:03:02] AUTO-PILOT START (SmolVLA robustness chain)
+[2026-06-21 01:03:02] Stage A: launching validate build
+[2026-06-21 01:05:43] Stage A validate: FAIL -> stop
+[2026-06-21 01:07:09] AUTO-PILOT START (SmolVLA robustness chain)
+[2026-06-21 01:07:09] Stage A: launching validate build
+[2026-06-21 01:07:31] Stage A validate: FAIL -> stop
+[2026-06-21 01:10:32] AUTO-PILOT START (SmolVLA robustness chain)
+[2026-06-21 01:10:32] Stage A: launching validate build
+[2026-06-21 01:10:48] Stage A validate: FAIL -> stop
+[2026-06-21 01:12:39] AUTO-PILOT START (SmolVLA robustness chain)
+[2026-06-21 01:12:39] Stage A: launching validate build
+[2026-06-21 01:13:48] Stage A validate: PASS
+[2026-06-21 01:13:48] Stage B: launching GPU smoke (1 cell)
+[2026-06-21 01:14:08] Stage B smoke: FAIL -> stop
+[2026-06-21 01:15:33] AUTO-PILOT START (SmolVLA robustness chain)
+[2026-06-21 01:15:33] Stage A: launching validate build
+[2026-06-21 01:16:09] Stage A validate: PASS
+[2026-06-21 01:16:09] Stage B: launching GPU smoke (1 cell)
+[2026-06-21 01:16:29] Stage B smoke: FAIL -> stop
+[2026-06-21 01:19:13] AUTO-PILOT START (SmolVLA robustness chain)
+[2026-06-21 01:19:13] Stage A: launching validate build
+[2026-06-21 01:19:52] Stage A validate: PASS
+[2026-06-21 01:19:52] Stage B: launching GPU smoke (1 cell)
+[2026-06-21 03:20:05] Stage B smoke: FAIL -> stop
+[2026-06-21 03:24:31] AUTO-PILOT START (SmolVLA robustness chain)
+[2026-06-21 03:24:31] Stage A: launching validate build
+[2026-06-21 03:25:07] Stage A validate: PASS
+[2026-06-21 03:25:07] Stage B: launching GPU smoke (1 cell)
+[2026-06-21 03:29:20] Stage B smoke: PASS
+[2026-06-21 03:29:20] Stage C: launching stage1 (24 cells, parallel .map) — MAX UTILISATION

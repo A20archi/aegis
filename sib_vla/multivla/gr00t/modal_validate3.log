@@ -1,0 +1,1256 @@
+✓ Initialized. View run at 
+https://modal.com/apps/seo-40141/main/ap-GPtnJv9EcmM0Z6yIohckUo
+Building image im-V9KwcEz6PFtghGKs8lTpUR
+
+=> Step 0: FROM base
+
+=> Step 1: COPY /.requirements.txt /.requirements.txt
+
+=> Step 2: RUN python -m pip install -r /.requirements.txt --no-deps
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting absl-py==2.3.1 (from -r /.requirements.txt (line 1))
+  Obtaining dependency information for absl-py==2.3.1 from http://pypi-mirror.modal.local:5555/simple/absl-py/absl_py-2.3.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/absl-py/absl_py-2.3.1-py3-none-any.whl.metadata (3.3 kB)
+Collecting accelerate==1.2.1 (from -r /.requirements.txt (line 2))
+  Obtaining dependency information for accelerate==1.2.1 from http://pypi-mirror.modal.local:5555/simple/accelerate/accelerate-1.2.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/accelerate/accelerate-1.2.1-py3-none-any.whl.metadata (19 kB)
+Collecting aiohappyeyeballs==2.6.1 (from -r /.requirements.txt (line 3))
+  Obtaining dependency information for aiohappyeyeballs==2.6.1 from http://pypi-mirror.modal.local:5555/simple/aiohappyeyeballs/aiohappyeyeballs-2.6.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/aiohappyeyeballs/aiohappyeyeballs-2.6.1-py3-none-any.whl.metadata (5.9 kB)
+Collecting aiohttp==3.12.15 (from -r /.requirements.txt (line 4))
+  Obtaining dependency information for aiohttp==3.12.15 from http://pypi-mirror.modal.local:5555/simple/aiohttp/aiohttp-3.12.15-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/aiohttp/aiohttp-3.12.15-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.7 kB)
+Collecting aiosignal==1.4.0 (from -r /.requirements.txt (line 5))
+  Obtaining dependency information for aiosignal==1.4.0 from http://pypi-mirror.modal.local:5555/simple/aiosignal/aiosignal-1.4.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/aiosignal/aiosignal-1.4.0-py3-none-any.whl.metadata (3.7 kB)
+Collecting albucore==0.0.17 (from -r /.requirements.txt (line 6))
+  Obtaining dependency information for albucore==0.0.17 from http://pypi-mirror.modal.local:5555/simple/albucore/albucore-0.0.17-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/albucore/albucore-0.0.17-py3-none-any.whl.metadata (3.1 kB)
+Collecting albumentations==1.4.18 (from -r /.requirements.txt (line 7))
+  Obtaining dependency information for albumentations==1.4.18 from http://pypi-mirror.modal.local:5555/simple/albumentations/albumentations-1.4.18-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/albumentations/albumentations-1.4.18-py3-none-any.whl.metadata (32 kB)
+Collecting annotated-types==0.7.0 (from -r /.requirements.txt (line 8))
+  Obtaining dependency information for annotated-types==0.7.0 from http://pypi-mirror.modal.local:5555/simple/annotated-types/annotated_types-0.7.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/annotated-types/annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+Collecting antlr4-python3-runtime==4.9.3 (from -r /.requirements.txt (line 9))
+  Downloading http://pypi-mirror.modal.local:5555/simple/antlr4-python3-runtime/antlr4-python3-runtime-4.9.3.tar.gz (117 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.0/117.0 kB 166.8 MB/s eta 0:00:00
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting asciitree==0.3.3 (from -r /.requirements.txt (line 10))
+  Downloading http://pypi-mirror.modal.local:5555/simple/asciitree/asciitree-0.3.3.tar.gz (4.0 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting astunparse==1.6.3 (from -r /.requirements.txt (line 11))
+  Obtaining dependency information for astunparse==1.6.3 from http://pypi-mirror.modal.local:5555/simple/astunparse/astunparse-1.6.3-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/astunparse/astunparse-1.6.3-py2.py3-none-any.whl.metadata (4.4 kB)
+Collecting async-timeout==5.0.1 (from -r /.requirements.txt (line 12))
+  Obtaining dependency information for async-timeout==5.0.1 from http://pypi-mirror.modal.local:5555/simple/async-timeout/async_timeout-5.0.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/async-timeout/async_timeout-5.0.1-py3-none-any.whl.metadata (5.1 kB)
+Collecting attrs==25.3.0 (from -r /.requirements.txt (line 13))
+  Obtaining dependency information for attrs==25.3.0 from http://pypi-mirror.modal.local:5555/simple/attrs/attrs-25.3.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/attrs/attrs-25.3.0-py3-none-any.whl.metadata (10 kB)
+Collecting av==12.3.0 (from -r /.requirements.txt (line 14))
+  Obtaining dependency information for av==12.3.0 from http://pypi-mirror.modal.local:5555/simple/av/av-12.3.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/av/av-12.3.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.6 kB)
+Collecting beautifulsoup4==4.13.4 (from -r /.requirements.txt (line 15))
+  Obtaining dependency information for beautifulsoup4==4.13.4 from http://pypi-mirror.modal.local:5555/simple/beautifulsoup4/beautifulsoup4-4.13.4-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/beautifulsoup4/beautifulsoup4-4.13.4-py3-none-any.whl.metadata (3.8 kB)
+Collecting bitsandbytes==0.49.0 (from -r /.requirements.txt (line 16))
+  Obtaining dependency information for bitsandbytes==0.49.0 from http://pypi-mirror.modal.local:5555/simple/bitsandbytes/bitsandbytes-0.49.0-py3-none-manylinux_2_24_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/bitsandbytes/bitsandbytes-0.49.0-py3-none-manylinux_2_24_x86_64.whl.metadata (10 kB)
+Collecting blessings==1.7 (from -r /.requirements.txt (line 17))
+  Obtaining dependency information for blessings==1.7 from http://pypi-mirror.modal.local:5555/simple/blessings/blessings-1.7-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/blessings/blessings-1.7-py3-none-any.whl.metadata (19 kB)
+Collecting blinker==1.9.0 (from -r /.requirements.txt (line 18))
+  Obtaining dependency information for blinker==1.9.0 from http://pypi-mirror.modal.local:5555/simple/blinker/blinker-1.9.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/blinker/blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+Collecting cachetools==5.5.2 (from -r /.requirements.txt (line 19))
+  Obtaining dependency information for cachetools==5.5.2 from http://pypi-mirror.modal.local:5555/simple/cachetools/cachetools-5.5.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/cachetools/cachetools-5.5.2-py3-none-any.whl.metadata (5.4 kB)
+Collecting certifi==2026.1.4 (from -r /.requirements.txt (line 20))
+  Obtaining dependency information for certifi==2026.1.4 from http://pypi-mirror.modal.local:5555/simple/certifi/certifi-2026.1.4-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/certifi/certifi-2026.1.4-py3-none-any.whl.metadata (2.5 kB)
+Collecting chardet==5.2.0 (from -r /.requirements.txt (line 21))
+  Obtaining dependency information for chardet==5.2.0 from http://pypi-mirror.modal.local:5555/simple/chardet/chardet-5.2.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/chardet/chardet-5.2.0-py3-none-any.whl.metadata (3.4 kB)
+Collecting charset-normalizer==3.4.4 (from -r /.requirements.txt (line 22))
+  Obtaining dependency information for charset-normalizer==3.4.4 from http://pypi-mirror.modal.local:5555/simple/charset-normalizer/charset_normalizer-3.4.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/charset-normalizer/charset_normalizer-3.4.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (37 kB)
+Collecting click==8.2.1 (from -r /.requirements.txt (line 23))
+  Obtaining dependency information for click==8.2.1 from http://pypi-mirror.modal.local:5555/simple/click/click-8.2.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/click/click-8.2.1-py3-none-any.whl.metadata (2.5 kB)
+Collecting cloudpickle==3.1.1 (from -r /.requirements.txt (line 24))
+  Obtaining dependency information for cloudpickle==3.1.1 from http://pypi-mirror.modal.local:5555/simple/cloudpickle/cloudpickle-3.1.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/cloudpickle/cloudpickle-3.1.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting cmake==4.0.3 (from -r /.requirements.txt (line 25))
+  Obtaining dependency information for cmake==4.0.3 from http://pypi-mirror.modal.local:5555/simple/cmake/cmake-4.0.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/cmake/cmake-4.0.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.3 kB)
+Collecting colorama==0.4.6 (from -r /.requirements.txt (line 26))
+  Obtaining dependency information for colorama==0.4.6 from http://pypi-mirror.modal.local:5555/simple/colorama/colorama-0.4.6-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/colorama/colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting contourpy==1.3.2 (from -r /.requirements.txt (line 27))
+  Obtaining dependency information for contourpy==1.3.2 from http://pypi-mirror.modal.local:5555/simple/contourpy/contourpy-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/contourpy/contourpy-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.5 kB)
+Collecting cramjam==2.11.0 (from -r /.requirements.txt (line 28))
+  Obtaining dependency information for cramjam==2.11.0 from http://pypi-mirror.modal.local:5555/simple/cramjam/cramjam-2.11.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/cramjam/cramjam-2.11.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.6 kB)
+Collecting cycler==0.12.1 (from -r /.requirements.txt (line 29))
+  Obtaining dependency information for cycler==0.12.1 from http://pypi-mirror.modal.local:5555/simple/cycler/cycler-0.12.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/cycler/cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting Cython==0.29.37 (from -r /.requirements.txt (line 30))
+  Obtaining dependency information for Cython==0.29.37 from http://pypi-mirror.modal.local:5555/simple/cython/Cython-0.29.37-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/cython/Cython-0.29.37-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl.metadata (3.1 kB)
+Collecting datasets==2.19.0 (from -r /.requirements.txt (line 31))
+  Obtaining dependency information for datasets==2.19.0 from http://pypi-mirror.modal.local:5555/simple/datasets/datasets-2.19.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/datasets/datasets-2.19.0-py3-none-any.whl.metadata (19 kB)
+Collecting decord==0.6.0 (from -r /.requirements.txt (line 32))
+  Obtaining dependency information for decord==0.6.0 from http://pypi-mirror.modal.local:5555/simple/decord/decord-0.6.0-py3-none-manylinux2010_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/decord/decord-0.6.0-py3-none-manylinux2010_x86_64.whl.metadata (422 bytes)
+Collecting deepdiff==8.5.0 (from -r /.requirements.txt (line 33))
+  Obtaining dependency information for deepdiff==8.5.0 from http://pypi-mirror.modal.local:5555/simple/deepdiff/deepdiff-8.5.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/deepdiff/deepdiff-8.5.0-py3-none-any.whl.metadata (8.2 kB)
+Collecting diffusers==0.30.2 (from -r /.requirements.txt (line 34))
+  Obtaining dependency information for diffusers==0.30.2 from http://pypi-mirror.modal.local:5555/simple/diffusers/diffusers-0.30.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/diffusers/diffusers-0.30.2-py3-none-any.whl.metadata (18 kB)
+Collecting dill==0.3.6 (from -r /.requirements.txt (line 35))
+  Obtaining dependency information for dill==0.3.6 from http://pypi-mirror.modal.local:5555/simple/dill/dill-0.3.6-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/dill/dill-0.3.6-py3-none-any.whl.metadata (9.8 kB)
+Collecting distlib==0.4.0 (from -r /.requirements.txt (line 36))
+  Obtaining dependency information for distlib==0.4.0 from http://pypi-mirror.modal.local:5555/simple/distlib/distlib-0.4.0-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/distlib/distlib-0.4.0-py2.py3-none-any.whl.metadata (5.2 kB)
+Collecting dm-tree==0.1.8 (from -r /.requirements.txt (line 37))
+  Obtaining dependency information for dm-tree==0.1.8 from http://pypi-mirror.modal.local:5555/simple/dm-tree/dm_tree-0.1.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/dm-tree/dm_tree-0.1.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.9 kB)
+Collecting docker-pycreds==0.4.0 (from -r /.requirements.txt (line 38))
+  Obtaining dependency information for docker-pycreds==0.4.0 from http://pypi-mirror.modal.local:5555/simple/docker-pycreds/docker_pycreds-0.4.0-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/docker-pycreds/docker_pycreds-0.4.0-py2.py3-none-any.whl.metadata (1.8 kB)
+Collecting docopt==0.6.2 (from -r /.requirements.txt (line 39))
+  Downloading http://pypi-mirror.modal.local:5555/simple/docopt/docopt-0.6.2.tar.gz (25 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting docstring_parser==0.17.0 (from -r /.requirements.txt (line 40))
+  Obtaining dependency information for docstring_parser==0.17.0 from http://pypi-mirror.modal.local:5555/simple/docstring-parser/docstring_parser-0.17.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/docstring-parser/docstring_parser-0.17.0-py3-none-any.whl.metadata (3.5 kB)
+Collecting easydict==1.13 (from -r /.requirements.txt (line 41))
+  Obtaining dependency information for easydict==1.13 from http://pypi-mirror.modal.local:5555/simple/easydict/easydict-1.13-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/easydict/easydict-1.13-py3-none-any.whl.metadata (4.2 kB)
+Collecting einops==0.8.1 (from -r /.requirements.txt (line 42))
+  Obtaining dependency information for einops==0.8.1 from http://pypi-mirror.modal.local:5555/simple/einops/einops-0.8.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/einops/einops-0.8.1-py3-none-any.whl.metadata (13 kB)
+Collecting etils==1.13.0 (from -r /.requirements.txt (line 43))
+  Obtaining dependency information for etils==1.13.0 from http://pypi-mirror.modal.local:5555/simple/etils/etils-1.13.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/etils/etils-1.13.0-py3-none-any.whl.metadata (6.5 kB)
+Collecting eval_type_backport==0.2.2 (from -r /.requirements.txt (line 44))
+  Obtaining dependency information for eval_type_backport==0.2.2 from http://pypi-mirror.modal.local:5555/simple/eval-type-backport/eval_type_backport-0.2.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/eval-type-backport/eval_type_backport-0.2.2-py3-none-any.whl.metadata (2.2 kB)
+Collecting exceptiongroup==1.3.0 (from -r /.requirements.txt (line 45))
+  Obtaining dependency information for exceptiongroup==1.3.0 from http://pypi-mirror.modal.local:5555/simple/exceptiongroup/exceptiongroup-1.3.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/exceptiongroup/exceptiongroup-1.3.0-py3-none-any.whl.metadata (6.7 kB)
+Collecting Farama-Notifications==0.0.4 (from -r /.requirements.txt (line 46))
+  Obtaining dependency information for Farama-Notifications==0.0.4 from http://pypi-mirror.modal.local:5555/simple/farama-notifications/Farama_Notifications-0.0.4-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/farama-notifications/Farama_Notifications-0.0.4-py3-none-any.whl.metadata (558 bytes)
+Collecting fasteners==0.20 (from -r /.requirements.txt (line 47))
+  Obtaining dependency information for fasteners==0.20 from http://pypi-mirror.modal.local:5555/simple/fasteners/fasteners-0.20-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/fasteners/fasteners-0.20-py3-none-any.whl.metadata (4.8 kB)
+Collecting fastparquet==2024.11.0 (from -r /.requirements.txt (line 48))
+  Obtaining dependency information for fastparquet==2024.11.0 from http://pypi-mirror.modal.local:5555/simple/fastparquet/fastparquet-2024.11.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/fastparquet/fastparquet-2024.11.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.2 kB)
+Collecting filelock==3.20.2 (from -r /.requirements.txt (line 49))
+  Obtaining dependency information for filelock==3.20.2 from http://pypi-mirror.modal.local:5555/simple/filelock/filelock-3.20.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/filelock/filelock-3.20.2-py3-none-any.whl.metadata (2.1 kB)
+Collecting Flask==3.1.1 (from -r /.requirements.txt (line 50))
+  Obtaining dependency information for Flask==3.1.1 from http://pypi-mirror.modal.local:5555/simple/flask/flask-3.1.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/flask/flask-3.1.1-py3-none-any.whl.metadata (3.0 kB)
+Collecting flatbuffers==25.2.10 (from -r /.requirements.txt (line 51))
+  Obtaining dependency information for flatbuffers==25.2.10 from http://pypi-mirror.modal.local:5555/simple/flatbuffers/flatbuffers-25.2.10-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/flatbuffers/flatbuffers-25.2.10-py2.py3-none-any.whl.metadata (875 bytes)
+Collecting fonttools==4.59.0 (from -r /.requirements.txt (line 52))
+  Obtaining dependency information for fonttools==4.59.0 from http://pypi-mirror.modal.local:5555/simple/fonttools/fonttools-4.59.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/fonttools/fonttools-4.59.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (107 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 107.9/107.9 kB 207.1 MB/s eta 0:00:00
+Collecting frozenlist==1.7.0 (from -r /.requirements.txt (line 53))
+  Obtaining dependency information for frozenlist==1.7.0 from http://pypi-mirror.modal.local:5555/simple/frozenlist/frozenlist-1.7.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/frozenlist/frozenlist-1.7.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (18 kB)
+Collecting fsspec==2024.3.1 (from -r /.requirements.txt (line 54))
+  Obtaining dependency information for fsspec==2024.3.1 from http://pypi-mirror.modal.local:5555/simple/fsspec/fsspec-2024.3.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/fsspec/fsspec-2024.3.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting fvcore==0.1.5.post20221221 (from -r /.requirements.txt (line 55))
+  Downloading http://pypi-mirror.modal.local:5555/simple/fvcore/fvcore-0.1.5.post20221221.tar.gz (50 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.2/50.2 kB 77.9 MB/s eta 0:00:00
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting gast==0.6.0 (from -r /.requirements.txt (line 56))
+  Obtaining dependency information for gast==0.6.0 from http://pypi-mirror.modal.local:5555/simple/gast/gast-0.6.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/gast/gast-0.6.0-py3-none-any.whl.metadata (1.3 kB)
+Collecting gdown==5.2.0 (from -r /.requirements.txt (line 57))
+  Obtaining dependency information for gdown==5.2.0 from http://pypi-mirror.modal.local:5555/simple/gdown/gdown-5.2.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/gdown/gdown-5.2.0-py3-none-any.whl.metadata (5.8 kB)
+Collecting gitdb==4.0.12 (from -r /.requirements.txt (line 58))
+  Obtaining dependency information for gitdb==4.0.12 from http://pypi-mirror.modal.local:5555/simple/gitdb/gitdb-4.0.12-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/gitdb/gitdb-4.0.12-py3-none-any.whl.metadata (1.2 kB)
+Collecting GitPython==3.1.45 (from -r /.requirements.txt (line 59))
+  Obtaining dependency information for GitPython==3.1.45 from http://pypi-mirror.modal.local:5555/simple/gitpython/gitpython-3.1.45-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/gitpython/gitpython-3.1.45-py3-none-any.whl.metadata (13 kB)
+Collecting glfw==2.10.0 (from -r /.requirements.txt (line 60))
+  Obtaining dependency information for glfw==2.10.0 from http://pypi-mirror.modal.local:5555/simple/glfw/glfw-2.10.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38.py39.py310.py311.py312.py313.py314-none-manylinux_2_28_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/glfw/glfw-2.10.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38.py39.py310.py311.py312.py313.py314-none-manylinux_2_28_x86_64.whl.metadata (5.4 kB)
+Collecting google-auth==2.40.3 (from -r /.requirements.txt (line 61))
+  Obtaining dependency information for google-auth==2.40.3 from http://pypi-mirror.modal.local:5555/simple/google-auth/google_auth-2.40.3-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/google-auth/google_auth-2.40.3-py2.py3-none-any.whl.metadata (6.2 kB)
+Collecting google-auth-oauthlib==1.2.2 (from -r /.requirements.txt (line 62))
+  Obtaining dependency information for google-auth-oauthlib==1.2.2 from http://pypi-mirror.modal.local:5555/simple/google-auth-oauthlib/google_auth_oauthlib-1.2.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/google-auth-oauthlib/google_auth_oauthlib-1.2.2-py3-none-any.whl.metadata (2.7 kB)
+Collecting google-pasta==0.2.0 (from -r /.requirements.txt (line 63))
+  Obtaining dependency information for google-pasta==0.2.0 from http://pypi-mirror.modal.local:5555/simple/google-pasta/google_pasta-0.2.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/google-pasta/google_pasta-0.2.0-py3-none-any.whl.metadata (814 bytes)
+Collecting grpcio==1.74.0 (from -r /.requirements.txt (line 64))
+  Obtaining dependency information for grpcio==1.74.0 from http://pypi-mirror.modal.local:5555/simple/grpcio/grpcio-1.74.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/grpcio/grpcio-1.74.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.8 kB)
+Collecting gym==0.26.2 (from -r /.requirements.txt (line 65))
+  Downloading http://pypi-mirror.modal.local:5555/simple/gym/gym-0.26.2.tar.gz (721 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 721.7/721.7 kB 232.4 MB/s eta 0:00:00
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting gym-notices==0.1.0 (from -r /.requirements.txt (line 66))
+  Obtaining dependency information for gym-notices==0.1.0 from http://pypi-mirror.modal.local:5555/simple/gym-notices/gym_notices-0.1.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/gym-notices/gym_notices-0.1.0-py3-none-any.whl.metadata (1.2 kB)
+Collecting gymnasium==1.0.0 (from -r /.requirements.txt (line 67))
+  Obtaining dependency information for gymnasium==1.0.0 from http://pypi-mirror.modal.local:5555/simple/gymnasium/gymnasium-1.0.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/gymnasium/gymnasium-1.0.0-py3-none-any.whl.metadata (9.5 kB)
+Collecting h5py==3.12.1 (from -r /.requirements.txt (line 68))
+  Obtaining dependency information for h5py==3.12.1 from http://pypi-mirror.modal.local:5555/simple/h5py/h5py-3.12.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/h5py/h5py-3.12.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.5 kB)
+Collecting hf-xet==1.2.0 (from -r /.requirements.txt (line 69))
+  Obtaining dependency information for hf-xet==1.2.0 from http://pypi-mirror.modal.local:5555/simple/hf-xet/hf_xet-1.2.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/hf-xet/hf_xet-1.2.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+Collecting hf_transfer==0.1.9 (from -r /.requirements.txt (line 70))
+  Obtaining dependency information for hf_transfer==0.1.9 from http://pypi-mirror.modal.local:5555/simple/hf-transfer/hf_transfer-0.1.9-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/hf-transfer/hf_transfer-0.1.9-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.7 kB)
+Collecting huggingface-hub==0.34.3 (from -r /.requirements.txt (line 71))
+  Obtaining dependency information for huggingface-hub==0.34.3 from http://pypi-mirror.modal.local:5555/simple/huggingface-hub/huggingface_hub-0.34.3-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/huggingface-hub/huggingface_hub-0.34.3-py3-none-any.whl.metadata (14 kB)
+Collecting hydra-core==1.3.2 (from -r /.requirements.txt (line 72))
+  Obtaining dependency information for hydra-core==1.3.2 from http://pypi-mirror.modal.local:5555/simple/hydra-core/hydra_core-1.3.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/hydra-core/hydra_core-1.3.2-py3-none-any.whl.metadata (5.5 kB)
+Collecting idna==3.11 (from -r /.requirements.txt (line 73))
+  Obtaining dependency information for idna==3.11 from http://pypi-mirror.modal.local:5555/simple/idna/idna-3.11-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/idna/idna-3.11-py3-none-any.whl.metadata (8.4 kB)
+Collecting imageio==2.34.2 (from -r /.requirements.txt (line 74))
+  Obtaining dependency information for imageio==2.34.2 from http://pypi-mirror.modal.local:5555/simple/imageio/imageio-2.34.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/imageio/imageio-2.34.2-py3-none-any.whl.metadata (4.9 kB)
+Collecting imageio-ffmpeg==0.6.0 (from -r /.requirements.txt (line 75))
+  Obtaining dependency information for imageio-ffmpeg==0.6.0 from http://pypi-mirror.modal.local:5555/simple/imageio-ffmpeg/imageio_ffmpeg-0.6.0-py3-none-manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/imageio-ffmpeg/imageio_ffmpeg-0.6.0-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting importlib_metadata==8.7.0 (from -r /.requirements.txt (line 76))
+  Obtaining dependency information for importlib_metadata==8.7.0 from http://pypi-mirror.modal.local:5555/simple/importlib-metadata/importlib_metadata-8.7.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/importlib-metadata/importlib_metadata-8.7.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting importlib_resources==6.5.2 (from -r /.requirements.txt (line 77))
+  Obtaining dependency information for importlib_resources==6.5.2 from http://pypi-mirror.modal.local:5555/simple/importlib-resources/importlib_resources-6.5.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/importlib-resources/importlib_resources-6.5.2-py3-none-any.whl.metadata (3.9 kB)
+Collecting iniconfig==2.1.0 (from -r /.requirements.txt (line 78))
+  Obtaining dependency information for iniconfig==2.1.0 from http://pypi-mirror.modal.local:5555/simple/iniconfig/iniconfig-2.1.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/iniconfig/iniconfig-2.1.0-py3-none-any.whl.metadata (2.7 kB)
+Collecting inquirerpy==0.3.4 (from -r /.requirements.txt (line 79))
+  Obtaining dependency information for inquirerpy==0.3.4 from http://pypi-mirror.modal.local:5555/simple/inquirerpy/InquirerPy-0.3.4-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/inquirerpy/InquirerPy-0.3.4-py3-none-any.whl.metadata (8.1 kB)
+Collecting iopath==0.1.10 (from -r /.requirements.txt (line 80))
+  Downloading http://pypi-mirror.modal.local:5555/simple/iopath/iopath-0.1.10.tar.gz (42 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.2/42.2 kB 126.3 MB/s eta 0:00:00
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting itsdangerous==2.2.0 (from -r /.requirements.txt (line 81))
+  Obtaining dependency information for itsdangerous==2.2.0 from http://pypi-mirror.modal.local:5555/simple/itsdangerous/itsdangerous-2.2.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/itsdangerous/itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+Requirement already satisfied: Jinja2==3.1.6 in /usr/local/lib/python3.10/site-packages (from -r /.requirements.txt (line 82)) (3.1.6)
+Collecting joblib==1.5.3 (from -r /.requirements.txt (line 83))
+  Obtaining dependency information for joblib==1.5.3 from http://pypi-mirror.modal.local:5555/simple/joblib/joblib-1.5.3-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/joblib/joblib-1.5.3-py3-none-any.whl.metadata (5.5 kB)
+Collecting jsonlines==4.0.0 (from -r /.requirements.txt (line 84))
+  Obtaining dependency information for jsonlines==4.0.0 from http://pypi-mirror.modal.local:5555/simple/jsonlines/jsonlines-4.0.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/jsonlines/jsonlines-4.0.0-py3-none-any.whl.metadata (1.6 kB)
+Collecting jsonschema==4.25.0 (from -r /.requirements.txt (line 85))
+  Obtaining dependency information for jsonschema==4.25.0 from http://pypi-mirror.modal.local:5555/simple/jsonschema/jsonschema-4.25.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/jsonschema/jsonschema-4.25.0-py3-none-any.whl.metadata (7.7 kB)
+Collecting jsonschema-specifications==2025.4.1 (from -r /.requirements.txt (line 86))
+  Obtaining dependency information for jsonschema-specifications==2025.4.1 from http://pypi-mirror.modal.local:5555/simple/jsonschema-specifications/jsonschema_specifications-2025.4.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/jsonschema-specifications/jsonschema_specifications-2025.4.1-py3-none-any.whl.metadata (2.9 kB)
+Collecting jupytext==1.18.1 (from -r /.requirements.txt (line 87))
+  Obtaining dependency information for jupytext==1.18.1 from http://pypi-mirror.modal.local:5555/simple/jupytext/jupytext-1.18.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/jupytext/jupytext-1.18.1-py3-none-any.whl.metadata (15 kB)
+Collecting keras==2.15.0 (from -r /.requirements.txt (line 88))
+  Obtaining dependency information for keras==2.15.0 from http://pypi-mirror.modal.local:5555/simple/keras/keras-2.15.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/keras/keras-2.15.0-py3-none-any.whl.metadata (2.4 kB)
+Collecting kiwisolver==1.4.8 (from -r /.requirements.txt (line 89))
+  Obtaining dependency information for kiwisolver==1.4.8 from http://pypi-mirror.modal.local:5555/simple/kiwisolver/kiwisolver-1.4.8-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/kiwisolver/kiwisolver-1.4.8-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata (6.2 kB)
+Collecting kornia==0.7.4 (from -r /.requirements.txt (line 90))
+  Obtaining dependency information for kornia==0.7.4 from http://pypi-mirror.modal.local:5555/simple/kornia/kornia-0.7.4-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/kornia/kornia-0.7.4-py2.py3-none-any.whl.metadata (18 kB)
+Collecting kornia_rs==0.1.9 (from -r /.requirements.txt (line 91))
+  Obtaining dependency information for kornia_rs==0.1.9 from http://pypi-mirror.modal.local:5555/simple/kornia-rs/kornia_rs-0.1.9-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/kornia-rs/kornia_rs-0.1.9-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (11 kB)
+Collecting lazy_loader==0.4 (from -r /.requirements.txt (line 92))
+  Obtaining dependency information for lazy_loader==0.4 from http://pypi-mirror.modal.local:5555/simple/lazy-loader/lazy_loader-0.4-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/lazy-loader/lazy_loader-0.4-py3-none-any.whl.metadata (7.6 kB)
+Collecting libclang==18.1.1 (from -r /.requirements.txt (line 93))
+  Obtaining dependency information for libclang==18.1.1 from http://pypi-mirror.modal.local:5555/simple/libclang/libclang-18.1.1-py2.py3-none-manylinux2010_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/libclang/libclang-18.1.1-py2.py3-none-manylinux2010_x86_64.whl.metadata (5.2 kB)
+Collecting llvmlite==0.44.0 (from -r /.requirements.txt (line 94))
+  Obtaining dependency information for llvmlite==0.44.0 from http://pypi-mirror.modal.local:5555/simple/llvmlite/llvmlite-0.44.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/llvmlite/llvmlite-0.44.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.8 kB)
+Collecting Markdown==3.8.2 (from -r /.requirements.txt (line 95))
+  Obtaining dependency information for Markdown==3.8.2 from http://pypi-mirror.modal.local:5555/simple/markdown/markdown-3.8.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/markdown/markdown-3.8.2-py3-none-any.whl.metadata (5.1 kB)
+Collecting markdown-it-py==4.0.0 (from -r /.requirements.txt (line 96))
+  Obtaining dependency information for markdown-it-py==4.0.0 from http://pypi-mirror.modal.local:5555/simple/markdown-it-py/markdown_it_py-4.0.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/markdown-it-py/markdown_it_py-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+Requirement already satisfied: MarkupSafe==3.0.3 in /usr/local/lib/python3.10/site-packages (from -r /.requirements.txt (line 97)) (3.0.3)
+Collecting matplotlib==3.10.0 (from -r /.requirements.txt (line 98))
+  Obtaining dependency information for matplotlib==3.10.0 from http://pypi-mirror.modal.local:5555/simple/matplotlib/matplotlib-3.10.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/matplotlib/matplotlib-3.10.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (11 kB)
+Collecting mdit-py-plugins==0.5.0 (from -r /.requirements.txt (line 99))
+  Obtaining dependency information for mdit-py-plugins==0.5.0 from http://pypi-mirror.modal.local:5555/simple/mdit-py-plugins/mdit_py_plugins-0.5.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/mdit-py-plugins/mdit_py_plugins-0.5.0-py3-none-any.whl.metadata (2.8 kB)
+Collecting mdurl==0.1.2 (from -r /.requirements.txt (line 100))
+  Obtaining dependency information for mdurl==0.1.2 from http://pypi-mirror.modal.local:5555/simple/mdurl/mdurl-0.1.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/mdurl/mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Collecting mergedeep==1.3.4 (from -r /.requirements.txt (line 101))
+  Obtaining dependency information for mergedeep==1.3.4 from http://pypi-mirror.modal.local:5555/simple/mergedeep/mergedeep-1.3.4-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/mergedeep/mergedeep-1.3.4-py3-none-any.whl.metadata (4.3 kB)
+Collecting mink==0.0.5 (from -r /.requirements.txt (line 102))
+  Obtaining dependency information for mink==0.0.5 from http://pypi-mirror.modal.local:5555/simple/mink/mink-0.0.5-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/mink/mink-0.0.5-py3-none-any.whl.metadata (5.5 kB)
+Collecting ml-dtypes==0.2.0 (from -r /.requirements.txt (line 103))
+  Obtaining dependency information for ml-dtypes==0.2.0 from http://pypi-mirror.modal.local:5555/simple/ml-dtypes/ml_dtypes-0.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/ml-dtypes/ml_dtypes-0.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (20 kB)
+Requirement already satisfied: mpmath==1.3.0 in /usr/local/lib/python3.10/site-packages (from -r /.requirements.txt (line 104)) (1.3.0)
+Collecting msgpack==1.1.1 (from -r /.requirements.txt (line 105))
+  Obtaining dependency information for msgpack==1.1.1 from http://pypi-mirror.modal.local:5555/simple/msgpack/msgpack-1.1.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/msgpack/msgpack-1.1.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.4 kB)
+Collecting multidict==6.6.3 (from -r /.requirements.txt (line 106))
+  Obtaining dependency information for multidict==6.6.3 from http://pypi-mirror.modal.local:5555/simple/multidict/multidict-6.6.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/multidict/multidict-6.6.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.3 kB)
+Collecting multiprocess==0.70.14 (from -r /.requirements.txt (line 107))
+  Obtaining dependency information for multiprocess==0.70.14 from http://pypi-mirror.modal.local:5555/simple/multiprocess/multiprocess-0.70.14-py310-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/multiprocess/multiprocess-0.70.14-py310-none-any.whl.metadata (6.6 kB)
+Collecting mypy_extensions==1.1.0 (from -r /.requirements.txt (line 108))
+  Obtaining dependency information for mypy_extensions==1.1.0 from http://pypi-mirror.modal.local:5555/simple/mypy-extensions/mypy_extensions-1.1.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/mypy-extensions/mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+Requirement already satisfied: networkx==3.4.2 in /usr/local/lib/python3.10/site-packages (from -r /.requirements.txt (line 109)) (3.4.2)
+Collecting nltk==3.9.2 (from -r /.requirements.txt (line 110))
+  Obtaining dependency information for nltk==3.9.2 from http://pypi-mirror.modal.local:5555/simple/nltk/nltk-3.9.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/nltk/nltk-3.9.2-py3-none-any.whl.metadata (3.2 kB)
+Collecting num2words==0.5.14 (from -r /.requirements.txt (line 111))
+  Obtaining dependency information for num2words==0.5.14 from http://pypi-mirror.modal.local:5555/simple/num2words/num2words-0.5.14-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/num2words/num2words-0.5.14-py3-none-any.whl.metadata (13 kB)
+Collecting numba==0.61.2 (from -r /.requirements.txt (line 112))
+  Obtaining dependency information for numba==0.61.2 from http://pypi-mirror.modal.local:5555/simple/numba/numba-0.61.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/numba/numba-0.61.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.8 kB)
+Collecting numcodecs==0.13.1 (from -r /.requirements.txt (line 113))
+  Obtaining dependency information for numcodecs==0.13.1 from http://pypi-mirror.modal.local:5555/simple/numcodecs/numcodecs-0.13.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/numcodecs/numcodecs-0.13.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.9 kB)
+Collecting numpy==1.26.4 (from -r /.requirements.txt (line 114))
+  Obtaining dependency information for numpy==1.26.4 from http://pypi-mirror.modal.local:5555/simple/numpy/numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/numpy/numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.0/61.0 kB 142.2 MB/s eta 0:00:00
+Collecting numpydantic==1.6.7 (from -r /.requirements.txt (line 115))
+  Obtaining dependency information for numpydantic==1.6.7 from http://pypi-mirror.modal.local:5555/simple/numpydantic/numpydantic-1.6.7-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/numpydantic/numpydantic-1.6.7-py3-none-any.whl.metadata (17 kB)
+Collecting nvidia-nvshmem-cu12==3.3.20 (from -r /.requirements.txt (line 116))
+  Obtaining dependency information for nvidia-nvshmem-cu12==3.3.20 from http://pypi-mirror.modal.local:5555/simple/nvidia-nvshmem-cu12/nvidia_nvshmem_cu12-3.3.20-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nvshmem-cu12/nvidia_nvshmem_cu12-3.3.20-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.1 kB)
+Collecting oauthlib==3.3.1 (from -r /.requirements.txt (line 117))
+  Obtaining dependency information for oauthlib==3.3.1 from http://pypi-mirror.modal.local:5555/simple/oauthlib/oauthlib-3.3.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/oauthlib/oauthlib-3.3.1-py3-none-any.whl.metadata (7.9 kB)
+Collecting omegaconf==2.3.0 (from -r /.requirements.txt (line 118))
+  Obtaining dependency information for omegaconf==2.3.0 from http://pypi-mirror.modal.local:5555/simple/omegaconf/omegaconf-2.3.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/omegaconf/omegaconf-2.3.0-py3-none-any.whl.metadata (3.9 kB)
+Collecting onnx==1.15.0 (from -r /.requirements.txt (line 119))
+  Obtaining dependency information for onnx==1.15.0 from http://pypi-mirror.modal.local:5555/simple/onnx/onnx-1.15.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/onnx/onnx-1.15.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (15 kB)
+Collecting opencv-python==4.8.0.74 (from -r /.requirements.txt (line 120))
+  Obtaining dependency information for opencv-python==4.8.0.74 from http://pypi-mirror.modal.local:5555/simple/opencv-python/opencv_python-4.8.0.74-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/opencv-python/opencv_python-4.8.0.74-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (19 kB)
+Collecting opencv-python-headless==4.11.0.86 (from -r /.requirements.txt (line 121))
+  Obtaining dependency information for opencv-python-headless==4.11.0.86 from http://pypi-mirror.modal.local:5555/simple/opencv-python-headless/opencv_python_headless-4.11.0.86-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/opencv-python-headless/opencv_python_headless-4.11.0.86-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (20 kB)
+Collecting opt_einsum==3.4.0 (from -r /.requirements.txt (line 122))
+  Obtaining dependency information for opt_einsum==3.4.0 from http://pypi-mirror.modal.local:5555/simple/opt-einsum/opt_einsum-3.4.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/opt-einsum/opt_einsum-3.4.0-py3-none-any.whl.metadata (6.3 kB)
+Collecting orderly-set==5.5.0 (from -r /.requirements.txt (line 123))
+  Obtaining dependency information for orderly-set==5.5.0 from http://pypi-mirror.modal.local:5555/simple/orderly-set/orderly_set-5.5.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/orderly-set/orderly_set-5.5.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting packaging==25.0 (from -r /.requirements.txt (line 124))
+  Obtaining dependency information for packaging==25.0 from http://pypi-mirror.modal.local:5555/simple/packaging/packaging-25.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/packaging/packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting pandas==2.2.3 (from -r /.requirements.txt (line 125))
+  Obtaining dependency information for pandas==2.2.3 from http://pypi-mirror.modal.local:5555/simple/pandas/pandas-2.2.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pandas/pandas-2.2.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (89 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 89.9/89.9 kB 198.6 MB/s eta 0:00:00
+Collecting peft==0.14.0 (from -r /.requirements.txt (line 126))
+  Obtaining dependency information for peft==0.14.0 from http://pypi-mirror.modal.local:5555/simple/peft/peft-0.14.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/peft/peft-0.14.0-py3-none-any.whl.metadata (13 kB)
+Collecting pettingzoo==1.25.0 (from -r /.requirements.txt (line 127))
+  Obtaining dependency information for pettingzoo==1.25.0 from http://pypi-mirror.modal.local:5555/simple/pettingzoo/pettingzoo-1.25.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pettingzoo/pettingzoo-1.25.0-py3-none-any.whl.metadata (8.9 kB)
+Collecting pfzy==0.3.4 (from -r /.requirements.txt (line 128))
+  Obtaining dependency information for pfzy==0.3.4 from http://pypi-mirror.modal.local:5555/simple/pfzy/pfzy-0.3.4-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pfzy/pfzy-0.3.4-py3-none-any.whl.metadata (4.9 kB)
+Collecting pillow==12.1.0 (from -r /.requirements.txt (line 129))
+  Obtaining dependency information for pillow==12.1.0 from http://pypi-mirror.modal.local:5555/simple/pillow/pillow-12.1.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pillow/pillow-12.1.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+Collecting pipablepytorch3d==0.7.6 (from -r /.requirements.txt (line 130))
+  Obtaining dependency information for pipablepytorch3d==0.7.6 from http://pypi-mirror.modal.local:5555/simple/pipablepytorch3d/pipablepytorch3d-0.7.6-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pipablepytorch3d/pipablepytorch3d-0.7.6-py3-none-any.whl.metadata (14 kB)
+Collecting platformdirs==4.3.8 (from -r /.requirements.txt (line 131))
+  Obtaining dependency information for platformdirs==4.3.8 from http://pypi-mirror.modal.local:5555/simple/platformdirs/platformdirs-4.3.8-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/platformdirs/platformdirs-4.3.8-py3-none-any.whl.metadata (12 kB)
+Collecting pluggy==1.6.0 (from -r /.requirements.txt (line 132))
+  Obtaining dependency information for pluggy==1.6.0 from http://pypi-mirror.modal.local:5555/simple/pluggy/pluggy-1.6.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pluggy/pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting portalocker==3.2.0 (from -r /.requirements.txt (line 133))
+  Obtaining dependency information for portalocker==3.2.0 from http://pypi-mirror.modal.local:5555/simple/portalocker/portalocker-3.2.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/portalocker/portalocker-3.2.0-py3-none-any.whl.metadata (8.7 kB)
+Collecting propcache==0.3.2 (from -r /.requirements.txt (line 134))
+  Obtaining dependency information for propcache==0.3.2 from http://pypi-mirror.modal.local:5555/simple/propcache/propcache-0.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/propcache/propcache-0.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (12 kB)
+Collecting protobuf==3.20.3 (from -r /.requirements.txt (line 135))
+  Obtaining dependency information for protobuf==3.20.3 from http://pypi-mirror.modal.local:5555/simple/protobuf/protobuf-3.20.3-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/protobuf/protobuf-3.20.3-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata (679 bytes)
+Collecting psutil==7.2.1 (from -r /.requirements.txt (line 136))
+  Obtaining dependency information for psutil==7.2.1 from http://pypi-mirror.modal.local:5555/simple/psutil/psutil-7.2.1-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/psutil/psutil-7.2.1-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
+Collecting pyarrow==14.0.1 (from -r /.requirements.txt (line 137))
+  Obtaining dependency information for pyarrow==14.0.1 from http://pypi-mirror.modal.local:5555/simple/pyarrow/pyarrow-14.0.1-cp310-cp310-manylinux_2_28_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyarrow/pyarrow-14.0.1-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+Collecting pyarrow-hotfix==0.7 (from -r /.requirements.txt (line 138))
+  Obtaining dependency information for pyarrow-hotfix==0.7 from http://pypi-mirror.modal.local:5555/simple/pyarrow-hotfix/pyarrow_hotfix-0.7-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyarrow-hotfix/pyarrow_hotfix-0.7-py3-none-any.whl.metadata (3.6 kB)
+Collecting pyasn1==0.6.1 (from -r /.requirements.txt (line 139))
+  Obtaining dependency information for pyasn1==0.6.1 from http://pypi-mirror.modal.local:5555/simple/pyasn1/pyasn1-0.6.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyasn1/pyasn1-0.6.1-py3-none-any.whl.metadata (8.4 kB)
+Collecting pyasn1_modules==0.4.2 (from -r /.requirements.txt (line 140))
+  Obtaining dependency information for pyasn1_modules==0.4.2 from http://pypi-mirror.modal.local:5555/simple/pyasn1-modules/pyasn1_modules-0.4.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyasn1-modules/pyasn1_modules-0.4.2-py3-none-any.whl.metadata (3.5 kB)
+Collecting pybullet==3.2.7 (from -r /.requirements.txt (line 141))
+  Obtaining dependency information for pybullet==3.2.7 from http://pypi-mirror.modal.local:5555/simple/pybullet/pybullet-3.2.7-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pybullet/pybullet-3.2.7-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+Collecting pycparser==2.22 (from -r /.requirements.txt (line 142))
+  Obtaining dependency information for pycparser==2.22 from http://pypi-mirror.modal.local:5555/simple/pycparser/pycparser-2.22-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pycparser/pycparser-2.22-py3-none-any.whl.metadata (943 bytes)
+Collecting pydantic==2.10.6 (from -r /.requirements.txt (line 143))
+  Obtaining dependency information for pydantic==2.10.6 from http://pypi-mirror.modal.local:5555/simple/pydantic/pydantic-2.10.6-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pydantic/pydantic-2.10.6-py3-none-any.whl.metadata (30 kB)
+Collecting pydantic_core==2.27.2 (from -r /.requirements.txt (line 144))
+  Obtaining dependency information for pydantic_core==2.27.2 from http://pypi-mirror.modal.local:5555/simple/pydantic-core/pydantic_core-2.27.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pydantic-core/pydantic_core-2.27.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+Collecting pymunk==6.11.1 (from -r /.requirements.txt (line 145))
+  Obtaining dependency information for pymunk==6.11.1 from http://pypi-mirror.modal.local:5555/simple/pymunk/pymunk-6.11.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pymunk/pymunk-6.11.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.1 kB)
+Collecting pynput==1.8.1 (from -r /.requirements.txt (line 146))
+  Obtaining dependency information for pynput==1.8.1 from http://pypi-mirror.modal.local:5555/simple/pynput/pynput-1.8.1-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pynput/pynput-1.8.1-py2.py3-none-any.whl.metadata (32 kB)
+Collecting pyparsing==3.2.3 (from -r /.requirements.txt (line 147))
+  Obtaining dependency information for pyparsing==3.2.3 from http://pypi-mirror.modal.local:5555/simple/pyparsing/pyparsing-3.2.3-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyparsing/pyparsing-3.2.3-py3-none-any.whl.metadata (5.0 kB)
+Collecting pyproject-api==1.9.1 (from -r /.requirements.txt (line 148))
+  Obtaining dependency information for pyproject-api==1.9.1 from http://pypi-mirror.modal.local:5555/simple/pyproject-api/pyproject_api-1.9.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyproject-api/pyproject_api-1.9.1-py3-none-any.whl.metadata (2.7 kB)
+Collecting pyserial==3.5 (from -r /.requirements.txt (line 149))
+  Obtaining dependency information for pyserial==3.5 from http://pypi-mirror.modal.local:5555/simple/pyserial/pyserial-3.5-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyserial/pyserial-3.5-py2.py3-none-any.whl.metadata (1.6 kB)
+Collecting PySocks==1.7.1 (from -r /.requirements.txt (line 150))
+  Obtaining dependency information for PySocks==1.7.1 from http://pypi-mirror.modal.local:5555/simple/pysocks/PySocks-1.7.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pysocks/PySocks-1.7.1-py3-none-any.whl.metadata (13 kB)
+Collecting pytest==8.4.1 (from -r /.requirements.txt (line 151))
+  Obtaining dependency information for pytest==8.4.1 from http://pypi-mirror.modal.local:5555/simple/pytest/pytest-8.4.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pytest/pytest-8.4.1-py3-none-any.whl.metadata (7.7 kB)
+Collecting python-dateutil==2.9.0.post0 (from -r /.requirements.txt (line 152))
+  Obtaining dependency information for python-dateutil==2.9.0.post0 from http://pypi-mirror.modal.local:5555/simple/python-dateutil/python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/python-dateutil/python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting python-xlib==0.33 (from -r /.requirements.txt (line 153))
+  Obtaining dependency information for python-xlib==0.33 from http://pypi-mirror.modal.local:5555/simple/python-xlib/python_xlib-0.33-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/python-xlib/python_xlib-0.33-py2.py3-none-any.whl.metadata (6.2 kB)
+Collecting pytz==2025.2 (from -r /.requirements.txt (line 154))
+  Obtaining dependency information for pytz==2025.2 from http://pypi-mirror.modal.local:5555/simple/pytz/pytz-2025.2-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pytz/pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting PyVirtualDisplay==3.0 (from -r /.requirements.txt (line 155))
+  Obtaining dependency information for PyVirtualDisplay==3.0 from http://pypi-mirror.modal.local:5555/simple/pyvirtualdisplay/PyVirtualDisplay-3.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyvirtualdisplay/PyVirtualDisplay-3.0-py3-none-any.whl.metadata (943 bytes)
+Collecting PyYAML==6.0.2 (from -r /.requirements.txt (line 156))
+  Obtaining dependency information for PyYAML==6.0.2 from http://pypi-mirror.modal.local:5555/simple/pyyaml/PyYAML-6.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyyaml/PyYAML-6.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+Collecting pyyaml-include==1.4.1 (from -r /.requirements.txt (line 157))
+  Obtaining dependency information for pyyaml-include==1.4.1 from http://pypi-mirror.modal.local:5555/simple/pyyaml-include/pyyaml_include-1.4.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyyaml-include/pyyaml_include-1.4.1-py3-none-any.whl.metadata (1.3 kB)
+Collecting pyzmq==27.0.0 (from -r /.requirements.txt (line 158))
+  Obtaining dependency information for pyzmq==27.0.0 from http://pypi-mirror.modal.local:5555/simple/pyzmq/pyzmq-27.0.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyzmq/pyzmq-27.0.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.0 kB)
+Collecting qpsolvers==4.8.2 (from -r /.requirements.txt (line 159))
+  Obtaining dependency information for qpsolvers==4.8.2 from http://pypi-mirror.modal.local:5555/simple/qpsolvers/qpsolvers-4.8.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/qpsolvers/qpsolvers-4.8.2-py3-none-any.whl.metadata (12 kB)
+Collecting quadprog==0.1.13 (from -r /.requirements.txt (line 160))
+  Obtaining dependency information for quadprog==0.1.13 from http://pypi-mirror.modal.local:5555/simple/quadprog/quadprog-0.1.13-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/quadprog/quadprog-0.1.13-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.2 kB)
+Collecting ray==2.40.0 (from -r /.requirements.txt (line 161))
+  Obtaining dependency information for ray==2.40.0 from http://pypi-mirror.modal.local:5555/simple/ray/ray-2.40.0-cp310-cp310-manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/ray/ray-2.40.0-cp310-cp310-manylinux2014_x86_64.whl.metadata (17 kB)
+Collecting referencing==0.36.2 (from -r /.requirements.txt (line 162))
+  Obtaining dependency information for referencing==0.36.2 from http://pypi-mirror.modal.local:5555/simple/referencing/referencing-0.36.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/referencing/referencing-0.36.2-py3-none-any.whl.metadata (2.8 kB)
+Collecting regex==2025.11.3 (from -r /.requirements.txt (line 163))
+  Obtaining dependency information for regex==2025.11.3 from http://pypi-mirror.modal.local:5555/simple/regex/regex-2025.11.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/regex/regex-2025.11.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 40.5/40.5 kB 94.5 MB/s eta 0:00:00
+Collecting requests==2.32.3 (from -r /.requirements.txt (line 164))
+  Obtaining dependency information for requests==2.32.3 from http://pypi-mirror.modal.local:5555/simple/requests/requests-2.32.3-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/requests/requests-2.32.3-py3-none-any.whl.metadata (4.6 kB)
+Collecting requests-oauthlib==2.0.0 (from -r /.requirements.txt (line 165))
+  Obtaining dependency information for requests-oauthlib==2.0.0 from http://pypi-mirror.modal.local:5555/simple/requests-oauthlib/requests_oauthlib-2.0.0-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/requests-oauthlib/requests_oauthlib-2.0.0-py2.py3-none-any.whl.metadata (11 kB)
+Collecting responses==0.18.0 (from -r /.requirements.txt (line 166))
+  Obtaining dependency information for responses==0.18.0 from http://pypi-mirror.modal.local:5555/simple/responses/responses-0.18.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/responses/responses-0.18.0-py3-none-any.whl.metadata (29 kB)
+Collecting rich==14.1.0 (from -r /.requirements.txt (line 167))
+  Obtaining dependency information for rich==14.1.0 from http://pypi-mirror.modal.local:5555/simple/rich/rich-14.1.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/rich/rich-14.1.0-py3-none-any.whl.metadata (18 kB)
+Collecting rpds-py==0.26.0 (from -r /.requirements.txt (line 168))
+  Obtaining dependency information for rpds-py==0.26.0 from http://pypi-mirror.modal.local:5555/simple/rpds-py/rpds_py-0.26.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/rpds-py/rpds_py-0.26.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.2 kB)
+Collecting rsa==4.9.1 (from -r /.requirements.txt (line 169))
+  Obtaining dependency information for rsa==4.9.1 from http://pypi-mirror.modal.local:5555/simple/rsa/rsa-4.9.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/rsa/rsa-4.9.1-py3-none-any.whl.metadata (5.6 kB)
+Collecting safetensors==0.7.0 (from -r /.requirements.txt (line 170))
+  Obtaining dependency information for safetensors==0.7.0 from http://pypi-mirror.modal.local:5555/simple/safetensors/safetensors-0.7.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/safetensors/safetensors-0.7.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+Collecting scikit-image==0.25.2 (from -r /.requirements.txt (line 171))
+  Obtaining dependency information for scikit-image==0.25.2 from http://pypi-mirror.modal.local:5555/simple/scikit-image/scikit_image-0.25.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/scikit-image/scikit_image-0.25.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (14 kB)
+Collecting scipy==1.15.3 (from -r /.requirements.txt (line 172))
+  Obtaining dependency information for scipy==1.15.3 from http://pypi-mirror.modal.local:5555/simple/scipy/scipy-1.15.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/scipy/scipy-1.15.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.0/62.0 kB 131.1 MB/s eta 0:00:00
+Collecting sentry-sdk==2.34.1 (from -r /.requirements.txt (line 173))
+  Obtaining dependency information for sentry-sdk==2.34.1 from http://pypi-mirror.modal.local:5555/simple/sentry-sdk/sentry_sdk-2.34.1-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/sentry-sdk/sentry_sdk-2.34.1-py2.py3-none-any.whl.metadata (10 kB)
+Collecting setproctitle==1.3.6 (from -r /.requirements.txt (line 174))
+  Obtaining dependency information for setproctitle==1.3.6 from http://pypi-mirror.modal.local:5555/simple/setproctitle/setproctitle-1.3.6-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/setproctitle/setproctitle-1.3.6-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (10 kB)
+Collecting shtab==1.7.2 (from -r /.requirements.txt (line 175))
+  Obtaining dependency information for shtab==1.7.2 from http://pypi-mirror.modal.local:5555/simple/shtab/shtab-1.7.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/shtab/shtab-1.7.2-py3-none-any.whl.metadata (7.4 kB)
+Collecting six==1.17.0 (from -r /.requirements.txt (line 176))
+  Obtaining dependency information for six==1.17.0 from http://pypi-mirror.modal.local:5555/simple/six/six-1.17.0-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/six/six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting smmap==5.0.2 (from -r /.requirements.txt (line 177))
+  Obtaining dependency information for smmap==5.0.2 from http://pypi-mirror.modal.local:5555/simple/smmap/smmap-5.0.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/smmap/smmap-5.0.2-py3-none-any.whl.metadata (4.3 kB)
+Collecting soupsieve==2.7 (from -r /.requirements.txt (line 178))
+  Obtaining dependency information for soupsieve==2.7 from http://pypi-mirror.modal.local:5555/simple/soupsieve/soupsieve-2.7-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/soupsieve/soupsieve-2.7-py3-none-any.whl.metadata (4.6 kB)
+Requirement already satisfied: sympy==1.13.1 in /usr/local/lib/python3.10/site-packages (from -r /.requirements.txt (line 179)) (1.13.1)
+Collecting tabulate==0.9.0 (from -r /.requirements.txt (line 180))
+  Obtaining dependency information for tabulate==0.9.0 from http://pypi-mirror.modal.local:5555/simple/tabulate/tabulate-0.9.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tabulate/tabulate-0.9.0-py3-none-any.whl.metadata (34 kB)
+Collecting tensorboard==2.15.2 (from -r /.requirements.txt (line 181))
+  Obtaining dependency information for tensorboard==2.15.2 from http://pypi-mirror.modal.local:5555/simple/tensorboard/tensorboard-2.15.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorboard/tensorboard-2.15.2-py3-none-any.whl.metadata (1.7 kB)
+Collecting tensorboard-data-server==0.7.2 (from -r /.requirements.txt (line 182))
+  Obtaining dependency information for tensorboard-data-server==0.7.2 from http://pypi-mirror.modal.local:5555/simple/tensorboard-data-server/tensorboard_data_server-0.7.2-py3-none-manylinux_2_31_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorboard-data-server/tensorboard_data_server-0.7.2-py3-none-manylinux_2_31_x86_64.whl.metadata (1.1 kB)
+Collecting tensorflow==2.15.0 (from -r /.requirements.txt (line 183))
+  Obtaining dependency information for tensorflow==2.15.0 from http://pypi-mirror.modal.local:5555/simple/tensorflow/tensorflow-2.15.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorflow/tensorflow-2.15.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.4 kB)
+Collecting tensorflow-estimator==2.15.0 (from -r /.requirements.txt (line 184))
+  Obtaining dependency information for tensorflow-estimator==2.15.0 from http://pypi-mirror.modal.local:5555/simple/tensorflow-estimator/tensorflow_estimator-2.15.0-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorflow-estimator/tensorflow_estimator-2.15.0-py2.py3-none-any.whl.metadata (1.3 kB)
+Collecting tensorflow-io-gcs-filesystem==0.37.1 (from -r /.requirements.txt (line 185))
+  Obtaining dependency information for tensorflow-io-gcs-filesystem==0.37.1 from http://pypi-mirror.modal.local:5555/simple/tensorflow-io-gcs-filesystem/tensorflow_io_gcs_filesystem-0.37.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorflow-io-gcs-filesystem/tensorflow_io_gcs_filesystem-0.37.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (14 kB)
+Collecting tensorrt==10.13.0.35 (from -r /.requirements.txt (line 186))
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt/tensorrt-10.13.0.35.tar.gz (40 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 40.7/40.7 kB 105.6 MB/s eta 0:00:00
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting tensorrt_cu12==10.13.0.35 (from -r /.requirements.txt (line 187))
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt-cu12/tensorrt_cu12-10.13.0.35.tar.gz (18 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting tensorrt_cu12_bindings==10.13.0.35 (from -r /.requirements.txt (line 188))
+  Obtaining dependency information for tensorrt_cu12_bindings==10.13.0.35 from http://pypi-mirror.modal.local:5555/simple/tensorrt-cu12-bindings/tensorrt_cu12_bindings-10.13.0.35-cp310-none-manylinux_2_28_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt-cu12-bindings/tensorrt_cu12_bindings-10.13.0.35-cp310-none-manylinux_2_28_x86_64.whl.metadata (607 bytes)
+Collecting tensorrt_cu12_libs==10.13.0.35 (from -r /.requirements.txt (line 189))
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt-cu12-libs/tensorrt_cu12_libs-10.13.0.35.tar.gz (709 bytes)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting tensorrt_dispatch_cu12==10.13.0.35 (from -r /.requirements.txt (line 190))
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt-dispatch-cu12/tensorrt_dispatch_cu12-10.13.0.35.tar.gz (18 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting tensorrt_dispatch_cu12_bindings==10.13.0.35 (from -r /.requirements.txt (line 191))
+  Obtaining dependency information for tensorrt_dispatch_cu12_bindings==10.13.0.35 from http://pypi-mirror.modal.local:5555/simple/tensorrt-dispatch-cu12-bindings/tensorrt_dispatch_cu12_bindings-10.13.0.35-cp310-none-manylinux_2_28_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt-dispatch-cu12-bindings/tensorrt_dispatch_cu12_bindings-10.13.0.35-cp310-none-manylinux_2_28_x86_64.whl.metadata (616 bytes)
+Collecting tensorrt_dispatch_cu12_libs==10.13.0.35 (from -r /.requirements.txt (line 192))
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt-dispatch-cu12-libs/tensorrt_dispatch_cu12_libs-10.13.0.35.tar.gz (722 bytes)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting tensorrt_lean_cu12==10.13.0.35 (from -r /.requirements.txt (line 193))
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt-lean-cu12/tensorrt_lean_cu12-10.13.0.35.tar.gz (18 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting tensorrt_lean_cu12_bindings==10.13.0.35 (from -r /.requirements.txt (line 194))
+  Obtaining dependency information for tensorrt_lean_cu12_bindings==10.13.0.35 from http://pypi-mirror.modal.local:5555/simple/tensorrt-lean-cu12-bindings/tensorrt_lean_cu12_bindings-10.13.0.35-cp310-none-manylinux_2_28_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt-lean-cu12-bindings/tensorrt_lean_cu12_bindings-10.13.0.35-cp310-none-manylinux_2_28_x86_64.whl.metadata (612 bytes)
+Collecting tensorrt_lean_cu12_libs==10.13.0.35 (from -r /.requirements.txt (line 195))
+  Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt-lean-cu12-libs/tensorrt_lean_cu12_libs-10.13.0.35.tar.gz (716 bytes)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting termcolor==3.1.0 (from -r /.requirements.txt (line 196))
+  Obtaining dependency information for termcolor==3.1.0 from http://pypi-mirror.modal.local:5555/simple/termcolor/termcolor-3.1.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/termcolor/termcolor-3.1.0-py3-none-any.whl.metadata (6.4 kB)
+Collecting tianshou==0.5.1 (from -r /.requirements.txt (line 197))
+  Obtaining dependency information for tianshou==0.5.1 from http://pypi-mirror.modal.local:5555/simple/tianshou/tianshou-0.5.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tianshou/tianshou-0.5.1-py3-none-any.whl.metadata (34 kB)
+Collecting tifffile==2025.5.10 (from -r /.requirements.txt (line 198))
+  Obtaining dependency information for tifffile==2025.5.10 from http://pypi-mirror.modal.local:5555/simple/tifffile/tifffile-2025.5.10-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tifffile/tifffile-2025.5.10-py3-none-any.whl.metadata (31 kB)
+Collecting tiffile==2018.10.18 (from -r /.requirements.txt (line 199))
+  Obtaining dependency information for tiffile==2018.10.18 from http://pypi-mirror.modal.local:5555/simple/tiffile/tiffile-2018.10.18-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tiffile/tiffile-2018.10.18-py2.py3-none-any.whl.metadata (883 bytes)
+Collecting timm==1.0.14 (from -r /.requirements.txt (line 200))
+  Obtaining dependency information for timm==1.0.14 from http://pypi-mirror.modal.local:5555/simple/timm/timm-1.0.14-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/timm/timm-1.0.14-py3-none-any.whl.metadata (50 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.8/50.8 kB 130.1 MB/s eta 0:00:00
+Collecting tokenizers==0.21.4 (from -r /.requirements.txt (line 201))
+  Obtaining dependency information for tokenizers==0.21.4 from http://pypi-mirror.modal.local:5555/simple/tokenizers/tokenizers-0.21.4-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tokenizers/tokenizers-0.21.4-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+Collecting toml==0.10.2 (from -r /.requirements.txt (line 202))
+  Obtaining dependency information for toml==0.10.2 from http://pypi-mirror.modal.local:5555/simple/toml/toml-0.10.2-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/toml/toml-0.10.2-py2.py3-none-any.whl.metadata (7.1 kB)
+Collecting tomli==2.2.1 (from -r /.requirements.txt (line 203))
+  Obtaining dependency information for tomli==2.2.1 from http://pypi-mirror.modal.local:5555/simple/tomli/tomli-2.2.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tomli/tomli-2.2.1-py3-none-any.whl.metadata (10 kB)
+Collecting torchcodec==0.5 (from -r /.requirements.txt (line 204))
+  Obtaining dependency information for torchcodec==0.5 from http://pypi-mirror.modal.local:5555/simple/torchcodec/torchcodec-0.5-cp310-cp310-manylinux_2_28_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/torchcodec/torchcodec-0.5-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (10 kB)
+Collecting tox==4.28.4 (from -r /.requirements.txt (line 205))
+  Obtaining dependency information for tox==4.28.4 from http://pypi-mirror.modal.local:5555/simple/tox/tox-4.28.4-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tox/tox-4.28.4-py3-none-any.whl.metadata (3.6 kB)
+Collecting tqdm==4.67.1 (from -r /.requirements.txt (line 206))
+  Obtaining dependency information for tqdm==4.67.1 from http://pypi-mirror.modal.local:5555/simple/tqdm/tqdm-4.67.1-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tqdm/tqdm-4.67.1-py3-none-any.whl.metadata (57 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.7/57.7 kB 152.3 MB/s eta 0:00:00
+Collecting transformers==4.51.3 (from -r /.requirements.txt (line 207))
+  Obtaining dependency information for transformers==4.51.3 from http://pypi-mirror.modal.local:5555/simple/transformers/transformers-4.51.3-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/transformers/transformers-4.51.3-py3-none-any.whl.metadata (38 kB)
+Collecting typeguard==4.4.2 (from -r /.requirements.txt (line 208))
+  Obtaining dependency information for typeguard==4.4.2 from http://pypi-mirror.modal.local:5555/simple/typeguard/typeguard-4.4.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/typeguard/typeguard-4.4.2-py3-none-any.whl.metadata (3.8 kB)
+Collecting typing-inspect==0.9.0 (from -r /.requirements.txt (line 209))
+  Obtaining dependency information for typing-inspect==0.9.0 from http://pypi-mirror.modal.local:5555/simple/typing-inspect/typing_inspect-0.9.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/typing-inspect/typing_inspect-0.9.0-py3-none-any.whl.metadata (1.5 kB)
+Collecting typing_extensions==4.12.2 (from -r /.requirements.txt (line 210))
+  Obtaining dependency information for typing_extensions==4.12.2 from http://pypi-mirror.modal.local:5555/simple/typing-extensions/typing_extensions-4.12.2-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/typing-extensions/typing_extensions-4.12.2-py3-none-any.whl.metadata (3.0 kB)
+Collecting tyro==0.9.17 (from -r /.requirements.txt (line 211))
+  Obtaining dependency information for tyro==0.9.17 from http://pypi-mirror.modal.local:5555/simple/tyro/tyro-0.9.17-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tyro/tyro-0.9.17-py3-none-any.whl.metadata (9.5 kB)
+Collecting tzdata==2025.2 (from -r /.requirements.txt (line 212))
+  Obtaining dependency information for tzdata==2025.2 from http://pypi-mirror.modal.local:5555/simple/tzdata/tzdata-2025.2-py2.py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/tzdata/tzdata-2025.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting urllib3==2.6.3 (from -r /.requirements.txt (line 213))
+  Obtaining dependency information for urllib3==2.6.3 from http://pypi-mirror.modal.local:5555/simple/urllib3/urllib3-2.6.3-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/urllib3/urllib3-2.6.3-py3-none-any.whl.metadata (6.9 kB)
+Collecting virtualenv==20.32.0 (from -r /.requirements.txt (line 214))
+  Obtaining dependency information for virtualenv==20.32.0 from http://pypi-mirror.modal.local:5555/simple/virtualenv/virtualenv-20.32.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/virtualenv/virtualenv-20.32.0-py3-none-any.whl.metadata (4.5 kB)
+Collecting wandb==0.18.0 (from -r /.requirements.txt (line 215))
+  Obtaining dependency information for wandb==0.18.0 from http://pypi-mirror.modal.local:5555/simple/wandb/wandb-0.18.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/wandb/wandb-0.18.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.6 kB)
+Collecting Werkzeug==3.1.3 (from -r /.requirements.txt (line 216))
+  Obtaining dependency information for Werkzeug==3.1.3 from http://pypi-mirror.modal.local:5555/simple/werkzeug/werkzeug-3.1.3-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/werkzeug/werkzeug-3.1.3-py3-none-any.whl.metadata (3.7 kB)
+Collecting wrapt==1.14.1 (from -r /.requirements.txt (line 217))
+  Obtaining dependency information for wrapt==1.14.1 from http://pypi-mirror.modal.local:5555/simple/wrapt/wrapt-1.14.1-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/wrapt/wrapt-1.14.1-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+Collecting xxhash==3.5.0 (from -r /.requirements.txt (line 218))
+  Obtaining dependency information for xxhash==3.5.0 from http://pypi-mirror.modal.local:5555/simple/xxhash/xxhash-3.5.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/xxhash/xxhash-3.5.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (12 kB)
+Collecting yacs==0.1.8 (from -r /.requirements.txt (line 219))
+  Obtaining dependency information for yacs==0.1.8 from http://pypi-mirror.modal.local:5555/simple/yacs/yacs-0.1.8-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/yacs/yacs-0.1.8-py3-none-any.whl.metadata (639 bytes)
+Collecting yarl==1.20.1 (from -r /.requirements.txt (line 220))
+  Obtaining dependency information for yarl==1.20.1 from http://pypi-mirror.modal.local:5555/simple/yarl/yarl-1.20.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/yarl/yarl-1.20.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (73 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.9/73.9 kB 174.7 MB/s eta 0:00:00
+Collecting zarr==2.18.3 (from -r /.requirements.txt (line 221))
+  Obtaining dependency information for zarr==2.18.3 from http://pypi-mirror.modal.local:5555/simple/zarr/zarr-2.18.3-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/zarr/zarr-2.18.3-py3-none-any.whl.metadata (5.7 kB)
+Collecting zipp==3.23.0 (from -r /.requirements.txt (line 222))
+  Obtaining dependency information for zipp==3.23.0 from http://pypi-mirror.modal.local:5555/simple/zipp/zipp-3.23.0-py3-none-any.whl.metadata
+  Downloading http://pypi-mirror.modal.local:5555/simple/zipp/zipp-3.23.0-py3-none-any.whl.metadata (3.6 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/absl-py/absl_py-2.3.1-py3-none-any.whl (135 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 135.8/135.8 kB 250.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/accelerate/accelerate-1.2.1-py3-none-any.whl (336 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 336.4/336.4 kB 298.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/aiohappyeyeballs/aiohappyeyeballs-2.6.1-py3-none-any.whl (15 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/aiohttp/aiohttp-3.12.15-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 201.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/aiosignal/aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/albucore/albucore-0.0.17-py3-none-any.whl (10 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/albumentations/albumentations-1.4.18-py3-none-any.whl (224 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 224.0/224.0 kB 248.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/annotated-types/annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/astunparse/astunparse-1.6.3-py2.py3-none-any.whl (12 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/async-timeout/async_timeout-5.0.1-py3-none-any.whl (6.2 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/attrs/attrs-25.3.0-py3-none-any.whl (63 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.8/63.8 kB 181.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/av/av-12.3.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (33.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 33.5/33.5 MB 234.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/beautifulsoup4/beautifulsoup4-4.13.4-py3-none-any.whl (187 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 187.3/187.3 kB 284.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/bitsandbytes/bitsandbytes-0.49.0-py3-none-manylinux_2_24_x86_64.whl (59.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 59.1/59.1 MB 214.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/blessings/blessings-1.7-py3-none-any.whl (18 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/blinker/blinker-1.9.0-py3-none-any.whl (8.5 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/cachetools/cachetools-5.5.2-py3-none-any.whl (10 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/certifi/certifi-2026.1.4-py3-none-any.whl (152 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 152.9/152.9 kB 237.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/chardet/chardet-5.2.0-py3-none-any.whl (199 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 199.4/199.4 kB 319.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/charset-normalizer/charset_normalizer-3.4.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (153 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 153.6/153.6 kB 346.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/click/click-8.2.1-py3-none-any.whl (102 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 102.2/102.2 kB 174.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/cloudpickle/cloudpickle-3.1.1-py3-none-any.whl (20 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/cmake/cmake-4.0.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (27.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 27.9/27.9 MB 244.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/colorama/colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/contourpy/contourpy-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (325 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 325.0/325.0 kB 363.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/cramjam/cramjam-2.11.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 273.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/cycler/cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/cython/Cython-0.29.37-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl (1.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 238.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/datasets/datasets-2.19.0-py3-none-any.whl (542 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 542.0/542.0 kB 228.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/decord/decord-0.6.0-py3-none-manylinux2010_x86_64.whl (13.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.6/13.6 MB 256.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/deepdiff/deepdiff-8.5.0-py3-none-any.whl (85 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 85.1/85.1 kB 229.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/diffusers/diffusers-0.30.2-py3-none-any.whl (2.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.6/2.6 MB 220.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/dill/dill-0.3.6-py3-none-any.whl (110 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 110.5/110.5 kB 213.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/distlib/distlib-0.4.0-py2.py3-none-any.whl (469 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 469.0/469.0 kB 342.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/dm-tree/dm_tree-0.1.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (152 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 152.8/152.8 kB 294.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/docker-pycreds/docker_pycreds-0.4.0-py2.py3-none-any.whl (9.0 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/docstring-parser/docstring_parser-0.17.0-py3-none-any.whl (36 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/easydict/easydict-1.13-py3-none-any.whl (6.8 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/einops/einops-0.8.1-py3-none-any.whl (64 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 64.4/64.4 kB 208.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/etils/etils-1.13.0-py3-none-any.whl (170 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 170.6/170.6 kB 307.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/eval-type-backport/eval_type_backport-0.2.2-py3-none-any.whl (5.8 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/exceptiongroup/exceptiongroup-1.3.0-py3-none-any.whl (16 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/farama-notifications/Farama_Notifications-0.0.4-py3-none-any.whl (2.5 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/fasteners/fasteners-0.20-py3-none-any.whl (18 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/fastparquet/fastparquet-2024.11.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 298.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/filelock/filelock-3.20.2-py3-none-any.whl (16 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/flask/flask-3.1.1-py3-none-any.whl (103 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.3/103.3 kB 305.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/flatbuffers/flatbuffers-25.2.10-py2.py3-none-any.whl (30 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/fonttools/fonttools-4.59.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.8/4.8 MB 206.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/frozenlist/frozenlist-1.7.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (222 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 222.9/222.9 kB 355.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/fsspec/fsspec-2024.3.1-py3-none-any.whl (171 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 172.0/172.0 kB 297.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/gast/gast-0.6.0-py3-none-any.whl (21 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/gdown/gdown-5.2.0-py3-none-any.whl (18 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/gitdb/gitdb-4.0.12-py3-none-any.whl (62 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.8/62.8 kB 197.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/gitpython/gitpython-3.1.45-py3-none-any.whl (208 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 208.2/208.2 kB 322.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/glfw/glfw-2.10.0-py2.py27.py3.py30.py31.py32.py33.py34.py35.py36.py37.py38.py39.py310.py311.py312.py313.py314-none-manylinux_2_28_x86_64.whl (243 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 243.5/243.5 kB 341.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/google-auth/google_auth-2.40.3-py2.py3-none-any.whl (216 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 216.1/216.1 kB 261.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/google-auth-oauthlib/google_auth_oauthlib-1.2.2-py3-none-any.whl (19 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/google-pasta/google_pasta-0.2.0-py3-none-any.whl (57 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.5/57.5 kB 154.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/grpcio/grpcio-1.74.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (6.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.2/6.2 MB 229.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/gym-notices/gym_notices-0.1.0-py3-none-any.whl (3.3 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/gymnasium/gymnasium-1.0.0-py3-none-any.whl (958 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 958.1/958.1 kB 201.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/h5py/h5py-3.12.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.3/5.3 MB 242.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/hf-xet/hf_xet-1.2.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 126.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/hf-transfer/hf_transfer-0.1.9-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.6/3.6 MB 219.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/huggingface-hub/huggingface_hub-0.34.3-py3-none-any.whl (558 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 558.8/558.8 kB 262.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/hydra-core/hydra_core-1.3.2-py3-none-any.whl (154 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 154.5/154.5 kB 304.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/idna/idna-3.11-py3-none-any.whl (71 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 71.0/71.0 kB 205.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/imageio/imageio-2.34.2-py3-none-any.whl (313 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 313.5/313.5 kB 249.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/imageio-ffmpeg/imageio_ffmpeg-0.6.0-py3-none-manylinux2014_x86_64.whl (29.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 29.5/29.5 MB 265.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/importlib-metadata/importlib_metadata-8.7.0-py3-none-any.whl (27 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/importlib-resources/importlib_resources-6.5.2-py3-none-any.whl (37 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/iniconfig/iniconfig-2.1.0-py3-none-any.whl (6.0 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/inquirerpy/InquirerPy-0.3.4-py3-none-any.whl (67 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 67.7/67.7 kB 226.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/itsdangerous/itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/joblib/joblib-1.5.3-py3-none-any.whl (309 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 309.1/309.1 kB 266.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/jsonlines/jsonlines-4.0.0-py3-none-any.whl (8.7 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/jsonschema/jsonschema-4.25.0-py3-none-any.whl (89 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 89.2/89.2 kB 293.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/jsonschema-specifications/jsonschema_specifications-2025.4.1-py3-none-any.whl (18 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/jupytext/jupytext-1.18.1-py3-none-any.whl (167 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 167.1/167.1 kB 362.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/keras/keras-2.15.0-py3-none-any.whl (1.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 216.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/kiwisolver/kiwisolver-1.4.8-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 219.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/kornia/kornia-0.7.4-py2.py3-none-any.whl (899 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 899.4/899.4 kB 212.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/kornia-rs/kornia_rs-0.1.9-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.8/2.8 MB 176.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/lazy-loader/lazy_loader-0.4-py3-none-any.whl (12 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/libclang/libclang-18.1.1-py2.py3-none-manylinux2010_x86_64.whl (24.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 24.5/24.5 MB 231.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/llvmlite/llvmlite-0.44.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (42.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.4/42.4 MB 205.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/markdown/markdown-3.8.2-py3-none-any.whl (106 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 106.8/106.8 kB 214.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/markdown-it-py/markdown_it_py-4.0.0-py3-none-any.whl (87 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.3/87.3 kB 192.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/matplotlib/matplotlib-3.10.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (8.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.6/8.6 MB 235.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/mdit-py-plugins/mdit_py_plugins-0.5.0-py3-none-any.whl (57 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.2/57.2 kB 172.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/mdurl/mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/mergedeep/mergedeep-1.3.4-py3-none-any.whl (6.4 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/mink/mink-0.0.5-py3-none-any.whl (896 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 896.8/896.8 kB 149.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/ml-dtypes/ml_dtypes-0.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 240.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/msgpack/msgpack-1.1.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (408 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 408.6/408.6 kB 257.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/multidict/multidict-6.6.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (241 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 241.6/241.6 kB 255.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/multiprocess/multiprocess-0.70.14-py310-none-any.whl (134 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.3/134.3 kB 216.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/mypy-extensions/mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/nltk/nltk-3.9.2-py3-none-any.whl (1.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.5/1.5 MB 234.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/num2words/num2words-0.5.14-py3-none-any.whl (163 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 163.5/163.5 kB 258.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/numba/numba-0.61.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (3.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.8/3.8 MB 245.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/numcodecs/numcodecs-0.13.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (8.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.6/8.6 MB 195.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/numpy/numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.2/18.2 MB 225.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/numpydantic/numpydantic-1.6.7-py3-none-any.whl (85 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 85.5/85.5 kB 243.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nvshmem-cu12/nvidia_nvshmem_cu12-3.3.20-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (124.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 124.7/124.7 MB 222.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/oauthlib/oauthlib-3.3.1-py3-none-any.whl (160 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 160.1/160.1 kB 247.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/omegaconf/omegaconf-2.3.0-py3-none-any.whl (79 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.5/79.5 kB 226.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/onnx/onnx-1.15.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (15.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.7/15.7 MB 246.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/opencv-python/opencv_python-4.8.0.74-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (61.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.7/61.7 MB 238.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/opencv-python-headless/opencv_python_headless-4.11.0.86-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (50.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.0/50.0 MB 245.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/opt-einsum/opt_einsum-3.4.0-py3-none-any.whl (71 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 71.9/71.9 kB 221.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/orderly-set/orderly_set-5.5.0-py3-none-any.whl (13 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/packaging/packaging-25.0-py3-none-any.whl (66 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.5/66.5 kB 250.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pandas/pandas-2.2.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.1/13.1 MB 189.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/peft/peft-0.14.0-py3-none-any.whl (374 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 374.8/374.8 kB 267.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pettingzoo/pettingzoo-1.25.0-py3-none-any.whl (852 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 852.5/852.5 kB 225.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pfzy/pfzy-0.3.4-py3-none-any.whl (8.5 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pillow/pillow-12.1.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.0/7.0 MB 214.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pipablepytorch3d/pipablepytorch3d-0.7.6-py3-none-any.whl (72.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 72.3/72.3 MB 217.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/platformdirs/platformdirs-4.3.8-py3-none-any.whl (18 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pluggy/pluggy-1.6.0-py3-none-any.whl (20 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/portalocker/portalocker-3.2.0-py3-none-any.whl (22 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/propcache/propcache-0.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (198 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 198.3/198.3 kB 193.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/protobuf/protobuf-3.20.3-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 178.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/psutil/psutil-7.2.1-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (154 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 154.7/154.7 kB 245.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pyarrow/pyarrow-14.0.1-cp310-cp310-manylinux_2_28_x86_64.whl (38.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.0/38.0 MB 254.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pyarrow-hotfix/pyarrow_hotfix-0.7-py3-none-any.whl (7.9 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pyasn1/pyasn1-0.6.1-py3-none-any.whl (83 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 83.1/83.1 kB 230.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pyasn1-modules/pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 181.3/181.3 kB 213.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pybullet/pybullet-3.2.7-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (103.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.2/103.2 MB 212.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pycparser/pycparser-2.22-py3-none-any.whl (117 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.6/117.6 kB 228.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pydantic/pydantic-2.10.6-py3-none-any.whl (431 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 431.7/431.7 kB 245.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pydantic-core/pydantic_core-2.27.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 237.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pymunk/pymunk-6.11.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 265.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pynput/pynput-1.8.1-py2.py3-none-any.whl (91 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 91.7/91.7 kB 332.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pyparsing/pyparsing-3.2.3-py3-none-any.whl (111 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 111.1/111.1 kB 210.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pyproject-api/pyproject_api-1.9.1-py3-none-any.whl (13 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pyserial/pyserial-3.5-py2.py3-none-any.whl (90 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 90.6/90.6 kB 286.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pysocks/PySocks-1.7.1-py3-none-any.whl (16 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pytest/pytest-8.4.1-py3-none-any.whl (365 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 365.5/365.5 kB 256.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/python-dateutil/python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 267.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/python-xlib/python_xlib-0.33-py2.py3-none-any.whl (182 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 182.2/182.2 kB 245.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pytz/pytz-2025.2-py2.py3-none-any.whl (509 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 509.2/509.2 kB 267.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pyvirtualdisplay/PyVirtualDisplay-3.0-py3-none-any.whl (15 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pyyaml/PyYAML-6.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (751 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 751.2/751.2 kB 232.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pyyaml-include/pyyaml_include-1.4.1-py3-none-any.whl (19 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pyzmq/pyzmq-27.0.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (853 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 853.8/853.8 kB 276.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/qpsolvers/qpsolvers-4.8.2-py3-none-any.whl (92 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 92.9/92.9 kB 243.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/quadprog/quadprog-0.1.13-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (505 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 505.9/505.9 kB 257.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/ray/ray-2.40.0-cp310-cp310-manylinux2014_x86_64.whl (66.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.8/66.8 MB 231.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/referencing/referencing-0.36.2-py3-none-any.whl (26 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/regex/regex-2025.11.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (791 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 791.7/791.7 kB 180.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/requests/requests-2.32.3-py3-none-any.whl (64 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 64.9/64.9 kB 260.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/requests-oauthlib/requests_oauthlib-2.0.0-py2.py3-none-any.whl (24 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/responses/responses-0.18.0-py3-none-any.whl (38 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/rich/rich-14.1.0-py3-none-any.whl (243 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 243.4/243.4 kB 288.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/rpds-py/rpds_py-0.26.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (383 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 383.8/383.8 kB 306.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/rsa/rsa-4.9.1-py3-none-any.whl (34 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/safetensors/safetensors-0.7.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (507 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 507.2/507.2 kB 88.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/scikit-image/scikit_image-0.25.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (14.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.8/14.8 MB 236.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/scipy/scipy-1.15.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (37.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 37.7/37.7 MB 229.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/sentry-sdk/sentry_sdk-2.34.1-py2.py3-none-any.whl (357 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 357.7/357.7 kB 269.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/setproctitle/setproctitle-1.3.6-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (30 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/shtab/shtab-1.7.2-py3-none-any.whl (14 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/six/six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/smmap/smmap-5.0.2-py3-none-any.whl (24 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/soupsieve/soupsieve-2.7-py3-none-any.whl (36 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/tabulate/tabulate-0.9.0-py3-none-any.whl (35 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/tensorboard/tensorboard-2.15.2-py3-none-any.whl (5.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 214.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tensorboard-data-server/tensorboard_data_server-0.7.2-py3-none-manylinux_2_31_x86_64.whl (6.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.6/6.6 MB 216.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tensorflow/tensorflow-2.15.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (475.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 475.2/475.2 MB 217.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tensorflow-estimator/tensorflow_estimator-2.15.0-py2.py3-none-any.whl (441 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 442.0/442.0 kB 376.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tensorflow-io-gcs-filesystem/tensorflow_io_gcs_filesystem-0.37.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.1/5.1 MB 226.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt-cu12-bindings/tensorrt_cu12_bindings-10.13.0.35-cp310-none-manylinux_2_28_x86_64.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 234.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt-dispatch-cu12-bindings/tensorrt_dispatch_cu12_bindings-10.13.0.35-cp310-none-manylinux_2_28_x86_64.whl (726 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 726.3/726.3 kB 190.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tensorrt-lean-cu12-bindings/tensorrt_lean_cu12_bindings-10.13.0.35-cp310-none-manylinux_2_28_x86_64.whl (726 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 726.2/726.2 kB 245.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/termcolor/termcolor-3.1.0-py3-none-any.whl (7.7 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/tianshou/tianshou-0.5.1-py3-none-any.whl (163 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 163.1/163.1 kB 254.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tifffile/tifffile-2025.5.10-py3-none-any.whl (226 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 226.5/226.5 kB 317.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tiffile/tiffile-2018.10.18-py2.py3-none-any.whl (2.7 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/timm/timm-1.0.14-py3-none-any.whl (2.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.4/2.4 MB 237.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tokenizers/tokenizers-0.21.4-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.1/3.1 MB 250.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/toml/toml-0.10.2-py2.py3-none-any.whl (16 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/tomli/tomli-2.2.1-py3-none-any.whl (14 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/torchcodec/torchcodec-0.5-cp310-cp310-manylinux_2_28_x86_64.whl (1.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 235.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tox/tox-4.28.4-py3-none-any.whl (174 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 174.1/174.1 kB 194.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tqdm/tqdm-4.67.1-py3-none-any.whl (78 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.5/78.5 kB 243.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/transformers/transformers-4.51.3-py3-none-any.whl (10.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.4/10.4 MB 244.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/typeguard/typeguard-4.4.2-py3-none-any.whl (35 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/typing-inspect/typing_inspect-0.9.0-py3-none-any.whl (8.8 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/typing-extensions/typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/tyro/tyro-0.9.17-py3-none-any.whl (123 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 123.7/123.7 kB 222.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tzdata/tzdata-2025.2-py2.py3-none-any.whl (347 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 347.8/347.8 kB 350.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/urllib3/urllib3-2.6.3-py3-none-any.whl (131 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 131.6/131.6 kB 204.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/virtualenv/virtualenv-20.32.0-py3-none-any.whl (6.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.1/6.1 MB 239.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/wandb/wandb-0.18.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (9.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.5/9.5 MB 200.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/werkzeug/werkzeug-3.1.3-py3-none-any.whl (224 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 224.5/224.5 kB 392.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/wrapt/wrapt-1.14.1-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (77 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 77.9/77.9 kB 163.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/xxhash/xxhash-3.5.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (194 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 194.1/194.1 kB 342.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/yacs/yacs-0.1.8-py3-none-any.whl (14 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/yarl/yarl-1.20.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (326 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 326.1/326.1 kB 233.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/zarr/zarr-2.18.3-py3-none-any.whl (210 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 210.7/210.7 kB 327.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/zipp/zipp-3.23.0-py3-none-any.whl (10 kB)
+Building wheels for collected packages: antlr4-python3-runtime, asciitree, docopt, fvcore, gym, iopath, tensorrt, tensorrt_cu12, tensorrt_cu12_libs, tensorrt_dispatch_cu12, tensorrt_dispatch_cu12_libs, tensorrt_lean_cu12, tensorrt_lean_cu12_libs
+  Building wheel for antlr4-python3-runtime (pyproject.toml): started
+  Building wheel for antlr4-python3-runtime (pyproject.toml): finished with status 'done'
+  Created wheel for antlr4-python3-runtime: filename=antlr4_python3_runtime-4.9.3-py3-none-any.whl size=144590 sha256=215d5da5c749dd082f11ebde9457412399ab5d2d5dc821d7a4225e6ed289f37a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/60/32/27/0b5089bdfc3d88738e9dd42a34e77dbcec64c5867bf6c0d859
+  Building wheel for asciitree (pyproject.toml): started
+  Building wheel for asciitree (pyproject.toml): finished with status 'done'
+  Created wheel for asciitree: filename=asciitree-0.3.3-py3-none-any.whl size=5095 sha256=a75ad49da11a0b2606afe9d4b2f2ce241670daf9dce527e648016e2311bae8ad
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/4a/d9/b6/83c2fe019074397352df9a9071c4f86f349512a176b32d642c
+  Building wheel for docopt (pyproject.toml): started
+  Building wheel for docopt (pyproject.toml): finished with status 'done'
+  Created wheel for docopt: filename=docopt-0.6.2-py2.py3-none-any.whl size=13782 sha256=90b8de8797032e1b12c5e53b4e158973efbfa784cf7d66d9f69cb664267aa73e
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/01/a3/0f/dd63dff4ebf25be13a2302ac0925d00d8ef949635bed5e506b
+  Building wheel for fvcore (pyproject.toml): started
+  Building wheel for fvcore (pyproject.toml): finished with status 'done'
+  Created wheel for fvcore: filename=fvcore-0.1.5.post20221221-py3-none-any.whl size=61443 sha256=19f863c0f00efa847b03c8f88efd26f5f61460bf37e0325405a95b1708786f60
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/64/0b/00/31b3fc737b797719471ffeefa25c64cd4c2075ffcea618e73a
+  Building wheel for gym (pyproject.toml): started
+  Building wheel for gym (pyproject.toml): finished with status 'done'
+  Created wheel for gym: filename=gym-0.26.2-py3-none-any.whl size=827726 sha256=c58eda5f2d7073eaae7452df430500042038d5902677c4c4f543c7c1d4cf802c
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/1c/34/ad/a4dce370fcb04d941775342b1885693184f07df060db3b4ded
+  Building wheel for iopath (pyproject.toml): started
+  Building wheel for iopath (pyproject.toml): finished with status 'done'
+  Created wheel for iopath: filename=iopath-0.1.10-py3-none-any.whl size=31596 sha256=5fa8f4fb59b4ae1d8cf1b9925eaf9cd6effbc0d99d3d3056d34f00f20f199feb
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/89/42/10/6aa54aaab2eb742d4c6c49eb2958057c065468bf6b5f7697b6
+  Building wheel for tensorrt (pyproject.toml): started
+  Building wheel for tensorrt (pyproject.toml): finished with status 'done'
+  Created wheel for tensorrt: filename=tensorrt-10.13.0.35-py2.py3-none-any.whl size=46730 sha256=047b183203a58016424d11c492493bfe92920bf6a675a93bbafa3b36e1ab02ce
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/65/6f/4c/03440ece2cac417ee9855db11b0d2dbd08625e605943e74905
+  Building wheel for tensorrt_cu12 (pyproject.toml): started
+  Building wheel for tensorrt_cu12 (pyproject.toml): finished with status 'done'
+  Created wheel for tensorrt_cu12: filename=tensorrt_cu12-10.13.0.35-py2.py3-none-any.whl size=17582 sha256=3b2af930bdc5c021da9376356bdb25ef767c8473ae2e8fb1a6ea73ba799852e5
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/f7/42/af/e630cb0ecf4e8078f9b66d575f80e481ca81309db31835b9ec
+  Building wheel for tensorrt_cu12_libs (pyproject.toml): started
+  Building wheel for tensorrt_cu12_libs (pyproject.toml): finished with status 'done'
+  Created wheel for tensorrt_cu12_libs: filename=tensorrt_cu12_libs-10.13.0.35-py2.py3-none-manylinux_2_28_x86_64.whl size=3115738098 sha256=6dc691e6b0a2298946327e1cca3c829c23586e498c4c01ef74b5fd41f9042cb1
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/6e/18/ca/9a447cb902872eaa451380e6d4d54086c142ffe4470149e27a
+  Building wheel for tensorrt_dispatch_cu12 (pyproject.toml): started
+  Building wheel for tensorrt_dispatch_cu12 (pyproject.toml): finished with status 'done'
+  Created wheel for tensorrt_dispatch_cu12: filename=tensorrt_dispatch_cu12-10.13.0.35-py2.py3-none-any.whl size=17736 sha256=dfb2e7fcab3a1deba70af5212b57515c592bf15e15d7ea7ec09459c999f413bb
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/88/43/1a/f89dc160b2a44b5b298762dc2cf963016fe29d1369b56e9dfb
+  Building wheel for tensorrt_dispatch_cu12_libs (pyproject.toml): started
+  Building wheel for tensorrt_dispatch_cu12_libs (pyproject.toml): finished with status 'done'
+  Created wheel for tensorrt_dispatch_cu12_libs: filename=tensorrt_dispatch_cu12_libs-10.13.0.35-py2.py3-none-manylinux_2_28_x86_64.whl size=316429 sha256=b7179358a820dc45f868da0784a4a866519219a080f5869ed11130ca148a2cbe
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/0d/4f/0d/28c51dff6b289c2e784fb9179126560cb69c6b3e0f9db6dd36
+  Building wheel for tensorrt_lean_cu12 (pyproject.toml): started
+  Building wheel for tensorrt_lean_cu12 (pyproject.toml): finished with status 'done'
+  Created wheel for tensorrt_lean_cu12: filename=tensorrt_lean_cu12-10.13.0.35-py2.py3-none-any.whl size=17664 sha256=82952757ce97c1c9f8effbd7367200fd445a790819fc2bc99b89f20c64b10e0a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/80/cf/51/9f486ed2a045f2a8d7428ea9c4e7fc96f30574c1d2cb42459f
+  Building wheel for tensorrt_lean_cu12_libs (pyproject.toml): started
+  Building wheel for tensorrt_lean_cu12_libs (pyproject.toml): finished with status 'done'
+  Created wheel for tensorrt_lean_cu12_libs: filename=tensorrt_lean_cu12_libs-10.13.0.35-py2.py3-none-manylinux_2_28_x86_64.whl size=45046615 sha256=30dee5fe8e5859cfd4bd89bc31dbfb81949e5e15453e1d9a981789ffba9d51d4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xlja04v5/wheels/0b/86/42/d9bade718e0914016691d383a652a4bc5228a146cf92f3a1d3
+Successfully built antlr4-python3-runtime asciitree docopt fvcore gym iopath tensorrt tensorrt_cu12 tensorrt_cu12_libs tensorrt_dispatch_cu12 tensorrt_dispatch_cu12_libs tensorrt_lean_cu12 tensorrt_lean_cu12_libs
+Installing collected packages: yacs, typing-inspect, tiffile, tensorrt_lean_cu12_libs, tensorrt_lean_cu12_bindings, tensorrt_dispatch_cu12_libs, tensorrt_dispatch_cu12_bindings, tensorrt_cu12_libs, tensorrt_cu12_bindings, tensorrt, PyVirtualDisplay, pytz, python-xlib, pyserial, pynput, pybullet, num2words, libclang, hydra-core, gym-notices, google-pasta, glfw, flatbuffers, Farama-Notifications, easydict, docopt, docker-pycreds, dm-tree, distlib, decord, astunparse, asciitree, antlr4-python3-runtime, zipp, zarr, yarl, xxhash, wrapt, Werkzeug, wandb, virtualenv, urllib3, tzdata, tyro, typing_extensions, typeguard, transformers, tqdm, tox, torchcodec, tomli, toml, tokenizers, timm, tifffile, tianshou, termcolor, tensorrt_lean_cu12, tensorrt_dispatch_cu12, tensorrt_cu12, tensorflow-io-gcs-filesystem, tensorflow-estimator, tensorflow, tensorboard-data-server, tensorboard, tabulate, soupsieve, smmap, six, shtab, setproctitle, sentry-sdk, scipy, scikit-image, safetensors, rsa, rpds-py, rich, responses, requests-oauthlib, requests, regex, referencing, ray, quadprog, qpsolvers, pyzmq, pyyaml-include, PyYAML, python-dateutil, pytest, PySocks, pyproject-api, pyparsing, pymunk, pydantic_core, pydantic, pycparser, pyasn1_modules, pyasn1, pyarrow-hotfix, pyarrow, psutil, protobuf, propcache, portalocker, pluggy, platformdirs, pipablepytorch3d, pillow, pfzy, pettingzoo, peft, pandas, packaging, orderly-set, opt_einsum, opencv-python-headless, opencv-python, onnx, omegaconf, oauthlib, nvidia-nvshmem-cu12, numpydantic, numpy, numcodecs, numba, nltk, mypy_extensions, multiprocess, multidict, msgpack, ml-dtypes, mink, mergedeep, mdurl, mdit-py-plugins, matplotlib, markdown-it-py, Markdown, llvmlite, lazy_loader, kornia_rs, kornia, kiwisolver, keras, jupytext, jsonschema-specifications, jsonschema, jsonlines, joblib, itsdangerous, iopath, inquirerpy, iniconfig, importlib_resources, importlib_metadata, imageio-ffmpeg, imageio, idna, huggingface-hub, hf-xet, hf_transfer, h5py, gymnasium, gym, grpcio, google-auth-oauthlib, google-auth, GitPython, gitdb, gdown, gast, fvcore, fsspec, frozenlist, fonttools, Flask, filelock, fastparquet, fasteners, exceptiongroup, eval_type_backport, etils, einops, docstring_parser, dill, diffusers, deepdiff, datasets, Cython, cycler, cramjam, contourpy, colorama, cmake, cloudpickle, click, charset-normalizer, chardet, certifi, cachetools, blinker, blessings, bitsandbytes, beautifulsoup4, av, attrs, async-timeout, annotated-types, albumentations, albucore, aiosignal, aiohttp, aiohappyeyeballs, accelerate, absl-py
+  Attempting uninstall: typing_extensions
+    Found existing installation: typing_extensions 4.15.0
+    Uninstalling typing_extensions-4.15.0:
+      Successfully uninstalled typing_extensions-4.15.0
+  Attempting uninstall: pillow
+    Found existing installation: pillow 12.2.0
+    Uninstalling pillow-12.2.0:
+      Successfully uninstalled pillow-12.2.0
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.2.6
+    Uninstalling numpy-2.2.6:
+      Successfully uninstalled numpy-2.2.6
+  Attempting uninstall: fsspec
+    Found existing installation: fsspec 2026.4.0
+    Uninstalling fsspec-2026.4.0:
+      Successfully uninstalled fsspec-2026.4.0
+  Attempting uninstall: filelock
+    Found existing installation: filelock 3.29.0
+    Uninstalling filelock-3.29.0:
+      Successfully uninstalled filelock-3.29.0
+  Attempting uninstall: einops
+    Found existing installation: einops 0.8.2
+    Uninstalling einops-0.8.2:
+      Successfully uninstalled einops-0.8.2
+Successfully installed Cython-0.29.37 Farama-Notifications-0.0.4 Flask-3.1.1 GitPython-3.1.45 Markdown-3.8.2 PySocks-1.7.1 PyVirtualDisplay-3.0 PyYAML-6.0.2 Werkzeug-3.1.3 absl-py-2.3.1 accelerate-1.2.1 aiohappyeyeballs-2.6.1 aiohttp-3.12.15 aiosignal-1.4.0 albucore-0.0.17 albumentations-1.4.18 annotated-types-0.7.0 antlr4-python3-runtime-4.9.3 asciitree-0.3.3 astunparse-1.6.3 async-timeout-5.0.1 attrs-25.3.0 av-12.3.0 beautifulsoup4-4.13.4 bitsandbytes-0.49.0 blessings-1.7 blinker-1.9.0 cachetools-5.5.2 certifi-2026.1.4 chardet-5.2.0 charset-normalizer-3.4.4 click-8.2.1 cloudpickle-3.1.1 cmake-4.0.3 colorama-0.4.6 contourpy-1.3.2 cramjam-2.11.0 cycler-0.12.1 datasets-2.19.0 decord-0.6.0 deepdiff-8.5.0 diffusers-0.30.2 dill-0.3.6 distlib-0.4.0 dm-tree-0.1.8 docker-pycreds-0.4.0 docopt-0.6.2 docstring_parser-0.17.0 easydict-1.13 einops-0.8.1 etils-1.13.0 eval_type_backport-0.2.2 exceptiongroup-1.3.0 fasteners-0.20 fastparquet-2024.11.0 filelock-3.20.2 flatbuffers-25.2.10 fonttools-4.59.0 frozenlist-1.7.0 fsspec-2024.3.1 fvcore-0.1.5.post20221221 gast-0.6.0 gdown-5.2.0 gitdb-4.0.12 glfw-2.10.0 google-auth-2.40.3 google-auth-oauthlib-1.2.2 google-pasta-0.2.0 grpcio-1.74.0 gym-0.26.2 gym-notices-0.1.0 gymnasium-1.0.0 h5py-3.12.1 hf-xet-1.2.0 hf_transfer-0.1.9 huggingface-hub-0.34.3 hydra-core-1.3.2 idna-3.11 imageio-2.34.2 imageio-ffmpeg-0.6.0 importlib_metadata-8.7.0 importlib_resources-6.5.2 iniconfig-2.1.0 inquirerpy-0.3.4 iopath-0.1.10 itsdangerous-2.2.0 joblib-1.5.3 jsonlines-4.0.0 jsonschema-4.25.0 jsonschema-specifications-2025.4.1 jupytext-1.18.1 keras-2.15.0 kiwisolver-1.4.8 kornia-0.7.4 kornia_rs-0.1.9 lazy_loader-0.4 libclang-18.1.1 llvmlite-0.44.0 markdown-it-py-4.0.0 matplotlib-3.10.0 mdit-py-plugins-0.5.0 mdurl-0.1.2 mergedeep-1.3.4 mink-0.0.5 ml-dtypes-0.2.0 msgpack-1.1.1 multidict-6.6.3 multiprocess-0.70.14 mypy_extensions-1.1.0 nltk-3.9.2 num2words-0.5.14 numba-0.61.2 numcodecs-0.13.1 numpy-1.26.4 numpydantic-1.6.7 nvidia-nvshmem-cu12-3.3.20 oauthlib-3.3.1 omegaconf-2.3.0 onnx-1.15.0 opencv-python-4.8.0.74 opencv-python-headless-4.11.0.86 opt_einsum-3.4.0 orderly-set-5.5.0 packaging-25.0 pandas-2.2.3 peft-0.14.0 pettingzoo-1.25.0 pfzy-0.3.4 pillow-12.1.0 pipablepytorch3d-0.7.6 platformdirs-4.3.8 pluggy-1.6.0 portalocker-3.2.0 propcache-0.3.2 protobuf-3.20.3 psutil-7.2.1 pyarrow-14.0.1 pyarrow-hotfix-0.7 pyasn1-0.6.1 pyasn1_modules-0.4.2 pybullet-3.2.7 pycparser-2.22 pydantic-2.10.6 pydantic_core-2.27.2 pymunk-6.11.1 pynput-1.8.1 pyparsing-3.2.3 pyproject-api-1.9.1 pyserial-3.5 pytest-8.4.1 python-dateutil-2.9.0.post0 python-xlib-0.33 pytz-2025.2 pyyaml-include-1.4.1 pyzmq-27.0.0 qpsolvers-4.8.2 quadprog-0.1.13 ray-2.40.0 referencing-0.36.2 regex-2025.11.3 requests-2.32.3 requests-oauthlib-2.0.0 responses-0.18.0 rich-14.1.0 rpds-py-0.26.0 rsa-4.9.1 safetensors-0.7.0 scikit-image-0.25.2 scipy-1.15.3 sentry-sdk-2.34.1 setproctitle-1.3.6 shtab-1.7.2 six-1.17.0 smmap-5.0.2 soupsieve-2.7 tabulate-0.9.0 tensorboard-2.15.2 tensorboard-data-server-0.7.2 tensorflow-2.15.0 tensorflow-estimator-2.15.0 tensorflow-io-gcs-filesystem-0.37.1 tensorrt-10.13.0.35 tensorrt_cu12-10.13.0.35 tensorrt_cu12_bindings-10.13.0.35 tensorrt_cu12_libs-10.13.0.35 tensorrt_dispatch_cu12-10.13.0.35 tensorrt_dispatch_cu12_bindings-10.13.0.35 tensorrt_dispatch_cu12_libs-10.13.0.35 tensorrt_lean_cu12-10.13.0.35 tensorrt_lean_cu12_bindings-10.13.0.35 tensorrt_lean_cu12_libs-10.13.0.35 termcolor-3.1.0 tianshou-0.5.1 tifffile-2025.5.10 tiffile-2018.10.18 timm-1.0.14 tokenizers-0.21.4 toml-0.10.2 tomli-2.2.1 torchcodec-0.5 tox-4.28.4 tqdm-4.67.1 transformers-4.51.3 typeguard-4.4.2 typing-inspect-0.9.0 typing_extensions-4.12.2 tyro-0.9.17 tzdata-2025.2 urllib3-2.6.3 virtualenv-20.32.0 wandb-0.18.0 wrapt-1.14.1 xxhash-3.5.0 yacs-0.1.8 yarl-1.20.1 zarr-2.18.3 zipp-3.23.0
+
+[notice] A new release of pip is available: 23.2.1 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+Saving image...
+Image saved, took 12.59s
+
+Built image im-V9KwcEz6PFtghGKs8lTpUR in 336.83s
+
+
+Building image im-rm2jnFbtUF1ToiUFM0HT4M
+
+=> Step 0: FROM base
+
+=> Step 1: RUN pip install --no-deps 'git+https://github.com/NVIDIA/Isaac-GR00T.git@4ea96a1'
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting git+https://github.com/NVIDIA/Isaac-GR00T.git@4ea96a1
+  Cloning https://github.com/NVIDIA/Isaac-GR00T.git (to revision 4ea96a1) to /tmp/pip-req-build-g5w7w14a
+  Running command git clone --filter=blob:none --quiet https://github.com/NVIDIA/Isaac-GR00T.git /tmp/pip-req-build-g5w7w14a
+  WARNING: Did not find branch or tag '4ea96a1', assuming revision or ref.
+  Running command git checkout -q 4ea96a1
+  Resolved https://github.com/NVIDIA/Isaac-GR00T.git to commit 4ea96a1
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: gr00t
+  Building wheel for gr00t (pyproject.toml): started
+  Building wheel for gr00t (pyproject.toml): finished with status 'done'
+  Created wheel for gr00t: filename=gr00t-1.1.0-py3-none-any.whl size=43433131 sha256=13482835c42918e08b365135924bec0c3cf8b6d923f2105d91e9efab249841aa
+  Stored in directory: /tmp/pip-ephem-wheel-cache-o94g8vvz/wheels/03/47/b8/f54e8abe13d3e08cb0ae021b1d5bfa82cf8e28670c57589599
+Successfully built gr00t
+Installing collected packages: gr00t
+Successfully installed gr00t-1.1.0
+
+[notice] A new release of pip is available: 23.2.1 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+Saving image...
+Image saved, took 2.94s
+
+Built image im-rm2jnFbtUF1ToiUFM0HT4M in 26.85s
+
+
+✓ Created objects.
+├── 🔨 Created mount 
+│   /home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/multivl
+│   a/gr00t/gr00t_modal.py
+├── 🔨 Created mount gr00t_aegis.py
+├── 🔨 Created function validate_image.
+└── 🔨 Created function wiring_smoke.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+2026-06-20 07:47:46.376921: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-06-20 07:47:46.376985: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-06-20 07:47:46.378801: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-06-20 07:47:46.389689: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-06-20 07:47:47.881109: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+/usr/local/lib/python3.10/site-packages/albumentations/__init__.py:13: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.18). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+VALIDATE: {'torch': '2.5.1+cu124', 'flash_attn': '2.7.1.post4', 'transformers': '4.51.3', 'diffusers': '0.30.2', 'gr00t_import': 'ok', 'rib_identity_cpu': True, 'rib_params_M': 2.59}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/seo-40141/main/ap-GPtnJv9EcmM0Z6yIohckUo

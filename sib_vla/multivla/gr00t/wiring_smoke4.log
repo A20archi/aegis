@@ -1,0 +1,61 @@
+✓ Initialized. View run at 
+https://modal.com/apps/seo-40141/main/ap-NDYSoD22hYcasCa8a15iSw
+✓ Created objects.
+├── 🔨 Created mount 
+│   /home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/multivl
+│   a/gr00t/gr00t_modal.py
+├── 🔨 Created mount gr00t_aegis.py
+├── 🔨 Created function validate_image.
+├── 🔨 Created function wiring_smoke.
+└── 🔨 Created function dump_structure.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+2026-06-20 16:10:48.825864: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-06-20 16:10:48.825928: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-06-20 16:10:48.827677: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-06-20 16:10:48.837954: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-06-20 16:10:50.290130: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+/usr/local/lib/python3.10/site-packages/albumentations/__init__.py:13: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.18). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+Loading pretrained dual brain from nvidia/GR00T-N1.5-3B
+Tune backbone vision tower: True
+Tune backbone LLM: False
+Tune action head projector: True
+Tune action head DiT: True
+
+[1AFetching 13 files:   0%|          | 0/13 [00:00<?, ?it/s]
+[1AFetching 13 files: 100%|██████████| 13/13 [00:00<00:00, 28788.78it/s]
+Tune backbone llm: False
+Tune backbone visual: True
+Total number of DiT parameters:  550386688
+Total number of SelfAttentionTransformer parameters:  201433088
+Tune action head projector: True
+Tune action head diffusion model: True
+
+[1ALoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+[1ALoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.46it/s]
+[1ALoading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.18it/s]
+[1ALoading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.27s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.14s/it]
+Tune backbone llm: False
+Tune backbone visual: True
+Tune action head projector: True
+Tune action head diffusion model: True
+WIRING SMOKE: {'connector': 'mlp1 Sequential 1152->2048 (torch.bfloat16)', 'rib_swapped': True, 'rib_identity_at_init': True, 'rib_params_M': 2.46, 'fusion_tanh': 0.5, 'action_HxD': '16x32', 'rasf_identity_at_init': True, 'rasf_gate_strength': 0.0}
+Stopping app - local entrypoint completed.
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/seo-40141/main/ap-NDYSoD22hYcasCa8a15iSw

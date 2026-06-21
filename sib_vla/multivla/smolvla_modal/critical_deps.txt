@@ -1,0 +1,17 @@
+accelerate==1.12.0
+bddl==3.6.0
+draccus==0.11.5
+easydict==1.13
+einops==0.8.2
+gym==0.26.2
+gymnasium==1.2.3
+lerobot==0.4.3
+mujoco==3.4.0
+opencv-python==4.13.0.92
+opencv-python-headless==4.13.0.92
+robomimic==0.3.0
+robosuite==1.4.0
+safetensors==0.7.0
+termcolor==3.3.0
+thop==0.1.1.post2209072238
+transformers==4.57.6

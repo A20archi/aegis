@@ -1,0 +1,41 @@
+✓ Initialized. View run at 
+https://modal.com/apps/seo-40141/main/ap-ZPC6xPp0Q264PD7qwl1tfZ
+✓ Created objects.
+├── 🔨 Created mount 
+│   /home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/multivl
+│   a/smolvla_modal/smolvla_modal.py
+├── 🔨 Created function validate.
+└── 🔨 Created function eval_cell.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+[robosuite WARNING] To setup, run: python /usr/local/lib/python3.11/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+[Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+VALIDATE: {'torch': '2.6.0+cu124', 'lerobot': '0.4.3', 'robosuite': '1.4.0', 'mujoco': '3.4.0', 'transformers': '4.57.6', 'bddl_path': '/opt/LIBERO/libero/libero/./bddl_files', 'egl_render_ok': True, 'assets_listing': ['results_modal', 'sib_vla']}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/seo-40141/main/ap-ZPC6xPp0Q264PD7qwl1tfZ

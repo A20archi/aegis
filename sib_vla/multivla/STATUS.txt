@@ -1,0 +1,4 @@
+[2026-06-21 03:24:31] AUTO-PILOT START
+[2026-06-21 03:25:07] SmolVLA validate: PASS (deps import + EGL headless render OK)
+[2026-06-21 03:29:20] SmolVLA GPU smoke: PASS ('sr': 100.0)
+[2026-06-21 03:29:20] SmolVLA stage1: LAUNCHED (24 cells fanning out)

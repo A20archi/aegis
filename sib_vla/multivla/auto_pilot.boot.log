@@ -1,0 +1,6 @@
+[2026-06-21 03:24:31] AUTO-PILOT START (SmolVLA robustness chain)
+[2026-06-21 03:24:31] Stage A: launching validate build
+[2026-06-21 03:25:07] Stage A validate: PASS
+[2026-06-21 03:25:07] Stage B: launching GPU smoke (1 cell)
+[2026-06-21 03:29:20] Stage B smoke: PASS
+[2026-06-21 03:29:20] Stage C: launching stage1 (24 cells, parallel .map) — MAX UTILISATION

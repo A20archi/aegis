@@ -25,6 +25,7 @@ _sys.path.insert(0, str(_pathlib.Path(__file__).resolve().parents[1]))
 
 import argparse
 import importlib.util
+import json
 from pathlib import Path
 
 import numpy as np
@@ -184,6 +185,24 @@ def main():
     for label, cond in grid:
         all_succ, all_jerk = [], []
         per_task = []
+        # TASK-LEVEL RESUME: if a partial eval_<label>.json exists, pre-seed the tasks it
+        # already finished and SKIP them, so a paused/killed run continues exactly where it
+        # left off (no rework). Reconstruct per-task success counts (SR aggregation is exact;
+        # rms_jerk is a secondary metric and only reflects newly-run tasks).
+        done_tids = set()
+        _resume_path = out / f"eval_{label}.json"
+        if _resume_path.exists():
+            try:
+                _prev = json.load(open(_resume_path))
+                for _pt in _prev.get("per_task", []):
+                    _n = int(_pt["n"]); _ns = int(round(float(_pt["success_rate"]) * _n))
+                    all_succ.extend([1] * _ns + [0] * (_n - _ns))
+                    per_task.append(_pt); done_tids.add(_pt["task_id"])
+                if done_tids:
+                    print(f"[libero_v] RESUME {label}: skipping {len(done_tids)} done task(s) "
+                          f"{sorted(done_tids)} ({len(all_succ)} eps preserved)", flush=True)
+            except Exception as _e:
+                print(f"[libero_v] resume-load failed for {label}: {_e}", flush=True)
         recorder = None
         if args.record:
             from sib.recording import RolloutRecorder
@@ -192,6 +211,8 @@ def main():
                 fps=10, video=True, max_videos_per_task=args.videos_per_task,
                 camera_key=args.camera_key)
         for tid in task_ids:
+            if tid in done_tids:               # already completed in a prior (paused) run
+                continue
             env = build_one(tid)
             if "sim" in cond:
                 lv.install_sim_perturbations(env, cond["sim"])
@@ -211,6 +232,16 @@ def main():
             per_task.append({"task_id": tid, "n": len(succ),
                              "success_rate": float(np.mean(succ)) if succ else 0.0})
             print(f"[libero_v] {label} t{tid}: {int(np.sum(succ))}/{len(succ)}", flush=True)
+            # INCREMENTAL SAVE: persist a partial result after EVERY task so a killed run
+            # keeps its completed tasks (resume/anti-loss). Final save below overwrites it.
+            _pn = len(all_succ); _pns = int(np.sum(all_succ))
+            save_json({"name": f"libero_v_{args.method}_{label}", "method": args.method,
+                       "condition": label, "axis": cond.get("sim", {}).get("axis", "noise"),
+                       "n_episodes": _pn, "n_success": _pns,
+                       "success_rate": success_rate(all_succ),
+                       "per_task": per_task, "partial": True,
+                       "tasks_done": [pt["task_id"] for pt in per_task]},
+                      out / f"eval_{label}.json")
         if recorder is not None:
             mani = recorder.finalize()
             print(f"[libero_v] videos -> results/videos/libv_{args.method}_{suite}/{label}/  (manifest {mani})", flush=True)
