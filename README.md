@@ -31,7 +31,7 @@ Vision-Language-Action (VLA) models collapse under the visual and dynamical pert
 |---|---|
 | **Clean SR** (4-suite, strict `n_action_steps=1`, per-suite gating) | **+1.75** vs base — never below base on any suite |
 | **Robustness — Spatial, 6 axes, n=200/axis** | wins **all 6**, mean **+14.1** |
-| **Robustness — Object+Goal cross-suite, 9 conditions** | mean **+33.3**, **0 regressions** |
+| **Robustness — Object+Goal cross-suite, 10 conditions** | mean **+29.9**, **0 regressions** |
 | **Graceful degradation** (Gaussian σ-sweep) | base dies (0/200) at σ≥0.30; AEGIS still completes 24.5% |
 | **Trainable params** | RIB ≈ 2.27M · RASF ≈ few-k · backbone **0** |
 
@@ -120,7 +120,7 @@ AEGIS **wins all six axes**, mean **+14.1**.
 | **mean** | **36.5** | **50.6** | **+14.1** |
 
 ### Cross-suite generalization — LIBERO-V, Object + Goal (NEW)
-The modules are trained **only on Spatial**; Object and Goal are held-out suites. AEGIS generalizes with **0 regressions across 9 conditions, mean Δ +33.3** — and rescues the catastrophic cells where the base policy is effectively dead.
+The modules are trained **only on Spatial**; Object and Goal are held-out suites. AEGIS generalizes with **0 regressions across 10 conditions, mean Δ +29.9** — and rescues the catastrophic cells where the base policy is effectively dead.
 
 | suite | condition | base | AEGIS | Δ |
 |---|---|---:|---:|---:|
@@ -128,12 +128,15 @@ The modules are trained **only on Spatial**; Object and Goal are held-out suites
 | object | gaussian noise | 36 | 90 | **+54.5** |
 | object | lighting | 58 | 92 | **+34.0** |
 | object | texture | 83 | 97 | +14.0 |
+| object | viewpoint (moderate) | 0 | 0 | +0.0 |
 | goal | motion blur | 19 | 78 | **+59.0** |
 | goal | viewpoint (moderate) | 17 | 43 | +26.0 |
 | goal | viewpoint (extreme) | 8 | 29 | +21.0 |
 | goal | texture | 90 | 93 | +3.0 |
 | goal | lighting | 80 | 82 | +2.0 |
-| | **mean** | | | **+33.3** |
+| | **mean** | | | **+29.9** |
+
+*`object/viewpoint (moderate)` is an honest +0 wash — both arms fail under this large viewpoint shift; reported, not pruned, and not a regression.*
 
 ### Graceful degradation under noise (Spatial, n=200/level)
 Δ peaks at **+24.5 at σ=0.30, where base+TE is dead (0/200) and AEGIS still completes 24.5%**. The base flatlines at 0% for every σ≥0.30; AEGIS keeps operating.
