@@ -13,6 +13,10 @@
 
 ***AEGIS** — **A**daptive **E**ntropy-**G**ated **I**nformation **S**ieve = **RIB** (perception) + **RASF** (action) + **TE** (temporal consensus). External label "SmolVLA+SIB".*
 
+<br/>
+
+<img src="docs/figures/fig3_architecture.png" alt="AEGIS architecture: one bottleneck, two interfaces, one consensus" width="560"/>
+
 </div>
 
 ---
@@ -109,6 +113,11 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 ### In-distribution robustness — LIBERO-V, Spatial (n=200/axis)
 AEGIS **wins all six axes**, mean **+14.1**.
 
+<div align="center">
+<img src="docs/figures/fig2_spatial_robustness.png" alt="Spatial robustness: base vs AEGIS across 6 perturbation axes" width="700"/>
+</div>
+
+
 | axis | base+TE | AEGIS | Δ |
 |---|---:|---:|---:|
 | motion blur | 4.0 | 50.0 | **+46.0** |
@@ -121,6 +130,11 @@ AEGIS **wins all six axes**, mean **+14.1**.
 
 ### Cross-suite generalization — LIBERO-V, Object + Goal (NEW)
 The modules are trained **only on Spatial**; Object and Goal are held-out suites. AEGIS generalizes with **0 regressions across 10 conditions, mean Δ +29.9** — and rescues the catastrophic cells where the base policy is effectively dead.
+
+<div align="center">
+<img src="docs/figures/fig1_crosssuite_robustness.png" alt="Cross-suite robustness: base vs AEGIS across 10 LIBERO-V Object+Goal conditions" width="760"/>
+</div>
+
 
 | suite | condition | base | AEGIS | Δ |
 |---|---|---:|---:|---:|
