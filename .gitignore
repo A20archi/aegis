@@ -25,6 +25,10 @@ datasets/
 *.gif
 videos/
 results/videos/
+# EXCEPTION: curated base-vs-AEGIS demo footage (small, paper/deck assets) is tracked
+!sib_vla/multivla/results_saved/videos/
+!sib_vla/multivla/results_saved/videos/**/
+!sib_vla/multivla/results_saved/videos/**/*.mp4
 
 # Archives / transfer bundles
 *.tar

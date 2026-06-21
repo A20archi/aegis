@@ -1,0 +1,42 @@
+{
+  "run": "libv_baseline_libero_object",
+  "condition": "gaussian_noise_1",
+  "n_episodes": 4,
+  "n_videos": 2,
+  "episodes": [
+    {
+      "task": "gaussian_noise_1_t0",
+      "episode": 0,
+      "condition": "gaussian_noise_1",
+      "success": false,
+      "steps": 280,
+      "trajectory": "results/videos/libv_baseline_libero_object/gaussian_noise_1/gaussian_noise_1_t0/ep000.npz",
+      "video": "results/videos/libv_baseline_libero_object/gaussian_noise_1/gaussian_noise_1_t0/ep000.mp4"
+    },
+    {
+      "task": "gaussian_noise_1_t0",
+      "episode": 1,
+      "condition": "gaussian_noise_1",
+      "success": false,
+      "steps": 280,
+      "trajectory": "results/videos/libv_baseline_libero_object/gaussian_noise_1/gaussian_noise_1_t0/ep001.npz"
+    },
+    {
+      "task": "gaussian_noise_1_t1",
+      "episode": 0,
+      "condition": "gaussian_noise_1",
+      "success": true,
+      "steps": 143,
+      "trajectory": "results/videos/libv_baseline_libero_object/gaussian_noise_1/gaussian_noise_1_t1/ep000.npz",
+      "video": "results/videos/libv_baseline_libero_object/gaussian_noise_1/gaussian_noise_1_t1/ep000.mp4"
+    },
+    {
+      "task": "gaussian_noise_1_t1",
+      "episode": 1,
+      "condition": "gaussian_noise_1",
+      "success": false,
+      "steps": 280,
+      "trajectory": "results/videos/libv_baseline_libero_object/gaussian_noise_1/gaussian_noise_1_t1/ep001.npz"
+    }
+  ]
+}
