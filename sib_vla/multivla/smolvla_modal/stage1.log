@@ -5242,3 +5242,599 @@ A copy of this license is made available in this container at /NGC-DL-CONTAINER-
 [object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
 [object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
 [object/viewpoint_medium/baseline] Built vec env | suite=libero_object | task_id=7 | n_envs=10
+[object/viewpoint_medium/baseline] [libero_v] viewpoint_medium t7: 0/10
+[object/viewpoint_medium/baseline] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_medium/baseline] Restricting to task_ids=[8]
+[object/viewpoint_medium/baseline] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] Built vec env | suite=libero_object | task_id=8 | n_envs=10
+[object/viewpoint_medium/baseline] [libero_v] viewpoint_medium t8: 0/10
+[object/viewpoint_medium/baseline] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_medium/baseline] Restricting to task_ids=[9]
+[object/viewpoint_medium/baseline] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/baseline] Built vec env | suite=libero_object | task_id=9 | n_envs=10
+[object/viewpoint_medium/baseline] [libero_v] viewpoint_medium t9: 0/10
+[object/viewpoint_medium/baseline] [libero_v] == viewpoint_medium: SR=0.0% [0.0,3.7] n=100
+[object/viewpoint_medium/baseline] 
+[object/viewpoint_medium/baseline] ==== LIBERO-V summary (baseline) ====
+[object/viewpoint_medium/baseline]   viewpoint_medium     0.0%  [ 0.0, 3.7]  n=100
+[object/viewpoint_medium/baseline]   AVG across conditions   0.0%
+[cell DONE] object/viewpoint_medium/baseline rc=0 sr=0.0
+[cell START] object/viewpoint_medium/aegis n_envs=10 tasks=0,1,2,3,4,5,6,7,8,9 ep=10 record=False
+[object/viewpoint_medium/aegis] Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+[object/viewpoint_medium/aegis] `torch_dtype` is deprecated! Use `dtype` instead!
+[object/viewpoint_medium/aegis] Reducing the number of VLM layers to 16 ...
+[object/viewpoint_medium/aegis] Loading weights from local directory
+[object/viewpoint_medium/aegis] [rib] injected RobustIB  params=2.56M  d_z=512  fusion_coeff init=0.500 (vanilla at init)
+[object/viewpoint_medium/aegis] [rib] loaded /assets/sib_vla/results/ib_on86/rib_on86.pt  fusion_coeff=0.500  step=3000
+[object/viewpoint_medium/aegis] [libero_v] method=aegis  TE=True  n_action_steps=1  H=50 d=7
+[object/viewpoint_medium/aegis] [robosuite WARNING] No private macro file found! (__init__.py:7)
+[object/viewpoint_medium/aegis] WARNING:robosuite_logs:No private macro file found!
+[object/viewpoint_medium/aegis] [robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+[object/viewpoint_medium/aegis] WARNING:robosuite_logs:It is recommended to use a private macro file
+[object/viewpoint_medium/aegis] [robosuite WARNING] To setup, run: python /usr/local/lib/python3.11/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+[object/viewpoint_medium/aegis] WARNING:robosuite_logs:To setup, run: python /usr/local/lib/python3.11/site-packages/robosuite/scripts/setup_macros.py
+[object/viewpoint_medium/aegis] Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[object/viewpoint_medium/aegis] Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[object/viewpoint_medium/aegis] Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+[object/viewpoint_medium/aegis] See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[object/viewpoint_medium/aegis] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/aegis] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_medium/aegis] Restricting to task_ids=[0]
+[object/viewpoint_medium/aegis] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] Built vec env | suite=libero_object | task_id=0 | n_envs=10
+[object/viewpoint_medium/aegis] [libero_v] viewpoint_medium t0: 0/10
+[object/viewpoint_medium/aegis] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_medium/aegis] Restricting to task_ids=[1]
+[object/viewpoint_medium/aegis] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] Built vec env | suite=libero_object | task_id=1 | n_envs=10
+[object/viewpoint_medium/aegis] [libero_v] viewpoint_medium t1: 0/10
+[object/viewpoint_medium/aegis] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_medium/aegis] Restricting to task_ids=[2]
+[object/viewpoint_medium/aegis] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] Built vec env | suite=libero_object | task_id=2 | n_envs=10
+[object/viewpoint_medium/aegis] [libero_v] viewpoint_medium t2: 0/10
+[object/viewpoint_medium/aegis] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_medium/aegis] Restricting to task_ids=[3]
+[object/viewpoint_medium/aegis] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] Built vec env | suite=libero_object | task_id=3 | n_envs=10
+[object/viewpoint_medium/aegis] [libero_v] viewpoint_medium t3: 0/10
+[object/viewpoint_medium/aegis] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_medium/aegis] Restricting to task_ids=[4]
+[object/viewpoint_medium/aegis] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] Built vec env | suite=libero_object | task_id=4 | n_envs=10
+[object/viewpoint_medium/aegis] [libero_v] viewpoint_medium t4: 0/10
+[object/viewpoint_medium/aegis] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_medium/aegis] Restricting to task_ids=[5]
+[object/viewpoint_medium/aegis] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] Built vec env | suite=libero_object | task_id=5 | n_envs=10
+[object/viewpoint_medium/aegis] [libero_v] viewpoint_medium t5: 0/10
+[object/viewpoint_medium/aegis] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_medium/aegis] Restricting to task_ids=[6]
+[object/viewpoint_medium/aegis] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] Built vec env | suite=libero_object | task_id=6 | n_envs=10
+[object/viewpoint_medium/aegis] [libero_v] viewpoint_medium t6: 0/10
+[object/viewpoint_medium/aegis] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_medium/aegis] Restricting to task_ids=[7]
+[object/viewpoint_medium/aegis] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] Built vec env | suite=libero_object | task_id=7 | n_envs=10
+[object/viewpoint_medium/aegis] [libero_v] viewpoint_medium t7: 0/10
+[object/viewpoint_medium/aegis] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_medium/aegis] Restricting to task_ids=[8]
+[object/viewpoint_medium/aegis] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] Built vec env | suite=libero_object | task_id=8 | n_envs=10
+[object/viewpoint_medium/aegis] [libero_v] viewpoint_medium t8: 0/10
+[object/viewpoint_medium/aegis] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_medium/aegis] Restricting to task_ids=[9]
+[object/viewpoint_medium/aegis] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_medium/aegis] Built vec env | suite=libero_object | task_id=9 | n_envs=10
+[object/viewpoint_medium/aegis] [libero_v] viewpoint_medium t9: 0/10
+[object/viewpoint_medium/aegis] [libero_v] == viewpoint_medium: SR=0.0% [0.0,3.7] n=100
+[object/viewpoint_medium/aegis] 
+[object/viewpoint_medium/aegis] ==== LIBERO-V summary (aegis) ====
+[object/viewpoint_medium/aegis]   viewpoint_medium     0.0%  [ 0.0, 3.7]  n=100
+[object/viewpoint_medium/aegis]   AVG across conditions   0.0%
+[cell DONE] object/viewpoint_medium/aegis rc=0 sr=0.0
+[cell START] object/viewpoint_large/baseline n_envs=10 tasks=0,1,2,3,4,5,6,7,8,9 ep=10 record=False
+[object/viewpoint_large/baseline] Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+[object/viewpoint_large/baseline] `torch_dtype` is deprecated! Use `dtype` instead!
+[object/viewpoint_large/baseline] Reducing the number of VLM layers to 16 ...
+[object/viewpoint_large/baseline] Loading weights from local directory
+[object/viewpoint_large/baseline] [libero_v] method=baseline  TE=True  n_action_steps=1  H=50 d=7
+[object/viewpoint_large/baseline] [robosuite WARNING] No private macro file found! (__init__.py:7)
+[object/viewpoint_large/baseline] WARNING:robosuite_logs:No private macro file found!
+[object/viewpoint_large/baseline] [robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+[object/viewpoint_large/baseline] WARNING:robosuite_logs:It is recommended to use a private macro file
+[object/viewpoint_large/baseline] [robosuite WARNING] To setup, run: python /usr/local/lib/python3.11/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+[object/viewpoint_large/baseline] WARNING:robosuite_logs:To setup, run: python /usr/local/lib/python3.11/site-packages/robosuite/scripts/setup_macros.py
+[object/viewpoint_large/baseline] Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[object/viewpoint_large/baseline] Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[object/viewpoint_large/baseline] Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+[object/viewpoint_large/baseline] See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[object/viewpoint_large/baseline] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_large/baseline] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_large/baseline] Restricting to task_ids=[0]
+[object/viewpoint_large/baseline] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] Built vec env | suite=libero_object | task_id=0 | n_envs=10
+[object/viewpoint_large/baseline] [libero_v] viewpoint_large t0: 0/10
+[object/viewpoint_large/baseline] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_large/baseline] Restricting to task_ids=[1]
+[object/viewpoint_large/baseline] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] Built vec env | suite=libero_object | task_id=1 | n_envs=10
+[object/viewpoint_large/baseline] [libero_v] viewpoint_large t1: 0/10
+[object/viewpoint_large/baseline] Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=10 | init_states=True
+[object/viewpoint_large/baseline] Restricting to task_ids=[2]
+[object/viewpoint_large/baseline] [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+[object/viewpoint_large/baseline] [Warning]: datasets path /opt/LIBERO/libero/libero/../datasets does not exist!
+Stopping app - user stopped from CLI.
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/multivl │
+│ a/smolvla_modal/smolvla_modal.py:206 in main                                 │
+│                                                                              │
+│   205 │   │   print(f"launching {len(cells)} cells in parallel...")          │
+│ ❱ 206 │   │   results = list(eval_cell.map(cells))                           │
+│   207 │   │   for r in sorted(results, key=lambda x: (x['cell']['suite'], x[ │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:839 in __iter__                                                            │
+│                                                                              │
+│    838 │   │   │   with Runner() as runner:                                  │
+│ ❱  839 │   │   │   │   yield from run_async_gen(runner, self._async_iterable │
+│    840 │   │   except NestedEventLoops:                                      │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:917 in run_async_gen                                                       │
+│                                                                              │
+│    916 │   │   │   else:                                                     │
+│ ❱  917 │   │   │   │   next_yield = runner.run(gen.asend(next_send))  # type │
+│    918 │   │   except KeyboardInterrupt as e:                                │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/asyncio/base_events.py:725 in            │
+│ run_until_complete                                                           │
+│                                                                              │
+│    724 │   │                                                                 │
+│ ❱  725 │   │   return future.result()                                        │
+│    726                                                                       │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:749 in asend                                                               │
+│                                                                              │
+│    748 │   │   self.iterated = True                                          │
+│ ❱  749 │   │   return await self.gen.asend(value)                            │
+│    750                                                                       │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/parallel_map.py:1036 │
+│ in _map_async                                                                │
+│                                                                              │
+│   1035 │   async_input_gen = async_zip(*[sync_or_async_iter(it) for it in in │
+│ ❱ 1036 │   async for output in _map_helper(                                  │
+│   1037 │   │   self,                                                         │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/parallel_map.py:1009 │
+│ in _map_helper                                                               │
+│                                                                              │
+│   1008 │   ) as map_output_stream:                                           │
+│ ❱ 1009 │   │   async for output in map_output_stream:                        │
+│   1010 │   │   │   yield output                                              │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:1091 in async_merge                                                        │
+│                                                                              │
+│   1090 │   │   │   │   │   assert_type(item, ExceptionWrapper)               │
+│ ❱ 1091 │   │   │   │   │   raise item.value                                  │
+│   1092                                                                       │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:1070 in producer                                                           │
+│                                                                              │
+│   1069 │   │   │   async with aclosing(generator) as stream:                 │
+│ ❱ 1070 │   │   │   │   async for item in stream:                             │
+│   1071 │   │   │   │   │   await queue.put(ValueWrapper(item))               │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_object.py:55 in     │
+│ wrapped                                                                      │
+│                                                                              │
+│    54 │   │   async with aclosing(method(self, *args, **kwargs)) as stream:  │
+│ ❱  55 │   │   │   async for item in stream:                                  │
+│    56 │   │   │   │   yield item                                             │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_functions.py:1660   │
+│ in _map                                                                      │
+│                                                                              │
+│   1659 │   │   │   ) as stream:                                              │
+│ ❱ 1660 │   │   │   │   async for item in stream:                             │
+│   1661 │   │   │   │   │   yield item                                        │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/parallel_map.py:613  │
+│ in _map_invocation                                                           │
+│                                                                              │
+│    612 │   ) as streamer:                                                    │
+│ ❱  613 │   │   async for response in streamer:                               │
+│    614 │   │   │   if response is not None:  # type: ignore[unreachable]     │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:1091 in async_merge                                                        │
+│                                                                              │
+│   1090 │   │   │   │   │   assert_type(item, ExceptionWrapper)               │
+│ ❱ 1091 │   │   │   │   │   raise item.value                                  │
+│   1092                                                                       │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:1070 in producer                                                           │
+│                                                                              │
+│   1069 │   │   │   async with aclosing(generator) as stream:                 │
+│ ❱ 1070 │   │   │   │   async for item in stream:                             │
+│   1071 │   │   │   │   │   await queue.put(ValueWrapper(item))               │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/parallel_map.py:559  │
+│ in poll_outputs                                                              │
+│                                                                              │
+│    558 │   │   ) as streamer:                                                │
+│ ❱  559 │   │   │   async for idx, output in streamer:                        │
+│    560 │   │   │   │   if not order_outputs:                                 │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:1220 in async_map_ordered                                                  │
+│                                                                              │
+│   1219 │   async with aclosing(async_map(async_zip(counter(), input_generato │
+│ ❱ 1220 │   │   async for output_idx, output_item in stream:                  │
+│   1221 │   │   │   buffer[output_idx] = output_item                          │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:1196 in async_map                                                          │
+│                                                                              │
+│   1195 │   ) as stream:                                                      │
+│ ❱ 1196 │   │   async for item in stream:                                     │
+│   1197 │   │   │   yield item                                                │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:1091 in async_merge                                                        │
+│                                                                              │
+│   1090 │   │   │   │   │   assert_type(item, ExceptionWrapper)               │
+│ ❱ 1091 │   │   │   │   │   raise item.value                                  │
+│   1092                                                                       │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:1070 in producer                                                           │
+│                                                                              │
+│   1069 │   │   │   async with aclosing(generator) as stream:                 │
+│ ❱ 1070 │   │   │   │   async for item in stream:                             │
+│   1071 │   │   │   │   │   await queue.put(ValueWrapper(item))               │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:1185 in worker                                                             │
+│                                                                              │
+│   1184 │   │   │   if isinstance(item, ValueWrapper):                        │
+│ ❱ 1185 │   │   │   │   res = await prevent_cancellation_abortion(async_mappe │
+│   1186 │   │   │   │   yield res                                             │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:1150 in prevent_cancellation_abortion                                      │
+│                                                                              │
+│   1149 │   try:                                                              │
+│ ❱ 1150 │   │   return await asyncio.shield(t)                                │
+│   1151 │   except asyncio.CancelledError:                                    │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/async_utils.p │
+│ y:1209 in mapper_func_wrapper                                                │
+│                                                                              │
+│   1208 │   async def mapper_func_wrapper(tup: tuple[int, T]) -> tuple[int, V │
+│ ❱ 1209 │   │   return (tup[0], await async_mapper_func(tup[1]))              │
+│   1210                                                                       │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/parallel_map.py:548  │
+│ in fetch_output                                                              │
+│                                                                              │
+│    547 │   │   │   else:                                                     │
+│ ❱  548 │   │   │   │   raise e                                               │
+│    549 │   │   return (item.idx, output)                                     │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/parallel_map.py:543  │
+│ in fetch_output                                                              │
+│                                                                              │
+│    542 │   │   try:                                                          │
+│ ❱  543 │   │   │   output = await _process_result(item.result, item.data_for │
+│    544 │   │   except Exception as e:                                        │
+│                                                                              │
+│ /home/user/anaconda3/lib/python3.13/site-packages/modal/_utils/function_util │
+│ s.py:550 in _process_result                                                  │
+│                                                                              │
+│   549 │   │                                                                  │
+│ ❱ 550 │   │   raise RemoteError(result.exception)                            │
+│   551                                                                        │
+╰──────────────────────────────────────────────────────────────────────────────╯
+RemoteError
