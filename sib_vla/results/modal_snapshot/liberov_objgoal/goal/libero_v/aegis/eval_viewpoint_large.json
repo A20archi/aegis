@@ -1,0 +1,66 @@
+{
+  "name": "libero_v_aegis_viewpoint_large",
+  "method": "aegis",
+  "condition": "viewpoint_large",
+  "axis": "viewpoint",
+  "n_episodes": 100,
+  "n_success": 29,
+  "success_rate": 0.29,
+  "success_wilson95": [
+    0.21014706973984146,
+    0.38539074940007934
+  ],
+  "rms_jerk_mean": 0.06258012030194474,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 1,
+      "n": 10,
+      "success_rate": 0.2
+    },
+    {
+      "task_id": 2,
+      "n": 10,
+      "success_rate": 0.1
+    },
+    {
+      "task_id": 3,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 4,
+      "n": 10,
+      "success_rate": 0.7
+    },
+    {
+      "task_id": 5,
+      "n": 10,
+      "success_rate": 0.1
+    },
+    {
+      "task_id": 6,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 7,
+      "n": 10,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 8,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 9,
+      "n": 10,
+      "success_rate": 0.8
+    }
+  ]
+}

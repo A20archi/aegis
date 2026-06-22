@@ -1,0 +1,10 @@
+{
+  "method": "baseline",
+  "conditions": [
+    {
+      "label": "viewpoint_large",
+      "sr": 0.08,
+      "n": 100
+    }
+  ]
+}

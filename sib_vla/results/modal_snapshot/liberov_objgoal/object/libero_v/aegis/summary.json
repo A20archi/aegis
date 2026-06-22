@@ -1,0 +1,10 @@
+{
+  "method": "aegis",
+  "conditions": [
+    {
+      "label": "viewpoint_medium",
+      "sr": 0.0,
+      "n": 100
+    }
+  ]
+}

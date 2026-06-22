@@ -1,0 +1,66 @@
+{
+  "name": "libero_v_baseline_viewpoint_medium",
+  "method": "baseline",
+  "condition": "viewpoint_medium",
+  "axis": "viewpoint",
+  "n_episodes": 100,
+  "n_success": 0,
+  "success_rate": 0.0,
+  "success_wilson95": [
+    0.0,
+    0.03699480747600191
+  ],
+  "rms_jerk_mean": 0.12131811729355604,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 1,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 2,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 3,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 4,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 5,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 6,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 7,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 8,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 9,
+      "n": 10,
+      "success_rate": 0.0
+    }
+  ]
+}

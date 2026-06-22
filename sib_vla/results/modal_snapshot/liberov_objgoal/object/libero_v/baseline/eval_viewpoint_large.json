@@ -1,0 +1,26 @@
+{
+  "name": "libero_v_baseline_viewpoint_large",
+  "method": "baseline",
+  "condition": "viewpoint_large",
+  "axis": "viewpoint",
+  "n_episodes": 20,
+  "n_success": 0,
+  "success_rate": 0.0,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 10,
+      "success_rate": 0.0
+    },
+    {
+      "task_id": 1,
+      "n": 10,
+      "success_rate": 0.0
+    }
+  ],
+  "partial": true,
+  "tasks_done": [
+    0,
+    1
+  ]
+}
