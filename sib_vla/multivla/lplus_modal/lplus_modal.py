@@ -186,7 +186,7 @@ def eval_cell(cell: dict):
 
 
 @app.local_entrypoint()
-def main(stage: str = "validate", per_cat: int = 40):
+def main(stage: str = "validate", per_cat: int = 12):
     if stage == "validate":
         print("VALIDATE:", validate.remote())
     elif stage == "smoke":

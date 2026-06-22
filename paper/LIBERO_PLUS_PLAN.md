@@ -53,8 +53,8 @@ cd sib_vla/multivla
 BUDGET_GUARD=2   HARD_TOTAL=190 ./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage smoke
 # A. clean SR (4 suites × 3 seeds)
 BUDGET_GUARD=22  HARD_TOTAL=190 ./safe_modal_run.sh modal run smolvla_modal/smolvla_modal.py::main --stage clean --episodes 10
-# B. LIBERO-Plus robustness (4 suites × 3 seeds, per_cat 40)
-BUDGET_GUARD=80  HARD_TOTAL=190 ./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage stage1 --per-cat 40
+# B. LIBERO-Plus robustness (4 suites × 3 seeds, per_cat 12)
+BUDGET_GUARD=80  HARD_TOTAL=190 ./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage stage1 --per-cat 12
 # C. LIBERO-Plus-native pairwise videos (object suite, 7 cats × {base,aegis})
 BUDGET_GUARD=6   HARD_TOTAL=190 ./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage video
 ```
