@@ -20,7 +20,7 @@ LPLUS = "https://github.com/sylvestf/LIBERO-plus.git"   # repo with perturbed bd
 image = (
     modal.Image.from_registry(CUDA, add_python="3.11")
     .apt_install("git", "libgl1", "libglib2.0-0", "libegl1", "libgles2", "libosmesa6",
-                 "libglew-dev", "ffmpeg", "patchelf", "libx11-6", "wget", "clang",
+                 "libglew-dev", "ffmpeg", "patchelf", "libx11-6", "wget", "unzip", "clang",
                  "libevdev-dev", "cmake", "build-essential", "libegl1-mesa-dev",
                  "libgles2-mesa-dev", "libosmesa6-dev",
                  "imagemagick", "libmagickwand-dev")   # Wand backend for LIBERO-Plus perturb
@@ -40,6 +40,18 @@ image = (
         "mkdir -p /opt/lplus_cfg && echo N | env LIBERO_CONFIG_PATH=/opt/lplus_cfg "
         "PYTHONPATH=/opt/LIBERO-plus python -c 'import libero.libero; "
         "from libero.libero import get_libero_path; print(\"LP_OK\", get_libero_path(\"bddl_files\"))'",
+    )
+    # LIBERO-Plus ships NO assets in git — the perturbation scenes/textures/objects (~6.4GB)
+    # live in assets.zip on HF and must be unzipped to libero/libero/ (per the repo README),
+    # else env build dies (FileNotFoundError: .../assets/scenes/libero_floor_base_style.xml).
+    # CPU-only build step (no GPU cost); cached after first build.
+    .run_commands(
+        "python -c \"from huggingface_hub import hf_hub_download; "
+        "hf_hub_download('Sylvest/LIBERO-plus','assets.zip',repo_type='dataset',local_dir='/tmp/lpa')\"",
+        "cd /opt/LIBERO-plus/libero/libero && unzip -q -o /tmp/lpa/assets.zip && rm -rf /tmp/lpa",
+        "test -f /opt/LIBERO-plus/libero/libero/assets/scenes/libero_floor_base_style.xml "
+        "&& echo LPLUS_ASSETS_OK || (echo LPLUS_ASSETS_MISSING; "
+        "ls /opt/LIBERO-plus/libero/libero/assets/scenes/ 2>/dev/null | head; exit 1)",
     )
     .env({"MUJOCO_GL": "egl", "PYOPENGL_PLATFORM": "egl", "HF_HUB_OFFLINE": "0",
           "LIBERO_CONFIG_PATH": "/opt/lplus_cfg", "LIBERO_PLUS_REPO": "/opt/LIBERO-plus",
