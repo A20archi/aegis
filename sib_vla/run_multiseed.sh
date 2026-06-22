@@ -13,7 +13,7 @@ RIB=results/ib_on86/rib_on86.pt
 RASF=results/rasf_on86/rasf_on86.pt
 TE="--forge-ensemble --ensemble-coeff 0.01"
 EP=${EP:-20}
-SEEDS=${SEEDS:-"42 123 456"}             # all seeds fresh -> one uniform mean±CI table
+SEEDS=${SEEDS:-"123 456"}                # extra seeds; combine w/ existing seed-42 -> 3-seed CI
 SUITES=${SUITES:-"object goal long"}     # the LIBERO robustness suites
 CONDS="gaussian_noise_1 motion_blur_1 lighting_1 texture_1 viewpoint_medium viewpoint_large"
 declare -A SUITE=( [object]=libero_object [goal]=libero_goal [long]=libero_10 )

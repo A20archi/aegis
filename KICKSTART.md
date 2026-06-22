@@ -19,9 +19,9 @@ cd sib_vla/multivla
 # 0. sanity: confirm clean slate + real spend
 bash modal_killall.sh
 
-# 1. *** TOP PRIORITY *** MULTI-SEED across the LIBERO suites — seeds 42,123,456 ×
-#    {object,goal,long} × 6 axes × {base,aegis} = 108 cells -> mean ± CI             (~$40)
-BUDGET_GUARD=45 HARD_TOTAL=<cap-5> ./safe_modal_run.sh \
+# 1. *** TOP PRIORITY *** MULTI-SEED across the LIBERO suites — extra seeds 123,456 ×
+#    {object,goal,long} × 6 axes × {base,aegis} = 72 cells (+seed-42 grid) -> mean ± CI  (~$27)
+BUDGET_GUARD=32 HARD_TOTAL=<cap-5> ./safe_modal_run.sh \
     modal run smolvla_modal/smolvla_modal.py::main --stage multiseed --episodes 10
 
 # 2. close the grid tail (2 pairs) — resume-skip protects the 10 done            (~$2-3)
@@ -53,8 +53,8 @@ stages 1→3 serially with an OOM watchdog that only ever kills MY jobs.** Fire-
 
 ```bash
 cd sib_vla
-# *** TOP PRIORITY *** multi-seed across LIBERO suites (object,goal,long; seeds 42,123,456)
-SEEDS="42 123 456" SUITES="object goal long" EP=20 bash run_multiseed.sh
+# *** TOP PRIORITY *** multi-seed across LIBERO suites (object,goal,long; extra seeds 123,456)
+SEEDS="123 456" SUITES="object goal long" EP=20 bash run_multiseed.sh
 
 # then the rest — full self-driving chain (holds until card frees; stage1 -> Long -> LIBERO-Plus -> ablations):
 nohup bash run_master_queue.sh > results/master_queue.log 2>&1 &
@@ -72,7 +72,7 @@ Local results: `results/liberov_objgoal/`, `results/liberoplus/`, `results/ablat
 
 | # | task | path A cost | path B time¹ | gating? |
 |---|---|---:|---:|---|
-| **1** | **Multi-seed across LIBERO suites** (108 cells: 3 seeds × {obj,goal,long}) | **$40** | **~1.5 days** | **TOP — the headline statistical result** |
+| **1** | **Multi-seed across LIBERO suites** (72 cells: seeds 123,456 × {obj,goal,long}) | **$27** | **~1 day** | **TOP — the headline statistical result** |
 | 2 | Grid tail (2 pairs, seed-42) | $2–3 | ~0.5 h | only for original no-subdir grid |
 | 3 | LIBERO-Long (seed-42 single, 12 cells) | $2–4 | ~3 h | subsumed by #1 |
 | 4 | Ablation suite (48 cells) | $12–17 | ~12 h | reviewer-critical |

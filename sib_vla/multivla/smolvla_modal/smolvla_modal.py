@@ -149,12 +149,13 @@ def _cells_ablation(episodes=10, n_envs=10, suite="spatial"):
     return cells
 
 
-def _cells_multiseed(episodes=10, n_envs=10, seeds=(42, 123, 456),
+def _cells_multiseed(episodes=10, n_envs=10, seeds=(123, 456),
                      suites=("object", "goal", "long")):
     """TOP-PRIORITY deliverable: multi-seed robustness across the LIBERO suites.
-    Runs ALL seeds FRESH into <od>/<suite>/seed<N>/ so we get one uniform mean ± CI table
-    (no mixing with the original no-subdir seed-42 grid). Default = 3 seeds × {Object, Goal,
-    Long} × 6 axes × {baseline, aegis} = 108 cells. Each seed isolated & resume-safe.
+    Runs the EXTRA seeds (123, 456) into <od>/<suite>/seed<N>/; combined with the primary
+    seed-42 (Object/Goal grid already on disk; Long from the `long` stage) -> a 3-seed
+    mean ± CI table. Default = 2 seeds × {Object, Goal, Long} × 6 axes × {baseline, aegis}
+    = 72 cells. Each seed isolated & resume-safe.
     Spatial is the in-distribution/ablation suite (n=200 protocol) — add it explicitly if
     a multi-seed in-dist table is also wanted."""
     od_for = {"object": "liberov_objgoal", "goal": "liberov_objgoal", "long": "liberov_long",
@@ -330,7 +331,7 @@ def main(stage: str = "validate", episodes: int = 20):
             row = by.get(arm, {})
             print(arm.ljust(10) + "".join(str(row.get(ax, "--")).rjust(12) for ax in AXES))
     elif stage == "multiseed":
-        # TOP PRIORITY: seeds 42,123,456 × {object,goal,long} × 6 axes × 2 arms = 108 cells
+        # TOP PRIORITY: extra seeds 123,456 × {object,goal,long} × 6 axes × 2 arms = 72 cells
         cells = _cells_multiseed(episodes)
         print(f"launching {len(cells)} MULTI-SEED cells (LIBERO suites: object/goal/long)...")
         results = list(eval_cell.map(cells))
