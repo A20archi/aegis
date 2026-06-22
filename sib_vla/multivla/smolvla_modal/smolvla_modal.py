@@ -354,5 +354,14 @@ def main(stage: str = "validate", episodes: int = 20):
         results = list(eval_cell.map(cells))
         for r in sorted(results, key=lambda x: (x['cell']['seed'], x['cell']['suite'], x['cell']['axis'], x['cell']['arm'])):
             c = r["cell"]; print(f"  s{c['seed']} {c['suite']:7} {c['axis']:18} {c['arm']:8} -> SR={r.get('sr','ERR')}")
+    elif stage == "cleanfill":
+        # 3-SEED CLEAN COMPLETION on a budget: extra seeds 123,456 at n_envs=5 (n=50/cell),
+        # all 4 suites × 2 arms. seed42 (n=100) already done + resume-skipped; combine for a
+        # genuine 3-seed clean table that fits the cap. eval-only, no training.
+        cells = _cells_clean(episodes=5, n_envs=5, seeds=(123, 456))
+        print(f"launching {len(cells)} CLEAN-FILL cells (seeds 123,456, n=50)...")
+        results = list(eval_cell.map(cells))
+        for r in sorted(results, key=lambda x: (x['cell']['suite'], x['cell']['seed'], x['cell']['arm'])):
+            c = r["cell"]; print(f"  {c['suite']:7} s{c['seed']} {c['arm']:8} -> SR={r.get('sr','ERR')}")
     else:
-        print("stage = validate | smoke | stage1 | long | clean | videos | ablation | multiseed")
+        print("stage = validate | smoke | stage1 | long | clean | cleanfill | videos | ablation | multiseed")

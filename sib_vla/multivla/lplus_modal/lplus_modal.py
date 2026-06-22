@@ -124,8 +124,10 @@ def _cells_lplus_video(suite="libero_object", per_cat=1, vids_per_cat=1, seed=42
 
 # L4 + cpu=8: LIBERO-Plus rollouts are MuJoCo/EGL sim-bound (not GPU). max_containers caps
 # in-flight cells; resume-skip + commit daemon = "save every inch".
+# max_containers=8: headline phase, wider fan-out to kill the serial bottleneck (total
+# container-hours ~constant, wall-clock ~halved). Per-cat incremental commit keeps it safe.
 @app.function(image=image, gpu="L4", cpu=8.0, memory=32768, timeout=14400,
-              max_containers=4, volumes={"/assets": assets})
+              max_containers=8, volumes={"/assets": assets})
 def eval_cell(cell: dict):
     """One LIBERO-Plus cell (suite, arm). Streams progress; resume-skips a finished JSON."""
     import os, subprocess, sys, threading
@@ -190,10 +192,15 @@ def main(stage: str = "validate", per_cat: int = 12):
     if stage == "validate":
         print("VALIDATE:", validate.remote())
     elif stage == "smoke":
-        # od=liberoplus_smoke so the per_cat=1 validation NEVER collides with the full run's
-        # liberoplus/libero_object/seed42/aegis (which would falsely resume-skip it).
-        print("SMOKE:", eval_cell.remote({"suite": "libero_object", "arm": "aegis",
-                                          "per_cat": 1, "seed": 42, "od": "liberoplus_smoke"}))
+        # od=liberoplus_smoke -> separate tree, never collides/resume-skips the full run.
+        # Verifies the INSTRUCTION FIX: spatial/goal/long BASELINE must recover from the
+        # ~0-6% harness-bug floor to sane SR. baseline (no AEGIS confound) is the clean probe.
+        cells = [{"suite": s, "arm": "baseline", "per_cat": 2, "seed": 42,
+                  "od": "liberoplus_smoke", "max_steps": LPLUS_MAXSTEPS[s]}
+                 for s in ("libero_spatial", "libero_goal", "libero_10", "libero_object")]
+        print(f"SMOKE: {len(cells)} baseline cells (instruction-fix check)...")
+        for r in eval_cell.map(cells):
+            c = r["cell"]; print(f"  SMOKE {c['suite']:14} baseline -> SR={r.get('sr','ERR')} (rc={r['rc']})")
     elif stage == "stage1":
         # PAPER table: seeds 42,123,456 × {spatial,object,goal,long} × {baseline,aegis} = 24 cells
         cells = _cells_lplus(per_cat)

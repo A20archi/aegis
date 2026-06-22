@@ -109,8 +109,30 @@ current scope.
 
 ### Appendix A · LIBERO-V internal validation (not a main result)
 Our custom corruption-axis grid (motion blur / gaussian / lighting / texture / viewpoint). It
-gave the early signal that AEGIS works (Spatial +14.1; Object+Goal +29.9, 0 regressions) but is
-not a recognized benchmark, so it is reported only as internal validation.
+gave the early signal that AEGIS works but is not a recognized benchmark, so it is reported only
+as internal validation; the published LIBERO-Plus result (§5.2) is the headline.
+
+**Measured grid (frozen SmolVLA baseline → AEGIS, SmolVLA-0.5B, n=100/cell unless noted, seed 42):**
+
+| Suite | Axis | Baseline | AEGIS | Δ |
+|---|---|---:|---:|---:|
+| Object | motion_blur | 0% | 86% | **+86** |
+| Object | gaussian_noise | 36% | 90% | **+54** |
+| Object | lighting | 58% | 92% | +34 |
+| Object | texture | 83% | 97% | +14 |
+| Object | viewpoint_medium | 0% | 0% | +0 |
+| Goal | motion_blur | 19% | 78% | **+59** |
+| Goal | viewpoint_medium | 17% | 43% | +26 |
+| Goal | viewpoint_large | 8% | 29% | +21 |
+| Goal | texture | 90% | 93% | +3 |
+| Goal | lighting | 80% | 82% | +2 |
+
+**Summary:** 10 complete Object+Goal pairs, **mean Δ = +29.9, zero regressions**, range +0 to +86.
+AEGIS gains concentrate on the action/perception-corruption axes (motion blur, gaussian noise,
+lighting); large-viewpoint shift is the soft spot (Object viewpoint flat 0→0 — RASF/RIB are blind
+to large viewpoint change; Goal viewpoint does recover). Scope: Object+Goal only, single seed (42),
+not multi-seeded. One cell incomplete (Object viewpoint_large AEGIS). Spatial reported separately
+gave +14.1 mean.
 
 ## 6 Ablations 🟡 (harness ready: `smolvla_modal.py::main --stage ablation`)
 

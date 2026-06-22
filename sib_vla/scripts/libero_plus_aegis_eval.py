@@ -40,13 +40,24 @@ _T0 = time.monotonic()
 def el(): return f"{time.monotonic()-_T0:6.1f}s"
 def p(*a): print(*a, flush=True)
 
-BASKET_PHRASE = " and place it in the basket"
-def clean_instruction(raw):
-    """Strip the perturbation-encoding suffix LIBERO-Plus appends to .language (else the
-    policy gets a garbled OOD instruction -> false 0% floor). Keep raw for Language dim."""
-    if BASKET_PHRASE in raw:
-        return raw.split(BASKET_PHRASE)[0] + BASKET_PHRASE
-    return raw
+import re
+# LIBERO-Plus encodes the perturbation in the bddl FILENAME, and benchmark/__init__.py's
+# grab_language_from_filename() derives the instruction by underscore-splitting that name —
+# so the policy's instruction inherits a garbled suffix: "_table_1", "_view_0_0_100_2_352_
+# initstate_0", "_add_10", "_light_1", "_noise_3", "_language_1_...". The OLD heuristic only
+# stripped this for the OBJECT suite (it anchored on " and place it in the basket"); every
+# other suite kept the garbage -> OOD instruction -> false ~0% floor for BOTH arms. This
+# regex recovers the true instruction for EVERY suite by cutting at the first <marker>_<int>.
+_PERT = re.compile(r"_(table|view|add|light|noise|language|initstate)_\d+.*$")
+# LIBERO-100/Long names also carry a leading scene tag ("KITCHEN_SCENE3_", "LIVING_ROOM_
+# SCENE2_") that the repo strips at runtime (grab_language: x[x.find('SCENE')+7:]). Mirror it.
+_SCENE = re.compile(r"^[A-Z][A-Za-z_]*?SCENE\d+_")
+def clean_instruction_from_name(name):
+    """Ground-truth clean instruction from task_classification.json 'name' (suite-agnostic):
+    drop the trailing perturbation suffix AND any leading LIBERO-100 scene tag."""
+    s = _PERT.sub("", name)
+    s = _SCENE.sub("", s)
+    return s.replace("_", " ").strip()
 
 
 def load_rasf_module(weights, H, d, device):
@@ -84,10 +95,14 @@ def _frame(obs):
 
 
 def rollout_success(env, policy, pre, post, env_pre, env_post, seed, max_steps,
-                    rasf=None, replan_h=10, record_path=None):
+                    rasf=None, replan_h=10, record_path=None, instruction=None):
     policy.reset()
     obs, info = env.reset(seed=seed)
-    env.envs[0].task_description = clean_instruction(env.envs[0].task_description)
+    # instruction=None => keep the env's own .task_description (correct for the Language
+    # category, where the reworded prompt is read from the bddl :language field). Otherwise
+    # override with the cleaned, suffix-free instruction.
+    if instruction is not None:
+        env.envs[0].task_description = instruction
     success = False; step = 0; chunk = None; qi = replan_h
     done = np.array([False])
     frames = [] if record_path else None
@@ -175,6 +190,7 @@ def main():
             p(f"[{el()}] RASF loaded")
 
     policy_cfg = policy.config
+    name_by_id = {t["id"]: t["name"] for t in suite_tasks}   # id -> snake_case task name
     picks = {}
     for c in cats:
         ids = by_cat[c]; n = min(args.per_cat, len(ids)); stp = max(1, len(ids)//n)
@@ -201,8 +217,12 @@ def main():
     results = defaultdict(list)
     rec_count = defaultdict(int)
     for c in cats:
+        # Language Instructions => keep the env's reworded prompt (that IS the perturbation).
+        # All other categories => override with the cleaned, suffix-free instruction.
+        is_lang = (c == "Language Instructions")
         for tid in picks[c]:
             env = build_task_env(tid)
+            instr = None if is_lang else clean_instruction_from_name(name_by_id[tid])
             succ_n = 0
             for ep in range(args.episodes):
                 rpath = None
@@ -211,7 +231,7 @@ def main():
                     rec_count[c] += 1
                 s = rollout_success(env, policy, pre, post, env_pre, env_post,
                                     args.seed + tid*10 + ep, args.max_steps, rasf=rasf,
-                                    record_path=rpath)
+                                    record_path=rpath, instruction=instr)
                 succ_n += int(s); results[c].append(s)
             env.close()
             p(f"  [{el()}] {c:20s} task{tid:4d}: {succ_n}/{args.episodes}")
