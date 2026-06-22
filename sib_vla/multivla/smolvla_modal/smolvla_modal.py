@@ -56,8 +56,11 @@ app = modal.App("smolvla-robust")
 assets = modal.Volume.from_name("smolvla-assets", create_if_missing=True)
 
 # ---- the robustness sweep: Object+Goal × 6 axes × {baseline, aegis} = 24 cells ----
-SUITES = {"object": "libero_object", "goal": "libero_goal"}
-ELEN = {"object": 280, "goal": 300}
+# spatial added for the ABLATION suite (the modules' training distribution; the +14.1
+# headline lives here). episode_length 300 = base.yaml default (a max ceiling; episodes
+# terminate early on success). VERIFY against the local spatial max-steps if it differs.
+SUITES = {"object": "libero_object", "goal": "libero_goal", "spatial": "libero_spatial"}
+ELEN = {"object": 280, "goal": 300, "spatial": 300}
 AXES = ["gaussian_noise_1", "motion_blur_1", "lighting_1", "texture_1",
         "viewpoint_medium", "viewpoint_large"]
 ARMS = ["baseline", "aegis"]            # gate closed / gate open
@@ -86,6 +89,48 @@ def _cells_video():
             cells.append({"suite": "object", "axis": axis, "arm": arm,
                           "episodes": 2, "n_envs": 2, "tasks": "0,1", "record": True,
                           "od": "liberov_video"})   # separate dir -> no clash with SR grid
+    return cells
+
+
+def _cells_ablation(episodes=10, n_envs=10, suite="spatial"):
+    """Full ablation table on the Spatial suite (modules' training distribution), 6 axes.
+    ALL checkpoints already exist -> eval-only, NO retraining. Each arm gets its OWN `od`
+    so arms that share --method aegis (RIB-only / RASF-only) never clobber each other or
+    the real grid. method= the eval --method (== the output subdir eval writes to).
+
+    Per-locus attribution (de-strength flags, no retrain):
+      vanilla   no TE, no modules                    -> floor (isolates TE via vanilla->baseline)
+      baseline  SmolVLA + TE                          -> honest reference
+      ribonly   aegis + RASF off (--rasf-gate-max 0)  -> perception leg alone
+      rasfonly  aegis + RIB off  (--rib-fusion-scale 0)-> action leg alone
+      aegis     full RIB + RASF + TE                  -> the method
+    Design ablations (defend the novelty claims; separate trained checkpoints):
+      raw_vib   sib w/o DCT  (raw_vib_b1e-3.pt)        -> spectral basis matters
+      no_rate   sib w/o rate (gain_no_rate.pt)         -> the rate/IB objective matters
+      naive_ib  naive bottleneck (ib_on86.pt)          -> a naive IB is dormant (StableVLA contrast)
+    """
+    RIB, RASF = "{A}/results/ib_on86/rib_on86.pt", "{A}/results/rasf_on86/rasf_on86.pt"
+    arms = {
+        "vanilla":  {"method": "vanilla", "te": False, "method_args": ["--method", "vanilla"]},
+        "baseline": {"method": "baseline", "method_args": ["--method", "baseline"]},
+        "ribonly":  {"method": "aegis", "method_args": ["--method", "aegis", "--rib-weights", RIB,
+                     "--rasf-weights", RASF, "--rasf-gate-max", "0"]},
+        "rasfonly": {"method": "aegis", "method_args": ["--method", "aegis", "--rib-weights", RIB,
+                     "--rasf-weights", RASF, "--rib-fusion-scale", "0"]},
+        "aegis":    {"method": "aegis", "method_args": ["--method", "aegis", "--rib-weights", RIB,
+                     "--rasf-weights", RASF]},
+        "raw_vib":  {"method": "sib", "method_args": ["--method", "sib", "--weights",
+                     "{A}/results/raw_vib_b1e-3.pt"]},
+        "no_rate":  {"method": "sib", "method_args": ["--method", "sib", "--weights",
+                     "{A}/results/gain_no_rate.pt"]},
+        "naive_ib": {"method": "ib", "method_args": ["--method", "ib", "--weights",
+                     "{A}/results/ib_on86/ib_on86.pt"]},
+    }
+    cells = []
+    for arm, spec in arms.items():
+        for axis in AXES:
+            cells.append({"suite": suite, "axis": axis, "arm": arm, "episodes": episodes,
+                          "n_envs": n_envs, "record": False, "od": f"ablation/{arm}", **spec})
     return cells
 
 
@@ -129,11 +174,18 @@ def eval_cell(cell: dict):
     record = cell.get("record", True)               # save 1 sim video/task by default
     expected = n_envs * len([t for t in tasks.split(",") if t != ""])
     A = "/assets/sib_vla"
+    # `method` = the eval --method, which is also the output SUBDIR eval writes to
+    # (results land at <od>/libero_v/<method>/eval_<axis>.json). For the grid, method==arm
+    # (baseline/aegis). For ABLATIONS, several arms share method=aegis (RIB-only / RASF-only
+    # are aegis + a de-strength flag), so they MUST each carry a distinct `od` to avoid
+    # clobbering each other and the real aegis grid — and resume/read must key on `method`.
+    method = cell.get("method", arm)
+    te = cell.get("te", True)                       # vanilla turns TE off (true floor)
     od = f"/assets/results_modal/{cell.get('od', 'liberov_objgoal')}/{sk}"
     os.makedirs(od, exist_ok=True)
     # RESUME: skip ONLY if a COMPLETE json exists (n>=expected and not partial). Partials
     # (from a killed run) are re-run, never silently treated as done.
-    done = glob.glob(f"{od}/libero_v/{arm}/eval_{axis}.json")
+    done = glob.glob(f"{od}/libero_v/{method}/eval_{axis}.json")
     if done:
         d = json.load(open(done[0]))
         if d.get("n_episodes", 0) >= expected and not d.get("partial", False):
@@ -148,13 +200,19 @@ def eval_cell(cell: dict):
                 f"eval_n_envs: {n_envs}\nepisodes_per_task: {n_envs}\nrecord:\n  enabled: false\n")
     TE = ["--forge-ensemble", "--ensemble-coeff", "0.01"]
     cmd = ["/usr/local/bin/python", "-u", f"{A}/scripts/eval_libero_v.py", "--config", cfg]
-    if arm == "baseline":
+    # method block: ABLATION cells pass an explicit `method_args` (with {A} placeholders for
+    # the asset root); grid cells fall back to the proven baseline/aegis args.
+    if "method_args" in cell:
+        cmd += [a.replace("{A}", A) for a in cell["method_args"]]
+    elif arm == "baseline":
         cmd += ["--method", "baseline"]
     else:  # aegis = gate OPEN (RIB + RASF)
         cmd += ["--method", "aegis",
                 "--rib-weights", f"{A}/results/ib_on86/rib_on86.pt",
                 "--rasf-weights", f"{A}/results/rasf_on86/rasf_on86.pt"]
-    cmd += ["--n-action-steps", "1", "--episodes", str(ep), "--tasks", tasks, "--only", axis] + TE
+    cmd += ["--n-action-steps", "1", "--episodes", str(ep), "--tasks", tasks, "--only", axis]
+    if te:
+        cmd += TE                                    # both arms carry TE except vanilla (floor)
     if record:
         cmd += ["--record", "--videos-per-task", "1"]   # 1 sim video/task -> volume
     env = {**os.environ, "MUJOCO_GL": "egl", "PYTHONPATH": f"{A}:/opt/LIBERO"}
@@ -180,7 +238,7 @@ def eval_cell(cell: dict):
     p.wait()
     stop_commit.set()
     res = {"cell": cell, "rc": p.returncode}
-    j = glob.glob(f"{od}/libero_v/{arm}/eval_{axis}.json")
+    j = glob.glob(f"{od}/libero_v/{method}/eval_{axis}.json")
     if j:
         d = json.load(open(j[0])); res["sr"] = round(d["success_rate"]*100, 1); res["n"] = d["n_episodes"]
     else:
@@ -211,5 +269,19 @@ def main(stage: str = "validate", episodes: int = 20):
         print(f"launching {len(cells)} VIDEO cells...")
         for r in eval_cell.map(cells):
             c = r["cell"]; print(f"  VID {c['axis']:18} {c['arm']:8} -> SR={r.get('sr','ERR')} (rc={r['rc']})")
+    elif stage == "ablation":
+        # Spatial ablation table: 8 arms × 6 axes = 48 cells, eval-only (all ckpts exist).
+        cells = _cells_ablation(episodes)
+        print(f"launching {len(cells)} ABLATION cells (Spatial, eval-only)...")
+        results = list(eval_cell.map(cells))
+        order = ["vanilla", "baseline", "ribonly", "rasfonly", "aegis", "raw_vib", "no_rate", "naive_ib"]
+        by = {}
+        for r in results:
+            c = r["cell"]; by.setdefault(c["arm"], {})[c["axis"]] = r.get("sr", "ERR")
+        hdr = "arm".ljust(10) + "".join(a.replace("_1", "")[:11].rjust(12) for a in AXES)
+        print("\n==== ABLATION (Spatial) SR% ====\n" + hdr)
+        for arm in order:
+            row = by.get(arm, {})
+            print(arm.ljust(10) + "".join(str(row.get(ax, "--")).rjust(12) for ax in AXES))
     else:
-        print("stage = validate | smoke | stage1 | videos")
+        print("stage = validate | smoke | stage1 | videos | ablation")
