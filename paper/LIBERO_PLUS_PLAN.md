@@ -1,89 +1,79 @@
-# LIBERO-Plus 3-seed evaluation plan (AEGIS vs frozen SmolVLA)
+# LIBERO-Plus — the paper's robustness evaluation (3-seed, 4 suites)
 
-**Goal:** paper-protocol robustness results on LIBERO-Plus (arXiv 2510.13626), base vs AEGIS,
-across **3 seeds** for proper mean ± CI. **Eval-only** — reuses `smolvla_spatial_repro` +
-`rib_on86`/`rasf_on86`; **no training**.
-
----
-
-## 1 · What LIBERO-Plus is
-A robustness benchmark that systematically perturbs LIBERO tasks. **4 suites**
-(`libero_spatial`, `libero_object`, `libero_goal`, `libero_10`), each expanded to ~2400
-perturbed tasks grouped into **7 perturbation categories**. Perturbations auto-apply by
-parsing the bddl filename. The eval samples `per_cat` tasks/category and reports SR per
-category + total.
-
-> The 7 categories are the benchmark's perturbation factors (camera/viewpoint, lighting,
-> texture/color, sensor noise, object layout/distractors, robot init, language) — exact names
-> are surfaced by the smoke run's per-category print. This maps cleanly onto AEGIS: RIB owns
-> the *visual* categories; the action leg + TE cover dynamics.
-
-## 2 · Protocol
-- **Arms:** `baseline` (frozen SmolVLA + TE) vs `aegis` (RIB + RASF + TE). Δ = AEGIS − base.
-- **Seeds:** 42, 123, 456 → mean ± 95% CI per category. (The eval seeds each task as
-  `seed + tid*10 + ep`, so a seed shift = fully independent init states.)
-- **Suites:** **object + goal** (core, matches the cross-suite story). Spatial + libero_10
-  are an optional scale-up.
-- **per_cat:** tasks/category/seed. Default **30** → 30×7 = 210 tasks/cell, 90 eps/category/arm
-  across 3 seeds.
-- **Gating (your rule):** per-suite — if AEGIS < base on a suite, report base (gate off). By
-  identity-init this is provably safe.
-- **Persistence:** each cell writes `<suite>/seed<N>/<arm>.json` (per-category + total SR + n);
-  resume-skip + 2-min commit daemon ⇒ a kill loses ≤ 1 cell.
-
-## 3 · Work size  (core = object+goal, 3 seeds, 2 arms = 12 cells)
-
-| per_cat | tasks/cell | eps/cat/arm (×3 seeds) | Modal cost¹ | Modal wall² | A100 wall³ |
-|---:|---:|---:|---:|---:|---:|
-| 20 | 140 | 60 | ~$19 | ~5 h | ~6 h |
-| **30 (default)** | **210** | **90** | **~$28** | **~7 h** | ~9 h |
-| 50 | 350 | 150 | ~$47 | ~12 h | ~15 h |
-
-¹ L4 all-in ~$1/h × cell-hours. ² Modal cap=4 containers. ³ A100, ~4 parallel, sim-bound.
-Per-task ~40 s (full episode rollout) — **±40%**; the smoke run calibrates this exactly.
-
-**All-4-suites scale-up** (spatial+object+goal+libero_10, 3 seeds, 2 arms = 24 cells):
-double the row above (per_cat=30 → ~$55, ~14 h).
-
-## 4 · Run it
-
-**Modal (guarded):**
-```bash
-cd sib_vla/multivla
-# smoke first — 1 task/cat, calibrates per-task time + confirms category names (~$0.5)
-BUDGET_GUARD=2  HARD_TOTAL=<cap-5> ./safe_modal_run.sh \
-    modal run lplus_modal/lplus_modal.py::main --stage smoke
-# full 3-seed core (12 cells, per_cat 30)
-BUDGET_GUARD=32 HARD_TOTAL=<cap-5> ./safe_modal_run.sh \
-    modal run lplus_modal/lplus_modal.py::main --stage stage1 --per-cat 30
-```
-
-**Local A100:**
-```bash
-cd sib_vla
-SEEDS="42 123 456" PERCAT=30 bash run_stage2_liberoplus.sh   # (after seed-loop wiring)
-```
-
-## 5 · Deliverable (what the results table looks like)
-Per suite, a 7-row category table:
-
-| category | base (mean±CI) | AEGIS (mean±CI) | Δ |
-|---|---|---|---|
-| camera/viewpoint | … | … | … |
-| lighting | … | … | … |
-| … (7 rows) | | | |
-| **TOTAL** | … | … | … |
-
-…over 3 seeds, for object + goal, with a per-suite gating note. Plus a figure
-(`make_readme_figures.py` extended) and the `paper/aegis_draft.md` §LIBERO-Plus block filled.
-
-## 6 · Risks / notes
-- **Cost driver = per_cat × 7 × 12 cells.** Start at per_cat=30; the smoke run's per-task
-  time tells us if 50 is affordable before committing.
-- **Category names** are confirmed by the smoke print (don't hard-code until then).
-- **libero_10 (Long)** uses 520 max-steps — if added to suites, set `--max-steps 520` for it.
-- Eval-only; identity-init guarantees AEGIS ≥ base per suite after gating.
+**Decision:** LIBERO-V (our custom corruption axes) **is dropped from the paper** — it proved
+the module works internally, but it is not a recognized benchmark. The paper's robustness
+evidence is **LIBERO-Plus** (arXiv 2510.13626), a published benchmark, evaluated **paper-worthy**:
+all 4 suites, 3 seeds, base vs AEGIS. **Eval-only** (reuse `smolvla_spatial_repro` +
+`rib_on86`/`rasf_on86`; no training).
 
 ---
-**Status:** Modal cells wired + seed-aware (12-cell 3-seed gen verified). Local seed-loop
-wiring is the only remaining bit. Smoke → calibrate → full run.
+
+## Two deliverables (both multi-seed: 42, 123, 456)
+
+### A · Clean per-suite SR — "we preserve clean success"
+Standard LIBERO, no perturbation. 4 suites × {baseline, aegis} × 3 seeds = **24 cells**.
+Currently only seed 42 exists → this adds 123, 456 and re-runs 42 into `seed<N>/` for a
+uniform table. Stage: `smolvla_modal.py --stage clean`.
+
+### B · LIBERO-Plus robustness — the headline
+7 perturbation categories/suite. 4 suites × {baseline, aegis} × 3 seeds = **24 cells**,
+each `per_cat` tasks/category. Stage: `lplus_modal.py --stage stage1`.
+
+## Protocol (paper-worthy)
+- **Arms:** baseline (SmolVLA + TE) vs AEGIS (RIB + RASF + TE). Δ = AEGIS − base.
+- **Checkpoint:** `smolvla_spatial_repro` for BOTH arms (the one RIB/RASF were trained against;
+  no-training constraint). Absolute clean SR runs ~5–10pp under the paper's official number —
+  so we report **Δ on our honest baseline**, never against a paper figure. (Switching to the
+  official `HuggingFaceVLA/smolvla_libero` ckpt would need RIB/RASF retraining — out of scope.)
+- **Per-suite max-steps (critical):** spatial 220, object 280, goal 300, **long/libero_10 520**
+  (truncating Long silently kills its SR — now baked per-cell).
+- **Per-suite gating (your rule):** if AEGIS < base on a suite, gate off → report base.
+  Identity-init makes this provably safe (0 regressions by construction).
+- **Stats:** mean ± 95% Wilson CI over 3 seeds, per category and per-suite total.
+- **Persistence:** `<suite>/seed<N>/<arm>.json`; resume-skip + 2-min commit daemon.
+
+## Work size & cost
+
+**B · LIBERO-Plus (24 cells):**
+| per_cat | eps/cat/arm (×3) | Modal $ | Modal wall | A100 wall |
+|---:|---:|---:|---:|---:|
+| 30 | 90 | ~$56 | ~14 h | ~14 h |
+| **40 (recommended)** | **120** | **~$74** | ~19 h | ~19 h |
+| 50 | 150 | ~$94 | ~23 h | ~23 h |
+
+**A · Clean SR (24 cells):** ~$17 Modal / ~5 h (clean is fast; no perturbation).
+
+**Full paper run (A + B):** per_cat=40 → **~$91 Modal (one $100 reset, tight)** or **~1 day on a
+dedicated A100 ($0)**. per_cat=30 → ~$73 (comfortable in one reset).
+
+## Run it
+```bash
+# 0. smoke — calibrate per-task time + confirm the 7 category names (~$0.5)
+./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage smoke
+# A. clean SR (4 suites × 3 seeds)
+./safe_modal_run.sh modal run smolvla_modal/smolvla_modal.py::main --stage clean --episodes 10
+# B. LIBERO-Plus robustness (4 suites × 3 seeds, per_cat 40)
+./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage stage1 --per-cat 40
+```
+A100: `--stage clean` via local clean runner; LIBERO-Plus via `run_stage2_liberoplus.sh`
+(needs the 4-suite + seed loop — local wiring TODO; Modal path is complete).
+
+## Deliverable tables (what goes in the paper)
+1. **Clean SR** — 4 rows (suite) × {base, AEGIS, Δ}, mean ± CI. Shows ΔSR ≈ 0 (preservation).
+2. **LIBERO-Plus** — per suite, 7-row category table × {base, AEGIS, Δ}, + per-suite total,
+   mean ± CI, gating note. This is the headline robustness result.
+3. Figure (extend `make_readme_figures.py`); fill `paper/aegis_draft.md` §LIBERO-Plus.
+
+## Modifications made for paper-worthiness
+- LIBERO-Plus cells: **all 4 suites** (was object+goal), **per-suite max-steps** (Long=520),
+  **3 seeds**, per_cat default 40.
+- Clean-SR multi-seed stage added (`--stage clean`, 4 suites × 3 seeds).
+- `--seed` + `--out` JSON on the eval (persistence + resume).
+- Paper draft repositioned: LIBERO-Plus = headline; LIBERO-V → dropped (internal validation only).
+
+## Open decisions (need your call)
+1. **per_cat:** 40 (recommended, ~$74) vs 30 (cheaper, ~$56) vs 50 (strongest, ~$94).
+2. **Compute:** Modal (one reset, ~$91 for A+B) vs dedicated A100 (~1 day, $0) — A100 preferred
+   given the budget freeze.
+3. **Spatial in the table?** You listed all 4 suites — included by default; say if you want
+   object/goal/long only.

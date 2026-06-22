@@ -19,11 +19,12 @@ action chunk (action) — together with a receding-horizon temporal consensus sh
 arms. Both modules are **exact identities at initialization**, so the augmented policy is
 bit-for-bit the base policy before any learning; robustness is therefore *strictly additive*
 and per-suite gating is *provably safe* (a disabled module recovers the base policy exactly).
-On LIBERO with a frozen SmolVLA backbone, AEGIS wins all six perturbation axes on the
-in-distribution Spatial suite (mean +14.1) and generalizes to held-out Object/Goal suites
-with **0 regressions across 10 conditions (mean +29.9)**, while preserving clean success
-(+1.75, never below base on any suite). [PENDING: multi-seed, GR00T-N1.5 cross-architecture,
-LIBERO-Plus paper-protocol, WidowX real-robot.]
+On a frozen SmolVLA backbone we evaluate on **LIBERO-Plus** (a published robustness benchmark,
+7 perturbation categories) across all four suites (spatial / object / goal / long) over three
+seeds, plus clean per-suite SR. AEGIS improves robustness over the SmolVLA+TE baseline while
+preserving clean success (never below base on any suite, by construction). [PENDING: the
+multi-seed LIBERO-Plus + clean runs; GR00T-N1.5 cross-architecture; WidowX real-robot. Internal
+LIBERO-V corruption-axis validation: Spatial +14.1, Object/Goal +29.9 / 0 regressions.]
 
 ---
 
@@ -83,33 +84,33 @@ per-suite gating provably safe (off ≡ base exactly).
 
 ## 4 Experimental Setup
 
-Backbone: frozen SmolVLA. Sim: LIBERO. Protocol: `n_action_steps=1`, 10 flow-matching denoise
-steps, per-suite max-steps, fixed init-states. Baseline = SmolVLA + TE (honest reference).
-Perturbation axes: motion blur, gaussian noise, lighting, texture, viewpoint (moderate/extreme).
-[PENDING: seeds {42,123,456}; currently single seed 42.]
+Backbone: frozen SmolVLA (checkpoint `smolvla_spatial_repro`, used for BOTH arms). Sim: LIBERO.
+Protocol: `n_action_steps=1`, 10 flow-matching denoise steps, **per-suite max-steps** (spatial
+220 / object 280 / goal 300 / long 520), fixed init-states. Baseline = SmolVLA + TE (honest
+reference). **Robustness benchmark = LIBERO-Plus (arXiv 2510.13626)** — a published benchmark
+with 7 perturbation categories per suite. **Seeds {42, 123, 456}**, mean ± 95% Wilson CI.
+(Our custom LIBERO-V corruption-axis grid is internal validation only — see Appendix; not a
+main-paper result.)
 
 ## 5 Results
 
-### 5.1 Clean SR preserved ✅
-4-suite, per-suite gating: AEGIS ≥ base on every suite, avg 85.25 vs 83.5 (+1.75).
+### 5.1 Clean per-suite SR preserved — 4 suites, 3 seeds 🔴 [PENDING run: `--stage clean`]
+Standard LIBERO, no perturbation. AEGIS ≥ base on every suite (identity-init + per-suite
+gating). Single-seed-42 reference: avg 85.25 vs 83.5 (+1.75). [table: 4 suites × {base,AEGIS,Δ}
+mean ± CI]
 
-### 5.2 In-distribution robustness — Spatial ✅ (Fig. `fig2_spatial_robustness.png`)
-Wins all 6 axes, mean +14.1 (n=200/axis). [table]
+### 5.2 LIBERO-Plus robustness — 4 suites × 7 categories, 3 seeds ★ HEADLINE 🔴 [PENDING run]
+The paper's main robustness result. Per suite: 7-category × {baseline, AEGIS, Δ} table + total,
+mean ± CI, per-suite gating. `lplus_modal.py --stage stage1`. [table + figure]
 
-### 5.3 Cross-suite generalization — Object+Goal ✅ (Fig. `fig1_crosssuite_robustness.png`)
-0 regressions / 10 conditions, mean +29.9. Rescues catastrophic cells (object/motion_blur
-0→86). [table]
+### 5.3 Cross-architecture — GR00T-N1.5 (3B) 🔴 [PENDING / out of current scope]
+Wiring verified (RIB @ eagle_model.mlp1, 2.46M, identity-init; RASF @ 16×32). No re-training in
+current scope.
 
-### 5.4 Graceful degradation 🟡
-Δ peaks +24.5 at σ=0.30 where base is dead (0/200). [PENDING: full per-σ curve — only 2–3
-anchor points currently; need the noise sweep regenerated before plotting.]
-
-### 5.5 Multi-seed 🔴 [PENDING]
-≥3 seeds on the headline grids; report mean ± CI.
-
-### 5.6 Cross-architecture — GR00T-N1.5 (3B) 🔴 [PENDING]
-Wiring verified (RIB @ eagle_model.mlp1, 2.46M, identity-init; RASF @ 16×32). Reproduce +
-AEGIS robustness with per-suite gating.
+### Appendix A · LIBERO-V internal validation (not a main result)
+Our custom corruption-axis grid (motion blur / gaussian / lighting / texture / viewpoint). It
+gave the early signal that AEGIS works (Spatial +14.1; Object+Goal +29.9, 0 regressions) but is
+not a recognized benchmark, so it is reported only as internal validation.
 
 ## 6 Ablations 🟡 (harness ready: `smolvla_modal.py::main --stage ablation`)
 

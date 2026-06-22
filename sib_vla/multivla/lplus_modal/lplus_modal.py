@@ -79,11 +79,18 @@ RIB = f"{A}/results/ib_on86/rib_on86.pt"
 RASF = f"{A}/results/rasf_on86/rasf_on86.pt"
 
 
-def _cells_lplus(per_cat=30, suites=("libero_object", "libero_goal"), seeds=(42, 123, 456)):
+# per-suite max-steps (CRITICAL: libero_10/Long needs 520 or long-horizon SR silently dies).
+LPLUS_MAXSTEPS = {"libero_spatial": 220, "libero_object": 280, "libero_goal": 300, "libero_10": 520}
+
+
+def _cells_lplus(per_cat=40, suites=("libero_spatial", "libero_object", "libero_goal", "libero_10"),
+                 seeds=(42, 123, 456)):
     """LIBERO-Plus eval cells: seed × suite × {baseline, aegis}. EVAL-ONLY (existing
     checkpoints; no training). per_cat tasks/category × 7 categories per suite, per seed.
-    Each seed isolates outputs under <suite>/seed<N>/ -> 3-seed mean ± CI, resume-safe."""
-    return [{"suite": sk, "arm": arm, "per_cat": per_cat, "seed": seed}
+    Default = the PAPER table: ALL 4 suites × 3 seeds × 2 arms = 24 cells, isolated under
+    <suite>/seed<N>/ -> mean ± CI, resume-safe. Each cell carries its suite's max-steps."""
+    return [{"suite": sk, "arm": arm, "per_cat": per_cat, "seed": seed,
+             "max_steps": LPLUS_MAXSTEPS[sk]}
             for seed in seeds for sk in suites for arm in ARMS]
 
 
@@ -109,7 +116,8 @@ def eval_cell(cell: dict):
         except Exception:
             pass
     cmd = ["/usr/local/bin/python", "-u", f"{A}/scripts/libero_plus_aegis_eval.py",
-           "--method", arm, "--ckpt", CKPT, "--suite", sk, "--per-cat", str(pc), "--out", out]
+           "--method", arm, "--ckpt", CKPT, "--suite", sk, "--per-cat", str(pc), "--out", out,
+           "--max-steps", str(cell.get("max_steps", 280))]   # per-suite; Long=520
     if seed is not None:
         cmd += ["--seed", str(seed)]
     if arm == "aegis":
@@ -144,16 +152,16 @@ def eval_cell(cell: dict):
 
 
 @app.local_entrypoint()
-def main(stage: str = "validate", per_cat: int = 30):
+def main(stage: str = "validate", per_cat: int = 40):
     if stage == "validate":
         print("VALIDATE:", validate.remote())
     elif stage == "smoke":
         print("SMOKE:", eval_cell.remote({"suite": "libero_object", "arm": "aegis",
                                           "per_cat": 1, "seed": 42}))
     elif stage == "stage1":
-        # 3-seed: seeds 42,123,456 × {object,goal} × {baseline,aegis} = 12 cells
+        # PAPER table: seeds 42,123,456 × {spatial,object,goal,long} × {baseline,aegis} = 24 cells
         cells = _cells_lplus(per_cat)
-        print(f"launching {len(cells)} LIBERO-Plus cells (3-seed, per_cat={per_cat})...")
+        print(f"launching {len(cells)} LIBERO-Plus cells (4 suites × 3 seeds, per_cat={per_cat})...")
         for r in sorted(eval_cell.map(cells), key=lambda x: (x['cell']['seed'], x['cell']['suite'], x['cell']['arm'])):
             c = r["cell"]; print(f"  s{c['seed']} {c['suite']:14} {c['arm']:8} -> SR={r.get('sr','ERR')} (rc={r['rc']})")
     else:

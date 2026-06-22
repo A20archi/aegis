@@ -171,6 +171,16 @@ def _cells_multiseed(episodes=10, n_envs=10, seeds=(123, 456),
     return cells
 
 
+def _cells_clean(episodes=10, n_envs=10, seeds=(42, 123, 456),
+                 suites=("spatial", "object", "goal", "long")):
+    """Clean (no-perturbation) per-suite SR, multi-seed — the 'we preserve clean success'
+    table. ALL 4 suites × 3 seeds × {baseline, aegis} = 24 cells, eval-only. Uses the
+    `clean` condition; isolated under <suite>/seed<N>/. Currently only seed 42 exists."""
+    return [{"suite": sk, "axis": "clean", "arm": arm, "episodes": episodes, "n_envs": n_envs,
+             "record": False, "seed": seed, "od": "clean_sr"}
+            for seed in seeds for sk in suites for arm in ARMS]
+
+
 @app.function(image=image, cpu=2.0, memory=8192, timeout=1200, volumes={"/assets": assets})
 def validate():
     """CPU: confirm sim stack imports + EGL offscreen render works (no GPU)."""
@@ -330,6 +340,13 @@ def main(stage: str = "validate", episodes: int = 20):
         for arm in order:
             row = by.get(arm, {})
             print(arm.ljust(10) + "".join(str(row.get(ax, "--")).rjust(12) for ax in AXES))
+    elif stage == "clean":
+        # clean per-suite SR, multi-seed: 4 suites × 3 seeds × 2 arms = 24 cells
+        cells = _cells_clean(episodes)
+        print(f"launching {len(cells)} CLEAN-SR cells (4 suites × 3 seeds)...")
+        results = list(eval_cell.map(cells))
+        for r in sorted(results, key=lambda x: (x['cell']['suite'], x['cell']['seed'], x['cell']['arm'])):
+            c = r["cell"]; print(f"  {c['suite']:7} s{c['seed']} {c['arm']:8} -> SR={r.get('sr','ERR')}")
     elif stage == "multiseed":
         # TOP PRIORITY: extra seeds 123,456 × {object,goal,long} × 6 axes × 2 arms = 72 cells
         cells = _cells_multiseed(episodes)
@@ -338,4 +355,4 @@ def main(stage: str = "validate", episodes: int = 20):
         for r in sorted(results, key=lambda x: (x['cell']['seed'], x['cell']['suite'], x['cell']['axis'], x['cell']['arm'])):
             c = r["cell"]; print(f"  s{c['seed']} {c['suite']:7} {c['axis']:18} {c['arm']:8} -> SR={r.get('sr','ERR')}")
     else:
-        print("stage = validate | smoke | stage1 | long | videos | ablation | multiseed")
+        print("stage = validate | smoke | stage1 | long | clean | videos | ablation | multiseed")
