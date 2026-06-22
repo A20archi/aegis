@@ -86,6 +86,17 @@ Local results: `results/liberov_objgoal/`, `results/liberoplus/`, `results/ablat
 
 ---
 
+## LIBERO-Plus pairwise videos on the LOCAL A100 (no Modal)
+Local env is fully set up + verified: LIBERO-plus repo + 6.4 GB assets present, lerobot 0.4.3
++ CUDA, imageio-ffmpeg, checkpoints. Just run (niced, sequential, shares GPU compute):
+```bash
+cd sib_vla
+SUITE=libero_object SEED=42 VPC=1 bash run_liberoplus_video_local.sh
+# baseline+aegis, same seed -> matched pairwise clips:
+#   results/liberoplus_video/<suite>/videos/<category>/{baseline,aegis}_task<id>.mp4
+```
+Same artifact as the Modal `--stage video`. CATS="Camera Light" to film only some categories.
+
 ## After results land (any path) — $0 writing
 
 1. `python sib_vla/scripts/make_readme_figures.py` — regenerate figures with new numbers.
