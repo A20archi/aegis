@@ -73,9 +73,81 @@ def validate():
     return out
 
 
+A = "/assets/sib_vla"                       # uploaded source root on the volume
+CKPT = f"{A}/outputs/smolvla_spatial_repro/checkpoints/020000/pretrained_model"
+RIB = f"{A}/results/ib_on86/rib_on86.pt"
+RASF = f"{A}/results/rasf_on86/rasf_on86.pt"
+
+
+def _cells_lplus(per_cat=50, suites=("libero_object", "libero_goal")):
+    """LIBERO-Plus eval cells: suite × {baseline, aegis}. EVAL-ONLY (existing checkpoints;
+    no training). per_cat tasks/category × 7 categories per suite."""
+    return [{"suite": sk, "arm": arm, "per_cat": per_cat}
+            for sk in suites for arm in ARMS]
+
+
+# L4 + cpu=8: LIBERO-Plus rollouts are MuJoCo/EGL sim-bound (not GPU). max_containers caps
+# in-flight cells; resume-skip + commit daemon = "save every inch".
+@app.function(image=image, gpu="L4", cpu=8.0, memory=32768, timeout=14400,
+              max_containers=4, volumes={"/assets": assets})
+def eval_cell(cell: dict):
+    """One LIBERO-Plus cell (suite, arm). Streams progress; resume-skips a finished JSON."""
+    import os, subprocess, sys, threading
+    sk, arm, pc = cell["suite"], cell["arm"], cell.get("per_cat", 50)
+    od = f"/assets/results_modal/liberoplus/{sk}"
+    os.makedirs(od, exist_ok=True)
+    out = f"{od}/{arm}.json"
+    if os.path.exists(out):                  # resume-skip: a written JSON == this cell is done
+        try:
+            d = json.load(open(out))
+            if d.get("n_episodes", 0) > 0:
+                return {"cell": cell, "rc": 0, "sr": round(d["total_sr"] * 100, 1),
+                        "n": d["n_episodes"], "resumed": True}
+        except Exception:
+            pass
+    cmd = ["/usr/local/bin/python", "-u", f"{A}/scripts/libero_plus_aegis_eval.py",
+           "--method", arm, "--ckpt", CKPT, "--suite", sk, "--per-cat", str(pc), "--out", out]
+    if arm == "aegis":
+        cmd += ["--rib-weights", RIB, "--rasf-weights", RASF]
+    env = {**os.environ, "MUJOCO_GL": "egl", "PYOPENGL_PLATFORM": "egl",
+           "LIBERO_PLUS_REPO": "/opt/LIBERO-plus", "LIBERO_CONFIG_PATH": "/opt/lplus_cfg",
+           "PYTHONPATH": f"{A}:/opt/LIBERO-plus"}
+    tag = f"{sk}/{arm}"
+    print(f"[lplus START] {tag} per_cat={pc}", flush=True)
+    stop = threading.Event()
+    def _commit():
+        while not stop.wait(120):
+            try: assets.commit()
+            except Exception as e: print(f"[commit] warn: {e}", flush=True)
+    threading.Thread(target=_commit, daemon=True).start()
+    p = subprocess.Popen(cmd, cwd=A, env=env, stdout=subprocess.PIPE,
+                         stderr=subprocess.STDOUT, text=True, bufsize=1)
+    tail = []
+    for line in p.stdout:
+        sys.stdout.write(f"[{tag}] {line}"); sys.stdout.flush()
+        tail.append(line)
+        if len(tail) > 80: tail.pop(0)
+    p.wait(); stop.set()
+    res = {"cell": cell, "rc": p.returncode}
+    if os.path.exists(out):
+        d = json.load(open(out)); res["sr"] = round(d["total_sr"] * 100, 1); res["n"] = d["n_episodes"]
+    else:
+        res["err"] = "".join(tail)[-1500:]
+    print(f"[lplus DONE] {tag} rc={res['rc']} sr={res.get('sr', 'ERR')}", flush=True)
+    assets.commit()
+    return res
+
+
 @app.local_entrypoint()
-def main(stage: str = "validate"):
+def main(stage: str = "validate", per_cat: int = 50):
     if stage == "validate":
         print("VALIDATE:", validate.remote())
+    elif stage == "smoke":
+        print("SMOKE:", eval_cell.remote({"suite": "libero_object", "arm": "aegis", "per_cat": 1}))
+    elif stage == "stage1":
+        cells = _cells_lplus(per_cat)        # object+goal × {baseline,aegis} = 4 cells
+        print(f"launching {len(cells)} LIBERO-Plus cells (per_cat={per_cat})...")
+        for r in sorted(eval_cell.map(cells), key=lambda x: (x['cell']['suite'], x['cell']['arm'])):
+            c = r["cell"]; print(f"  {c['suite']:14} {c['arm']:8} -> SR={r.get('sr','ERR')} (rc={r['rc']})")
     else:
-        print("stage = validate  (smoke/stage1 added after validate passes)")
+        print("stage = validate | smoke | stage1")

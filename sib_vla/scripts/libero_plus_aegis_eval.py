@@ -102,6 +102,8 @@ def main():
     ap.add_argument("--max-steps", type=int, default=280)
     ap.add_argument("--seed", type=int, default=100000)
     ap.add_argument("--cats", nargs="*", default=None)
+    ap.add_argument("--out", default=None, help="write per-category + total SR to this JSON "
+                    "(enables persistence + Modal resume-skip; eval-only, no training)")
     args = ap.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -162,6 +164,15 @@ def main():
         r = results[c]; overall += r
         p(f"  {c:22s}: {100.0*sum(r)/max(1,len(r)):5.1f}%  (n={len(r)})")
     p(f"  {'TOTAL':22s}: {100.0*sum(overall)/max(1,len(overall)):5.1f}%  (n={len(overall)})")
+    if args.out:
+        rec = {"method": args.method, "suite": args.suite, "per_cat": args.per_cat,
+               "per_category": {c: {"sr": (sum(results[c]) / max(1, len(results[c]))),
+                                    "n": len(results[c])} for c in cats},
+               "total_sr": (sum(overall) / max(1, len(overall))), "n_episodes": len(overall)}
+        os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
+        with open(args.out, "w") as _f:
+            json.dump(rec, _f, indent=2)
+        p(f"[out] wrote {args.out}")
     p("PROBE_DONE")
 
 
