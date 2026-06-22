@@ -48,10 +48,15 @@ image = (
     .run_commands(
         "python -c \"from huggingface_hub import hf_hub_download; "
         "hf_hub_download('Sylvest/LIBERO-plus','assets.zip',repo_type='dataset',local_dir='/tmp/lpa')\"",
-        "cd /opt/LIBERO-plus/libero/libero && unzip -q -o /tmp/lpa/assets.zip && rm -rf /tmp/lpa",
+        "cd /tmp/lpa && unzip -q -o assets.zip && rm -f assets.zip",
+        # the zip nests the real assets/ deep (inspire/.../LIBERO-plus-0/assets/) — locate it by
+        # the marker scene file and lift it to libero/libero/assets (move, or merge if one exists).
+        "SRC=$(dirname $(dirname $(find /tmp/lpa -name libero_floor_base_style.xml | head -1))); "
+        "echo \"SRC=$SRC\"; "
+        "if [ -d /opt/LIBERO-plus/libero/libero/assets ]; then cp -rn \"$SRC\"/. /opt/LIBERO-plus/libero/libero/assets/; "
+        "else mv \"$SRC\" /opt/LIBERO-plus/libero/libero/assets; fi; rm -rf /tmp/lpa",
         "test -f /opt/LIBERO-plus/libero/libero/assets/scenes/libero_floor_base_style.xml "
-        "&& echo LPLUS_ASSETS_OK || (echo LPLUS_ASSETS_MISSING; "
-        "ls /opt/LIBERO-plus/libero/libero/assets/scenes/ 2>/dev/null | head; exit 1)",
+        "&& echo LPLUS_ASSETS_OK || (echo LPLUS_ASSETS_MISSING; exit 1)",
     )
     .env({"MUJOCO_GL": "egl", "PYOPENGL_PLATFORM": "egl", "HF_HUB_OFFLINE": "0",
           "LIBERO_CONFIG_PATH": "/opt/lplus_cfg", "LIBERO_PLUS_REPO": "/opt/LIBERO-plus",
