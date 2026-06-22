@@ -180,17 +180,27 @@ def main():
         ids = by_cat[c]; n = min(args.per_cat, len(ids)); stp = max(1, len(ids)//n)
         picks[c] = ids[::stp][:n]
 
-    rep_cfg = LiberoEnv(task=args.suite, task_ids=[picks[cats[0]][0]], init_states=False)
+    # lerobot 0.4.3 LiberoEnv has NO task_ids/init_states kwargs — select a task the way the
+    # working eval_libero_v.py does: task_ids goes inside gym_kwargs, env built via create_libero_envs.
+    import gymnasium as gym
+    from lerobot.envs.libero import create_libero_envs
+    rep_cfg = LiberoEnv(task=args.suite, fps=10, episode_length=args.max_steps)
     env_pre, env_post = make_env_pre_post_processors(env_cfg=rep_cfg, policy_cfg=policy_cfg)
     p(f"[{el()}] processors built; starting rollouts")
+
+    def build_task_env(tid):
+        gk = dict(rep_cfg.gym_kwargs); gk["task_ids"] = [tid]
+        return create_libero_envs(
+            task=args.suite, n_envs=1, camera_name=rep_cfg.camera_name,
+            init_states=rep_cfg.init_states, gym_kwargs=gk,
+            env_cls=gym.vector.SyncVectorEnv, control_mode=rep_cfg.control_mode,
+            episode_length=args.max_steps)[args.suite][tid]
 
     results = defaultdict(list)
     rec_count = defaultdict(int)
     for c in cats:
         for tid in picks[c]:
-            env_cfg = LiberoEnv(task=args.suite, task_ids=[tid], init_states=False)
-            envs = make_env(env_cfg, n_envs=1)
-            env = next(iter(next(iter(envs.values())).values()))
+            env = build_task_env(tid)
             succ_n = 0
             for ep in range(args.episodes):
                 rpath = None
