@@ -134,6 +134,20 @@ def _cells_ablation(episodes=10, n_envs=10, suite="spatial"):
     return cells
 
 
+def _cells_multiseed(episodes=10, n_envs=10, seeds=(123, 456)):
+    """Multi-seed on the headline cross-suite grid (Object+Goal × 6 axes × {baseline,aegis}).
+    seed 42 is the primary run already on the volume; here we add the extra seeds so we can
+    report mean ± CI. Each seed isolates its outputs under <od>/seed<N>/ (resume-safe)."""
+    cells = []
+    for seed in seeds:
+        for sk in ("object", "goal"):
+            for axis in AXES:
+                for arm in ARMS:
+                    cells.append({"suite": sk, "axis": axis, "arm": arm, "episodes": episodes,
+                                  "n_envs": n_envs, "record": False, "seed": seed})
+    return cells
+
+
 @app.function(image=image, cpu=2.0, memory=8192, timeout=1200, volumes={"/assets": assets})
 def validate():
     """CPU: confirm sim stack imports + EGL offscreen render works (no GPU)."""
@@ -181,11 +195,13 @@ def eval_cell(cell: dict):
     # clobbering each other and the real aegis grid — and resume/read must key on `method`.
     method = cell.get("method", arm)
     te = cell.get("te", True)                       # vanilla turns TE off (true floor)
+    seed = cell.get("seed")                          # multi-seed: eval writes under seed<N>/
+    seed_sub = f"/seed{seed}" if seed is not None else ""
     od = f"/assets/results_modal/{cell.get('od', 'liberov_objgoal')}/{sk}"
     os.makedirs(od, exist_ok=True)
     # RESUME: skip ONLY if a COMPLETE json exists (n>=expected and not partial). Partials
     # (from a killed run) are re-run, never silently treated as done.
-    done = glob.glob(f"{od}/libero_v/{method}/eval_{axis}.json")
+    done = glob.glob(f"{od}{seed_sub}/libero_v/{method}/eval_{axis}.json")
     if done:
         d = json.load(open(done[0]))
         if d.get("n_episodes", 0) >= expected and not d.get("partial", False):
@@ -211,6 +227,8 @@ def eval_cell(cell: dict):
                 "--rib-weights", f"{A}/results/ib_on86/rib_on86.pt",
                 "--rasf-weights", f"{A}/results/rasf_on86/rasf_on86.pt"]
     cmd += ["--n-action-steps", "1", "--episodes", str(ep), "--tasks", tasks, "--only", axis]
+    if seed is not None:
+        cmd += ["--seed", str(seed)]                 # multi-seed run -> output_dir/seed<N>/
     if te:
         cmd += TE                                    # both arms carry TE except vanilla (floor)
     if record:
@@ -238,7 +256,7 @@ def eval_cell(cell: dict):
     p.wait()
     stop_commit.set()
     res = {"cell": cell, "rc": p.returncode}
-    j = glob.glob(f"{od}/libero_v/{method}/eval_{axis}.json")
+    j = glob.glob(f"{od}{seed_sub}/libero_v/{method}/eval_{axis}.json")
     if j:
         d = json.load(open(j[0])); res["sr"] = round(d["success_rate"]*100, 1); res["n"] = d["n_episodes"]
     else:
@@ -283,5 +301,12 @@ def main(stage: str = "validate", episodes: int = 20):
         for arm in order:
             row = by.get(arm, {})
             print(arm.ljust(10) + "".join(str(row.get(ax, "--")).rjust(12) for ax in AXES))
+    elif stage == "multiseed":
+        # extra seeds (123,456) on the headline Object+Goal grid -> 48 cells
+        cells = _cells_multiseed(episodes)
+        print(f"launching {len(cells)} MULTI-SEED cells...")
+        results = list(eval_cell.map(cells))
+        for r in sorted(results, key=lambda x: (x['cell']['seed'], x['cell']['suite'], x['cell']['axis'], x['cell']['arm'])):
+            c = r["cell"]; print(f"  s{c['seed']} {c['suite']:7} {c['axis']:18} {c['arm']:8} -> SR={r.get('sr','ERR')}")
     else:
-        print("stage = validate | smoke | stage1 | videos | ablation")
+        print("stage = validate | smoke | stage1 | videos | ablation | multiseed")

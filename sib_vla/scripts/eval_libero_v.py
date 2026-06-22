@@ -135,12 +135,20 @@ def main():
     ap.add_argument("--record", action="store_true", help="save rollout videos per condition")
     ap.add_argument("--videos-per-task", type=int, default=2)
     ap.add_argument("--camera-key", default=None)
+    ap.add_argument("--seed", type=int, default=None,
+                    help="override cfg seeds[0] for multi-seed runs; writes under output_dir/seed<N>/ "
+                         "so seeds never collide. Omit => unchanged (cfg seed, no subdir).")
     args = ap.parse_args()
 
     torch.backends.cuda.matmul.allow_tf32 = True
     torch.backends.cudnn.allow_tf32 = True
 
     cfg = load_config(args.config)
+    # multi-seed: a single --seed overrides every downstream seed use (set_seed, generator,
+    # seed_base) and isolates this seed's outputs in its own subdir. Backward-compatible.
+    if args.seed is not None:
+        cfg["seeds"] = [int(args.seed)]
+        cfg["output_dir"] = str(Path(cfg["output_dir"]) / f"seed{int(args.seed)}")
     set_seed(cfg["seeds"][0])
     device = resolve_device(cfg)
     out = Path(cfg["output_dir"]) / "libero_v" / args.method
