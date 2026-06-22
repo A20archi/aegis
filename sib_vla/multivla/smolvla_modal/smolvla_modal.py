@@ -149,17 +149,24 @@ def _cells_ablation(episodes=10, n_envs=10, suite="spatial"):
     return cells
 
 
-def _cells_multiseed(episodes=10, n_envs=10, seeds=(123, 456)):
-    """Multi-seed on the headline cross-suite grid (Object+Goal × 6 axes × {baseline,aegis}).
-    seed 42 is the primary run already on the volume; here we add the extra seeds so we can
-    report mean ± CI. Each seed isolates its outputs under <od>/seed<N>/ (resume-safe)."""
+def _cells_multiseed(episodes=10, n_envs=10, seeds=(42, 123, 456),
+                     suites=("object", "goal", "long")):
+    """TOP-PRIORITY deliverable: multi-seed robustness across the LIBERO suites.
+    Runs ALL seeds FRESH into <od>/<suite>/seed<N>/ so we get one uniform mean ± CI table
+    (no mixing with the original no-subdir seed-42 grid). Default = 3 seeds × {Object, Goal,
+    Long} × 6 axes × {baseline, aegis} = 108 cells. Each seed isolated & resume-safe.
+    Spatial is the in-distribution/ablation suite (n=200 protocol) — add it explicitly if
+    a multi-seed in-dist table is also wanted."""
+    od_for = {"object": "liberov_objgoal", "goal": "liberov_objgoal", "long": "liberov_long",
+              "spatial": "liberov_spatial"}
     cells = []
     for seed in seeds:
-        for sk in ("object", "goal"):
+        for sk in suites:
             for axis in AXES:
                 for arm in ARMS:
                     cells.append({"suite": sk, "axis": axis, "arm": arm, "episodes": episodes,
-                                  "n_envs": n_envs, "record": False, "seed": seed})
+                                  "n_envs": n_envs, "record": False, "seed": seed,
+                                  "od": od_for[sk]})
     return cells
 
 
@@ -323,9 +330,9 @@ def main(stage: str = "validate", episodes: int = 20):
             row = by.get(arm, {})
             print(arm.ljust(10) + "".join(str(row.get(ax, "--")).rjust(12) for ax in AXES))
     elif stage == "multiseed":
-        # extra seeds (123,456) on the headline Object+Goal grid -> 48 cells
+        # TOP PRIORITY: seeds 42,123,456 × {object,goal,long} × 6 axes × 2 arms = 108 cells
         cells = _cells_multiseed(episodes)
-        print(f"launching {len(cells)} MULTI-SEED cells...")
+        print(f"launching {len(cells)} MULTI-SEED cells (LIBERO suites: object/goal/long)...")
         results = list(eval_cell.map(cells))
         for r in sorted(results, key=lambda x: (x['cell']['seed'], x['cell']['suite'], x['cell']['axis'], x['cell']['arm'])):
             c = r["cell"]; print(f"  s{c['seed']} {c['suite']:7} {c['axis']:18} {c['arm']:8} -> SR={r.get('sr','ERR')}")

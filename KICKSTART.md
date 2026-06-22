@@ -19,22 +19,26 @@ cd sib_vla/multivla
 # 0. sanity: confirm clean slate + real spend
 bash modal_killall.sh
 
-# 1. close the grid tail (2 pairs) — resume-skip protects the 10 done       (~$2-3)
+# 1. *** TOP PRIORITY *** MULTI-SEED across the LIBERO suites — seeds 42,123,456 ×
+#    {object,goal,long} × 6 axes × {base,aegis} = 108 cells -> mean ± CI             (~$40)
+BUDGET_GUARD=45 HARD_TOTAL=<cap-5> ./safe_modal_run.sh \
+    modal run smolvla_modal/smolvla_modal.py::main --stage multiseed --episodes 10
+
+# 2. close the grid tail (2 pairs) — resume-skip protects the 10 done            (~$2-3)
 BUDGET_GUARD=6  HARD_TOTAL=<cap-5> ./safe_modal_run.sh \
     modal run smolvla_modal/smolvla_modal.py::main --stage stage1 --episodes 10
 
-# 1b. LIBERO-Long robustness — same 6 axes × {base,aegis} = 12 cells, 520-step (~$2-4)
+# 3. LIBERO-Long robustness (seed 42 single) — 12 cells, 520-step               (~$2-4)
 BUDGET_GUARD=8  HARD_TOTAL=<cap-5> ./safe_modal_run.sh \
     modal run smolvla_modal/smolvla_modal.py::main --stage long --episodes 10
 
-# 2. ablation suite — Spatial, 8 arms × 6 axes = 48 cells, eval-only          (~$12-17)
+# 4. ablation suite — Spatial, 8 arms × 6 axes = 48 cells, eval-only             (~$12-17)
 BUDGET_GUARD=20 HARD_TOTAL=<cap-5> ./safe_modal_run.sh \
     modal run smolvla_modal/smolvla_modal.py::main --stage ablation --episodes 10
-
-# 3. multi-seed — seeds 123,456 on the headline grid = 48 cells              (~$14-18)
-BUDGET_GUARD=22 HARD_TOTAL=<cap-5> ./safe_modal_run.sh \
-    modal run smolvla_modal/smolvla_modal.py::main --stage multiseed --episodes 10
 ```
+> Note: the multi-seed stage runs all 3 seeds FRESH (incl. 42) into `seed<N>/` subdirs, so
+> it is self-contained — it already covers Object/Goal/Long; steps 2–3 are only needed for the
+> original no-subdir seed-42 grid/Long if you still want those. Multi-seed alone gives the headline.
 Results land on volume `smolvla-assets`; pull with `modal volume get smolvla-assets results_modal/... .`
 
 GR00T (Path A) and LIBERO-Plus cells are **not yet wired** (need the real model/repo interface)
@@ -49,11 +53,11 @@ stages 1→3 serially with an OOM watchdog that only ever kills MY jobs.** Fire-
 
 ```bash
 cd sib_vla
-# self-driving: holds until the card frees, then
-#   stage1 (V object+goal) -> LIBERO-Long -> stage2 (LIBERO-Plus) -> stage3 (ablations)
+# *** TOP PRIORITY *** multi-seed across LIBERO suites (object,goal,long; seeds 42,123,456)
+SEEDS="42 123 456" SUITES="object goal long" EP=20 bash run_multiseed.sh
+
+# then the rest — full self-driving chain (holds until card frees; stage1 -> Long -> LIBERO-Plus -> ablations):
 nohup bash run_master_queue.sh > results/master_queue.log 2>&1 &
-# or just the Long robustness sweep on its own:
-EP=20 bash run_liberolong.sh
 #   tune: START_FREE=68000 (MiB free that signals external jobs cleared), HARDCAP=1 (serial)
 
 # multi-seed (run after stage1, or standalone) — seeds 123,456, n=200
@@ -68,14 +72,15 @@ Local results: `results/liberov_objgoal/`, `results/liberoplus/`, `results/ablat
 
 | # | task | path A cost | path B time¹ | gating? |
 |---|---|---:|---:|---|
-| 1 | Grid tail (2 pairs) | $2–3 | ~0.5 h | — |
-| 1b | LIBERO-Long robustness (12 cells, 520-step) | $2–4 | ~3 h | long-horizon stress test |
-| 2 | Ablation suite (48 cells) | $12–17 | ~12 h | reviewer-critical |
-| 3 | Multi-seed (48 cells) | $14–18 | ~10 h | **#1 reviewer ask** |
-| 4 | GR00T-N1.5 reproduce + AEGIS | $19–26 | ~15 h | needs harness (build on A100) |
-| 5 | LIBERO-Plus sweep | $15–28 | ~14 h | needs cells (build on A100) |
+| **1** | **Multi-seed across LIBERO suites** (108 cells: 3 seeds × {obj,goal,long}) | **$40** | **~1.5 days** | **TOP — the headline statistical result** |
+| 2 | Grid tail (2 pairs, seed-42) | $2–3 | ~0.5 h | only for original no-subdir grid |
+| 3 | LIBERO-Long (seed-42 single, 12 cells) | $2–4 | ~3 h | subsumed by #1 |
+| 4 | Ablation suite (48 cells) | $12–17 | ~12 h | reviewer-critical |
+| 5 | GR00T-N1.5 reproduce + AEGIS | $19–26 | ~15 h | needs harness (build on A100) |
+| 6 | LIBERO-Plus sweep | $15–28 | ~14 h | needs cells (build on A100) |
 
-¹ dedicated A100, ~4 parallel sim-evals. **Paper-core = #1–4 ≈ 2 days / ~$47–61.**
+¹ dedicated A100, ~4 parallel sim-evals. **#1 multi-seed alone is the headline; #1+#4 (ablations)
++ #5 (GR00T) ≈ the full paper-core.**
 
 ---
 
