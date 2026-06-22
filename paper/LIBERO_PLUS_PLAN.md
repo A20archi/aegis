@@ -46,17 +46,17 @@ each `per_cat` tasks/category. Stage: `lplus_modal.py --stage stage1`.
 **Full paper run (A + B):** per_cat=40 → **~$91 Modal (one $100 reset, tight)** or **~1 day on a
 dedicated A100 ($0)**. per_cat=30 → ~$73 (comfortable in one reset).
 
-## Run it  (limit $200 → guard HARD_TOTAL=185, auto-abort with ~$15 margin)
+## Run it  (limit $200 → guard HARD_TOTAL=190, auto-abort with ~$15 margin)
 ```bash
 cd sib_vla/multivla
 # 0. smoke — calibrate per-task time + confirm the 7 category names (~$0.5)
-BUDGET_GUARD=2   HARD_TOTAL=185 ./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage smoke
+BUDGET_GUARD=2   HARD_TOTAL=190 ./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage smoke
 # A. clean SR (4 suites × 3 seeds)
-BUDGET_GUARD=22  HARD_TOTAL=185 ./safe_modal_run.sh modal run smolvla_modal/smolvla_modal.py::main --stage clean --episodes 10
+BUDGET_GUARD=22  HARD_TOTAL=190 ./safe_modal_run.sh modal run smolvla_modal/smolvla_modal.py::main --stage clean --episodes 10
 # B. LIBERO-Plus robustness (4 suites × 3 seeds, per_cat 40)
-BUDGET_GUARD=80  HARD_TOTAL=185 ./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage stage1 --per-cat 40
+BUDGET_GUARD=80  HARD_TOTAL=190 ./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage stage1 --per-cat 40
 # C. LIBERO-Plus-native pairwise videos (object suite, 7 cats × {base,aegis})
-BUDGET_GUARD=6   HARD_TOTAL=185 ./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage video
+BUDGET_GUARD=6   HARD_TOTAL=190 ./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage video
 ```
 A100: `--stage clean` via local clean runner; LIBERO-Plus via `run_stage2_liberoplus.sh`
 (needs the 4-suite + seed loop — local wiring TODO; Modal path is complete).
