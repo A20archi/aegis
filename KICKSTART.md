@@ -23,6 +23,10 @@ bash modal_killall.sh
 BUDGET_GUARD=6  HARD_TOTAL=<cap-5> ./safe_modal_run.sh \
     modal run smolvla_modal/smolvla_modal.py::main --stage stage1 --episodes 10
 
+# 1b. LIBERO-Long robustness — same 6 axes × {base,aegis} = 12 cells, 520-step (~$2-4)
+BUDGET_GUARD=8  HARD_TOTAL=<cap-5> ./safe_modal_run.sh \
+    modal run smolvla_modal/smolvla_modal.py::main --stage long --episodes 10
+
 # 2. ablation suite — Spatial, 8 arms × 6 axes = 48 cells, eval-only          (~$12-17)
 BUDGET_GUARD=20 HARD_TOTAL=<cap-5> ./safe_modal_run.sh \
     modal run smolvla_modal/smolvla_modal.py::main --stage ablation --episodes 10
@@ -45,8 +49,11 @@ stages 1→3 serially with an OOM watchdog that only ever kills MY jobs.** Fire-
 
 ```bash
 cd sib_vla
-# self-driving: holds until the card frees, then stage1 (grid) -> stage2 (LIBERO-Plus) -> stage3 (ablations)
+# self-driving: holds until the card frees, then
+#   stage1 (V object+goal) -> LIBERO-Long -> stage2 (LIBERO-Plus) -> stage3 (ablations)
 nohup bash run_master_queue.sh > results/master_queue.log 2>&1 &
+# or just the Long robustness sweep on its own:
+EP=20 bash run_liberolong.sh
 #   tune: START_FREE=68000 (MiB free that signals external jobs cleared), HARDCAP=1 (serial)
 
 # multi-seed (run after stage1, or standalone) — seeds 123,456, n=200
@@ -62,6 +69,7 @@ Local results: `results/liberov_objgoal/`, `results/liberoplus/`, `results/ablat
 | # | task | path A cost | path B time¹ | gating? |
 |---|---|---:|---:|---|
 | 1 | Grid tail (2 pairs) | $2–3 | ~0.5 h | — |
+| 1b | LIBERO-Long robustness (12 cells, 520-step) | $2–4 | ~3 h | long-horizon stress test |
 | 2 | Ablation suite (48 cells) | $12–17 | ~12 h | reviewer-critical |
 | 3 | Multi-seed (48 cells) | $14–18 | ~10 h | **#1 reviewer ask** |
 | 4 | GR00T-N1.5 reproduce + AEGIS | $19–26 | ~15 h | needs harness (build on A100) |
@@ -84,9 +92,10 @@ Local results: `results/liberov_objgoal/`, `results/liberoplus/`, `results/ablat
 
 **Launchers/guards:** `sib_vla/multivla/{safe_modal_run.sh, modal_killall.sh}` ·
 `sib_vla/{run_master_queue.sh, run_queue_core.sh, run_stage1_liberov_objgoal.sh,
-run_stage2_liberoplus.sh, run_stage3_ablations.sh, run_multiseed.sh, run_libero_plus_aegis.sh}`
+run_liberolong.sh, run_stage2_liberoplus.sh, run_stage3_ablations.sh, run_multiseed.sh,
+run_libero_plus_aegis.sh}`
 
-**Modal app stages:** `smolvla_modal.py::main --stage {validate,smoke,stage1,videos,ablation,multiseed}`
+**Modal app stages:** `smolvla_modal.py::main --stage {validate,smoke,stage1,long,videos,ablation,multiseed}`
 
 **Eval:** `sib_vla/scripts/eval_libero_v.py` (now with `--seed` + ablation de-strength flags)
 

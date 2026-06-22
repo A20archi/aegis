@@ -60,7 +60,8 @@ RAM_CRIT=${RAM_CRIT:-25000}   # MiB available; below this twice => shed my newes
 ) & RAMGUARD=$!
 echo "[$(date +%T)] host-RAM watchdog armed (PID $RAMGUARD, crit=${RAM_CRIT}MiB)"
 trap 'kill $RAMGUARD 2>/dev/null' EXIT
-bash run_stage1_liberov_objgoal.sh ; echo "[$(date +%T)] >>> stage1 returned"
-bash run_stage2_liberoplus.sh      ; echo "[$(date +%T)] >>> stage2 returned"
-bash run_stage3_ablations.sh       ; echo "[$(date +%T)] >>> stage3 returned"
-echo "[$(date +%T)] ===== MASTER QUEUE COMPLETE (stages 1-3) ====="
+bash run_stage1_liberov_objgoal.sh ; echo "[$(date +%T)] >>> stage1 (object+goal) returned"
+bash run_liberolong.sh             ; echo "[$(date +%T)] >>> LIBERO-Long returned"
+bash run_stage2_liberoplus.sh      ; echo "[$(date +%T)] >>> stage2 (LIBERO-Plus) returned"
+bash run_stage3_ablations.sh       ; echo "[$(date +%T)] >>> stage3 (ablations) returned"
+echo "[$(date +%T)] ===== MASTER QUEUE COMPLETE (V object+goal, Long, LIBERO-Plus, ablations) ====="

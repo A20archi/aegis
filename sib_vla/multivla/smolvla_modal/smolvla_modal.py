@@ -56,26 +56,41 @@ app = modal.App("smolvla-robust")
 assets = modal.Volume.from_name("smolvla-assets", create_if_missing=True)
 
 # ---- the robustness sweep: Object+Goal × 6 axes × {baseline, aegis} = 24 cells ----
-# spatial added for the ABLATION suite (the modules' training distribution; the +14.1
-# headline lives here). episode_length 300 = base.yaml default (a max ceiling; episodes
-# terminate early on success). VERIFY against the local spatial max-steps if it differs.
-SUITES = {"object": "libero_object", "goal": "libero_goal", "spatial": "libero_spatial"}
-ELEN = {"object": 280, "goal": 300, "spatial": 300}
+# suite -> lerobot LiberoEnv name. episode_length (max-steps) per suite is VERIFIED against
+# the local configs: Spatial=220, Object=280, Goal=300, Long(libero_10)=520 (Long MUST be
+# 520 — the project notes flag that truncating it at 300 silently kills long-horizon SR).
+# spatial = the ABLATION suite (modules' training distribution; the +14.1 headline).
+# long    = LIBERO-Long robustness stress test (same 6 axes as the V grid, long-horizon).
+SUITES = {"object": "libero_object", "goal": "libero_goal",
+          "spatial": "libero_spatial", "long": "libero_10"}
+ELEN = {"object": 280, "goal": 300, "spatial": 220, "long": 520}
 AXES = ["gaussian_noise_1", "motion_blur_1", "lighting_1", "texture_1",
         "viewpoint_medium", "viewpoint_large"]
 ARMS = ["baseline", "aegis"]            # gate closed / gate open
 
 
 def _cells_stage1(episodes=10, n_envs=10):
-    # n_envs=10 -> n=100/condition (budget-friendly; the 2 prior n=200 cells resume-skip).
-    # record=False on the SR grid: recording every cell cost ~17min/task (~$49 total). The
-    # demo videos come from a SEPARATE cheap curated pass (_cells_video / stage 'videos').
+    # The cross-suite grid is Object+Goal ONLY (pinned explicitly so adding suites to SUITES
+    # for ablation/long can't silently balloon stage1). n_envs=10 -> n=100/condition.
+    # record=False: recording every cell cost ~17min/task; demo videos are a separate pass.
     cells = []
-    for sk in SUITES:
+    for sk in ("object", "goal"):
         for axis in AXES:
             for arm in ARMS:
                 cells.append({"suite": sk, "axis": axis, "arm": arm,
                               "episodes": episodes, "n_envs": n_envs, "record": False})
+    return cells
+
+
+def _cells_long(episodes=10, n_envs=10):
+    """LIBERO-Long (libero_10) robustness — the SAME 6 axes × {baseline, aegis} as the V grid,
+    on the long-horizon suite (episode_length 520). 12 cells. Separate od so it never clashes
+    with the Object/Goal grid; identical protocol so deltas are directly comparable."""
+    cells = []
+    for axis in AXES:
+        for arm in ARMS:
+            cells.append({"suite": "long", "axis": axis, "arm": arm, "episodes": episodes,
+                          "n_envs": n_envs, "record": False, "od": "liberov_long"})
     return cells
 
 
@@ -287,6 +302,12 @@ def main(stage: str = "validate", episodes: int = 20):
         print(f"launching {len(cells)} VIDEO cells...")
         for r in eval_cell.map(cells):
             c = r["cell"]; print(f"  VID {c['axis']:18} {c['arm']:8} -> SR={r.get('sr','ERR')} (rc={r['rc']})")
+    elif stage == "long":
+        cells = _cells_long(episodes)               # LIBERO-Long robustness: 6 axes × 2 arms = 12
+        print(f"launching {len(cells)} LIBERO-Long cells (libero_10, 520-step)...")
+        results = list(eval_cell.map(cells))
+        for r in sorted(results, key=lambda x: (x['cell']['axis'], x['cell']['arm'])):
+            c = r["cell"]; print(f"  long {c['axis']:18} {c['arm']:8} -> SR={r.get('sr','ERR')} (rc={r['rc']})")
     elif stage == "ablation":
         # Spatial ablation table: 8 arms × 6 axes = 48 cells, eval-only (all ckpts exist).
         cells = _cells_ablation(episodes)
@@ -309,4 +330,4 @@ def main(stage: str = "validate", episodes: int = 20):
         for r in sorted(results, key=lambda x: (x['cell']['seed'], x['cell']['suite'], x['cell']['axis'], x['cell']['arm'])):
             c = r["cell"]; print(f"  s{c['seed']} {c['suite']:7} {c['axis']:18} {c['arm']:8} -> SR={r.get('sr','ERR')}")
     else:
-        print("stage = validate | smoke | stage1 | videos | ablation | multiseed")
+        print("stage = validate | smoke | stage1 | long | videos | ablation | multiseed")
