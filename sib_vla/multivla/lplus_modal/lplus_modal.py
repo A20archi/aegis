@@ -31,7 +31,8 @@ image = (
     .pip_install("robosuite==1.4.0", "robomimic==0.3.0", "mujoco==3.4.0", "bddl==3.6.0",
                  "gym==0.26.2", "gymnasium==1.2.3", "easydict==1.13", "termcolor==3.3.0",
                  "thop", "numpy==2.1.3", "matplotlib==3.10.0", "omegaconf==2.3.0",
-                 "Wand==0.7.1", "scikit-image", "scipy")   # LIBERO-Plus corruptions deps
+                 "Wand==0.7.1", "scikit-image", "scipy",
+                 "imageio-ffmpeg")   # LIBERO-Plus corruptions + mp4 writing (imageio ffmpeg plugin)
     # LIBERO-plus repo provides its OWN `libero` namespace pkg (perturbed bddls + env_wrapper).
     # Put it (not stock LIBERO) on PYTHONPATH. Seed its interactive config non-interactively.
     .run_commands(
@@ -94,6 +95,16 @@ def _cells_lplus(per_cat=40, suites=("libero_spatial", "libero_object", "libero_
             for seed in seeds for sk in suites for arm in ARMS]
 
 
+def _cells_lplus_video(suite="libero_object", per_cat=1, vids_per_cat=1, seed=42):
+    """Curated LIBERO-Plus-native pairwise videos: SAME suite/seed for baseline & aegis ->
+    matched side-by-sides. Records 1 task/category (7 categories) per arm. Tiny + cheap.
+    mp4s -> /assets/results_modal/liberoplus_video/<suite>/videos/<category>/<arm>_task<id>.mp4"""
+    rd = f"/assets/results_modal/liberoplus_video/{suite}/videos"
+    return [{"suite": suite, "arm": arm, "per_cat": per_cat, "seed": seed,
+             "max_steps": LPLUS_MAXSTEPS[suite], "od": "liberoplus_video",
+             "record_dir": rd, "videos_per_cat": vids_per_cat} for arm in ARMS]
+
+
 # L4 + cpu=8: LIBERO-Plus rollouts are MuJoCo/EGL sim-bound (not GPU). max_containers caps
 # in-flight cells; resume-skip + commit daemon = "save every inch".
 @app.function(image=image, gpu="L4", cpu=8.0, memory=32768, timeout=14400,
@@ -120,6 +131,11 @@ def eval_cell(cell: dict):
            "--max-steps", str(cell.get("max_steps", 280))]   # per-suite; Long=520
     if seed is not None:
         cmd += ["--seed", str(seed)]
+    if cell.get("record_dir"):                       # LIBERO-Plus-native pairwise videos
+        cmd += ["--record-dir", cell["record_dir"],
+                "--videos-per-cat", str(cell.get("videos_per_cat", 1))]
+        if cell.get("cats"):
+            cmd += ["--cats", *cell["cats"]]
     if arm == "aegis":
         cmd += ["--rib-weights", RIB, "--rasf-weights", RASF]
     env = {**os.environ, "MUJOCO_GL": "egl", "PYOPENGL_PLATFORM": "egl",
@@ -164,5 +180,11 @@ def main(stage: str = "validate", per_cat: int = 40):
         print(f"launching {len(cells)} LIBERO-Plus cells (4 suites × 3 seeds, per_cat={per_cat})...")
         for r in sorted(eval_cell.map(cells), key=lambda x: (x['cell']['seed'], x['cell']['suite'], x['cell']['arm'])):
             c = r["cell"]; print(f"  s{c['seed']} {c['suite']:14} {c['arm']:8} -> SR={r.get('sr','ERR')} (rc={r['rc']})")
+    elif stage == "video":
+        # curated LIBERO-Plus-native pairwise videos (object suite, 7 cats × {base,aegis})
+        cells = _cells_lplus_video()
+        print(f"launching {len(cells)} LIBERO-Plus VIDEO cells (pairwise)...")
+        for r in eval_cell.map(cells):
+            c = r["cell"]; print(f"  VID {c['suite']:14} {c['arm']:8} -> SR={r.get('sr','ERR')} (rc={r['rc']})")
     else:
-        print("stage = validate | smoke | stage1")
+        print("stage = validate | smoke | stage1 | video")

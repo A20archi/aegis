@@ -58,13 +58,42 @@ def load_rasf_module(weights, H, d, device):
     return m
 
 
+def _frame(obs):
+    """Pull a renderable HxWx3 uint8 frame from a (possibly nested/batched) obs dict.
+    Prefers an 'agentview' camera, else the first RGB array found. Returns None if none."""
+    cands = []
+    def walk(o):
+        if isinstance(o, dict):
+            for k, v in o.items(): walk2(k, v)
+    def walk2(key, v):
+        if isinstance(v, dict):
+            for k2, v2 in v.items(): walk2(f"{key}.{k2}", v2)
+        elif isinstance(v, np.ndarray) and v.ndim >= 3 and v.shape[-1] == 3:
+            cands.append((key, v))
+    walk(obs)
+    if not cands:
+        return None
+    cands.sort(key=lambda kv: (0 if "agentview" in kv[0].lower() else 1))
+    img = cands[0][1]
+    if img.ndim == 4:
+        img = img[0]
+    if img.dtype != np.uint8:
+        img = ((img * 255).clip(0, 255).astype(np.uint8) if float(img.max()) <= 1.0
+               else img.astype(np.uint8))
+    return img
+
+
 def rollout_success(env, policy, pre, post, env_pre, env_post, seed, max_steps,
-                    rasf=None, replan_h=10):
+                    rasf=None, replan_h=10, record_path=None):
     policy.reset()
     obs, info = env.reset(seed=seed)
     env.envs[0].task_description = clean_instruction(env.envs[0].task_description)
     success = False; step = 0; chunk = None; qi = replan_h
     done = np.array([False])
+    frames = [] if record_path else None
+    if frames is not None:
+        f0 = _frame(obs)
+        if f0 is not None: frames.append(f0)
     while not done.all() and step < max_steps:
         if qi >= replan_h:
             observation = preprocess_observation(obs)
@@ -81,12 +110,19 @@ def rollout_success(env, policy, pre, post, env_pre, env_post, seed, max_steps,
         action = post(chunk[:, qi, :])
         a = env_post({ACTION: action})[ACTION].to("cpu").numpy()
         obs, r, term, trunc, info = env.step(a)
+        if frames is not None:
+            fr = _frame(obs)
+            if fr is not None: frames.append(fr)
         qi += 1; step += 1
         if "final_info" in info and isinstance(info["final_info"], dict):
             success = success or bool(info["final_info"].get("is_success", False))
         done = np.logical_or(np.asarray(term), np.asarray(trunc))
         if success:
             break
+    if record_path and frames:
+        import os, imageio
+        os.makedirs(os.path.dirname(record_path), exist_ok=True)
+        imageio.mimsave(record_path, frames, fps=10)
     return success
 
 
@@ -104,6 +140,10 @@ def main():
     ap.add_argument("--cats", nargs="*", default=None)
     ap.add_argument("--out", default=None, help="write per-category + total SR to this JSON "
                     "(enables persistence + Modal resume-skip; eval-only, no training)")
+    ap.add_argument("--record-dir", default=None, help="if set, save rollout mp4s under "
+                    "<dir>/<category>/task<id>.mp4 (LIBERO-Plus-native videos; same seed across "
+                    "baseline/aegis runs => pairwise side-by-sides)")
+    ap.add_argument("--videos-per-cat", type=int, default=1, help="record this many tasks/category")
     args = ap.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -145,6 +185,7 @@ def main():
     p(f"[{el()}] processors built; starting rollouts")
 
     results = defaultdict(list)
+    rec_count = defaultdict(int)
     for c in cats:
         for tid in picks[c]:
             env_cfg = LiberoEnv(task=args.suite, task_ids=[tid], init_states=False)
@@ -152,8 +193,13 @@ def main():
             env = next(iter(next(iter(envs.values())).values()))
             succ_n = 0
             for ep in range(args.episodes):
+                rpath = None
+                if args.record_dir and ep == 0 and rec_count[c] < args.videos_per_cat:
+                    rpath = f"{args.record_dir}/{c}/{args.method}_task{tid}.mp4"
+                    rec_count[c] += 1
                 s = rollout_success(env, policy, pre, post, env_pre, env_post,
-                                    args.seed + tid*10 + ep, args.max_steps, rasf=rasf)
+                                    args.seed + tid*10 + ep, args.max_steps, rasf=rasf,
+                                    record_path=rpath)
                 succ_n += int(s); results[c].append(s)
             env.close()
             p(f"  [{el()}] {c:20s} task{tid:4d}: {succ_n}/{args.episodes}")
