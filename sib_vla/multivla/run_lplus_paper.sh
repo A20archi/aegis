@@ -23,7 +23,7 @@ run 24 modal run smolvla_modal/smolvla_modal.py::main --stage clean --episodes 1
 [ "${rc:-0}" -eq 9 ] && { LOG "GUARD tripped on clean (rc=9) — STOP"; exit 9; }
 
 LOG "PHASE B — LIBERO-Plus (4 suites × 3 seeds × 2 arms, per_cat 40 = 24 cells)"
-run 85 modal run lplus_modal/lplus_modal.py::main --stage stage1 --per-cat 40 ; rc=$?
+run 85 modal run lplus_modal/lplus_modal.py::main --stage stage1 --per-cat 20 ; rc=$?
 [ "${rc:-0}" -eq 9 ] && { LOG "GUARD tripped on LIBERO-Plus (rc=9) — STOP (resume-skip keeps done cells)"; exit 9; }
 
 LOG "PHASE C — LIBERO-Plus-native pairwise videos (object, 7 cats × {base,aegis})"

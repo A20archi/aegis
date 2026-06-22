@@ -132,7 +132,8 @@ def eval_cell(cell: dict):
     sk, arm, pc = cell["suite"], cell["arm"], cell.get("per_cat", 30)
     seed = cell.get("seed")
     seed_sub = f"/seed{seed}" if seed is not None else ""
-    od = f"/assets/results_modal/liberoplus/{sk}{seed_sub}"
+    od_name = cell.get("od", "liberoplus")        # smoke/video use a separate tree (no collision)
+    od = f"/assets/results_modal/{od_name}/{sk}{seed_sub}"
     os.makedirs(od, exist_ok=True)
     out = f"{od}/{arm}.json"
     if os.path.exists(out):                  # resume-skip: a written JSON == this cell is done
@@ -189,8 +190,10 @@ def main(stage: str = "validate", per_cat: int = 40):
     if stage == "validate":
         print("VALIDATE:", validate.remote())
     elif stage == "smoke":
+        # od=liberoplus_smoke so the per_cat=1 validation NEVER collides with the full run's
+        # liberoplus/libero_object/seed42/aegis (which would falsely resume-skip it).
         print("SMOKE:", eval_cell.remote({"suite": "libero_object", "arm": "aegis",
-                                          "per_cat": 1, "seed": 42}))
+                                          "per_cat": 1, "seed": 42, "od": "liberoplus_smoke"}))
     elif stage == "stage1":
         # PAPER table: seeds 42,123,456 × {spatial,object,goal,long} × {baseline,aegis} = 24 cells
         cells = _cells_lplus(per_cat)
