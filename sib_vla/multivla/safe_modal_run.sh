@@ -37,7 +37,20 @@ for a in rows:
     if 'stop' not in st and 'done' not in st:
         print(a.get('app_id') or a.get('id',''))"; }
 stop_all_running(){ for a in $(running_apps); do [ -n "$a" ] && modal app stop "$a" --yes >/dev/null 2>&1 && log "stopped app $a"; done; }
-kill_all_clients(){ pkill -f "modal run" 2>/dev/null; sleep 1; pkill -9 -f "modal run" 2>/dev/null; true; }
+kill_all_clients(){
+  # Kill the REAL modal client process(es) only — NOT the wrapper scripts whose argv ALSO
+  # contains "modal run" (safe_modal_run.sh / run_lplus_paper.sh / run_master_queue.sh), and
+  # never this shell ($$). Matching "modal run" broadly self-killed the guard (rc=143).
+  local pids
+  pids=$(pgrep -af "modal run" 2>/dev/null \
+        | grep -vE "safe_modal_run\.sh|run_lplus_paper\.sh|run_master_queue\.sh" \
+        | awk -v me="$$" '$1!=me {print $1}')
+  [ -n "$pids" ] && { echo "$pids" | xargs -r kill   2>/dev/null; sleep 1;
+                      echo "$pids" | xargs -r kill -9 2>/dev/null; }
+  true
+}
+client_count(){ pgrep -af "modal run" 2>/dev/null \
+  | grep -vcE "safe_modal_run\.sh|run_lplus_paper\.sh|run_master_queue\.sh"; }
 
 if [ $# -eq 0 ]; then echo "usage: $0 modal run <app>::main --stage <stage> [...]"; exit 2; fi
 
@@ -66,7 +79,7 @@ cleanup(){
   kill "$RUN_PID" 2>/dev/null; pkill -P "$RUN_PID" 2>/dev/null
   sleep 2; kill -9 "$RUN_PID" 2>/dev/null; pkill -9 -P "$RUN_PID" 2>/dev/null
   kill_all_clients; stop_all_running
-  log "TEARDOWN done. month-to-date now: \$$(billing_total).  clients: $(pgrep -fc 'modal run' 2>/dev/null || echo 0) running."
+  log "TEARDOWN done. month-to-date now: \$$(billing_total).  clients: $(client_count) running."
 }
 trap cleanup EXIT INT TERM
 
