@@ -189,10 +189,12 @@ def main():
     p(f"[{el()}] processors built; starting rollouts")
 
     def build_task_env(tid):
+        # init_states=False: LIBERO-Plus applies its OWN perturbations; the standard
+        # .pruned_init init-state files don't exist in the LIBERO-plus repo (FileNotFoundError).
         gk = dict(rep_cfg.gym_kwargs); gk["task_ids"] = [tid]
         return create_libero_envs(
             task=args.suite, n_envs=1, camera_name=rep_cfg.camera_name,
-            init_states=rep_cfg.init_states, gym_kwargs=gk,
+            init_states=False, gym_kwargs=gk,
             env_cls=gym.vector.SyncVectorEnv, control_mode=rep_cfg.control_mode,
             episode_length=args.max_steps)[args.suite][tid]
 
