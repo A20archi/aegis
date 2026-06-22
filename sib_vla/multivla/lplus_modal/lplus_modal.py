@@ -79,11 +79,12 @@ RIB = f"{A}/results/ib_on86/rib_on86.pt"
 RASF = f"{A}/results/rasf_on86/rasf_on86.pt"
 
 
-def _cells_lplus(per_cat=50, suites=("libero_object", "libero_goal")):
-    """LIBERO-Plus eval cells: suite × {baseline, aegis}. EVAL-ONLY (existing checkpoints;
-    no training). per_cat tasks/category × 7 categories per suite."""
-    return [{"suite": sk, "arm": arm, "per_cat": per_cat}
-            for sk in suites for arm in ARMS]
+def _cells_lplus(per_cat=30, suites=("libero_object", "libero_goal"), seeds=(42, 123, 456)):
+    """LIBERO-Plus eval cells: seed × suite × {baseline, aegis}. EVAL-ONLY (existing
+    checkpoints; no training). per_cat tasks/category × 7 categories per suite, per seed.
+    Each seed isolates outputs under <suite>/seed<N>/ -> 3-seed mean ± CI, resume-safe."""
+    return [{"suite": sk, "arm": arm, "per_cat": per_cat, "seed": seed}
+            for seed in seeds for sk in suites for arm in ARMS]
 
 
 # L4 + cpu=8: LIBERO-Plus rollouts are MuJoCo/EGL sim-bound (not GPU). max_containers caps
@@ -93,8 +94,10 @@ def _cells_lplus(per_cat=50, suites=("libero_object", "libero_goal")):
 def eval_cell(cell: dict):
     """One LIBERO-Plus cell (suite, arm). Streams progress; resume-skips a finished JSON."""
     import os, subprocess, sys, threading
-    sk, arm, pc = cell["suite"], cell["arm"], cell.get("per_cat", 50)
-    od = f"/assets/results_modal/liberoplus/{sk}"
+    sk, arm, pc = cell["suite"], cell["arm"], cell.get("per_cat", 30)
+    seed = cell.get("seed")
+    seed_sub = f"/seed{seed}" if seed is not None else ""
+    od = f"/assets/results_modal/liberoplus/{sk}{seed_sub}"
     os.makedirs(od, exist_ok=True)
     out = f"{od}/{arm}.json"
     if os.path.exists(out):                  # resume-skip: a written JSON == this cell is done
@@ -107,12 +110,14 @@ def eval_cell(cell: dict):
             pass
     cmd = ["/usr/local/bin/python", "-u", f"{A}/scripts/libero_plus_aegis_eval.py",
            "--method", arm, "--ckpt", CKPT, "--suite", sk, "--per-cat", str(pc), "--out", out]
+    if seed is not None:
+        cmd += ["--seed", str(seed)]
     if arm == "aegis":
         cmd += ["--rib-weights", RIB, "--rasf-weights", RASF]
     env = {**os.environ, "MUJOCO_GL": "egl", "PYOPENGL_PLATFORM": "egl",
            "LIBERO_PLUS_REPO": "/opt/LIBERO-plus", "LIBERO_CONFIG_PATH": "/opt/lplus_cfg",
            "PYTHONPATH": f"{A}:/opt/LIBERO-plus"}
-    tag = f"{sk}/{arm}"
+    tag = f"{sk}/{arm}" + (f"/s{seed}" if seed is not None else "")
     print(f"[lplus START] {tag} per_cat={pc}", flush=True)
     stop = threading.Event()
     def _commit():
@@ -139,15 +144,17 @@ def eval_cell(cell: dict):
 
 
 @app.local_entrypoint()
-def main(stage: str = "validate", per_cat: int = 50):
+def main(stage: str = "validate", per_cat: int = 30):
     if stage == "validate":
         print("VALIDATE:", validate.remote())
     elif stage == "smoke":
-        print("SMOKE:", eval_cell.remote({"suite": "libero_object", "arm": "aegis", "per_cat": 1}))
+        print("SMOKE:", eval_cell.remote({"suite": "libero_object", "arm": "aegis",
+                                          "per_cat": 1, "seed": 42}))
     elif stage == "stage1":
-        cells = _cells_lplus(per_cat)        # object+goal × {baseline,aegis} = 4 cells
-        print(f"launching {len(cells)} LIBERO-Plus cells (per_cat={per_cat})...")
-        for r in sorted(eval_cell.map(cells), key=lambda x: (x['cell']['suite'], x['cell']['arm'])):
-            c = r["cell"]; print(f"  {c['suite']:14} {c['arm']:8} -> SR={r.get('sr','ERR')} (rc={r['rc']})")
+        # 3-seed: seeds 42,123,456 × {object,goal} × {baseline,aegis} = 12 cells
+        cells = _cells_lplus(per_cat)
+        print(f"launching {len(cells)} LIBERO-Plus cells (3-seed, per_cat={per_cat})...")
+        for r in sorted(eval_cell.map(cells), key=lambda x: (x['cell']['seed'], x['cell']['suite'], x['cell']['arm'])):
+            c = r["cell"]; print(f"  s{c['seed']} {c['suite']:14} {c['arm']:8} -> SR={r.get('sr','ERR')} (rc={r['rc']})")
     else:
         print("stage = validate | smoke | stage1")
