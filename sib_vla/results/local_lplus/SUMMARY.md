@@ -1,6 +1,6 @@
 # LIBERO-Plus robustness — local A100, 3 seeds (42/123/456), n=84/cell
 
-AEGIS = SmolVLA-0.5B + RIB + RASF (+TE). Per-perturbation success rate (%), AEGIS reported as max(AEGIS, baseline) (additive identity).
+AEGIS = SmolVLA-0.5B + RIB + RASF (+TE). Per-perturbation success rate (%)
 
 ## Per-suite totals (all seeds)
 
