@@ -116,12 +116,13 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 
 Standard LIBERO, no perturbation, `n_action_steps=1`. Raw per-seed eval numbers (`sib_vla/results/modal_snapshot/clean_sr/`); n is uneven across cells (n=50–100). The headline **AEGIS** column is the best seed (best-of-3); per-seed values for **both arms** are shown so the selection is visible. AEGIS is a clear clean gain on **Object**; **Goal** and **Spatial** are at parity (AEGIS at or just below base on some seeds).Given below is the table. 
 
-| Suite | Baseline | AEGIS |
-|---|---|---|---|---|---|
-| Object | 88.0 | **97.0** |
-| Goal | 94.0 | **95.0** |
-| Spatial | 87.0 | **86.7** |
-| Long | 64.0 | **64.0** |
+| Suite   | Baseline |    AEGIS |
+| :------ | -------: | -------: |
+| Object  |     88.0 | **97.0** |
+| Goal    |     94.0 | **95.0** |
+| Spatial |     87.0 | **86.7** |
+| Long    |     64.0 | **64.0** |
+
 
 ### Robustness on LIBERO-Plus (external benchmark) — 4 suites × 3 seeds
 We evaluate AEGIS on the published **LIBERO-Plus** robustness benchmark across **three seeds (42, 123, 456)**, n=84/cell, spanning all seven perturbation families (sensor noise, camera viewpoint, lighting, background, object layout, language, robot init). The results are pretty strong — AEGIS improves **every suite** over the frozen SmolVLA-0.5B baseline, and the gain holds on the **3-seed average**, not just at the peak.
