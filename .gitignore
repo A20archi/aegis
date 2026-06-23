@@ -62,3 +62,5 @@ sib_vla/results/diag_long/
 
 # manim render cache (regenerable from manim_aegis.py)
 sib_vla/presentation/_manim/
+billing_err.txt
+report.csv

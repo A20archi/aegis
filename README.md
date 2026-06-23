@@ -6,6 +6,8 @@
 
 **A rate-limited information bottleneck applied at two interfaces of a *frozen* VLA — perception and action — both exact pass-throughs at initialization, so robustness is strictly additive and per-suite gating is provably safe.**
 
+> 📋 **[RESULTS_STATUS.md](RESULTS_STATUS.md)** — honest snapshot of what's complete vs partial, and why (the LIBERO-Plus table is partial due to a hard $200 compute budget; being finished on a free local A100).
+
 [![Method](https://img.shields.io/badge/method-dual--locus%20IB-blue)]()
 [![Backbone](https://img.shields.io/badge/backbone-frozen-success)]()
 [![Robustness](https://img.shields.io/badge/LIBERO--V-+33.3%20pts%20%7C%200%20regressions-orange)]()

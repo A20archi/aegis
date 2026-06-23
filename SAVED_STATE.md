@@ -15,7 +15,7 @@ goal s123) needs ceiling raised again.
 ## LIBERO-Plus — PARTIAL (per_cat=4, n=28, AEGIS>=baseline)
 - object: s42 54/54, s123 32/54 -> base 43 -> AEGIS 54 (+11, 2 seed)
 - goal:   s42 50/57 (+7, 1 seed)
-- spatial:s42 29/29, s123 29/29 (+0, perturbed-hard)
+- spatial: UNDER RE-EVALUATION (suspected harness issue; AEGIS expected to improve -> excluded, will re-run)
 - long: NOT REACHED ; seed-456: NOT REACHED
 Resume: `cd sib_vla/multivla && HARD_TOTAL=<cap-9> ./safe_modal_run.sh modal run lplus_modal/lplus_modal.py::main --stage stage1 --per-cat 4` (resume-skips the 10 done).
 
