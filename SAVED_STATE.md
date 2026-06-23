@@ -5,6 +5,13 @@ LIBERO-V CLI billing lags the website ~$6-8; verify real spend on modal.com. Sna
 `sib_vla/results/modal_snapshot/` (clean_sr + liberoplus). To finish LIBERO-Plus (long, seed-456,
 goal s123) needs ceiling raised again.
 
+> **NEXT STEP (pending user permission — DO NOT run on A100 until greenlit):** Modal budget
+> exhausted at real ~$196 (under $200). Finish the LIBERO-Plus table on the **local A100 for $0**
+> once the user clears it with their colleague (hopfield jobs). Setup: `conda install -c conda-forge
+> imagemagick` + `pip install Wand` (the only missing dep). Then run the FULL 24-cell table at
+> per_cat=12 (n=84, paper-grade) — ~5-6h, OR just the missing cells at per_cat=4 — ~2h. A100 was
+> free (76GB GPU, 337GB RAM, 48 cores) at 14:27 but user says hopfield still active — re-check first.
+
 ## LIBERO-Plus — PARTIAL (per_cat=4, n=28, AEGIS>=baseline)
 - object: s42 54/54, s123 32/54 -> base 43 -> AEGIS 54 (+11, 2 seed)
 - goal:   s42 50/57 (+7, 1 seed)
