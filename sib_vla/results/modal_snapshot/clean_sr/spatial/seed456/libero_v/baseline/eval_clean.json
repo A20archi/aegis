@@ -3,9 +3,14 @@
   "method": "baseline",
   "condition": "clean",
   "axis": "noise",
-  "n_episodes": 30,
-  "n_success": 25,
-  "success_rate": 0.8333333333333334,
+  "n_episodes": 50,
+  "n_success": 42,
+  "success_rate": 0.84,
+  "success_wilson95": [
+    0.7148551903823401,
+    0.9166267863791231
+  ],
+  "rms_jerk_mean": 0.053087040333381644,
   "per_task": [
     {
       "task_id": 0,
@@ -36,15 +41,26 @@
       "task_id": 5,
       "n": 5,
       "success_rate": 0.4
+    },
+    {
+      "task_id": 6,
+      "n": 5,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 7,
+      "n": 5,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 8,
+      "n": 5,
+      "success_rate": 0.4
+    },
+    {
+      "task_id": 9,
+      "n": 5,
+      "success_rate": 1.0
     }
-  ],
-  "partial": true,
-  "tasks_done": [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5
   ]
 }

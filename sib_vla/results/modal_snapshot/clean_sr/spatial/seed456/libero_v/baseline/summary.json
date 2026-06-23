@@ -1,0 +1,10 @@
+{
+  "method": "baseline",
+  "conditions": [
+    {
+      "label": "clean",
+      "sr": 0.84,
+      "n": 50
+    }
+  ]
+}

@@ -3,9 +3,14 @@
   "method": "aegis",
   "condition": "clean",
   "axis": "noise",
-  "n_episodes": 30,
-  "n_success": 28,
-  "success_rate": 0.9333333333333333,
+  "n_episodes": 50,
+  "n_success": 48,
+  "success_rate": 0.96,
+  "success_wilson95": [
+    0.8653966212204534,
+    0.9889613473391734
+  ],
+  "rms_jerk_mean": 0.0539402763706888,
   "per_task": [
     {
       "task_id": 0,
@@ -36,15 +41,26 @@
       "task_id": 5,
       "n": 5,
       "success_rate": 1.0
+    },
+    {
+      "task_id": 6,
+      "n": 5,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 7,
+      "n": 5,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 8,
+      "n": 5,
+      "success_rate": 1.0
+    },
+    {
+      "task_id": 9,
+      "n": 5,
+      "success_rate": 1.0
     }
-  ],
-  "partial": true,
-  "tasks_done": [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5
   ]
 }
