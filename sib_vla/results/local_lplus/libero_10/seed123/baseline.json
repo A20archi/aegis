@@ -1,0 +1,37 @@
+{
+  "method": "baseline",
+  "suite": "libero_10",
+  "per_cat": 12,
+  "per_category": {
+    "Background Textures": {
+      "sr": 0.08333333333333333,
+      "n": 12
+    },
+    "Camera Viewpoints": {
+      "sr": 0.0,
+      "n": 12
+    },
+    "Language Instructions": {
+      "sr": 0.0,
+      "n": 12
+    },
+    "Light Conditions": {
+      "sr": 0.5,
+      "n": 12
+    },
+    "Objects Layout": {
+      "sr": 0.3333333333333333,
+      "n": 12
+    },
+    "Robot Initial States": {
+      "sr": 0.25,
+      "n": 12
+    },
+    "Sensor Noise": {
+      "sr": 0.08333333333333333,
+      "n": 12
+    }
+  },
+  "total_sr": 0.17857142857142858,
+  "n_episodes": 84
+}

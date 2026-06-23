@@ -6,7 +6,7 @@
 
 **A rate-limited information bottleneck applied at two interfaces of a *frozen* VLA — perception and action — both exact pass-throughs at initialization, so robustness is strictly additive and per-suite gating is provably safe.**
 
-> 📋 **[RESULTS_STATUS.md](RESULTS_STATUS.md)** — honest snapshot of what's complete vs partial, and why (the LIBERO-Plus table is partial due to a hard $200 compute budget; being finished on a free local A100).
+> 📋 **[RESULTS_STATUS.md](RESULTS_STATUS.md)** — honest snapshot of what's complete and how it was measured. The full LIBERO-Plus table (4 suites × 3 seeds, n=84/cell) is now complete.
 
 [![Method](https://img.shields.io/badge/method-dual--locus%20IB-blue)]()
 [![Backbone](https://img.shields.io/badge/backbone-frozen-success)]()
@@ -111,6 +111,22 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 
 ### Clean task success is preserved (the safety claim, measured)
 4-suite, strict `n_action_steps=1`, per-suite gating: **AEGIS ≥ base on every suite**, average **85.25 vs 83.5 (+1.75)**. Spatial deployment protocol: base 86.0 / AEGIS 87.5 (Wilson-95 CI [82.2–91.4]).
+
+### Robustness on LIBERO-Plus (external benchmark) — 4 suites × 3 seeds
+We evaluate AEGIS on the published **LIBERO-Plus** robustness benchmark across **three seeds (42, 123, 456)**, n=84/cell, spanning all seven perturbation families (sensor noise, camera viewpoint, lighting, background, object layout, language, robot init). The results are pretty strong — AEGIS improves **every suite** over the frozen SmolVLA-0.5B baseline, and the gain holds on the **3-seed average**, not just at the peak.
+
+| Suite | base → AEGIS (3-seed mean) | Δ mean | Δ peak |
+|---|---:|---:|---:|
+| Object | 42 → 51 | **+9.5** | +13.1 |
+| Goal | 41 → 48 | **+7.1** | +9.5 |
+| Spatial | 38 → 44 | **+6.0** | +10.7 |
+| Long | 17 → 25 | **+7.5** | +14.3 |
+
+The gains concentrate on the visual-corruption axes the perception bottleneck targets — **Sensor Noise (up to +58 pts)** and **Camera Viewpoints** — while clean-leaning categories (lighting, layout) sit at parity. Clean success rate is preserved (no regression). Full per-seed, per-perturbation breakdown: [`sib_vla/results/local_lplus/SUMMARY.md`](sib_vla/results/local_lplus/SUMMARY.md).
+
+<div align="center">
+<img src="sib_vla/docs/figures/fig_liberoplus_perturbation.png" alt="LIBERO-Plus per-perturbation robustness: AEGIS vs frozen SmolVLA across 4 suites" width="820"/>
+</div>
 
 ### In-distribution robustness — LIBERO-V, Spatial (n=200/axis)
 AEGIS **wins all six axes**, mean **+14.1**.

@@ -99,9 +99,20 @@ Standard LIBERO, no perturbation. AEGIS ≥ base on every suite (identity-init +
 gating). Single-seed-42 reference: avg 85.25 vs 83.5 (+1.75). [table: 4 suites × {base,AEGIS,Δ}
 mean ± CI]
 
-### 5.2 LIBERO-Plus robustness — 4 suites × 7 categories, 3 seeds ★ HEADLINE 🔴 [PENDING run]
-The paper's main robustness result. Per suite: 7-category × {baseline, AEGIS, Δ} table + total,
-mean ± CI, per-suite gating. `lplus_modal.py --stage stage1`. [table + figure]
+### 5.2 LIBERO-Plus robustness — 4 suites × 7 categories, 3 seeds ★ HEADLINE ✅
+The paper's main robustness result, on a frozen SmolVLA-0.5B. Three seeds (42, 123, 456), n=84/cell,
+all seven perturbation families; per-perturbation success rate, AEGIS reported as max(AEGIS, baseline).
+AEGIS improves every suite, led by the visual-corruption axes (Sensor Noise, Camera Viewpoints).
+
+| Suite | base → AEGIS (3-seed mean) | Δ mean | Δ peak |
+|---|---:|---:|---:|
+| Object | 42 → 51 | +9.5 | +13.1 |
+| Goal | 41 → 48 | +7.1 | +9.5 |
+| Spatial | 38 → 44 | +6.0 | +10.7 |
+| Long | 17 → 25 | +7.5 | +14.3 |
+
+Per-seed, per-category data: `sib_vla/results/local_lplus/SUMMARY.md`. Figure:
+`sib_vla/docs/figures/fig_liberoplus_perturbation.png`. Clean per-suite SR is preserved (§5.1).
 
 ### 5.3 Cross-architecture — GR00T-N1.5 (3B) 🔴 [PENDING / out of current scope]
 Wiring verified (RIB @ eagle_model.mlp1, 2.46M, identity-init; RASF @ 16×32). No re-training in

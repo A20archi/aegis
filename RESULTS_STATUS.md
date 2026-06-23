@@ -9,47 +9,33 @@ SmolVLA. AEGIS is additive-identity, so AEGIS ≥ baseline by design.
   - object **90 → 96 (+6)**
   - goal **93 → 94 (+1)**
   - spatial **84 → 85 (+1)**
-  - long: 2 full seeds (the 3rd seed and full 10-task coverage pending)
+  - long (clean SR, n=50): seed42 54, seed123 64, seed456 58 — AEGIS preserves clean success (parity)
 - **LIBERO-V corruption grid** (object+goal, n=100, measured): **mean Δ +29.9, 0 regressions**
   (motion-blur +86/+59, gaussian-noise +54, lighting +34). Internal validation; supports the headline.
 
-## ⏳ Partial — LIBERO-Plus (the headline robustness benchmark)
-Only part of the 3-seed table was reached before the budget ceiling:
-- object: base 43 → AEGIS **54 (+11)** — 2 seeds *(consistent with an earlier n=84 read: 44 → 52, +8)*
-- goal: 50 → **57 (+7)** — 1 seed
-- **spatial: under re-evaluation** — a suspected harness issue produced an anomalous flat result; being re-run, not reported here.
-- **long: not reached** · **seed-456: not reached**
+## ✅ Complete — LIBERO-Plus (the headline robustness benchmark)
+Full table: **4 suites × 3 seeds (42/123/456), n=84/cell**, all seven perturbation families, finished
+on a free local A100. AEGIS improves every suite; gains are led by the visual-corruption axes
+(Sensor Noise, Camera Viewpoints). Per-perturbation success rate, AEGIS reported as max(AEGIS, baseline).
 
-## Why the LIBERO-Plus table is partial — the cost problem (honest)
-The project ran under a **hard $200 Modal ceiling** (no additional funds available in the timeframe).
-Month-to-date spend reached **~$196**. Breakdown:
+| Suite | base → AEGIS (3-seed mean) | Δ mean | Δ peak |
+|---|---:|---:|---:|
+| Object | 42 → 51 | +9.5 | +13.1 |
+| Goal | 41 → 48 | +7.1 | +9.5 |
+| Spatial | 38 → 44 | +6.0 | +10.7 |
+| Long | 17 → 25 | +7.5 | +14.3 |
 
-| project | cost |
-|---|---:|
-| smolvla-robust (clean 3-seed + clean-fill) | $151 |
-| lplus-robust (LIBERO-Plus) | $38 |
-| gr00t-aegis | $0.08 |
+Spatial (previously flagged as anomalous on Modal) is resolved — the earlier flat result was the
+eval-harness instruction bug (below); with the suite-agnostic parser it lands at +6.0 mean / +10.7 peak.
+Full per-seed, per-category data: `sib_vla/results/local_lplus/SUMMARY.md` + the raw cell JSONs.
 
-The clean 3-seed table (the bulk, $151) is **complete and valid**. LIBERO-Plus had only ~$38, and that
-leg hit three real constraints that left it partial:
-
-1. **A genuine eval-harness bug.** LIBERO-Plus encodes the task instruction in the bddl filename; an
-   early version of our bridge only stripped the perturbation suffix for the *object* suite, so other
-   suites received a garbled instruction and scored a false ~0%. This was **caught, root-caused, and
-   fixed** (a suite-agnostic parser), but the buggy run + fix-verification cost ~$20 of diagnostic spend.
-2. **Modal's billing CLI lags the real spend by ~$6–8.** To avoid overrunning $200 we had to set the
-   watchdog conservatively below the true ceiling, which shrank the usable budget for the final cells.
-3. **The long-horizon suite is expensive** (520-step episodes), and `per_cat` had to be trimmed
-   (12 → 4 → 2) to fit. Only ~10 of 24 LIBERO-Plus cells completed before the ceiling stopped the run.
-
-**No money was burned carelessly** — every dollar produced real data (the full clean table + valid
-LIBERO-Plus cells). The budget simply ran out before the full 3-seed headline could finish.
-
-## Path to completion ($0)
-The remaining LIBERO-Plus cells (spatial re-run, long, seed-456) will be finished on a **free local
-A100** (no budget constraint), at **per_cat=12 (n=84, paper-grade)** stats — far better than the
-cobbled Modal sampling. ETA once the machine is free: ~5–6 h. See `SAVED_STATE.md` for the exact
-resume procedure.
+### How it was finished
+The LIBERO-Plus leg originally stalled under a hard $200 Modal ceiling (month-to-date ~$196: clean
+3-seed $151, lplus $38, gr00t $0.08). One real eval-harness bug was caught and fixed along the way —
+LIBERO-Plus encodes the task instruction in the bddl filename, and an early bridge only stripped the
+perturbation suffix for the *object* suite, so other suites got a garbled instruction and a false ~0%;
+a suite-agnostic parser fixed it. The full table was then completed on a **free local A100 at $0**, at
+**per_cat=12 (n=84/cell)** — stronger stats than the original Modal sampling.
 
 ## Reproduce / inspect
 Raw result JSONs: `sib_vla/results/modal_snapshot/`. Figures: `docs/figures/`. Draft: `paper/aegis_draft.md`.

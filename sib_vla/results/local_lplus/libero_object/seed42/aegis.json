@@ -1,0 +1,37 @@
+{
+  "method": "aegis",
+  "suite": "libero_object",
+  "per_cat": 12,
+  "per_category": {
+    "Background Textures": {
+      "sr": 0.3333333333333333,
+      "n": 12
+    },
+    "Camera Viewpoints": {
+      "sr": 0.5,
+      "n": 12
+    },
+    "Language Instructions": {
+      "sr": 0.08333333333333333,
+      "n": 12
+    },
+    "Light Conditions": {
+      "sr": 0.8333333333333334,
+      "n": 12
+    },
+    "Objects Layout": {
+      "sr": 0.5,
+      "n": 12
+    },
+    "Robot Initial States": {
+      "sr": 0.25,
+      "n": 12
+    },
+    "Sensor Noise": {
+      "sr": 0.3333333333333333,
+      "n": 12
+    }
+  },
+  "total_sr": 0.40476190476190477,
+  "n_episodes": 84
+}

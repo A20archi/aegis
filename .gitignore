@@ -64,3 +64,9 @@ sib_vla/results/diag_long/
 sib_vla/presentation/_manim/
 billing_err.txt
 report.csv
+
+# local A100 eval — verbose per-cell logs + transient cfgs (keep JSON/SUMMARY/figures/videos)
+sib_vla/results/local_lplus/**/*.log
+sib_vla/results/local_clean/**/*.log
+sib_vla/results/local_clean/**/_cfg_*.yaml
+sib_vla/results/local_lplus_video/*.log

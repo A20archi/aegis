@@ -1,0 +1,10 @@
+{
+  "method": "aegis",
+  "conditions": [
+    {
+      "label": "clean",
+      "sr": 0.4,
+      "n": 50
+    }
+  ]
+}
