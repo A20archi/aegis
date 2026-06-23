@@ -85,7 +85,9 @@
       },
       "mean_baseline": 41.7,
       "mean_aegis": 51.2,
-      "mean_delta": 9.5
+      "mean_delta": 9.5,
+      "peak_delta": 13.1,
+      "peak_delta_seed": 123
     },
     "libero_goal": {
       "per_seed": {
@@ -164,7 +166,9 @@
       },
       "mean_baseline": 40.9,
       "mean_aegis": 48.0,
-      "mean_delta": 7.1
+      "mean_delta": 7.1,
+      "peak_delta": 9.5,
+      "peak_delta_seed": 42
     },
     "libero_spatial": {
       "per_seed": {
@@ -243,7 +247,9 @@
       },
       "mean_baseline": 37.7,
       "mean_aegis": 43.7,
-      "mean_delta": 6.0
+      "mean_delta": 6.0,
+      "peak_delta": 10.7,
+      "peak_delta_seed": 456
     },
     "libero_10": {
       "per_seed": {
@@ -322,7 +328,9 @@
       },
       "mean_baseline": 17.1,
       "mean_aegis": 24.6,
-      "mean_delta": 7.5
+      "mean_delta": 7.5,
+      "peak_delta": 14.3,
+      "peak_delta_seed": 123
     }
   },
   "clean_long": {

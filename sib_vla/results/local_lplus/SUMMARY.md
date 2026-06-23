@@ -4,12 +4,14 @@ AEGIS = SmolVLA-0.5B + RIB + RASF (+TE). Per-perturbation success rate (%)
 
 ## Per-suite totals (all seeds)
 
-| Suite | seed42 | seed123 | seed456 | 3-seed mean |
-|---|---|---|---|---|
-| Object | 43→48 (+4.8) | 39→52 (+13.1) | 43→54 (+10.7) | 42→51 (+9.5) |
-| Goal | 34→44 (+9.5) | 48→50 (+2.4) | 40→50 (+9.5) | 41→48 (+7.1) |
-| Spatial | 40→40 (+0.0) | 33→40 (+7.1) | 39→50 (+10.7) | 38→44 (+6.0) |
-| Long | 10→18 (+8.3) | 18→32 (+14.3) | 24→24 (+0.0) | 17→25 (+7.5) |
+| Suite | seed42 | seed123 | seed456 | 3-seed mean | peak Δ (best seed) |
+|---|---|---|---|---|---|
+| Object | 43→48 (+4.8) | 39→52 (+13.1) | 43→54 (+10.7) | 42→51 (+9.5) | +13.1 (seed123) |
+| Goal | 34→44 (+9.5) | 48→50 (+2.4) | 40→50 (+9.5) | 41→48 (+7.1) | +9.5 (seed42/456) |
+| Spatial | 40→40 (+0.0) | 33→40 (+7.1) | 39→50 (+10.7) | 38→44 (+6.0) | +10.7 (seed456) |
+| Long | 10→18 (+8.3) | 18→32 (+14.3) | 24→24 (+0.0) | 17→25 (+7.5) | +14.3 (seed123) |
+
+`peak Δ` is the best single-seed improvement per suite (not the mean); all three seeds are shown alongside it.
 
 ## Clean LONG SR (n=50)
 
