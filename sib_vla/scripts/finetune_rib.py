@@ -102,6 +102,8 @@ def main():
     ap.add_argument("--free-bits", type=float, default=0.1,
                     help="per-elem KL floor: no compression pressure below this (anti-collapse)")
     ap.add_argument("--corrupt-frac", type=float, default=0.6, help="fraction of batch images corrupted")
+    ap.add_argument("--lambda-gate", type=float, default=0.05,
+                    help="weight on the adaptive-gate loss (open-on-corrupt / close-on-clean)")
     ap.add_argument("--tag", default="rib_on86")
     args = ap.parse_args()
 
@@ -125,7 +127,8 @@ def main():
 
     for p in policy.parameters():
         p.requires_grad_(False)
-    rib_params = list(fused.rib.parameters()) + [fused.fusion_coeff]
+    rib_params = (list(fused.rib.parameters()) + list(fused.gate_head.parameters())
+                  + [fused.fusion_coeff])
     for p in rib_params:
         p.requires_grad_(True)
     lm_expert = policy.model.vlm_with_expert.lm_expert
@@ -174,7 +177,23 @@ def main():
                     task_loss, _ = policy.forward(batch)
                     kl = fused.last_kl.float() if fused.last_kl is not None else torch.zeros((), device=device)
                     kl_pen = torch.clamp(kl, min=args.free_bits)   # free-bits: no pressure below floor
-                    loss = task_loss + args.beta * kl_pen
+                    # GATE supervision (AEGIS v2): teach the input-adaptive gate to OPEN on
+                    # corrupted inputs and CLOSE on clean ones. If the gate is per-sample and
+                    # aligns with cmask -> direct BCE (corrupt=1, clean=0); otherwise fall back
+                    # to a sparsity prior (close unless the task loss needs the residual open),
+                    # which is alignment-free and still implements "minimal intervention".
+                    g = fused.last_gate
+                    if g is not None and g.numel() == cmask.numel():
+                        gate_loss = F.binary_cross_entropy(
+                            g.float().clamp(1e-4, 1 - 1e-4), cmask.float())
+                        gate_mode = "bce"
+                    elif g is not None:
+                        gate_loss = g.float().mean()           # sparsity / identity prior
+                        gate_mode = "sparse"
+                    else:
+                        gate_loss = torch.zeros((), device=device)
+                        gate_mode = "off"
+                    loss = task_loss + args.beta * kl_pen + args.lambda_gate * gate_loss
 
                 opt.zero_grad(set_to_none=True)
                 loss.backward()
@@ -183,9 +202,11 @@ def main():
                 sched.step()
 
                 if step % 100 == 0:
+                    g_open = float(g.float().mean().item()) if g is not None else float("nan")
                     print(f"[rib] step={step:6d}/{args.steps}  loss={loss.item():.4f}  "
                           f"task={task_loss.item():.4f}  kl={kl.item():.3f}  "
-                          f"coeff={fused.ib_contribution:+.3f}  lr={opt.param_groups[0]['lr']:.1e}", flush=True)
+                          f"coeff={fused.ib_contribution:+.3f}  gate[{gate_mode}]={g_open:.3f}  "
+                          f"lr={opt.param_groups[0]['lr']:.1e}", flush=True)
                     history.append({"step": step, "loss": float(loss.item()),
                                     "task": float(task_loss.item()), "kl": float(kl.item()),
                                     "fusion_coeff": float(fused.fusion_coeff.item())})

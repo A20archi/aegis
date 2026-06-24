@@ -93,7 +93,7 @@ class FusedRobustIBProjector(nn.Module):
     """
 
     def __init__(self, original_linear: nn.Linear, D_out: int = 960,
-                 d_z: int = 448, n_heads: int = 7) -> None:
+                 d_z: int = 448, n_heads: int = 7, gate_hidden: int = 128) -> None:
         super().__init__()
         self.linear = original_linear
         self.rib = RobustIB(D_out, d_z=d_z, n_heads=n_heads)
@@ -104,11 +104,36 @@ class FusedRobustIBProjector(nn.Module):
         # (StableVLA's failure). A positive coeff lets the decoder receive gradient and
         # learn the correction from step 1, while identity-at-init still holds via Z_ib=0.
         self.fusion_coeff = nn.Parameter(torch.full((1,), 0.5493))
+        # INPUT-ADAPTIVE GATE (AEGIS v2): a per-sample scalar g(x) in (0,1) that scales
+        # the RIB residual, so RIB can BACK OFF on inputs where its bottleneck doesn't
+        # help — the high-baseline axes (lighting / layout / robot-init) where the frozen
+        # base is already strong and RIB's information loss was pure downside. Trained
+        # (scripts/finetune_rib.py) to OPEN on corrupted inputs, CLOSE on clean ones.
+        # Closed gate (g->0) zeroes the residual => connector == original linear == base,
+        # exactly (the deployable, per-input version of "close the gate to recover base").
+        self.gate_head = nn.Sequential(nn.Linear(D_out, gate_hidden), nn.GELU(),
+                                       nn.Linear(gate_hidden, 1))
+        # zero-weight + positive-bias init: gate starts ~sigmoid(2)=0.88 (mostly open,
+        # input-independent) so the decoder keeps its gradient; input-dependence is learned.
+        nn.init.zeros_(self.gate_head[-1].weight)
+        nn.init.constant_(self.gate_head[-1].bias, 2.0)
+        self.last_gate: Tensor | None = None   # per-sample gate, stashed for the gate loss
 
     def forward(self, x: Tensor) -> Tensor:
         z_mlp = self.linear(x)
         z_rib = self.rib(z_mlp)
-        return z_mlp + torch.tanh(self.fusion_coeff) * z_rib
+        # per-sample gate from pooled connector features (token-mean if 3D)
+        if z_mlp.dim() == 3:                                   # (B, N, D)
+            pooled = z_mlp.float().mean(dim=1)                 # (B, D)
+            g = torch.sigmoid(self.gate_head(pooled))          # (B, 1)
+            self.last_gate = g.squeeze(-1)                     # (B,)
+            g = g.unsqueeze(1)                                 # (B, 1, 1) broadcast
+        else:                                                  # (N, D) single sample
+            pooled = z_mlp.float().mean(dim=0, keepdim=True)   # (1, D)
+            g = torch.sigmoid(self.gate_head(pooled))          # (1, 1)
+            self.last_gate = g.squeeze(-1)                     # (1,)
+        g = g.to(z_rib.dtype)
+        return z_mlp + torch.tanh(self.fusion_coeff) * g * z_rib
 
     @property
     def ib_contribution(self) -> float:
@@ -126,6 +151,7 @@ def inject_fused_rib(policy, D_out: int = 960, d_z: int = 448, n_heads: int = 7)
     fused = FusedRobustIBProjector(original_linear, D_out=D_out, d_z=d_z, n_heads=n_heads)
     ref = next(original_linear.parameters())
     fused.rib.to(device=ref.device, dtype=ref.dtype)
+    fused.gate_head.to(device=ref.device, dtype=ref.dtype)
     fused.fusion_coeff.data = fused.fusion_coeff.data.to(device=ref.device, dtype=ref.dtype)
     conn.modality_projection.proj = fused
     print(f"[rib] injected RobustIB  params={fused.rib.n_params()/1e6:.2f}M  d_z={d_z}  "
@@ -137,6 +163,7 @@ def save_rib_checkpoint(fused: FusedRobustIBProjector, lm_expert, out_path: str,
                         config: dict, step: int, loss: float) -> None:
     torch.save({
         "rib_state": fused.rib.state_dict(),
+        "gate_head_state": fused.gate_head.state_dict(),
         "fusion_coeff": fused.fusion_coeff.data.clone(),
         "lm_expert_state": lm_expert.state_dict(),
         "config": config, "step": step, "loss": loss,
@@ -151,8 +178,11 @@ def load_rib_checkpoint(policy, weights_path: str, device: str = "cuda") -> None
     assert isinstance(fused, FusedRobustIBProjector), \
         "Call inject_fused_rib(policy) before load_rib_checkpoint()"
     fused.rib.load_state_dict(ckpt["rib_state"])
+    if "gate_head_state" in ckpt:                       # AEGIS v2 adaptive gate
+        fused.gate_head.load_state_dict(ckpt["gate_head_state"])
     ref = next(fused.linear.parameters())
     fused.rib.to(device=ref.device, dtype=ref.dtype)
+    fused.gate_head.to(device=ref.device, dtype=ref.dtype)
     fused.fusion_coeff.data = ckpt["fusion_coeff"].to(device=ref.device, dtype=ref.dtype)
     policy.model.vlm_with_expert.lm_expert.load_state_dict(ckpt["lm_expert_state"])
     print(f"[rib] loaded {weights_path}  fusion_coeff={fused.ib_contribution:.3f}  "
