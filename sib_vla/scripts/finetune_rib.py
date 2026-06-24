@@ -103,7 +103,17 @@ def main():
                     help="per-elem KL floor: no compression pressure below this (anti-collapse)")
     ap.add_argument("--corrupt-frac", type=float, default=0.6, help="fraction of batch images corrupted")
     ap.add_argument("--lambda-gate", type=float, default=0.05,
-                    help="weight on the adaptive-gate loss (open-on-corrupt / close-on-clean)")
+                    help="weight on the ADVANTAGE-gate BCE (open where RIB beats baseline, else close)")
+    ap.add_argument("--adv-margin", type=float, default=0.0,
+                    help="advantage gate: target=open(1) only if baseline_loss - rib_loss > margin "
+                         "(RIB must BEAT baseline by this much; else gate closes -> emit baseline). "
+                         ">0 biases toward safety: don't act unless clearly better than the base.")
+    ap.add_argument("--lambda-cons", type=float, default=0.0,
+                    help="weight on self-referential feature-consistency (RIB(corrupt)->clean feats)")
+    ap.add_argument("--gate-warmup", type=int, default=0,
+                    help="if >0: gate_floor=1 for [0,W) (decoder warmup, no dead-start), anneal 1->0 "
+                         "over [W,2W), then 0 (per-input gate learnable). The consistency loss teaches "
+                         "the gate to open where the correction helps, close where it doesn't.")
     ap.add_argument("--tag", default="rib_on86")
     args = ap.parse_args()
 
@@ -161,39 +171,92 @@ def main():
         while step < args.steps:
             for raw_batch in loader:
                 raw = {k: (v.to(device) if torch.is_tensor(v) else v) for k, v in raw_batch.items()}
-                # corrupt a random fraction of the batch's images (per-image mask)
                 B = next(v.shape[0] for v in raw.values() if torch.is_tensor(v) and v.dim() >= 1)
+                # GATE WARMUP: decoder learns first (floor=1), then the per-input gate becomes
+                # learnable (floor->0) so it can't shut before the decoder is useful (no dead-start).
+                if args.gate_warmup > 0:
+                    W = args.gate_warmup
+                    fused.gate_floor = (1.0 if step < W else
+                                        max(0.0, 1.0 - (step - W) / W) if step < 2 * W else 0.0)
+                # CLEAN batch (built BEFORE corruption) -> source of the denoising target features
+                clean_batch = preprocessor({k: (v.to(device) if torch.is_tensor(v) else v) for k, v in raw.items()})
+                clean_batch = {k: (v.to(device) if torch.is_tensor(v) else v) for k, v in clean_batch.items()}
+                # CORRUPT batch: VIEW-ASYMMETRIC (LIBERO-Plus: lighting wrecks the third-person view,
+                # the wrist stays stable). Corrupt the AGENTVIEW only, keep the WRIST clean.
                 cmask = torch.rand(B, generator=gen, device=device) < args.corrupt_frac
+                WRIST_HINTS = ("image2", "wrist", "eye_in_hand")
                 for k in _image_keys(raw):
+                    if any(h in k for h in WRIST_HINTS):
+                        continue                       # keep wrist view clean
                     if cmask.any():
                         sub = raw[k][cmask]
                         raw[k] = raw[k].clone()
                         raw[k][cmask] = _augment_images(sub, gen).to(raw[k].dtype)
-
                 batch = preprocessor({k: (v.to(device) if torch.is_tensor(v) else v) for k, v in raw.items()})
                 batch = {k: (v.to(device) if torch.is_tensor(v) else v) for k, v in batch.items()}
 
+                # CLEAN target features (no grad): per-view PRE-RIB linear output on clean images.
+                # MUST run under autocast (same as the main forward) or dtypes mismatch.
+                with torch.no_grad(), amp_ctx:
+                    fused.zmlp_trace.clear()
+                    policy.forward(clean_batch)
+                    clean_zmlp = [z.detach() for z in fused.zmlp_trace]
+
+                # ADVANTAGE GATE: once the gate is learnable (floor<1), probe the SAME corrupted batch
+                # with RIB OFF (g=0, baseline) and RIB FULLY ON (g=1) under ONE SHARED flow-matching
+                # noise/time draw, per sample. target=1 where RIB BEATS the baseline (by adv_margin),
+                # else 0. The gate is BCE-supervised to open only where it helps and CLOSE (-> emit the
+                # baseline value) elsewhere — the honest, per-input "AEGIS >= baseline" mechanism.
+                gate_target = None; adv_open = float("nan"); adv_mean = float("nan")
+                do_adv = args.lambda_gate > 0 and fused.gate_floor < 1.0
+                if do_adv:
+                    acts_shape = (B, policy.config.chunk_size, policy.config.max_action_dim)
+                    noise = policy.model.sample_noise(acts_shape, device)
+                    time = policy.model.sample_time(B, device)
+                    with torch.no_grad(), amp_ctx:
+                        fused.gate_override = 0.0
+                        L_base, _ = policy.forward(batch, noise=noise, time=time, reduction="none")
+                        fused.gate_override = 1.0
+                        L_rib, _ = policy.forward(batch, noise=noise, time=time, reduction="none")
+                        fused.gate_override = None
+                        adv = (L_base.float() - L_rib.float())          # >0 => RIB helps THIS sample
+                        gate_target = (adv > args.adv_margin).float()    # (B,) 1=open, 0=stay baseline
+                        adv_open = float(gate_target.mean()); adv_mean = float(adv.mean())
+                else:
+                    noise = time = None
+
+                fused.gate_trace.clear(); fused.out_trace.clear()
+                fused.gate_raw_trace.clear(); fused.gate_sample_trace.clear()
+                fused.gate_logit_trace.clear()
+                fused.gate_override = None
                 with amp_ctx:
-                    task_loss, _ = policy.forward(batch)
+                    task_loss, _ = policy.forward(batch, noise=noise, time=time)
                     kl = fused.last_kl.float() if fused.last_kl is not None else torch.zeros((), device=device)
                     kl_pen = torch.clamp(kl, min=args.free_bits)   # free-bits: no pressure below floor
-                    # GATE supervision (AEGIS v2): teach the input-adaptive gate to OPEN on
-                    # corrupted inputs and CLOSE on clean ones. If the gate is per-sample and
-                    # aligns with cmask -> direct BCE (corrupt=1, clean=0); otherwise fall back
-                    # to a sparsity prior (close unless the task loss needs the residual open),
-                    # which is alignment-free and still implements "minimal intervention".
-                    g = fused.last_gate
-                    if g is not None and g.numel() == cmask.numel():
-                        gate_loss = F.binary_cross_entropy(
-                            g.float().clamp(1e-4, 1 - 1e-4), cmask.float())
-                        gate_mode = "bce"
-                    elif g is not None:
-                        gate_loss = g.float().mean()           # sparsity / identity prior
-                        gate_mode = "sparse"
+                    # (1) SELF-REFERENTIAL FEATURE CONSISTENCY — the direct fix for the flat task loss.
+                    # RIB's per-view output on the CORRUPTED images is pulled toward the clean pre-RIB
+                    # features: denoises the corrupted agentview toward its clean target, and reinforces
+                    # pass-through on the clean wrist. Gives RIB a denoising gradient that does NOT
+                    # depend on whether the action loss needs it (the wrist crutch can't starve it).
+                    outs = fused.out_trace
+                    if outs and clean_zmlp and len(outs) == len(clean_zmlp):
+                        cons = sum(F.mse_loss(o.float(), t.float())
+                                   for o, t in zip(outs, clean_zmlp)) / len(outs)
+                    else:
+                        cons = torch.zeros((), device=device)
+                    # (2) ADVANTAGE-GATE BCE — supervise the PRE-FLOOR sigmoid (== deployed gate at
+                    # floor=0) per view toward the per-sample target. Gradient reaches ONLY gate_head
+                    # (everything upstream is frozen), so it trains the gate without disturbing RIB.
+                    if do_adv and gate_target is not None and fused.gate_logit_trace:
+                        # BCE-with-logits (autocast-safe) on the per-view pre-sigmoid gate logits
+                        gate_loss = sum(F.binary_cross_entropy_with_logits(l.float(), gate_target)
+                                        for l in fused.gate_logit_trace) / len(fused.gate_logit_trace)
+                        gate_mode = "advantage"
                     else:
                         gate_loss = torch.zeros((), device=device)
-                        gate_mode = "off"
-                    loss = task_loss + args.beta * kl_pen + args.lambda_gate * gate_loss
+                        gate_mode = "warmup"
+                    loss = (task_loss + args.beta * kl_pen
+                            + args.lambda_gate * gate_loss + args.lambda_cons * cons)
 
                 opt.zero_grad(set_to_none=True)
                 loss.backward()
@@ -202,10 +265,13 @@ def main():
                 sched.step()
 
                 if step % 100 == 0:
-                    g_open = float(g.float().mean().item()) if g is not None else float("nan")
+                    # per-view gate means: [agentview, wrist] in embed order. We WANT agentview to
+                    # stay open under corruption and wrist to close (lean on the stable wrist view).
+                    gv = [round(float(x), 3) for x in fused.gate_trace]
                     print(f"[rib] step={step:6d}/{args.steps}  loss={loss.item():.4f}  "
-                          f"task={task_loss.item():.4f}  kl={kl.item():.3f}  "
-                          f"coeff={fused.ib_contribution:+.3f}  gate[{gate_mode}]={g_open:.3f}  "
+                          f"task={task_loss.item():.4f}  kl={kl.item():.3f}  cons={float(cons):.4f}  "
+                          f"gloss={float(gate_loss):.4f}({gate_mode})  open={adv_open:.2f}  adv={adv_mean:+.4f}  "
+                          f"floor={fused.gate_floor:.2f}  gate_views={gv}  "
                           f"lr={opt.param_groups[0]['lr']:.1e}", flush=True)
                     history.append({"step": step, "loss": float(loss.item()),
                                     "task": float(task_loss.item()), "kl": float(kl.item()),

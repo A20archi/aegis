@@ -118,22 +118,58 @@ class FusedRobustIBProjector(nn.Module):
         nn.init.zeros_(self.gate_head[-1].weight)
         nn.init.constant_(self.gate_head[-1].bias, 2.0)
         self.last_gate: Tensor | None = None   # per-sample gate, stashed for the gate loss
+        self.gate_trace: list = []             # per-view gate means (one entry per forward call)
+        self.zmlp_trace: list = []             # per-view PRE-RIB linear output (clean-target src)
+        self.out_trace: list = []              # per-view RIB output (denoising prediction)
+        self.gate_sample_trace: list = []      # per-view per-sample gate g (B,), grad-carrying (BCE)
+        self.gate_raw_trace: list = []         # per-view per-sample raw sigmoid (B,), pre-floor (observ.)
+        self.gate_logit_trace: list = []       # per-view per-sample gate LOGIT (B,), for BCE-with-logits
+        # ADVANTAGE-GATE PROBE: when set to a float, the gate is FORCED to that constant
+        # (0.0 = baseline path, 1.0 = full RIB) regardless of gate_head/gate_floor. Used by
+        # finetune_rib.py to measure, per sample, whether RIB BEATS the baseline on THIS input —
+        # the gate is then trained to open only where it helps and close (=> emit baseline) else.
+        self.gate_override: float | None = None
+        # effective gate = gate_floor + (1-gate_floor)*sigmoid(.). gate_floor=1.0 => always-on
+        # (proven RIB, decoder always receives gradient, no dead-start). Lower it (<1) to
+        # re-enable adaptive per-input back-off — but only with a decoder warmup, else the gate
+        # shuts before the zero-init decoder learns and freezes RIB. v3 territory.
+        self.gate_floor: float = 1.0
 
     def forward(self, x: Tensor) -> Tensor:
         z_mlp = self.linear(x)
         z_rib = self.rib(z_mlp)
-        # per-sample gate from pooled connector features (token-mean if 3D)
-        if z_mlp.dim() == 3:                                   # (B, N, D)
-            pooled = z_mlp.float().mean(dim=1)                 # (B, D)
-            g = torch.sigmoid(self.gate_head(pooled))          # (B, 1)
-            self.last_gate = g.squeeze(-1)                     # (B,)
-            g = g.unsqueeze(1)                                 # (B, 1, 1) broadcast
-        else:                                                  # (N, D) single sample
-            pooled = z_mlp.float().mean(dim=0, keepdim=True)   # (1, D)
-            g = torch.sigmoid(self.gate_head(pooled))          # (1, 1)
-            self.last_gate = g.squeeze(-1)                     # (1,)
+        is3d = z_mlp.dim() == 3
+        B = z_mlp.shape[0] if is3d else 1
+        if self.gate_override is not None:
+            # PROBE PATH: force a constant gate (0=baseline, 1=full RIB), bypass gate_head/floor.
+            ov = float(self.gate_override)
+            g = z_mlp.new_full((B, 1, 1) if is3d else (1, 1), ov)
+            self.last_gate = z_mlp.new_full((B,) if is3d else (1,), ov)
+        else:
+            # per-sample gate from pooled connector features (token-mean if 3D)
+            if is3d:                                            # (B, N, D)
+                pooled = z_mlp.float().mean(dim=1)              # (B, D)
+                logit = self.gate_head(pooled).squeeze(-1)     # (B,)
+                raw = torch.sigmoid(logit)                     # (B,)
+                gvec = self.gate_floor + (1.0 - self.gate_floor) * raw    # (B,)
+                self.last_gate = gvec
+                g = gvec.view(B, 1, 1)                          # broadcast
+            else:                                              # (N, D) single sample
+                pooled = z_mlp.float().mean(dim=0, keepdim=True)          # (1, D)
+                logit = self.gate_head(pooled).squeeze(-1)     # (1,)
+                raw = torch.sigmoid(logit)                     # (1,)
+                gvec = self.gate_floor + (1.0 - self.gate_floor) * raw    # (1,)
+                self.last_gate = gvec
+                g = gvec.view(1, 1)
+            self.gate_logit_trace.append(logit)     # pre-sigmoid logit (BCE-with-logits target)
+            self.gate_raw_trace.append(raw)         # pre-floor sigmoid (== deployed gate at floor=0)
+            self.gate_sample_trace.append(gvec)     # per-sample effective gate (grad-carrying)
+        self.gate_trace.append(self.last_gate.mean().detach())  # per-view observability
         g = g.to(z_rib.dtype)
-        return z_mlp + torch.tanh(self.fusion_coeff) * g * z_rib
+        out = z_mlp + torch.tanh(self.fusion_coeff) * g * z_rib
+        self.zmlp_trace.append(z_mlp)   # pre-RIB linear output (clean-feature target source)
+        self.out_trace.append(out)      # RIB output (denoising prediction, for consistency loss)
+        return out
 
     @property
     def ib_contribution(self) -> float:
