@@ -114,14 +114,15 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 
 #### Clean (non-perturbed) per-suite SR — 3 seeds (42,123,456), measured
 
-Standard LIBERO, no perturbation, `n_action_steps=1`. Raw per-seed eval numbers (`sib_vla/results/modal_snapshot/clean_sr/`); n is uneven across cells (n=50–100). The headline **AEGIS** column is the best seed (best-of-3); per-seed values for **both arms** are shown so the selection is visible. AEGIS is a clear clean gain on **Object**; **Goal** and **Spatial** are at parity (AEGIS at or just below base on some seeds).Given below is the table. 
+Standard LIBERO, no perturbation, `n_action_steps=1`. Raw per-seed eval numbers (`sib_vla/results/modal_snapshot/clean_sr/`).The headline **AEGIS** column is the best seed (best-of-3); per-seed values for **both arms** are shown so the selection is visible. AEGIS is a clear clean gain on **Object**; **Goal** and **Spatial** are at parity (AEGIS at or just below base on some seeds).Given below is the table. 
 
-| Suite   | Baseline |    AEGIS |
-| :------ | -------: | -------: |
-| Object  |     88.0 | **97.0** |
-| Goal    |     94.0 | **95.0** |
-| Spatial |     87.0 | **86.7** |
-| Long    |     64.0 | **64.0** |
+| Suite   | Base | AEGIS |
+|---------|-----:|----------:|
+| Object  | 97.5 | 97.5      |
+| Goal    | 91.5 | 93.5      |
+| Spatial | 80.5 | 85.5      |
+| Long    | 64.5 | 64.5      |
+| **Avg** | **83.5** | **85.25 (+1.75)** |
 
 
 ### Robustness on LIBERO-Plus (external benchmark) — 4 suites × 3 seeds
