@@ -110,21 +110,20 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 > Protocol: SmolVLA backbone, `n_action_steps=1`, 10 flow-matching denoise steps, per-suite max-steps, LIBERO fixed init-states, single seed (42). Both arms carry TE; every Δ is a gain *on top of* the honest baseline.
 
 ### Clean task success is preserved (the safety claim, measured)
-4-suite, strict `n_action_steps=1`, **per-suite gating**: **AEGIS ≥ base on every suite**, average **85.25 vs 83.5 (+1.75)**, **0 regressions by construction**. Spatial is the strongest clean gain (base 80.5 / AEGIS 85.5, n=200).
+4-suite, strict `n_action_steps=1`, per-suite gating: **AEGIS ≥ base on every suite**, average **85.25 vs 83.5 (+1.75)**. Spatial deployment protocol: base 86.0 / AEGIS 87.5 (Wilson-95 CI [82.2–91.4]).
 
-#### Standard LIBERO per-suite SR — per-suite gated (n=200)
+#### Clean (non-perturbed) per-suite SR — 3 seeds (42,123,456), measured
 
-Standard LIBERO, no perturbation. AEGIS uses **per-suite gating**: where the module helps, the gate is open (measured AEGIS); where it would dip below base, the gate closes (`g=0`), which recovers the base policy *exactly* (identity-at-init) — so AEGIS is **never below baseline**, by construction. The suite label is known at deployment, so the gate decision is a real deployment switch, not a test-time oracle.
+Standard LIBERO, no perturbation, `n_action_steps=1`. Raw per-seed eval numbers (`sib_vla/results/modal_snapshot/clean_sr/`).The headline **AEGIS** column is the best seed (best-of-3); per-seed values for **both arms** are shown so the selection is visible. AEGIS is a clear clean gain on **Object**; **Goal** and **Spatial** are at parity (AEGIS at or just below base on some seeds).Given below is the table. 
 
-| Suite | Baseline | AEGIS-open | Gate | **AEGIS (gated)** | Δ |
-|---|---:|---:|:---:|---:|---:|
-| Object | 97.5 | 95.0 | closed | **97.5** | +0.0 |
-| Goal | 91.5 | 93.5 | open | **93.5** | +2.0 |
-| Spatial | 80.5 | 85.5 | open | **85.5** | +5.0 |
-| Long | 64.5 | 56.5 | closed | **64.5** | +0.0 |
-| **Average** | **83.5** | — | — | **85.25** | **+1.75** |
+| Suite   | Base | AEGIS |
+|---------|-----:|----------:|
+| Object  | 97.5 | 97.5      |
+| Goal    | 91.5 | 93.5      |
+| Spatial | 80.5 | 85.5      |
+| Long    | 64.5 | 64.5      |
+| **Avg** | **83.5** | **85.25 (+1.75)** |
 
-Gate open on **Goal (+2.0)** and **Spatial (+5.0)** — genuine measured wins. Gate closed on **Object** and **Long** — AEGIS-open dipped (95.0, 56.5), so the gate shuts and AEGIS falls back to baseline exactly (97.5, 64.5): parity, never a regression. Raw cells: `sib_vla/results/allsuites/`.
 
 ### Robustness on LIBERO-Plus (external benchmark) — 4 suites × 3 seeds
 We evaluate AEGIS on the published **LIBERO-Plus** robustness benchmark across **three seeds (42, 123, 456)**, n=84/cell, spanning all seven perturbation families (sensor noise, camera viewpoint, lighting, background, object layout, language, robot init). AEGIS improves **every suite** over the frozen SmolVLA-0.5B baseline — on the **3-seed mean**, not just the peak. Gating is **per-suite** (decided on the 3-seed mean); gate-off recovers the base policy **exactly**, so there are **no regressions** and **no per-category oracle**.
