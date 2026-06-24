@@ -6,6 +6,8 @@
 
 **A rate-limited information bottleneck applied at two interfaces of a *frozen* VLA — perception and action — both exact pass-throughs at initialization, so robustness is strictly additive and per-suite gating is provably safe.**
 
+<sub>🎓 Conducted as a **summer research internship** at **ISLab, Changwon National University (CWNU)**, South Korea.</sub>
+
 > 📋 **[RESULTS_STATUS.md](RESULTS_STATUS.md)** — honest snapshot of what's complete and how it was measured. The full LIBERO-Plus table (4 suites × 3 seeds, n=84/cell) is now complete.
 
 [![Method](https://img.shields.io/badge/method-dual--locus%20IB-blue)]()
@@ -319,6 +321,13 @@ A preprint is in preparation. In the meantime:
 
 ---
 
+## Affiliation & disclaimer
+
+This work was carried out as a **summer research internship** at **ISLab, Changwon National University (CWNU), South Korea**, under lab supervision. It is intern research, with the paper in preparation; all results are reported honestly as measured (per-suite gating with gate-off = baseline exactly, 3-seed mean and peak both shown, no per-category oracle). Views and any errors are the author's own.
+
+---
+
 <div align="center">
 <sub>Backbone frozen · identity at init · robustness strictly additive · gating provably safe.</sub>
+<br/><sub>🎓 Summer research internship · ISLab, Changwon National University (CWNU), South Korea.</sub>
 </div>
