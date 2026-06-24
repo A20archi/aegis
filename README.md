@@ -136,6 +136,18 @@ We evaluate AEGIS on the published **LIBERO-Plus** robustness benchmark across *
 | Long | 17.1 | 20.2 | **+3.17** | +10.71 |
 | **Average** | **34.3** | **40.0** | **+5.65** | **+11.90** |
 
+**Δ peak — best seed per suite** (base/AEGIS are that seed's own values, so AEGIS − base = Δ peak):
+
+| Suite | base % | AEGIS % | Δ peak |
+|---|---:|---:|---:|
+| Object | 42.9 | 51.2 | **+8.33** |
+| Goal | 34.5 | 53.6 | **+19.05** |
+| Spatial | 33.3 | 42.9 | **+9.52** |
+| Long | 9.5 | 20.2 | **+10.71** |
+| **Average** | — | — | **+11.90** |
+
+Peak seed differs per suite (Object 456, Goal 42, Spatial 123, Long 42); the headline above is the 3-seed **mean**, this is the best-of-3 peak for reference.
+
 All four gates are **open** — AEGIS genuinely beats baseline on every suite, no fallback needed. The gains concentrate on the visual-corruption axis the perception bottleneck targets — **Sensor Noise (up to +42 pts)** — with the remaining categories at or near parity; clean success rate is preserved. Δ peak is the best-of-3-seeds value (labelled, not the headline). Raw cells: [`sib_vla/results/v2_sweep/`](sib_vla/results/v2_sweep/).
 
 <div align="center">
