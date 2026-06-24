@@ -18,10 +18,10 @@ PY = "/home/user/miniconda3/envs/lerobot_lplus/bin/python"
 SCRIPT = f"{ROOT}/scripts/libero_plus_aegis_eval.py"
 # The on86 RIB/RASF modules were trained against THIS base (expert_width_multiplier=0.75 ->
 # 720-wide expert); the HF default smolvla_libero is 480-wide and mismatches. Both arms use it.
-CKPT = f"{ROOT}/outputs/smolvla_spatial_repro/checkpoints/020000/pretrained_model"
-RIB = f"{ROOT}/results/ib_on86/rib_on86.pt"
-RASF = f"{ROOT}/results/rasf_on86/rasf_on86.pt"
-OUTDIR = f"{ROOT}/results/local_lplus"
+CKPT = os.environ.get("CKPT_DIR", f"{ROOT}/outputs/smolvla_spatial_repro/checkpoints/020000/pretrained_model")
+RIB = os.environ.get("RIB_WEIGHTS", f"{ROOT}/results/ib_on86/rib_on86.pt")
+RASF = os.environ.get("RASF_WEIGHTS", f"{ROOT}/results/rasf_on86/rasf_on86.pt")
+OUTDIR = os.environ.get("OUTDIR", f"{ROOT}/results/local_lplus")
 LPLUS_REPO = "/home/user/Desktop/vla_projects/LIBERO-plus"
 
 MAXSTEPS = {"libero_spatial": 220, "libero_object": 280, "libero_goal": 300, "libero_10": 520}

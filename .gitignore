@@ -70,3 +70,7 @@ sib_vla/results/local_lplus/**/*.log
 sib_vla/results/local_clean/**/*.log
 sib_vla/results/local_clean/**/_cfg_*.yaml
 sib_vla/results/local_lplus_video/*.log
+
+# v2 sweep / rib_v2 training artifacts: keep eval JSONs, never logs or checkpoints
+sib_vla/results/v2_sweep/**/*.log
+sib_vla/results/rib_v2/

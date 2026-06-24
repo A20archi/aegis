@@ -1,0 +1,8 @@
+# RIB-v2: AEGIS adaptive gate + view-asymmetric lighting training (corrupt agentview, spare wrist).
+inherit: base.yaml
+checkpoint: outputs/smolvla_spatial_repro/checkpoints/020000/pretrained_model   # 720-wide base
+repo_id: HuggingFaceVLA/libero
+output_dir: results/rib_v2
+n_action_steps: 1
+record:
+  enabled: false

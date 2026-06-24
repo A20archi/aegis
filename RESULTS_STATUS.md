@@ -16,18 +16,20 @@ SmolVLA. AEGIS is additive-identity, so AEGIS ≥ baseline by design.
 ## ✅ Complete — LIBERO-Plus (the headline robustness benchmark)
 Full table: **4 suites × 3 seeds (42/123/456), n=84/cell**, all seven perturbation families, finished
 on a free local A100. AEGIS improves every suite; gains are led by the visual-corruption axes
-(Sensor Noise, Camera Viewpoints). Per-perturbation success rate, AEGIS reported as max(AEGIS, baseline).
+(Sensor Noise, Light). Gating is **per-suite** (decided on the 3-seed mean; gate-off = baseline
+exactly) — no per-category oracle.
 
-| Suite | base → AEGIS (3-seed mean) | Δ mean | Δ peak |
-|---|---:|---:|---:|
-| Object | 42 → 51 | +9.5 | +13.1 |
-| Goal | 41 → 48 | +7.1 | +9.5 |
-| Spatial | 38 → 44 | +6.0 | +10.7 |
-| Long | 17 → 25 | +7.5 | +14.3 |
+| Suite | base % | AEGIS % | Δ mean | Δ peak |
+|---|---:|---:|---:|---:|
+| Object | 41.7 | 47.6 | +5.95 | +8.33 |
+| Goal | 40.9 | 50.8 | +9.92 | +19.05 |
+| Spatial | 37.7 | 41.3 | +3.57 | +9.52 |
+| Long | 17.1 | 20.2 | +3.17 | +10.71 |
+| **Average** | **34.3** | **40.0** | **+5.65** | **+11.90** |
 
-Spatial (previously flagged as anomalous on Modal) is resolved — the earlier flat result was the
-eval-harness instruction bug (below); with the suite-agnostic parser it lands at +6.0 mean / +10.7 peak.
-Full per-seed, per-category data: `sib_vla/results/local_lplus/SUMMARY.md` + the raw cell JSONs.
+All four gates open — AEGIS genuinely beats baseline on every suite. The earlier Spatial anomaly
+(flat on Modal) was an eval-harness instruction bug (below), resolved with the suite-agnostic parser.
+Raw per-seed, per-category cell JSONs: `sib_vla/results/v2_sweep/`.
 
 ### How it was finished
 The LIBERO-Plus leg originally stalled under a hard $200 Modal ceiling (month-to-date ~$196: clean

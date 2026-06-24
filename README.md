@@ -127,19 +127,20 @@ Standard LIBERO, no perturbation. AEGIS uses **per-suite gating**: where the mod
 Gate open on **Goal (+2.0)** and **Spatial (+5.0)** — genuine measured wins. Gate closed on **Object** and **Long** — AEGIS-open dipped (95.0, 56.5), so the gate shuts and AEGIS falls back to baseline exactly (97.5, 64.5): parity, never a regression. Raw cells: `sib_vla/results/allsuites/`.
 
 ### Robustness on LIBERO-Plus (external benchmark) — 4 suites × 3 seeds
-We evaluate AEGIS on the published **LIBERO-Plus** robustness benchmark across **three seeds (42, 123, 456)**, n=84/cell, spanning all seven perturbation families (sensor noise, camera viewpoint, lighting, background, object layout, language, robot init). The results are pretty strong — AEGIS improves **every suite** over the frozen SmolVLA-0.5B baseline, and the gain holds on the **3-seed average**, not just at the peak.
+We evaluate AEGIS on the published **LIBERO-Plus** robustness benchmark across **three seeds (42, 123, 456)**, n=84/cell, spanning all seven perturbation families (sensor noise, camera viewpoint, lighting, background, object layout, language, robot init). AEGIS improves **every suite** over the frozen SmolVLA-0.5B baseline — on the **3-seed mean**, not just the peak. Gating is **per-suite** (decided on the 3-seed mean); gate-off recovers the base policy **exactly**, so there are **no regressions** and **no per-category oracle**.
 
-| Suite | base → AEGIS (3-seed mean) | Δ mean | Δ peak |
-|---|---:|---:|---:|
-| Object | 42 → 51 | **+9.5** | +13.1 |
-| Goal | 41 → 48 | **+7.1** | +9.5 |
-| Spatial | 38 → 44 | **+6.0** | +10.7 |
-| Long | 17 → 25 | **+7.5** | +14.3 |
+| Suite | base % | AEGIS % | Δ mean | Δ peak |
+|---|---:|---:|---:|---:|
+| Object | 41.7 | 47.6 | **+5.95** | +8.33 |
+| Goal | 40.9 | 50.8 | **+9.92** | +19.05 |
+| Spatial | 37.7 | 41.3 | **+3.57** | +9.52 |
+| Long | 17.1 | 20.2 | **+3.17** | +10.71 |
+| **Average** | **34.3** | **40.0** | **+5.65** | **+11.90** |
 
-The gains concentrate on the visual-corruption axes the perception bottleneck targets — **Sensor Noise (up to +58 pts)** and **Camera Viewpoints** — while clean-leaning categories (lighting, layout) sit at parity. Clean success rate is preserved (no regression). Full per-seed, per-perturbation breakdown: [`sib_vla/results/local_lplus/SUMMARY.md`](sib_vla/results/local_lplus/SUMMARY.md).
+All four gates are **open** — AEGIS genuinely beats baseline on every suite, no fallback needed. The gains concentrate on the visual-corruption axis the perception bottleneck targets — **Sensor Noise (up to +42 pts)** — with the remaining categories at or near parity; clean success rate is preserved. Δ peak is the best-of-3-seeds value (labelled, not the headline). Raw cells: [`sib_vla/results/v2_sweep/`](sib_vla/results/v2_sweep/).
 
 <div align="center">
-<img src="sib_vla/docs/figures/fig_liberoplus_perturbation.png" alt="LIBERO-Plus per-perturbation robustness: AEGIS vs frozen SmolVLA across 4 suites" width="820"/>
+<img src="sib_vla/docs/figures/fig_liberoplus_gated.png" alt="LIBERO-Plus per-suite gated robustness: AEGIS vs frozen SmolVLA, Δ mean and Δ peak across 4 suites × 3 seeds" width="900"/>
 </div>
 
 ### In-distribution robustness — LIBERO-V, Spatial (n=200/axis)
