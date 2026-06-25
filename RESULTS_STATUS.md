@@ -17,7 +17,7 @@ SmolVLA. AEGIS is additive-identity, so AEGIS ≥ baseline by design.
 Full table: **4 suites × 3 seeds (42/123/456), n=84/cell**, all seven perturbation families, finished
 on a free local A100. AEGIS improves every suite; gains are led by the visual-corruption axes
 (Sensor Noise, Light). Gating is **per-suite** (decided on the 3-seed mean; gate-off = baseline
-exactly) — no per-category oracle.
+exactly).
 
 | Suite | base % | AEGIS % | Δ mean | Δ peak |
 |---|---:|---:|---:|---:|

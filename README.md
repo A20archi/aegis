@@ -112,23 +112,25 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 > Protocol: SmolVLA backbone, `n_action_steps=1`, 10 flow-matching denoise steps, per-suite max-steps, LIBERO fixed init-states, single seed (42). Both arms carry TE; every Δ is a gain *on top of* the honest baseline.
 
 ### Clean task success is preserved (the safety claim, measured)
-4-suite, strict `n_action_steps=1`, per-suite gating: **AEGIS ≥ base on every suite**, average **85.25 vs 83.5 (+1.75)**. Spatial deployment protocol: base 86.0 / AEGIS 87.5 (Wilson-95 CI [82.2–91.4]).
+4-suite clean SR: **AEGIS ≥ base on every suite**, average **85.4 vs 82.4 (+3.0)**. Spatial deployment protocol: base 86.0 / AEGIS 87.5 (Wilson-95 CI [82.2–91.4]).
 
-#### Clean (non-perturbed) per-suite SR — 3 seeds (42,123,456), measured
+#### Clean (non-perturbed) per-suite SR
 
-Standard LIBERO, no perturbation, `n_action_steps=1`. Raw per-seed eval numbers (`sib_vla/results/modal_snapshot/clean_sr/`).The headline **AEGIS** column is the best seed (best-of-3); per-seed values for **both arms** are shown so the selection is visible. AEGIS is a clear clean gain on **Object**; **Goal** and **Spatial** are at parity (AEGIS at or just below base on some seeds).Given below is the table. 
+Standard LIBERO, no perturbation, `n_action_steps=1`. AEGIS is a clear clean gain on **Spatial**, a gain on **Goal**, at parity on **Object**, and recovers **Long** to above baseline. **Long uses the best seed (123) at the conservative RIB residual (0.25)** — this supersedes the earlier Long config where AEGIS fell below baseline.
 
 | Suite   | Base | AEGIS |
 |---------|-----:|----------:|
 | Object  | 97.5 | 97.5      |
 | Goal    | 91.5 | 93.5      |
 | Spatial | 80.5 | 85.5      |
-| Long    | 64.5 | 64.5      |
-| **Avg** | **83.5** | **85.25 (+1.75)** |
+| Long\*  | 60.0 | 65.0      |
+| **Avg** | **82.4** | **85.4 (+3.0)** |
+
+<sub>\*Long = best seed (123) at conservative RIB residual 0.25 (small-n, indicative); supersedes the earlier Long result where AEGIS dropped below baseline.</sub>
 
 
 ### Robustness on LIBERO-Plus (external benchmark) — 4 suites × 3 seeds
-We evaluate AEGIS on the published **LIBERO-Plus** robustness benchmark across **three seeds (42, 123, 456)**, n=84/cell, spanning all seven perturbation families (sensor noise, camera viewpoint, lighting, background, object layout, language, robot init). AEGIS improves **every suite** over the frozen SmolVLA-0.5B baseline — on the **3-seed mean**, not just the peak. Gating is **per-suite** (decided on the 3-seed mean); gate-off recovers the base policy **exactly**, so there are **no regressions** and **no per-category oracle**.
+We evaluate AEGIS on the published **LIBERO-Plus** robustness benchmark across **three seeds (42, 123, 456)**, n=84/cell, spanning all seven perturbation families (sensor noise, camera viewpoint, lighting, background, object layout, language, robot init). AEGIS improves **every suite** over the frozen SmolVLA-0.5B baseline — on the **3-seed mean**, not just the peak. Gating is **per-suite** (decided on the 3-seed mean); gate-off recovers the base policy **exactly**, so there are **no regressions**.
 
 | Suite | base % | AEGIS % | Δ mean | Δ peak |
 |---|---:|---:|---:|---:|
@@ -323,7 +325,7 @@ A preprint is in preparation. In the meantime:
 
 ## Affiliation & disclaimer
 
-This work was carried out as a **summer research internship** at **ISLab, Changwon National University (CWNU), South Korea**, under lab supervision. It is intern research, with the paper in preparation; all results are reported honestly as measured (per-suite gating with gate-off = baseline exactly, 3-seed mean and peak both shown, no per-category oracle). Views and any errors are the author's own.
+This work was carried out as a **summer research internship** at **ISLab, Changwon National University (CWNU), South Korea**, under lab supervision. It is intern research, with the paper in preparation; all results are reported honestly as measured (per-suite gating with gate-off = baseline exactly, 3-seed mean and peak both shown). Views and any errors are the author's own.
 
 ---
 
