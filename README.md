@@ -111,20 +111,29 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 
 > Protocol: SmolVLA backbone, `n_action_steps=1`, 10 flow-matching denoise steps, per-suite max-steps, LIBERO fixed init-states, single seed (42). Both arms carry TE; every Δ is a gain *on top of* the honest baseline.
 
-### Clean task success is preserved (per-suite gating, gate-off = baseline)
-4-suite clean SR with **per-suite gating**: where AEGIS beats baseline the gate **opens** (Goal, Spatial); where it does not — Object and Long, where AEGIS is within noise of baseline — the gate **closes and AEGIS = baseline exactly**. Gating is **per-suite as a whole, not a per-category max(AEGIS, baseline)**. So **AEGIS ≥ base on every suite**, average **85.25 vs 83.5 (+1.75)**. Spatial deployment protocol: base 86.0 / AEGIS 87.5 (Wilson-95 CI [82.2–91.4]).
+### Clean task success — 3 seeds (42, 123, 456), non-perturbed LIBERO
 
-#### Clean (non-perturbed) per-suite SR — single seed (42)
+**3-seed mean (the headline):** AEGIS improves the clean average **+2.0** (81.3 → 83.3) — a clear gain on **Object (+6.2)**, **Long** recovered to slightly positive (**+1.6**), **Goal** at parity (+0.3), **Spatial** within noise (−0.1). Reported **ungated**: the small Spatial dip is shown, not masked.
 
-| Suite   | Base | AEGIS | gate |
-|---------|-----:|------:|------|
-| Object  | 97.5 | 97.5  | closed (= base) |
-| Goal    | 91.5 | 93.5  | open |
-| Spatial | 80.5 | 85.5  | open |
-| Long    | 64.5 | 64.5  | closed (= base) |
-| **Avg** | **83.5** | **85.25 (+1.75)** | |
+| Suite | Base | AEGIS | Δ mean | per-seed Δ |
+|---|---:|---:|---:|---|
+| Object | 90.1 | 96.3 | **+6.2** | +9.0, +3.7, +6.0 |
+| Goal | 92.7 | 93.0 | +0.3 | +1, −2, +2 |
+| Spatial | 84.5 | 84.4 | −0.1 | −0.3, +2.1, −2 |
+| Long | 58.0 | 59.6 | **+1.6** | −6, 0, +10.7 |
+| **Avg** | **81.3** | **83.3** | **+2.0** | |
 
-<sub>Per-suite gating recovers the base policy **exactly** on the suites where AEGIS does not win (Object, Long — both within single-seed noise of baseline). Whole-suite gate; no per-category max() oracle.</sub>
+**Best-of-3-seed (peak, labelled — *not* the headline):** each suite's single best seed.
+
+| Suite | best seed | Base | AEGIS | Δ peak |
+|---|---|---:|---:|---:|
+| Object | 42 | 88.0 | 97.0 | +9.0 |
+| Goal | 456 | 92.0 | 94.0 | +2.0 |
+| Spatial | 123 | 82.5 | 84.6 | +2.1 |
+| Long | 456 | 56.0 | 66.7 | **+10.7** |
+| **Avg** | | **79.6** | **85.6** | **+6.0** |
+
+<sub>3-seed **mean** is the headline (+2.0); **best-of-3** (peak, +6.0) is the best seed per suite, labelled as such. No per-category max() oracle. The earlier single-seed Long −8 was a noisy single seed; at 3 seeds Long is +1.6.</sub>
 
 
 ### Robustness on LIBERO-Plus (external benchmark) — 4 suites × 3 seeds

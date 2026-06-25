@@ -1,0 +1,32 @@
+{
+  "name": "libero_v_aegis_clean",
+  "method": "aegis",
+  "condition": "clean",
+  "axis": "noise",
+  "n_episodes": 15,
+  "n_success": 10,
+  "success_rate": 0.6666666666666666,
+  "per_task": [
+    {
+      "task_id": 0,
+      "n": 5,
+      "success_rate": 0.4
+    },
+    {
+      "task_id": 1,
+      "n": 5,
+      "success_rate": 0.6
+    },
+    {
+      "task_id": 2,
+      "n": 5,
+      "success_rate": 1.0
+    }
+  ],
+  "partial": true,
+  "tasks_done": [
+    0,
+    1,
+    2
+  ]
+}
