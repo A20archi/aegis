@@ -2,9 +2,9 @@
 
 # AEGIS
 ### Adaptive Entropy-Gated Information Sieve
-#### Additive, Provably-Safe Robustness for Frozen Vision-Language-Action Policies
+#### Additive Robustness Modules for Frozen Vision-Language-Action Policies — Provably Safe at Initialization
 
-**A rate-limited information bottleneck applied at two interfaces of a *frozen* VLA — perception and action — both exact pass-throughs at initialization, so robustness is strictly additive and per-suite gating is provably safe.**
+**A rate-limited information bottleneck applied at two interfaces of a *frozen* VLA — perception and action — both exact pass-throughs at initialization, so the modules cannot reduce clean performance *by construction* and per-suite gating is provably safe. The robustness gains themselves are empirical (measured below).**
 
 <sub>🎓 Conducted as a **summer research internship** at **ISLab, Changwon National University (CWNU)**, South Korea.</sub>
 
@@ -37,7 +37,7 @@ Vision-Language-Action (VLA) models collapse under the visual and dynamical pert
 
 | Setting | Result |
 |---|---|
-| **Clean SR** (4-suite, strict `n_action_steps=1`, per-suite gating) | **+1.75** vs base — never below base on any suite |
+| **Clean SR** (4-suite, **3 seeds**, ungated) | **+2.0** mean (Object +6.2, Long +1.6; Spatial −0.1 within noise) |
 | **Robustness — Spatial, 6 axes, n=200/axis** | wins **all 6**, mean **+14.1** |
 | **Robustness — Object+Goal cross-suite, 10 conditions** | mean **+29.9**, **0 regressions** |
 | **Graceful degradation** (Gaussian σ-sweep) | base dies (0/200) at σ≥0.30; AEGIS still completes 24.5% |
@@ -51,7 +51,7 @@ The robustness literature for robot policies is full of methods that improve cor
 
 1. **Identity at init** — RIB (`fusion_scale = 0`) and RASF (`gate_max = 0`) produce a forward pass *identical* to the stock policy at step 0. Learning can only add a bounded, gated correction.
 2. **Strictly additive robustness** — every reported Δ is a gain layered on top of an honest baseline (`SmolVLA + TE`), never a re-tuned model.
-3. **Provably-safe gating** — because "off" is the base policy *exactly*, you can disable a module per-suite with zero risk. This is how we guarantee **0 regressions** across the cross-suite sweep.
+3. **Safe-by-construction gating** — because "off" is the base policy *exactly* (identity at init), disabling a module per-suite carries zero risk *by construction* — a no-harm property, not an empirical achievement. Empirically, the modules did not need gating off on the cross-suite sweep (they help: mean +29.9).
 4. **Post-hoc & cheap** — both modules train on *cached* policy outputs; the frozen vision encoder, connector, and flow-matching action expert are never differentiated through.
 
 ---
@@ -109,7 +109,7 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 
 ## Results
 
-> Protocol: SmolVLA backbone, `n_action_steps=1`, 10 flow-matching denoise steps, per-suite max-steps, LIBERO fixed init-states, single seed (42). Both arms carry TE; every Δ is a gain *on top of* the honest baseline.
+> Protocol: SmolVLA backbone, `n_action_steps=1`, 10 flow-matching denoise steps, per-suite max-steps, LIBERO fixed init-states. **Seeds per section:** Clean SR and LIBERO-Plus are **3-seed (42/123/456)**; the LIBERO-V robustness sweeps are **single-seed (42), n=200/condition**. Both arms carry TE; every Δ is a gain *on top of* the honest baseline.
 
 ### Clean task success — 3 seeds (42, 123, 456), non-perturbed LIBERO
 
@@ -133,7 +133,7 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 | Long | 456 | 56.0 | 66.7 | **+10.7** |
 | **Avg** | | **79.6** | **85.6** | **+6.0** |
 
-<sub>3-seed **mean** is the headline (+2.0); **best-of-3** (peak, +6.0) is the best seed per suite, labelled as such. No per-category max() oracle. The earlier single-seed Long −8 was a noisy single seed; at 3 seeds Long is +1.6.</sub>
+<sub>3-seed **mean** is the headline (+2.0). The **best-of-3** "+6.0" is the mean of each suite's *single best* seed — **not a deployable aggregate** (each suite uses a different seed, and a suite's peak can land on the seed where the *baseline* happened to be weakest); shown for reference only. No per-category max() oracle. The earlier single-seed Long −8 was a noisy single seed; at 3 seeds Long is +1.6.</sub>
 
 
 ### Robustness on LIBERO-Plus (external benchmark) — 4 suites × 3 seeds
@@ -157,7 +157,7 @@ We evaluate AEGIS on the published **LIBERO-Plus** robustness benchmark across *
 | Long | 9.5 | 20.2 | **+10.71** |
 | **Average** | — | — | **+11.90** |
 
-Peak seed differs per suite (Object 456, Goal 42, Spatial 123, Long 42); the headline above is the 3-seed **mean**, this is the best-of-3 peak for reference.
+Peak seed differs per suite (Object 456, Goal 42, Spatial 123, Long 42); the headline above is the 3-seed **mean**, this is the best-of-3 peak for reference only — **not a deployable aggregate**. Note the per-suite peak can fall on the seed where the *baseline* was weakest (e.g. Goal's peak is seed 42, whose base 34.5 is below the 3-seed-mean base 40.9), which inflates that suite's Δ peak.
 
 All four gates are **open** — AEGIS genuinely beats baseline on every suite, no fallback needed. The gains concentrate on the visual-corruption axis the perception bottleneck targets — **Sensor Noise (up to +42 pts)** — with the remaining categories at or near parity; clean success rate is preserved. Δ peak is the best-of-3-seeds value (labelled, not the headline). Raw cells: [`sib_vla/results/v2_sweep/`](sib_vla/results/v2_sweep/).
 
@@ -194,7 +194,7 @@ The modules are trained **only on Spatial**; Object and Goal are held-out suites
 | suite | condition | base | AEGIS | Δ |
 |---|---|---:|---:|---:|
 | object | motion blur | 0 | 86 | **+86.0** |
-| object | gaussian noise | 36 | 90 | **+54.5** |
+| object | gaussian noise | 36 | 90 | **+54.0** |
 | object | lighting | 58 | 92 | **+34.0** |
 | object | texture | 83 | 97 | +14.0 |
 | object | viewpoint (moderate) | 0 | 0 | +0.0 |
@@ -299,14 +299,14 @@ sib_vla/contributions_and_novelty.md   per-paper related-work positioning
 AEGIS is designed to be **architecture- and embodiment-agnostic** — one principle (identity-init rate-limited bottleneck) that drops onto any frozen VLA with a vision→LLM connector and a chunked action head.
 
 - **Cross-architecture — GR00T N1.5 (3B).** Wiring complete and verified on the real model: RIB @ `backbone.eagle_model.mlp1` (1152→2048 connector, 2.46M params, identity-init), RASF @ `(H=16, d=32)`. Sim-eval reproduction in progress. *(LIBERO-Spatial ≈92% third-party baseline.)*
-- **Paper-protocol robustness — LIBERO-Plus.** Modal port with the perturbed-bddl benchmark; image validated, eval cells pending.
+- **Paper-protocol robustness — LIBERO-Plus.** **Complete** — 4 suites × 3 seeds, n=84/cell (see Results, +5.65 mean). Perturbed-bddl benchmark via the Modal port.
 - **Real-robot validation — WidowX.** AEGIS + GR00T N1.5 on a physical Trossen WidowX, training on **BridgeData V2** (the exact dataset NVIDIA's GR00T recipe uses) and evaluating with the community-standard **OpenVLA WidowX robustness suite** (17 tasks × 10 trials × 4 perturbation axes). No self-collected data.
 
 ---
 
 ## Limitations & honesty notes
 
-- **Single seed (42)** for the LIBERO results reported here; multi-seed variance is not yet quantified.
+- **Clean SR and LIBERO-Plus are 3-seed (42/123/456).** The **LIBERO-V** robustness sweeps (6-axis Spatial, noise-σ sweep, Object+Goal cross-suite) are **single-seed (42), n=200/condition** — their multi-seed variance is not yet quantified.
 - **Reproduction gap:** both arms run ~5–10 pp under published clean SR under our strict `n_action_steps=1` protocol — Δ are reported on *our* honest baseline, never against a paper number.
 - The Spatial axes are the modules' training distribution; the Object/Goal sweep above is the (passing) cross-suite generalization test. Cross-*architecture* robustness (GR00T) is wired but not yet evaluated.
 - RASF targets the action-spectrum axis (motion regularity, injected action noise) and is *deliberately blind* to perception-space shifts that RIB owns — the two axes are complementary, not redundant.
@@ -337,6 +337,6 @@ This work was carried out as a **summer research internship** at **ISLab, Changw
 ---
 
 <div align="center">
-<sub>Backbone frozen · identity at init · robustness strictly additive · gating provably safe.</sub>
+<sub>Backbone frozen · identity at init · modules additive (no clean-SR harm by construction) · gating provably safe · robustness gains empirical.</sub>
 <br/><sub>🎓 Summer research internship · ISLab, Changwon National University (CWNU), South Korea.</sub>
 </div>

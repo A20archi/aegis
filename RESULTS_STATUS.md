@@ -32,7 +32,7 @@ All four gates open — AEGIS genuinely beats baseline on every suite. The earli
 Raw per-seed, per-category cell JSONs: `sib_vla/results/v2_sweep/`.
 
 ### How it was finished
-The LIBERO-Plus leg originally stalled under a hard $200 Modal ceiling (month-to-date ~$196: clean
+The LIBERO-Plus leg originally stalled under a hard $200 Modal ceiling (month-to-date ~$189: clean
 3-seed $151, lplus $38, gr00t $0.08). One real eval-harness bug was caught and fixed along the way —
 LIBERO-Plus encodes the task instruction in the bddl filename, and an early bridge only stripped the
 perturbation suffix for the *object* suite, so other suites got a garbled instruction and a false ~0%;
