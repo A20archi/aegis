@@ -1,0 +1,75 @@
+{
+  "per_cat": {
+    "Camera Viewpoints": {
+      "per_task": {
+        "711": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_view_17_0_100_0_0_initstate_0",
+          "difficulty": 1,
+          "success": false
+        }
+      },
+      "average": 0.0
+    },
+    "Light Conditions": {
+      "per_task": {
+        "2420": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_light_18",
+          "difficulty": 1,
+          "success": false
+        }
+      },
+      "average": 0.0
+    },
+    "Sensor Noise": {
+      "per_task": {
+        "1807": {
+          "name": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_view_0_0_100_0_0_initstate_0_noise_11",
+          "difficulty": 1,
+          "success": false
+        }
+      },
+      "average": 0.0
+    },
+    "Background Textures": {
+      "per_task": {
+        "187": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_tb_21",
+          "difficulty": 1,
+          "success": false
+        }
+      },
+      "average": 0.0
+    },
+    "Objects Layout": {
+      "per_task": {
+        "1971": {
+          "name": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_add_30",
+          "difficulty": 1,
+          "success": true
+        }
+      },
+      "average": 1.0
+    },
+    "Robot Initial States": {
+      "per_task": {
+        "492": {
+          "name": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_view_0_0_100_0_0_initstate_6",
+          "difficulty": 1,
+          "success": false
+        }
+      },
+      "average": 0.0
+    },
+    "Language Instructions": {
+      "per_task": {
+        "1394": {
+          "name": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_language_26_view_0_0_100_0_0_initstate_0",
+          "difficulty": 1,
+          "success": true
+        }
+      },
+      "average": 1.0
+    }
+  },
+  "robustness_average": 0.2857142857142857
+}

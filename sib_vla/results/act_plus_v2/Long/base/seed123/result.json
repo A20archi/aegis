@@ -1,0 +1,460 @@
+{
+  "per_cat": {
+    "Camera Viewpoints": {
+      "per_task": {
+        "705": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_view_0_0_100_4_8_initstate_0",
+          "difficulty": 1,
+          "success": false
+        },
+        "686": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_view_0_0_100_2_350_initstate_0",
+          "difficulty": 2,
+          "success": false
+        },
+        "693": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_view_6_15_100_0_0_initstate_0",
+          "difficulty": 3,
+          "success": false
+        },
+        "1101": {
+          "name": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_view_359_15_100_0_0_initstate_0",
+          "difficulty": 4,
+          "success": false
+        },
+        "921": {
+          "name": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_view_298_15_100_0_0_initstate_0",
+          "difficulty": 5,
+          "success": false
+        },
+        "988": {
+          "name": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_view_0_0_100_354_358_initstate_0",
+          "difficulty": 1,
+          "success": true
+        },
+        "704": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_view_0_0_100_4_6_initstate_0",
+          "difficulty": 2,
+          "success": false
+        },
+        "742": {
+          "name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_view_0_0_128_0_0_initstate_0",
+          "difficulty": 3,
+          "success": false
+        },
+        "1085": {
+          "name": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_view_347_15_100_0_0_initstate_0",
+          "difficulty": 4,
+          "success": false
+        },
+        "803": {
+          "name": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_view_47_0_100_0_0_initstate_0",
+          "difficulty": 5,
+          "success": false
+        },
+        "748": {
+          "name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_view_0_0_100_6_8_initstate_0",
+          "difficulty": 1,
+          "success": false
+        },
+        "751": {
+          "name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_view_0_0_100_6_352_initstate_0",
+          "difficulty": 2,
+          "success": true
+        }
+      },
+      "average": 0.16666666666666666
+    },
+    "Light Conditions": {
+      "per_task": {
+        "2426": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_light_38",
+          "difficulty": 1,
+          "success": false
+        },
+        "2334": {
+          "name": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_light_7",
+          "difficulty": 2,
+          "success": true
+        },
+        "2468": {
+          "name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_light_11",
+          "difficulty": 3,
+          "success": true
+        },
+        "2253": {
+          "name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_light_16",
+          "difficulty": 4,
+          "success": false
+        },
+        "2389": {
+          "name": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove_light_34",
+          "difficulty": 5,
+          "success": true
+        },
+        "2465": {
+          "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_light_6",
+          "difficulty": 1,
+          "success": false
+        },
+        "2455": {
+          "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_light_35",
+          "difficulty": 2,
+          "success": false
+        },
+        "2293": {
+          "name": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_light_14",
+          "difficulty": 3,
+          "success": true
+        },
+        "2315": {
+          "name": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_light_35",
+          "difficulty": 4,
+          "success": true
+        },
+        "2472": {
+          "name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_light_16",
+          "difficulty": 5,
+          "success": false
+        },
+        "2422": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_light_22",
+          "difficulty": 1,
+          "success": true
+        },
+        "2401": {
+          "name": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_light_24",
+          "difficulty": 2,
+          "success": false
+        }
+      },
+      "average": 0.5
+    },
+    "Sensor Noise": {
+      "per_task": {
+        "1503": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_view_0_0_100_0_0_initstate_0_noise_21",
+          "difficulty": 1,
+          "success": false
+        },
+        "1539": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_view_0_0_100_0_0_initstate_0_noise_13",
+          "difficulty": 2,
+          "success": false
+        },
+        "1837": {
+          "name": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_view_0_0_100_0_0_initstate_0_noise_49",
+          "difficulty": 3,
+          "success": false
+        },
+        "1511": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_view_0_0_100_0_0_initstate_0_noise_30",
+          "difficulty": 4,
+          "success": false
+        },
+        "1927": {
+          "name": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_view_0_0_100_0_0_initstate_0_noise_44",
+          "difficulty": 5,
+          "success": false
+        },
+        "1663": {
+          "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_view_0_0_100_0_0_initstate_0_noise_2",
+          "difficulty": 1,
+          "success": false
+        },
+        "1486": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_view_0_0_100_0_0_initstate_0_noise_2",
+          "difficulty": 2,
+          "success": false
+        },
+        "1741": {
+          "name": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_view_0_0_100_0_0_initstate_0_noise_35",
+          "difficulty": 3,
+          "success": true
+        },
+        "1588": {
+          "name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_view_0_0_100_0_0_initstate_0_noise_25",
+          "difficulty": 4,
+          "success": false
+        },
+        "1642": {
+          "name": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_view_0_0_100_0_0_initstate_0_noise_30",
+          "difficulty": 5,
+          "success": true
+        },
+        "1505": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_view_0_0_100_0_0_initstate_0_noise_24",
+          "difficulty": 1,
+          "success": false
+        },
+        "1665": {
+          "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_view_0_0_100_0_0_initstate_0_noise_4",
+          "difficulty": 2,
+          "success": false
+        }
+      },
+      "average": 0.16666666666666666
+    },
+    "Background Textures": {
+      "per_task": {
+        "162": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_table_13",
+          "difficulty": 1,
+          "success": false
+        },
+        "200": {
+          "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_table_16",
+          "difficulty": 2,
+          "success": false
+        },
+        "204": {
+          "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_table_2",
+          "difficulty": 3,
+          "success": false
+        },
+        "8": {
+          "name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_table_17",
+          "difficulty": 4,
+          "success": false
+        },
+        "99": {
+          "name": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_tb_11",
+          "difficulty": 5,
+          "success": false
+        },
+        "178": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_tb_12",
+          "difficulty": 1,
+          "success": false
+        },
+        "196": {
+          "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_table_12",
+          "difficulty": 2,
+          "success": false
+        },
+        "241": {
+          "name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_table_14",
+          "difficulty": 3,
+          "success": false
+        },
+        "33": {
+          "name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_tb_9",
+          "difficulty": 4,
+          "success": true
+        },
+        "114": {
+          "name": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove_table_19",
+          "difficulty": 5,
+          "success": false
+        },
+        "197": {
+          "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_table_13",
+          "difficulty": 1,
+          "success": false
+        },
+        "145": {
+          "name": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_table_6",
+          "difficulty": 2,
+          "success": false
+        }
+      },
+      "average": 0.08333333333333333
+    },
+    "Objects Layout": {
+      "per_task": {
+        "1948": {
+          "name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_level2_sample1",
+          "difficulty": 1,
+          "success": false
+        },
+        "2156": {
+          "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_level4_sample2",
+          "difficulty": 2,
+          "success": false
+        },
+        "2021": {
+          "name": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_level5_sample4",
+          "difficulty": 3,
+          "success": false
+        },
+        "1981": {
+          "name": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_level5_sample1",
+          "difficulty": 4,
+          "success": false
+        },
+        "2052": {
+          "name": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_level3_sample1",
+          "difficulty": 5,
+          "success": false
+        },
+        "2042": {
+          "name": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove_level4_sample3",
+          "difficulty": 1,
+          "success": false
+        },
+        "2121": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_level3_sample3",
+          "difficulty": 2,
+          "success": false
+        },
+        "2201": {
+          "name": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_add_12",
+          "difficulty": 3,
+          "success": true
+        },
+        "2218": {
+          "name": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_add_28",
+          "difficulty": 4,
+          "success": false
+        },
+        "1957": {
+          "name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_level5_sample2",
+          "difficulty": 5,
+          "success": false
+        },
+        "1965": {
+          "name": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_add_18",
+          "difficulty": 1,
+          "success": false
+        },
+        "1955": {
+          "name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it_level4_sample4",
+          "difficulty": 2,
+          "success": true
+        }
+      },
+      "average": 0.16666666666666666
+    },
+    "Robot Initial States": {
+      "per_task": {
+        "541": {
+          "name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_view_0_0_100_0_0_initstate_187",
+          "difficulty": 1,
+          "success": false
+        },
+        "307": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_view_0_0_100_0_0_initstate_251",
+          "difficulty": 2,
+          "success": false
+        },
+        "510": {
+          "name": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_view_0_0_100_0_0_initstate_326",
+          "difficulty": 3,
+          "success": false
+        },
+        "606": {
+          "name": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_view_0_0_100_0_0_initstate_498",
+          "difficulty": 4,
+          "success": false
+        },
+        "357": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_view_0_0_100_0_0_initstate_412",
+          "difficulty": 5,
+          "success": false
+        },
+        "495": {
+          "name": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_view_0_0_100_0_0_initstate_136",
+          "difficulty": 1,
+          "success": false
+        },
+        "416": {
+          "name": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_view_0_0_100_0_0_initstate_84",
+          "difficulty": 2,
+          "success": false
+        },
+        "566": {
+          "name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_view_0_0_100_0_0_initstate_487",
+          "difficulty": 3,
+          "success": false
+        },
+        "312": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_view_0_0_100_0_0_initstate_301",
+          "difficulty": 4,
+          "success": false
+        },
+        "563": {
+          "name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_view_0_0_100_0_0_initstate_457",
+          "difficulty": 5,
+          "success": false
+        },
+        "657": {
+          "name": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_view_0_0_100_0_0_initstate_240",
+          "difficulty": 1,
+          "success": false
+        },
+        "335": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_view_0_0_100_0_0_initstate_142",
+          "difficulty": 2,
+          "success": true
+        }
+      },
+      "average": 0.08333333333333333
+    },
+    "Language Instructions": {
+      "per_task": {
+        "1419": {
+          "name": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove_language_12_view_0_0_100_0_0_initstate_0",
+          "difficulty": 1,
+          "success": false
+        },
+        "1117": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_language_18_view_0_0_100_0_0_initstate_0",
+          "difficulty": 2,
+          "success": false
+        },
+        "1263": {
+          "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_language_9_view_0_0_100_0_0_initstate_0",
+          "difficulty": 3,
+          "success": false
+        },
+        "1351": {
+          "name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_language_28_view_0_0_100_0_0_initstate_0",
+          "difficulty": 4,
+          "success": true
+        },
+        "1153": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket_language_14_view_0_0_100_0_0_initstate_0",
+          "difficulty": 5,
+          "success": false
+        },
+        "1377": {
+          "name": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket_language_6_view_0_0_100_0_0_initstate_0",
+          "difficulty": 1,
+          "success": false
+        },
+        "1246": {
+          "name": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it_language_41_view_0_0_100_0_0_initstate_0",
+          "difficulty": 2,
+          "success": true
+        },
+        "1371": {
+          "name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate_language_49_view_0_0_100_0_0_initstate_0",
+          "difficulty": 3,
+          "success": true
+        },
+        "1443": {
+          "name": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_language_1_view_0_0_100_0_0_initstate_0",
+          "difficulty": 4,
+          "success": true
+        },
+        "1466": {
+          "name": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it_language_26_view_0_0_100_0_0_initstate_0",
+          "difficulty": 5,
+          "success": true
+        },
+        "1306": {
+          "name": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_language_15_view_0_0_100_0_0_initstate_0",
+          "difficulty": 1,
+          "success": true
+        },
+        "1115": {
+          "name": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket_language_14_view_0_0_100_0_0_initstate_0",
+          "difficulty": 2,
+          "success": false
+        }
+      },
+      "average": 0.5
+    }
+  },
+  "robustness_average": 0.23809523809523808
+}

@@ -1,0 +1,75 @@
+{
+  "per_cat": {
+    "Camera Viewpoints": {
+      "per_task": {
+        "669": {
+          "name": "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate_view_36_0_100_0_0_initstate_0",
+          "difficulty": 1,
+          "success": true
+        }
+      },
+      "average": 1.0
+    },
+    "Light Conditions": {
+      "per_task": {
+        "2270": {
+          "name": "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate_light_41",
+          "difficulty": 1,
+          "success": true
+        }
+      },
+      "average": 1.0
+    },
+    "Sensor Noise": {
+      "per_task": {
+        "1659": {
+          "name": "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate_view_0_0_100_0_0_initstate_0_noise_3",
+          "difficulty": 1,
+          "success": false
+        }
+      },
+      "average": 0.0
+    },
+    "Background Textures": {
+      "per_task": {
+        "228": {
+          "name": "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate_tb_12",
+          "difficulty": 1,
+          "success": true
+        }
+      },
+      "average": 1.0
+    },
+    "Objects Layout": {
+      "per_task": {
+        "1979": {
+          "name": "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate_level2_sample2",
+          "difficulty": 1,
+          "success": true
+        }
+      },
+      "average": 1.0
+    },
+    "Robot Initial States": {
+      "per_task": {
+        "570": {
+          "name": "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate_view_0_0_100_0_0_initstate_90",
+          "difficulty": 1,
+          "success": true
+        }
+      },
+      "average": 1.0
+    },
+    "Language Instructions": {
+      "per_task": {
+        "1085": {
+          "name": "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate_language_40_view_0_0_100_0_0_initstate_0",
+          "difficulty": 1,
+          "success": false
+        }
+      },
+      "average": 0.0
+    }
+  },
+  "robustness_average": 0.7142857142857143
+}

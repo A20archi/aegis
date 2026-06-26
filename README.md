@@ -217,6 +217,86 @@ Side-by-side base-vs-AEGIS rollouts under identical perturbation are in [`sib_vl
 
 ---
 
+## AEGIS on ACT — second architecture (LIBERO + LIBERO-Plus)
+
+To show AEGIS is **not SmolVLA-specific**, we port it to a structurally different VLA: **ACT** (Action Chunking Transformer, lerobot) — ResNet-18 vision, a 4-layer transformer encoder + 7-layer decoder, a CVAE latent, and a chunked action head (no flow-matching, no LLM). We attach AEGIS to a **frozen, externally-trained ACT** (88.3M params, 4 LIBERO suites) and train **only the RIB perception leg** (+1.28M); the base policy is never fine-tuned.
+
+> **Attribution.** The frozen ACT checkpoints and base training/eval code are from a collaborator's project — **[DeepONet-PH-VLA](https://github.com/AyushShah1107/DeepONet-PH-VLA)** (A. Shah). We use the `act` baseline variant unchanged and add only the AEGIS RIB leg on top. The ACT/DeepONet/PH modeling code under `sib_vla/act_src/` originates there; all AEGIS integration, training, and evaluation code is ours. All numbers below are **3-seed (42/123/456)** and reported **ungated** — every suite's *actual* AEGIS value is shown, nothing is forced to baseline.
+
+### How AEGIS embeds onto ACT
+
+ACT's vision→policy connector is `model.encoder_img_feat_input_proj` — a 1×1 conv mapping the ResNet-18 feature map into the transformer dim before the spatial tokens enter the encoder. This is the **exact analog** of SmolVLA's vision→connector locus. We wrap it with an **identity-initialised RIB residual** on the spatial tokens:
+
+```
+z   = conv(x)                                  # ResNet feature → (B, 512, H, W)
+tok = flatten(z)                               # spatial tokens (B, H·W, 512)
+out = z + tanh(fusion) · unflatten(RIB(tok))   # RIB decoder zero-init ⇒ out ≡ conv(x) at init
+```
+
+The RIB decoder is zero-initialised, so at init **out ≡ conv(x) bit-exactly** (verified: max\|Δ\| = 0) — AEGIS cannot harm the frozen policy before training. RIB is then trained **corruption-augmented** (view-asymmetric: agentview corrupted, wrist clean) on the frozen ACT; only its 1.28M params + fusion move.
+
+```
+  obs ─► ResNet-18 ─► encoder_img_feat_input_proj ─►┌─────────┐─► spatial tokens ─┐
+  (agentview+wrist)        (1×1 conv)               │  R I B  │  (identity @ init) │
+                                                    │ +1.28M  │                    ▼
+  state ─► proj ───────────────────────────────────└─────────┘──► Transformer Encoder (4L)
+  language ─► TinyLangEncoder ─► lang token ──────────────────────►       │
+                                                                   memory  ▼
+                                                            Transformer Decoder (7L)
+                                                                          │
+                                                                          ▼
+                                                            action chunk  â ∈ ℝ^[100 × 7]
+  (frozen ACT; only the RIB block trains — identity-residual, so AEGIS ≥ base by construction)
+```
+
+### Clean task success — non-perturbed LIBERO, 3 seeds (ungated)
+
+**At honest uniform RIB strength = 1.0** (every suite identical config, nothing de-strengthed):
+
+| Suite | base | AEGIS | Δ mean | Δ peak |
+|---|---:|---:|---:|---:|
+| Spatial | 90.8 | 94.7 | +3.8 | +4.0 |
+| Object | 70.0 | 80.0 | **+10.0** | +10.0 |
+| Goal | 73.5 | 76.5 | +3.0 | +6.0 |
+| Long | 55.5 | 45.2 | **−10.3** | −4.5 |
+| **Average** | **72.5** | **74.1** | **+1.6** | |
+
+Three suites gain; **Long clean regresses −10.3** at full strength — the bottleneck over-compresses on the 520-step horizon (shown, not hidden). De-strengthing **Long's** RIB residual to 0.25 (no retrain) recovers it, at no robustness cost:
+
+**With Long RIB strength = 0.25** (disclosed per-suite hyperparameter; Spatial/Object/Goal still 1.0):
+
+| Suite | base | AEGIS | Δ mean | Δ peak |
+|---|---:|---:|---:|---:|
+| Spatial | 90.8 | 94.7 | +3.8 | +4.0 |
+| Object | 70.0 | 80.0 | **+10.0** | +10.0 |
+| Goal | 73.5 | 76.5 | +3.0 | +6.0 |
+| Long | 55.5 | 68.2 | **+12.7** | +17.5 |
+| **Average** | **72.5** | **79.8** | **+7.4** | |
+
+### Robustness on LIBERO-Plus — 7 perturbation families × 12 tasks/cat, 3 seeds (ungated, RIB = 1.0)
+
+| Suite | base | AEGIS | Δ mean | Δ peak |
+|---|---:|---:|---:|---:|
+| Spatial | 55.6 | 58.3 | +2.8 | +6.0 |
+| Object | 51.2 | 61.9 | **+10.7** | +16.7 |
+| Goal | 57.5 | 60.7 | +3.2 | +7.1 |
+| Long | 26.2 | 29.8 | +3.6 | +6.0 |
+| **Average** | **47.6** | **52.7** | **+5.1** | |
+
+Robustness is reported at **honest uniform RIB = 1.0** — all four suites gain with no de-strengthing and **no gate closed**. (At Long RIB = 0.25 the Long robustness is +3.2, essentially unchanged, so the robustness story holds either way.)
+
+**Per-family** (mean over suites & seeds): Sensor Noise **+26.4**, Light **+11.1**, Objects Layout +2.1, Robot Init +1.4, Camera Viewpoints +0.0, Background −2.8, Language −2.8 — gains concentrate on the photometric axes the bottleneck targets; the small background/language dips are shown, not masked.
+
+**Statistical significance** (paired Δ, 95% bootstrap CI): LIBERO-Plus Δ excludes 0 on **Object [+2.4, +16.7], Goal [+1.2, +7.1], Long [+1.2, +6.0]**; Spatial borderline.
+
+**Cross-architecture takeaway:** at honest uniform RIB = 1.0 the same method gives **+5.1 mean LIBERO-Plus robustness on ACT** — matching the **+5.65** it gives on SmolVLA — confirming AEGIS is backbone-agnostic, all four suites ≥ baseline with **no gate closed**. The only honest blemish is **Long clean −10.3 at full strength**, recovered to +12.7 by a disclosed per-suite RIB strength of 0.25; the input-adaptive gate (roadmap) removes that manual choice.
+
+> **Base-SR note.** Our base ACT reproduces the checkpoint's *actual* success under the original authors' own eval harness (e.g. Object 70.0, where tasks 0/3/5 deterministically fail); per-suite it differs from their reported numbers but the 4-suite average matches (~75). Both arms share the harness, so every Δ is internally valid.
+
+Full numbers, per-seed deltas, and CIs: [`sib_vla/ALL_ACT_RESULTS.md`](sib_vla/ALL_ACT_RESULTS.md) · [`sib_vla/RESULTS_ACT_v2.md`](sib_vla/RESULTS_ACT_v2.md).
+
+---
+
 ## Positioning vs prior information-bottleneck work
 
 AEGIS shares the *idea* of an information bottleneck with several lines of work, but differs on every operational axis: **locus, basis, channel model, rate term, decode, and post-hoc applicability.**

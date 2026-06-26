@@ -1,0 +1,75 @@
+{
+  "per_cat": {
+    "Camera Viewpoints": {
+      "per_task": {
+        "989": {
+          "name": "pick_up_the_chocolate_pudding_and_place_it_in_the_basket_view_0_0_100_356_354_initstate_0",
+          "difficulty": 1,
+          "success": false
+        }
+      },
+      "average": 0.0
+    },
+    "Light Conditions": {
+      "per_task": {
+        "2354": {
+          "name": "pick_up_the_butter_and_place_it_in_the_basket_light_6",
+          "difficulty": 1,
+          "success": true
+        }
+      },
+      "average": 1.0
+    },
+    "Sensor Noise": {
+      "per_task": {
+        "1761": {
+          "name": "pick_up_the_chocolate_pudding_and_place_it_in_the_basket_view_0_0_100_0_0_initstate_0_noise_32",
+          "difficulty": 1,
+          "success": true
+        }
+      },
+      "average": 1.0
+    },
+    "Background Textures": {
+      "per_task": {
+        "104": {
+          "name": "pick_up_the_chocolate_pudding_and_place_it_in_the_basket_table_15",
+          "difficulty": 1,
+          "success": true
+        }
+      },
+      "average": 1.0
+    },
+    "Objects Layout": {
+      "per_task": {
+        "1865": {
+          "name": "pick_up_the_bbq_sauce_and_place_it_in_the_basket_add_16",
+          "difficulty": 1,
+          "success": true
+        }
+      },
+      "average": 1.0
+    },
+    "Robot Initial States": {
+      "per_task": {
+        "566": {
+          "name": "pick_up_the_chocolate_pudding_and_place_it_in_the_basket_view_0_0_100_0_0_initstate_99",
+          "difficulty": 1,
+          "success": false
+        }
+      },
+      "average": 0.0
+    },
+    "Language Instructions": {
+      "per_task": {
+        "1351": {
+          "name": "pick_up_the_chocolate_pudding_and_place_it_in_the_basket_language_48_view_0_0_100_0_0_initstate_0",
+          "difficulty": 1,
+          "success": true
+        }
+      },
+      "average": 1.0
+    }
+  },
+  "robustness_average": 0.7142857142857143
+}
