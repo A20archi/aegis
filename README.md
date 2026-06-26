@@ -259,7 +259,7 @@ The RIB decoder is zero-initialised, so at init **out ≡ conv(x) bit-exactly** 
 | Object | 70.0 | 80.0 | **+10.0** | +10.0 |
 | Goal | 73.5 | 76.5 | +3.0 | +6.0 |
 | Long | 55.5 | 45.2 | **−10.3** | −4.5 |
-| **Average** | **72.5** | **74.1** | **+1.6** | |
+| **Average** | **72.5** | **74.1** | **+1.6** (mean) | **+3.9** (peak) |
 
 Three suites gain; **Long clean regresses −10.3** at full strength — the bottleneck over-compresses on the 520-step horizon (shown, not hidden). De-strengthing **Long's** RIB residual to 0.25 (no retrain) recovers it, at no robustness cost:
 
@@ -271,7 +271,7 @@ Three suites gain; **Long clean regresses −10.3** at full strength — the bot
 | Object | 70.0 | 80.0 | **+10.0** | +10.0 |
 | Goal | 73.5 | 76.5 | +3.0 | +6.0 |
 | Long | 55.5 | 68.2 | **+12.7** | +17.5 |
-| **Average** | **72.5** | **79.8** | **+7.4** | |
+| **Average** | **72.5** | **79.8** | **+7.4** (mean) | **+9.4** (peak) |
 
 ### Robustness on LIBERO-Plus — 7 perturbation families × 12 tasks/cat, 3 seeds (ungated, RIB = 1.0)
 
@@ -281,7 +281,9 @@ Three suites gain; **Long clean regresses −10.3** at full strength — the bot
 | Object | 51.2 | 61.9 | **+10.7** | +16.7 |
 | Goal | 57.5 | 60.7 | +3.2 | +7.1 |
 | Long | 26.2 | 29.8 | +3.6 | +6.0 |
-| **Average** | **47.6** | **52.7** | **+5.1** | |
+| **Average** | **47.6** | **52.7** | **+5.1** (mean) | **+9.0** (peak) |
+
+<sub>**3-seed mean** is the headline; **Δ peak** is the best-of-3-seed per suite (each suite's single best seed), averaged for reference — **not a deployable aggregate** (suites peak on different seeds, and a peak can land where the *baseline* was weakest). No per-category oracle; raw per-seed cells in [`sib_vla/results/act_plus_v2/`](sib_vla/results/act_plus_v2/).</sub>
 
 Robustness is reported at **honest uniform RIB = 1.0** — all four suites gain with no de-strengthing and **no gate closed**. (At Long RIB = 0.25 the Long robustness is +3.2, essentially unchanged, so the robustness story holds either way.)
 
