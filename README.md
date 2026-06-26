@@ -219,8 +219,7 @@ Side-by-side base-vs-AEGIS rollouts under identical perturbation are in [`sib_vl
 
 ## AEGIS on ACT — second architecture (LIBERO + LIBERO-Plus)
 
-To show AEGIS is **not SmolVLA-specific**, we port it to a structurally different VLA: **ACT** (Action Chunking Transformer, lerobot) — ResNet-18 vision, a 4-layer transformer encoder + 7-layer decoder, a CVAE latent, and a chunked action head (no flow-matching, no LLM). We attach AEGIS to a **frozen, externally-trained ACT** (88.3M params, 4 LIBERO suites) and train **only the RIB perception leg** (+1.28M); the base policy is never fine-tuned.
-
+To show AEGIS is **not SmolVLA-specific**, we port it to a structurally different VLA: **ACT** (Action Chunking Transformer, lerobot) — ResNet-18 vision, a 4-layer transformer encoder + 7-layer decoder, a CVAE latent, and a chunked action head (no flow-matching, no LLM). We attach AEGIS to a **frozen, externally-trained ACT** (88.3M params, 4 LIBERO suites).
 > **Attribution.** The frozen ACT checkpoints and base training/eval code are from a collaborator's project — **[DeepONet-PH-VLA](https://github.com/AyushShah1107/DeepONet-PH-VLA)** (A. Shah). We use the `act` baseline variant unchanged and add only the AEGIS RIB leg on top. The ACT/DeepONet/PH modeling code under `sib_vla/act_src/` originates there; all AEGIS integration, training, and evaluation code is ours. All numbers below are **3-seed (42/123/456)** and reported **ungated** — every suite's *actual* AEGIS value is shown, nothing is forced to baseline.
 
 ### How AEGIS embeds onto ACT
