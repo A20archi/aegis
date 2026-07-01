@@ -298,21 +298,173 @@ Full numbers, per-seed deltas, and CIs: [`sib_vla/ALL_ACT_RESULTS.md`](sib_vla/A
 
 ---
 
-## Positioning vs prior information-bottleneck work
+## Contributions and Novelty
 
-AEGIS shares the *idea* of an information bottleneck with several lines of work, but differs on every operational axis: **locus, basis, channel model, rate term, decode, and post-hoc applicability.**
+> Full per-paper analysis: [`sib_vla/contributions_and_novelty.md`](sib_vla/contributions_and_novelty.md). This section covers the 10 closest verified papers and the one property that none of them share with AEGIS.
 
-| | StableVLA IB-Adapter | IBAC-SNI | VDB | VIB (Alemi'17) | **AEGIS (ours)** |
-|---|---|---|---|---|---|
-| Locus | vision→LLM tokens | RL state repr. | IL discriminator | input features | **vision→LLM *and* action chunk** |
-| Spectral basis | — | — | — | — | **DCT-II along time** |
-| Channel model | covariance sigmoid gate | KL to prior | KL to prior | KL to prior | **per-band Gaussian, λ from policy** |
-| Rate term | none (heuristic) | β·KL | β·KL | β·KL | **β·Σ½ln(1+λ_k/σ_k²)** |
-| Inference decode | sigmoid passthrough | stochastic sample | stochastic sample | stochastic sample | **closed-form MMSE / bounded residual** |
-| Post-hoc on frozen model | no (full FT) | no (end-to-end) | no (in IL loop) | no | **yes — cached outputs** |
-| Identity at init / safe gating | no | no | no | no | **yes** |
+---
 
-Full per-paper discussion in [`sib_vla/contributions_and_novelty.md`](sib_vla/contributions_and_novelty.md).
+### The identity-preservation guarantee
+
+Both RIB and RASF are zero/identity-initialized. Removing either module (setting `α=0` for RIB; removing RASF) recovers the **exact** base policy output — not approximately, but bit-exactly (verified numerically: `max|out − base| = 0`). **No prior verified paper makes this guarantee.** It is the key property that lets us report an honest "gate-off = baseline exactly" in the results table — no regression is structurally possible before learning begins.
+
+---
+
+### At-a-glance comparison (IB and spectral methods)
+
+| Property | StableVLA | IBAC-SNI | VDB | BC-IB | VIB (Alemi'17) | **AEGIS** |
+|---|---|---|---|---|---|---|
+| Locus | vision→LLM tokens | RL state repr. | IL discriminator | post-fusion latent | input features | **vision→LLM + action chunk** |
+| Spectral basis | — | — | — | — | — | **DCT-II along time** |
+| Channel model | covariance sigmoid gate | KL to prior | KL to prior | KL to prior | KL to prior | **per-band Gaussian, λ from policy** |
+| Rate term | none (heuristic) | β·KL | β·KL | β·KL | β·KL | **β·Σ½ln(1+λₖ/σₖ²)** |
+| Inference decode | sigmoid passthrough | stochastic sample | stochastic sample | stochastic sample | stochastic sample | **closed-form MMSE Wiener gain** |
+| Post-hoc on frozen model | No — full FT | No — end-to-end | No — in IL loop | Partial | No | **Yes — cached outputs only** |
+| Identity at init | No | No | No | No | No | **Yes — both modules** |
+| Robustness eval | No | No | No | No | No | **Yes — LIBERO-Plus 7 axes** |
+
+### At-a-glance comparison (robustness and inference methods)
+
+| Property | StableVLA | STRONG-VLA | RobustVLA | BYOVLA | CSP | SOMA | TIDAL | **AEGIS** |
+|---|---|---|---|---|---|---|---|---|
+| arxiv | 2605.18287 | 2604.10055 | 2511.01331 | 2410.01971 | 2606.29570 | 2603.24060 | 2601.14945 | this work |
+| Problem | Visual robustness | Multi-modal robustness | Obs+action robustness | Distractor robustness | Action generation | Failure recovery | Inference latency | **Visual + action robustness** |
+| Base policy frozen? | No | No | No | Yes (no weights) | N/A | Yes (no weights) | Yes (loop only) | **Yes — provably** |
+| Corruption-aug training | No | Yes (retrains base) | No | No | No | No | No | **Yes (frozen adapter)** |
+| DCT on actions | No | No | No | No | Yes (generative) | No | No | **Yes (post-hoc filter)** |
+| Identity-init | No | No | No | N/A | N/A | N/A | N/A | **Yes — both modules** |
+| LIBERO-Plus 7-axis eval | No | No | No | No | No | No | No | **Yes** |
+
+---
+
+### Per-paper defenses
+
+#### [1] StableVLA — arxiv 2605.18287
+*Closest competitor: same projector locus, also uses an information bottleneck.*
+
+StableVLA inserts an IB-Adapter at the vision→LLM projection interface using **channel-covariance sigmoid gating** — feature statistics are computed across channels, a sigmoid gate suppresses individual channels, and the training loss is the downstream task loss only with **no explicit rate term**.
+
+**How we differ:**
+- **Locus.** Our RIB operates on the **action output** (RASF) *and* the vision→LLM tokens (RIB). StableVLA only addresses the token locus; it has no action-axis module.
+- **Rate term.** StableVLA has none — gating is a heuristic supervised by the task loss alone. This is why their gate is empirically **dormant** (`fusion_coeff → −0.006` on clean task loss). Our `β·Σ R_k` derived from the Gaussian channel mutual information is what forces engagement.
+- **Corruption-augmented training.** StableVLA trains on clean data only. We train with 60% photometric/geometric corruption per mini-batch, on a frozen base — the eval perturbations are never seen during training.
+- **Wiener gain vs sigmoid.** Our filter is the **closed-form MMSE solution** for a Gaussian channel. StableVLA's sigmoid has no principled connection to the signal's SNR.
+- **Identity-preservation.** StableVLA makes no claim that gate-off recovers the base policy exactly. We prove and verify it numerically.
+
+---
+
+#### [2] CSP — Causal Spectral Policy, arxiv 2606.29570
+*Both use DCT on action sequences — the most direct surface-level similarity.*
+
+CSP decomposes robot actions hierarchically using spectral methods: low-frequency components capture global motion; high-frequency components encode timing and contact. Actions are **generated** coarse-to-fine in frequency space from scratch.
+
+**How we differ:**
+- **CSP is a generative model; RASF is a post-hoc filter.** CSP replaces the action generation head — it generates actions *in* frequency space. RASF applies a learned amplitude-shaping gain to the DCT of an **already-generated chunk** from a *frozen* policy.
+- **CSP retrains the policy; AEGIS does not.** CSP cannot be plugged into an existing VLA without full retraining. AEGIS trains only the 1.28M-param RIB and 350-scalar RASF on cached policy outputs.
+- **No information bottleneck.** CSP has no KL term, no rate-distortion objective, no identity-preservation guarantee.
+- **No robustness evaluation.** CSP is evaluated on manipulation success under clean conditions only.
+- **"Spectral" means different things.** CSP: frequency bands as a generative hierarchy. RASF: MMSE Wiener filtering of temporal noise in an existing signal.
+
+> *Defense line: "CSP and RASF both involve DCT of action sequences, but CSP is a generative architecture for clean manipulation and RASF is a post-hoc denoising filter for a frozen policy under perturbation. They address different problems at different stages of the pipeline."*
+
+---
+
+#### [3] SOMA — arxiv 2603.24060
+*Both keep the VLA backbone frozen — but the mechanism is entirely orthogonal.*
+
+SOMA adapts frozen VLA policies at inference through a **Dual-Memory RAG pipeline**: a contrastive memory bank retrieves relevant past episodes, an LLM orchestrator diagnoses causal failures, and MCP interventions modify the execution context. Reports +56.6% average absolute gain on LIBERO-PRO/LIBERO-SOMA.
+
+**How we differ:**
+- **Mechanism is orthogonal.** SOMA adapts *what the VLA is told to do* (context). AEGIS adapts *how the VLA perceives and acts* (learned modules). SOMA cannot suppress sensor noise or lighting variation in the feature representation.
+- **Inference overhead.** SOMA adds a full RAG pipeline — memory bank, live LLM orchestrator, MCP infrastructure. AEGIS adds 350 RASF multiplications + one RIB residual forward pass per step.
+- **Different benchmarks.** SOMA evaluates on LIBERO-PRO and a custom failure-recovery benchmark. AEGIS evaluates on LIBERO-Plus 7-axis perturbation benchmark. The +56.6% is not comparable to our +5.65 pp.
+- **SOMA needs a populated memory bank** from prior rollouts. AEGIS trains offline on corruption augmentation, ready at deployment.
+- **No identity-preservation, no rate-distortion.**
+
+> *Defense line: "SOMA and AEGIS are complementary, not competing: SOMA adapts the VLA's goal via retrieval; AEGIS hardens the VLA's perception and action execution via learned modules."*
+
+---
+
+#### [4] TIDAL — arxiv 2601.14945
+*Both are backbone-agnostic wrappers — but they solve different problems.*
+
+TIDAL is a hierarchical dual-frequency control architecture: a low-frequency macro-intent loop caches semantic embeddings; a high-frequency micro-control loop interleaves single-step flow integration with execution, achieving ~9 Hz vs ~2.4 Hz for full-rollout baselines. Does not modify VLA weights.
+
+**How we differ:**
+- **Different problem.** TIDAL addresses *inference latency*. AEGIS addresses *robustness to input perturbations*. Orthogonal axes.
+- **"Frequency" means different things.** TIDAL: two temporal control loops at different clock rates. RASF: DCT-domain amplitude shaping on action chunks.
+- **TIDAL does not filter action content.** It changes how often new actions are generated, not what is inside each generated chunk.
+- **No robustness evaluation, no IB, no identity-preservation.**
+
+> *Defense line: "TIDAL and AEGIS share the property of being backbone-agnostic wrappers, but address completely different VLA limitations: TIDAL speeds up inference, AEGIS hardens robustness."*
+
+---
+
+#### [5] STRONG-VLA — arxiv 2604.10055
+Two-stage curriculum fine-tuning (Stage I: progressive multi-modal perturbations; Stage II: clean re-alignment). Applied to π₀ and OpenVLA. Reports up to +16.49 pp on seen textual perturbations.
+
+**How we differ:** STRONG-VLA fine-tunes **all weights** (LoRA r-32 for OpenVLA; direct fine-tuning for π₀) — no frozen-base guarantee. Identity-preservation is empirical (Stage II prevents Stage I degradation), not structural. No LIBERO-Plus 7-axis protocol. Our identity-init provides a **structural** guarantee before any training begins, not a procedural one.
+
+---
+
+#### [6] RobustVLA — arxiv 2511.01331
+Online RL post-training with LoRA (rank-32) using PPO + Jacobian smoothness regularization: `ℒ = ℒ_PPO + α·ℛ_Jac + β·ℛ_Smooth`. Applied to OpenVLA-OFT.
+
+**How we differ:** Requires online RL — needs a simulator, reward signal, and rollouts during training. AEGIS trains offline on cached policy outputs with supervised corruption augmentation; no simulator access required. No IB, no DCT, no frozen-base guarantee.
+
+---
+
+#### [7] IBAC-SNI — NeurIPS 2019
+Applies VIB to the **state representation** inside an RL policy: `β·KL(q(z|s) || p(z))` on the state encoding makes the representation compact and improves generalization. Selective noise injection regularizes only informative features.
+
+**How we differ:**
+- **Wrong locus.** IBAC compresses the policy's *state input representation*. We filter the *action chunk output*. Opposite ends of the pipeline.
+- **Wrong rate.** IBAC uses standard KL to a Gaussian prior (vanilla VIB). We use per-band rate `R_k = ½ ln(1 + λ_k/σ_k²)` where noise variance `σ_k²` is learned and signal variance `λ_k` is estimated from the policy's own predictions.
+- **Wrong basis.** IBAC operates in raw representation space. We operate in the **DCT frequency domain** of the action sequence.
+- **Stochastic inference.** IBAC draws `z ~ q(z|s)` at eval. We use the closed-form MMSE Wiener gain — deterministic.
+- **End-to-end training.** IBAC trains with the policy. We train post-hoc on cached policy outputs.
+
+---
+
+#### [8] VDB — Variational Discriminator Bottleneck, ICLR 2019
+Applies VIB to the **discriminator** inside an adversarial imitation learning pipeline for physics-based character control. Compresses discriminator input features so the discriminator cannot overfit to spurious features.
+
+**How we differ:** VDB's bottleneck is inside the discriminator of an adversarial IL pipeline — not a post-hoc filter, not applied to action chunks, not a frozen base. Cannot be applied post-hoc. No spectral basis, no signal-power estimation, no Wiener gain. The bottleneck produces a compressed feature for a downstream discriminator; ours produces a **filtered action chunk** executed directly in the environment.
+
+---
+
+#### [9] BC-IB — arxiv 2502.02853
+Applies VIB to the **fused multimodal latent** (after concatenating vision+state+language encoders) in behavioral cloning: `ℒ = β·I(x_t, z_t) + ‖π(x_t) − a_t‖²`, using a MINE discriminator to estimate mutual information.
+
+**How we differ:** Wrong locus — BC-IB's bottleneck is *after* cross-modal fusion, not at the vision→LLM projector. Targets representation compactness, not visual corruption robustness. No identity-preservation, no DCT filtering, no robustness evaluation. **Their own limitations section explicitly states: "robustness to domain shifts remains insufficiently studied."** AEGIS directly targets that gap.
+
+---
+
+#### [10] VIB — Deep Variational Information Bottleneck, Alemi et al. ICLR 2017
+The foundational framework: minimize `distortion + β·I(X;Z)` using the reparameterization trick. Applied to image classification.
+
+**Our extensions over VIB:**
+- **DCT spectral basis** on the action time-axis — not present in VIB.
+- **Per-band Gaussian channel** with learned `σ_k²` and empirically estimated `λ_k`. VIB uses a single KL to a fixed prior.
+- **Signal power estimation.** VIB has no concept of `λ_k`. Our warm-start + EMA over the policy's own predictions calibrates the Wiener gain to the actual signal distribution.
+- **Closed-form MMSE Wiener decode.** VIB draws a stochastic sample at inference. We apply `g_k = λ_k/(λ_k + σ_k²)` — deterministic, provably optimal under the Gaussian channel model.
+- **Denoising target.** VIB's target is a class label. Ours is the **ground-truth action chunk** from training data — this turns the bottleneck from a compressor into a denoiser.
+- **Post-hoc on cached outputs.** VIB is end-to-end. We never differentiate through the frozen VLA.
+
+---
+
+### ⚠ Hallucinated citations — do not use
+
+These appeared in a preliminary literature review and are **not in indexed literature**. Citing them is a fatal credibility risk.
+
+**"Adapting Temporal Ensemble to Flow Matching Policies for Robot Manipulation" (DeepRob workshop)**
+→ **HALLUCINATED.** No arxiv ID exists. No workshop paper found. "DeepRob" is a University of Michigan undergraduate course (Winter 2026), not a workshop.
+
+**"Hierarchical Policy Learning via Spectral Decomposition" attributed to ICML 2028**
+→ **MISLABELED.** The real paper is arxiv **2606.29570** (Cao et al., June 2026, "Causal Spectral Policy"). It was never submitted to ICML 2028 — a date that does not exist. Cite correctly as `arxiv:2606.29570`.
+
+**AECIB: "Anchor-Enforced Gradient Isolation for Knowledge-Preserving VLA Fine-Tuning"**
+→ **HALLUCINATED.** No arxiv ID. The acronym "AECIB" returns zero results in indexed literature.
 
 ---
 
