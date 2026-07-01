@@ -453,21 +453,6 @@ The foundational framework: minimize `distortion + β·I(X;Z)` using the reparam
 
 ---
 
-### ⚠ Hallucinated citations — do not use
-
-These appeared in a preliminary literature review and are **not in indexed literature**. Citing them is a fatal credibility risk.
-
-**"Adapting Temporal Ensemble to Flow Matching Policies for Robot Manipulation" (DeepRob workshop)**
-→ **HALLUCINATED.** No arxiv ID exists. No workshop paper found. "DeepRob" is a University of Michigan undergraduate course (Winter 2026), not a workshop.
-
-**"Hierarchical Policy Learning via Spectral Decomposition" attributed to ICML 2028**
-→ **MISLABELED.** The real paper is arxiv **2606.29570** (Cao et al., June 2026, "Causal Spectral Policy"). It was never submitted to ICML 2028 — a date that does not exist. Cite correctly as `arxiv:2606.29570`.
-
-**AECIB: "Anchor-Enforced Gradient Isolation for Knowledge-Preserving VLA Fine-Tuning"**
-→ **HALLUCINATED.** No arxiv ID. The acronym "AECIB" returns zero results in indexed literature.
-
----
-
 ## Reproduce
 
 ```bash
