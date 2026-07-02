@@ -890,8 +890,10 @@ faithful arch, trainable gate) and shown at both its best-case (native) and its 
 form. AEGIS beating the \emph{native} ceiling ($+6.3$ over base) is the load-bearing claim; the
 budgeted collapse is the additional architectural finding.
 
-\textbf{Benchmark:} LIBERO-Object suite, full 2518 tasks, 3 seeds (42/123/456), 4 arms
-(base / StableVLA-native / StableVLA-budgeted / AEGIS).
+\textbf{Benchmark:} LIBERO-Object suite, full 2518 tasks, 4 arms. Base / StableVLA-budgeted /
+AEGIS are 3-seed (42/123/456); StableVLA-native is a single full-suite rollout (seed 42) — its
+dormant-gate $\approx$base behavior is seed-independent, so one full-2518 eval establishes the
+ceiling without triplicating the cost.
 
 \textbf{Pilot (even-sampled 15/axis, 7 axes, seed 42):}
 AEGIS 65/105 (62\%) vs Base 59/105 (56\%) vs StableVLA(budgeted) 21/105 (20\%).
@@ -1065,7 +1067,7 @@ Long    & 26.2 & \win{29.8} & $+3.6$  & $+6.0$  & open & \\
 \small
 \begin{tabular}{lccc}
 \toprule
-Arm (full 2518, 3-seed) & Object total & $\Delta$ vs base & note \\
+Arm (full 2518) & Object total & $\Delta$ vs base & note \\
 \midrule
 VLA-Adapter-Pro (base)        & \pending{} & — & reference \\
 StableVLA-native ($\approx$base) & \pending{} & \pending{} & dormant gate, its fair ceiling \\
