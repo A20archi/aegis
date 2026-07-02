@@ -74,3 +74,10 @@ sib_vla/results/local_lplus_video/*.log
 # v2 sweep / rib_v2 training artifacts: keep eval JSONs, never logs or checkpoints
 sib_vla/results/v2_sweep/**/*.log
 sib_vla/results/rib_v2/
+
+# training loss-curve logs (process logs, not eval results) — keep only referenced ACT RIB curves
+*.train.json
+!sib_vla/results/aegis_act_v2/**/*.train.json
+# tiny-n exploratory vanilla pilots (superseded by 3-seed tables)
+sib_vla/results/**/eval_vanilla_n[0-9].json
+sib_vla/results/**/eval_vanilla_n1[0-9].json
