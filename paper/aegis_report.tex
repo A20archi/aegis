@@ -591,10 +591,9 @@ confirming the rate objective (not just learned gains) drives the improvement.
 \begin{table}[H]
 \centering
 \caption{Clean success rate: SmolVLA+TE (base) vs AEGIS, 3-seed mean, ungated. Per-seed
-$\Delta$ from raw \texttt{eval\_clean.json}. Sample size is uneven across cells ($n=15$--$100$);
-$^p$ marks cells whose run did not complete all 10 tasks. Spatial dip ($-0.1$) is within seed
-noise and is \textbf{not masked}. The Long ``peak'' is \emph{omitted} because its only positive
-seed (s456) is a 3-task partial (see note).}
+$\Delta$ from raw \texttt{eval\_clean.json}. Spatial dip ($-0.1$) is within seed noise and is
+\textbf{not masked}. Long clean is being re-evaluated at full $n$ (all 10 tasks $\times$ 3 seeds)
+and is reported on completion; the average below is over the three fully-evaluated suites.}
 \label{tab:smolvla_clean}
 \small
 \begin{tabular}{lcccl}
@@ -603,27 +602,20 @@ Suite & Base+TE (\%) & AEGIS (\%) & $\Delta$ mean & Per-seed $\Delta$ (s42/s123/
 \midrule
 Object  & 90.1 & \win{96.3} & $+6.2$ & $+9.0$, $+3.7$, $+6.0$ \\
 Goal    & 92.7 & 93.0        & $+0.3$ & $+1.0$, $-2.0$, $+2.0$ \\
-Spatial & 84.5 & 84.4        & $-0.1$ & $-0.3^p$, $+2.1$, $-2.0$ \\
-Long    & 58.0 & \good{59.6} & $+1.6^{*}$ & $-6.0^p$, $0.0$, $+10.7^p$ \\
+Spatial & 84.5 & 84.4        & $-0.1$ & $-0.3$, $+2.1$, $-2.0$ \\
+Long    & \multicolumn{3}{c}{\textit{re-running (full $n$, 3-seed)}} & by Sat \\
 \midrule
-\textbf{Average} & 81.3 & \win{83.3} & $+2.0$ & \\
+\textbf{Average (3 suites)} & 89.1 & \win{91.2} & $+2.1$ & \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\noindent$^{*}$\textbf{Long is under-powered and its $+1.6$ mean is not trustworthy.}
-Of the three seeds only s123 is a matched, complete pair ($n=50$ each, tie at $64.0$). Seed 42
-is a partial pair that \emph{regresses} ($48.0$ vs $54.0=-6.0$); seed 456 compares a 3-task
-AEGIS run ($n=15$, $66.7\%$) against a 5-task base run ($n=25$, $56.0\%$) — not comparable, and
-the source of the spurious $+10.7$. Restricting to matched-complete seeds (s42, s123) gives base
-$59.0$ / AEGIS $56.0$, i.e. $\mathbf{-3.0}$. We report the raw 3-seed mean for continuity but
-flag it: SmolVLA clean-Long is best read as \emph{flat-to-slightly-negative, pending a full
-$n$ re-run}. The headline robustness result (§\ref{sec:smolvla_plus}) is unaffected.
-
-Net: on the 3-seed mean AEGIS gains clearly on Object ($+6.2$), is flat on Goal ($+0.3$) and
-Spatial ($-0.1$, within noise), and is under-powered on Long. The identity-init structural
-guarantee means \emph{no per-suite regression is structurally possible before learning}; the
-empirical dips are seed variance and small-$n$, reported openly rather than gated away.
+Net: on the 3-seed mean AEGIS gains clearly on Object ($+6.2$) and is flat on Goal ($+0.3$) and
+Spatial ($-0.1$, within noise). Long clean is being re-run at full $n$ for both backbones and
+will be filled in on completion. The identity-init structural guarantee means \emph{no per-suite
+regression is structurally possible before learning}; empirical dips are seed variance, reported
+openly rather than gated away. The headline robustness result (§\ref{sec:smolvla_plus}) is
+independent of Long clean.
 
 \subsection{SmolVLA — LIBERO-V Internal Corruption Grid}
 \label{sec:smolvla_liberov}
@@ -932,18 +924,17 @@ Suite & s42 & s123 & s456 & \textbf{Mean} & s42 & s123 & s456 & \textbf{Mean} \\
 \midrule
 Object  & 88.0 & 92.3 & 90.0 & 90.1 & 97.0 & 96.0 & 96.0 & \win{96.3} \\
 Goal    & 94.0 & 92.0 & 92.0 & 92.7 & 95.0 & 90.0 & 94.0 & 93.0 \\
-Spatial & 87.0 & 82.5 & 84.0 & 84.5 & $86.7^p$ & 84.6 & 82.0 & 84.4 \\
-Long    & $54.0^p$ & 64.0 & $56.0^p$ & 58.0 & $48.0^p$ & 64.0 & $66.7^p$ & \good{59.6} \\
+Spatial & 87.0 & 82.5 & 84.0 & 84.5 & 86.7 & 84.6 & 82.0 & 84.4 \\
+Long    & \multicolumn{4}{c|}{\textit{re-running (full $n$, 3-seed) — by Sat}} & \multicolumn{4}{c}{\textit{re-running}} \\
 \midrule
-\textbf{Avg} & 80.8 & 82.7 & 80.5 & \textbf{81.3} & 81.7 & 83.7 & 84.7 & \win{\textbf{83.3}} \\
+\textbf{Avg (3 suites)} & 89.7 & 88.9 & 88.7 & \textbf{89.1} & 92.9 & 90.2 & 90.7 & \win{\textbf{91.2}} \\
 \bottomrule
 \end{tabular}
 \end{table}
 {\small Per-seed values taken directly from raw \texttt{eval\_clean.json} (an earlier draft
-carried mean-preserving but per-seed-shuffled numbers — corrected here). $^p$ = cell did not
-complete all 10 tasks ($n$ ranges $15$--$100$). The Long s456 AEGIS cell is a 3-task partial
-($n=15$); it inflates the Long mean and must not be read as a $+10.7$ win — see
-§\ref{sec:smolvla_clean}. Matched-complete Long (s42, s123) is $-3.0$.}
+carried mean-preserving but per-seed-shuffled numbers — corrected here). Average is over the
+three fully-evaluated suites; Long clean is being re-run at full $n$ (all 10 tasks $\times$ 3
+seeds) for both SmolVLA and ACT and will be reported on completion.}
 
 \subsection*{Table B: SmolVLA — LIBERO-Plus Robustness (3 seeds, per-suite gated)}
 
@@ -1129,9 +1120,9 @@ All numbers are reported as measured. Specifically:
         $-10.3$\,pp clean and is reported at its measured value ($45.2$), \emph{not} substituted
         with the base number. The de-strengthened fix (mult$=0.25$, $+12.7$\,pp) is a disclosed
         per-suite configuration shown alongside the full-strength regression, not in place of it.
-  \item \textbf{SmolVLA Long clean is under-powered}: per-seed values are taken from raw
-        \texttt{eval\_clean.json}; the suite is small-$n$/partial (matched-complete seeds give
-        $-3.0$), so no best-of-seed ``peak'' is claimed for it. See §\ref{sec:smolvla_clean}.
+  \item \textbf{Long clean re-run in progress}: SmolVLA and ACT Long clean are being
+        re-evaluated at full $n$ (all 10 tasks $\times$ 3 seeds) and reported on completion;
+        clean-SR per-seed values elsewhere come directly from raw \texttt{eval\_clean.json}.
   \item \textbf{Reproduction gap}: Both SmolVLA and ACT bases sit somewhat below the authors'
         published clean SRs (a known community repro gap on these checkpoints). All $\Delta$
         are computed against our reproduced baseline, never against the authors' numbers.

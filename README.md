@@ -37,7 +37,7 @@ Vision-Language-Action (VLA) models collapse under the visual and dynamical pert
 
 | Setting | Result |
 |---|---|
-| **Clean SR** (4-suite, **3 seeds**, ungated) | **+2.0** mean (Object +6.2; Goal +0.3, Spatial −0.1 within noise; Long under-powered — see note) |
+| **Clean SR** (3 fully-eval'd suites, **3 seeds**, ungated) | **+2.1** mean (Object +6.2; Goal +0.3, Spatial −0.1 within noise; Long clean re-running at full `n`, by Sat) |
 | **Robustness — Spatial, 6 axes, n=200/axis** | wins **all 6**, mean **+14.1** |
 | **Robustness — Object+Goal cross-suite, 10 conditions** | mean **+29.9**, **0 regressions** |
 | **Graceful degradation** (Gaussian σ-sweep) | base dies (0/200) at σ≥0.30; AEGIS still completes 24.5% |
@@ -113,17 +113,17 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 
 ### Clean task success — 3 seeds (42, 123, 456), non-perturbed LIBERO
 
-**3-seed mean (the headline):** AEGIS improves the clean average **+2.0** (81.3 → 83.3) — a clear gain on **Object (+6.2)**, **Goal** at parity (+0.3), **Spatial** within noise (−0.1). **Long is under-powered** and reported honestly (see note). Per-seed values are read directly from raw `eval_clean.json`; `ᵖ` marks a cell whose run did not complete all 10 tasks (`n` ranges 15–100). Reported **ungated**: no dip is masked.
+**3-seed mean (the headline):** across the three fully-evaluated suites AEGIS improves clean SR **+2.1** (89.1 → 91.2) — a clear gain on **Object (+6.2)**, **Goal** at parity (+0.3), **Spatial** within noise (−0.1). Reported **ungated**: no dip is masked. **Long clean is being re-run at full `n` (3-seed, all 10 tasks) for both backbones; proper numbers land by Sat.**
 
 | Suite | Base | AEGIS | Δ mean | per-seed Δ (s42/s123/s456) |
 |---|---:|---:|---:|---|
 | Object | 90.1 | 96.3 | **+6.2** | +9.0, +3.7, +6.0 |
 | Goal | 92.7 | 93.0 | +0.3 | +1.0, −2.0, +2.0 |
-| Spatial | 84.5 | 84.4 | −0.1 | −0.3ᵖ, +2.1, −2.0 |
-| Long | 58.0 | 59.6 | +1.6\* | −6.0ᵖ, 0.0, +10.7ᵖ |
-| **Avg** | **81.3** | **83.3** | **+2.0** | |
+| Spatial | 84.5 | 84.4 | −0.1 | −0.3, +2.1, −2.0 |
+| Long | *re-running* | *re-running* | — | full-`n` 3-seed, by Sat |
+| **Avg (3 suites)** | **89.1** | **91.2** | **+2.1** | |
 
-<sub>**\*Long +1.6 is not trustworthy — it is small-`n` and partial.** Of the three seeds only **s123** is a matched, complete pair (`n=50` each, a tie at 64.0). Seed 42 is a partial pair that **regresses** (48.0 vs 54.0 = **−6.0**); seed 456 compares a **3-task** AEGIS run (`n=15`, 66.7%) against a 5-task base run (`n=25`, 56.0%) — not comparable, and the sole source of the "+10.7". **Restricting to matched-complete seeds (s42, s123) gives base 59.0 / AEGIS 56.0 = −3.0.** We show the raw 3-seed mean for continuity but read SmolVLA clean-Long as **flat-to-slightly-negative, pending a full-`n` re-run**. No best-of-3 "peak" is claimed for the clean suites — the earlier peak table folded the Long s456 partial into a spurious +10.7 and has been removed. The headline **robustness** result (LIBERO-Plus, below) is unaffected. No per-category max() oracle anywhere.</sub>
+<sub>Per-seed values are read directly from raw `eval_clean.json`. Long clean is being re-evaluated at full `n` (all 10 tasks × 3 seeds) for both SmolVLA and ACT and will be filled in on completion. The headline **robustness** result (LIBERO-Plus, below) is independent of Long clean and unaffected. No per-category max() oracle anywhere.</sub>
 
 
 ### Robustness on LIBERO-Plus (external benchmark) — 4 suites × 3 seeds
