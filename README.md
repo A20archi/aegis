@@ -174,7 +174,7 @@ AEGIS **wins all six axes**, mean **+14.1**.
 | **mean** | **36.5** | **50.6** | **+14.1** |
 
 ### Component ablations — LIBERO-V, Spatial (6 axes, n=200/axis, seed 42)
-Each row adds exactly one component over the row above. `clean` = standard Spatial SR; `rob.` = mean over the 6 corruption axes.
+Each row is a distinct configuration; the Δ columns are measured against the **SmolVLA+TE baseline** (the Baseline row itself shows Δ vs the no-TE Vanilla row). `clean` = standard Spatial SR; `rob.` = mean over the 6 corruption axes.
 
 | method | clean SR | rob. mean | Δ clean | Δ rob. |
 |---|---:|---:|---:|---:|
