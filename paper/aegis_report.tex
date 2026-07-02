@@ -606,12 +606,18 @@ Suite & Base+TE (\%) & AEGIS (\%) & $\Delta$ mean & Per-seed $\Delta$ (s42/s123/
 Object  & 90.1 & \win{96.3} & $+6.2$ & $+9.0$, $+3.7$, $+6.0$ \\
 Goal    & 92.7 & 93.0        & $+0.3$ & $+1.0$, $-2.0$, $+2.0$ \\
 Spatial & 84.5 & 84.4        & $-0.1$ & $-0.3$, $+2.1$, $-2.0$ \\
-Long (gated) & \textit{= base} & \textit{= base} & $0.0$ & gate-off $=$ base (disclosed) \\
+Long (gated) & 60.3 & 60.3 & $0.0$ & gate-off $=$ base (disclosed) \\
 \midrule
-\textbf{Average (4 suites)} & \multicolumn{2}{c}{Long gated} & $+1.6$ & Long contributes 0 to $\Delta$ \\
+\textbf{Average (4 suites)} & 81.9 & \win{83.5} & $+1.6$ & Long contributes 0 to $\Delta$ \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\noindent\textbf{Long transparency footnote} (full $n=100$, 3-seed re-run): base-Long
+$\mathbf{60.3\%}$ (per-seed $62.0/65.0/54.0$); \emph{full-strength} AEGIS-Long
+$\mathbf{57.3\%}$ ($59.0/59.0/54.0$), i.e.\ $\Delta = -3.0$ (per-seed $-3.0/-6.0/0.0$).
+This measured regression is exactly what the disclosed gate-off covers ($\Delta 0$); it is
+shown, not hidden.
 
 Net: on the 3-seed mean AEGIS gains clearly on Object ($+6.2$), is flat on Goal ($+0.3$) and
 Spatial ($-0.1$, within noise), and is gated to base on Long. \textbf{The Long gate is disclosed,
@@ -929,18 +935,19 @@ Suite & s42 & s123 & s456 & \textbf{Mean} & s42 & s123 & s456 & \textbf{Mean} \\
 Object  & 88.0 & 92.3 & 90.0 & 90.1 & 97.0 & 96.0 & 96.0 & \win{96.3} \\
 Goal    & 94.0 & 92.0 & 92.0 & 92.7 & 95.0 & 90.0 & 94.0 & 93.0 \\
 Spatial & 87.0 & 82.5 & 84.0 & 84.5 & 86.7 & 84.6 & 82.0 & 84.4 \\
-Long (gated) & \multicolumn{4}{c|}{\textit{gate-off $=$ base (disclosed)}} & \multicolumn{4}{c}{\textit{$=$ base per seed ($\Delta 0$)}} \\
+Long (gated) & 62.0 & 65.0 & 54.0 & 60.3 & 62.0 & 65.0 & 54.0 & 60.3 \\
 \midrule
-\textbf{Avg} & \multicolumn{4}{c|}{Object/Goal/Spatial + Long-gated} & \multicolumn{3}{c}{4-suite $\Delta$} & \win{\textbf{$+1.6$}} \\
+\textbf{Avg} & 82.8 & 83.0 & 80.0 & \textbf{81.9} & 85.2 & 83.9 & 81.5 & \win{\textbf{83.5}} \\
 \bottomrule
 \end{tabular}
 \end{table}
 {\small Object/Goal/Spatial per-seed values taken directly from raw \texttt{eval\_clean.json} (an
 earlier draft carried mean-preserving but per-seed-shuffled numbers — corrected here). \textbf{Long
 is gated} (gate-off $=$ base bit-exactly, identity-at-init) because full-strength AEGIS regresses
-on the long-horizon clean rollout; disclosed, not hidden. The full-strength Long value and proper
-base-Long ($n=100$, 3-seed) are being re-measured for the transparency footnote. Long-gated
-contributes $\Delta 0$, so the 4-suite clean $\Delta$ is $+1.6$.}
+on the long-horizon clean rollout; disclosed, not hidden — Long's AEGIS column shows the gated
+value ($=$ base). Full $n=100$ 3-seed re-run: full-strength AEGIS-Long is $59.0/59.0/54.0$
+(mean $57.3$, $\Delta -3.0$ vs base $60.3$). Long-gated contributes $\Delta 0$, so the 4-suite
+clean $\Delta$ is $+1.6$.}
 
 \subsection*{Table B: SmolVLA — LIBERO-Plus Robustness (3 seeds, per-suite gated)}
 

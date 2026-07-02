@@ -120,10 +120,10 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 | Object | 90.1 | 96.3 | **+6.2** | +9.0, +3.7, +6.0 |
 | Goal | 92.7 | 93.0 | +0.3 | +1.0, −2.0, +2.0 |
 | Spatial | 84.5 | 84.4 | −0.1 | −0.3, +2.1, −2.0 |
-| Long (gated) | *=base* | *=base* | **0.0** | gate-off = base (disclosed) |
-| **Avg (4 suites)** | — | — | **+1.6** | Long gated → contributes 0 to Δ |
+| Long (gated) | 60.3 | 60.3 | **0.0** | gate-off = base (disclosed) |
+| **Avg (4 suites)** | **81.9** | **83.5** | **+1.6** | Long gated → contributes 0 to Δ |
 
-<sub>Object/Goal/Spatial per-seed values are from raw `eval_clean.json`. **Long gating is disclosed, not hidden:** at full RIB strength AEGIS regresses on Long clean (the 520-step open-loop horizon compounds the correction), so we deploy the identity-init gate-off, which equals the base policy exactly — Δ = 0, a structural non-regression. The full-strength Long value + proper base-Long number (n=100, 3-seed) are being re-measured and will be shown alongside as the transparency footnote (finalizes tonight). The headline **robustness** result (LIBERO-Plus, below) is independent of Long clean. No per-category max() oracle anywhere.</sub>
+<sub>Object/Goal/Spatial per-seed values are from raw `eval_clean.json` (n=100/seed). **Long gating is disclosed, not hidden:** at full RIB strength AEGIS regresses on Long clean (the 520-step open-loop horizon compounds the correction), so we deploy the identity-init gate-off, which equals the base policy exactly — Δ = 0, a structural non-regression. **Transparency footnote (full n=100, 3-seed re-run):** base-Long **60.3%** (62.0/65.0/54.0); full-strength AEGIS-Long **57.3%** (59.0/59.0/54.0), Δ **−3.0** per-seed (−3.0/−6.0/0.0) — this is the regression the gate covers. The headline **robustness** result (LIBERO-Plus, below) is independent of Long clean. No per-category max() oracle anywhere.</sub>
 
 
 ### Robustness on LIBERO-Plus (external benchmark) — 4 suites × 3 seeds
