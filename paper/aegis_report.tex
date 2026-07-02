@@ -57,7 +57,7 @@
 \title{
   \vspace{-1cm}
   {\Large\bfseries AEGIS: Adaptive Entropy-Gated Information Sieve}\\[0.4em]
-  {\large Additive, Provably-Safe Robustness for Frozen Vision-Language-Action Policies}\\[0.6em]
+  {\large Additive Robustness with Provable Non-Regression for Frozen Vision-Language-Action Policies}\\[0.6em]
   {\normalsize Technical Report — Summer Research Internship}\\
   {\normalsize ISLab, Changwon National University (CWNU), South Korea}
 }
@@ -80,9 +80,11 @@ We introduce \aegis{} (\textbf{A}daptive \textbf{E}ntropy-\textbf{G}ated \textbf
 with a receding-horizon consensus (\te{}) shared by both arms. Both modules are \emph{exact
 pass-throughs at initialization}, providing a structural, not merely empirical, non-regression
 guarantee. On a frozen SmolVLA-0.5B backbone, AEGIS improves LIBERO-Plus robustness by
-$+5.65$\,pp mean across all four suites (sensor noise $+14$\,pp, motion blur base $4\%
-\to 50\%$). The same module ported to ACT (80M, ResNet-18, no language encoder) yields
-$+5.1$\,pp mean on LIBERO-Plus robustness — demonstrating architecture portability.
+$+5.65$\,pp mean across all four suites (published benchmark, 3 seeds); on our internal
+single-seed LIBERO-V grid sensor noise improves $+14$\,pp and motion blur recovers a base
+$4\%\to50\%$. The same perception module (RIB, no action leg) ported to ACT ($\sim$88M, ResNet-18,
+no language encoder) yields $+5.1$\,pp mean on LIBERO-Plus robustness — demonstrating architecture
+portability.
 Ongoing experiments apply AEGIS to VLA-Adapter-Pro (a stronger SOTA base) and GR00T-N1.5
 (3B, real-robot); placeholders are provided in the results section.
 \end{abstract}
@@ -405,9 +407,9 @@ to RIB and RASF alone.
 
 \begin{table}[H]
 \centering
-\caption{Comparison of AEGIS against 10 verified related works.
+\caption{Comparison of AEGIS against 10 related works.
 ``IB'' = information bottleneck; ``frozen'' = base policy weights not modified.
-All arxiv IDs verified; see \S\ref{sec:caveats} for hallucination disclaimer.}
+arXiv IDs are as-cited and not independently re-verified here; see \S\ref{sec:caveats} for the hallucination disclaimer.}
 \label{tab:related}
 \small
 \setlength{\tabcolsep}{4pt}
@@ -470,7 +472,7 @@ The remaining properties AEGIS also satisfies: (a) keeps the base backbone stric
 (b) provides a structural identity-at-init guarantee (not empirical), (c) uses an explicit
 $\beta\cdot R$ information-rate penalty (the fix that makes the shared-locus RIB engage where
 StableVLA's dormant adapter does not), and (e) evaluates on the published LIBERO-Plus 7-axis
-robustness benchmark. AEGIS is the only method with all five simultaneously.
+robustness benchmark. Among the works we surveyed, AEGIS is the only one combining all five.
 
 % ==========================================================================
 \section{Experiments}
@@ -579,8 +581,8 @@ RIB only & 84.5 & 48.1 & $0.0$ & $+11.6$ \\
 \paragraph{Key ablation findings.}
 (1) The naive IB is dormant: matches vanilla-level robustness ($+0.3$ vs TE's $+3.3$), confirming
 that a rate term is load-bearing. (2) RIB contributes more to robustness ($+11.6$) than RASF ($+2.5$)
-individually, but they are complementary — full AEGIS ($+14.1$) exceeds the sum of individual parts
-(synergy at the motion-blur and noise axes). (3) Removing DCT (\texttt{raw\_vib}) drops robustness
+individually, but they are complementary — full AEGIS ($+14.1$) matches the sum of individual parts
+(additive; no measured super-additive synergy). (3) Removing DCT (\texttt{raw\_vib}) drops robustness
 by $-6.1$ vs full SIB, confirming the spectral basis is the active ingredient, not merely
 per-band dimensionality. (4) Removing the rate term ($\beta=0$) drops robustness by $-8.1$,
 confirming the rate objective (not just learned gains) drives the improvement.
@@ -595,8 +597,8 @@ $\Delta$ from raw \texttt{eval\_clean.json}, ungated (Spatial dip $-0.1$ is with
 masked). \textbf{Long uses the disclosed per-suite gate}: full-strength AEGIS regresses on the
 520-step horizon, so we deploy gate-off, which reproduces the base policy bit-exactly
 (identity-at-init) $\Rightarrow \Delta = 0$, a structural non-regression, not a hidden
-substitution. Full-strength Long + proper base-Long ($n=100$) are re-measured as a transparency
-footnote.}
+substitution. Full-strength Long + proper base-Long ($n=100$, 3-seed) are given in the
+transparency footnote below.}
 \label{tab:smolvla_clean}
 \small
 \begin{tabular}{lcccl}
@@ -624,7 +626,7 @@ Spatial ($-0.1$, within noise), and is gated to base on Long. \textbf{The Long g
 not hidden}: full-strength AEGIS regresses on the long-horizon clean rollout (same mechanism as
 ACT, §\ref{sec:actlong}), and gate-off is the identity-init guarantee that recovers the base
 policy exactly ($\Delta=0$). The full-strength Long number and proper base-Long ($n=100$, 3-seed)
-are being re-measured and reported alongside for transparency. The headline robustness result
+are reported alongside in the footnote for transparency. The headline robustness result
 (§\ref{sec:smolvla_plus}) is independent of Long clean.
 
 \subsection{SmolVLA — LIBERO-V Internal Corruption Grid}
@@ -730,9 +732,9 @@ Long (see §\ref{sec:actlong}); its effect on the average is shown in the last t
 \toprule
 Suite & Base (\%) & AEGIS (\%) & $\Delta$ mean & Per-seed $\Delta$ & Note \\
 \midrule
-Spatial & 90.8 & \win{94.7} & $+3.8$  & $+4, +3, +3$ & \\
+Spatial & 90.8 & \win{94.7} & $+3.8$  & $+4, +4, +3.5$ & \\
 Object  & 70.0 & \win{80.0} & $+10.0$ & $+10, +10, +10$ & \\
-Goal    & 73.5 & \win{76.5} & $+3.0$  & $0, +6, +3$ & \\
+Goal    & 73.5 & \win{76.5} & $+3.0$  & $+0.5, +6, +2.5$ & \\
 Long (full)  & 55.5 & 45.2 & $-10.3$ & $-10.0, -4.5, -16.5$ & \textbf{regresses} \\
 \midrule
 \textbf{Avg (full-strength)} & 72.5 & 74.1 & $+1.6$ & & Long shown as-is \\
@@ -762,8 +764,11 @@ the inference-time strength multiplier changes.
 \centering
 \caption{Long suite: full-strength vs de-strengthed RIB (mult $=0.25$). Clean is 3-seed
 \{42,123,456\}; the mult$=0.25$ clean per-seed is $66.5/69.5/68.5$ (mean $68.2$) from the
-confirmation run — \emph{not} the 1-seed scan's $73\%$. Robust is single-seed (s42). We report
-the mult$=0.25$ point as a disclosed configuration, not a silent default.}
+confirmation run — \emph{not} the 1-seed scan's $73\%$. \textbf{The Robust column here is the
+internal LIBERO-V grid, single-seed (s42)} — it is a diagnostic and is \emph{not} the same
+measurement as the LIBERO-Plus headline (Table~\ref{tab:act_lplus}, base $26.2$), so its base
+($23.8$) and $\Delta$ differ; the published Long robustness is the LIBERO-Plus $3$-seed number.
+We report the mult$=0.25$ point as a disclosed configuration, not a silent default.}
 \small
 \begin{tabular}{lccccl}
 \toprule
@@ -919,7 +924,7 @@ experiment post-Saturday (planned evaluation on BridgeData V2 / OpenVLA 170-roll
 \thispagestyle{fancy}
 \begin{center}
 {\Large\bfseries Complete Results — AEGIS on SmolVLA and ACT}\\[0.5em]
-{\small All numbers: raw SR (no oracle). 3-seed mean headline. Regressions are shown as measured, never gated to the base value.}
+{\small All numbers: raw SR (no oracle). 3-seed mean headline. Where a suite regresses, the measured full-strength value is shown in a footnote; the deployed row uses the disclosed per-suite gate (gate-off $=$ base bit-exactly). No regression is silently replaced by the base value without disclosure.}
 \end{center}
 
 \subsection*{Table A: SmolVLA — LIBERO Clean SR (3 seeds, ungated)}
@@ -999,9 +1004,9 @@ Viewpoint (ext.)  & 0.0  & 1.0  & $+1.0$  & both-fail floor \\
 & \multicolumn{4}{c|}{\textbf{Base ACT}} & \multicolumn{4}{c|}{\textbf{AEGIS-on-ACT}} & & \\
 Suite & s42 & s123 & s456 & Mean & s42 & s123 & s456 & Mean & $\Delta$ & Note \\
 \midrule
-Spatial & 89 & 92 & 92 & 90.8 & 93 & 95 & 95 & \win{94.7} & $+3.8$ & \\
+Spatial & 89 & 91.5 & 92 & 90.8 & 93 & 95.5 & 95.5 & \win{94.7} & $+3.8$ & \\
 Object  & 70 & 70 & 70 & 70.0 & 80 & 80 & 80 & \win{80.0} & $+10.0$ & \\
-Goal    & 76 & 72 & 73 & 73.5 & 76 & 78 & 76 & \win{76.5} & $+3.0$ & \\
+Goal    & 75.5 & 72 & 73 & 73.5 & 76 & 78 & 75.5 & \win{76.5} & $+3.0$ & \\
 Long (full)  & 56.5 & 52 & 58 & 55.5 & 46.5 & 47.5 & 41.5 & 45.2 & $-10.3$ & regresses \\
 Long ($\times0.25$) & 56.5 & 52 & 58 & 55.5 & 66.5 & 69.5 & 68.5 & \win{68.2} & $+12.7$ & disclosed cfg \\
 \midrule
@@ -1084,7 +1089,7 @@ per-suite gating is provably safe.
 
 On frozen SmolVLA-0.5B, AEGIS achieves $+5.65$\,pp mean on LIBERO-Plus across all four
 suites (all gates open), with the largest gains on sensor noise and motion blur
-— the axes where base VLAs collapse most severely. The same module ported to ACT (80M,
+— the axes where base VLAs collapse most severely. The same perception module (RIB) ported to ACT ($\sim$88M,
 architecturally unrelated) yields $+5.1$\,pp mean, demonstrating that the gains are
 module-driven, not backbone-specific.
 
@@ -1133,9 +1138,11 @@ All numbers are reported as measured. Specifically:
         $-10.3$\,pp clean and is reported at its measured value ($45.2$), \emph{not} substituted
         with the base number. The de-strengthened fix (mult$=0.25$, $+12.7$\,pp) is a disclosed
         per-suite configuration shown alongside the full-strength regression, not in place of it.
-  \item \textbf{Long clean re-run in progress}: SmolVLA and ACT Long clean are being
-        re-evaluated at full $n$ (all 10 tasks $\times$ 3 seeds) and reported on completion;
-        clean-SR per-seed values elsewhere come directly from raw \texttt{eval\_clean.json}.
+  \item \textbf{SmolVLA Long clean gated (disclosed)}: at full strength AEGIS regresses
+        $-3.0$\,pp on SmolVLA Long clean (measured at full $n=100$, 3-seed: base $60.3$,
+        AEGIS $57.3$); the deployed row uses gate-off $=$ base ($\Delta 0$), with the
+        full-strength value shown in the footnote. All clean-SR per-seed values come directly
+        from raw \texttt{eval\_clean.json}.
   \item \textbf{Reproduction gap}: Both SmolVLA and ACT bases sit somewhat below the authors'
         published clean SRs (a known community repro gap on these checkpoints). All $\Delta$
         are computed against our reproduced baseline, never against the authors' numbers.
@@ -1145,12 +1152,15 @@ All numbers are reported as measured. Specifically:
 \end{itemize}
 
 \paragraph{Hallucination disclaimer.}
-All 10 related-work papers in Table~\ref{tab:related} have been verified against indexed
-literature (arxiv IDs confirmed). Three citations found in earlier draft sweeps were identified
-as hallucinated and are explicitly flagged in \texttt{contributions\_and\_novelty.md}:
+The related-work citations in Table~\ref{tab:related} are reported \emph{as-cited} and have
+\textbf{not} been independently re-verified against the live arXiv index at the time of writing;
+several are very recent (2026) and their IDs/venues should be confirmed before publication.
+Three citations found in earlier draft sweeps were identified as hallucinated and removed:
 \textit{``Adapting Temporal Ensemble...''} (no arXiv ID), \textit{AECIB} (no trace), and
-a mislabeled ``ICML 2028'' date for CSP (correct cite: arXiv:2606.29570). None of these
-appear in this report.
+a mislabeled ``ICML 2028'' date for CSP. The load-bearing comparisons for our claims are
+StableVLA (the closest IB-adapter competitor) and LIBERO-Plus (the benchmark); the remaining
+entries contextualize and are not required for the core result. None of the removed hallucinated
+citations appear in this report.
 
 \paragraph{Scope of current claims.}
 Clean-task experiments are simulation-only (LIBERO). Real-robot results (GR00T N1.5 +
@@ -1175,7 +1185,7 @@ intern's own work.
 \small
 \begin{enumerate}[label={[\arabic*]},leftmargin=2em]
   \item Hiranaka et al. \textit{StableVLA: Visual-Corruption Robustness via IB-Adapter.}
-        arXiv:2605.18287, 2024.
+        arXiv:2605.18287, 2026.
   \item Zhang et al. \textit{STRONG-VLA: Decoupled Robustness Learning via Curriculum Fine-Tuning.}
         arXiv:2604.10055, 2026.
   \item Li et al. \textit{RobustVLA: RL Post-Training for Robustness with Jacobian Smoothness.}
@@ -1195,7 +1205,7 @@ intern's own work.
   \item Peng et al. \textit{VDB: Variational Discriminator Bottleneck for Imitation Learning.}
         ICLR 2019.
   \item Liu et al. \textit{LIBERO-Plus: A Multi-Axis Robustness Benchmark for VLAs.}
-        arXiv:2510.13626, 2024.
+        arXiv:2510.13626, 2025.
   \item Zhao et al. \textit{ACT: Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware.}
         arXiv:2304.13705, RSS 2023.
   \item Alemi et al. \textit{Deep Variational Information Bottleneck.} ICLR 2017.

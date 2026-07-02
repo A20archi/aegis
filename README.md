@@ -12,7 +12,7 @@
 
 [![Method](https://img.shields.io/badge/method-dual--locus%20IB-blue)]()
 [![Backbone](https://img.shields.io/badge/backbone-frozen-success)]()
-[![Robustness](https://img.shields.io/badge/LIBERO--V-+33.3%20pts%20%7C%200%20regressions-orange)]()
+[![Robustness](https://img.shields.io/badge/LIBERO--V-+29.9%20pts%20%7C%200%20regressions-orange)]()
 [![Status](https://img.shields.io/badge/paper-in%20preparation-lightgrey)]()
 
 ***AEGIS** — **A**daptive **E**ntropy-**G**ated **I**nformation **S**ieve = **RIB** (perception) + **RASF** (action) + **TE** (temporal consensus). External label "SmolVLA+SIB".*
@@ -197,7 +197,7 @@ Design ablations (RASF variants, trained on Spatial):
 **What the ablations show:**
 - **Rate term is load-bearing.** The naive IB is *dormant* (+0.3 robustness vs TE's +3.3) — a bottleneck without an explicit `β·R` rate objective barely engages. Removing the rate term from RASF (`gain_no_rate`) costs −8.1 robustness.
 - **Spectral basis is the active ingredient.** Removing the DCT (`raw_vib`) costs −6.1 vs full SIB — it's the frequency decomposition, not just per-band gains, that recovers robustness.
-- **The two axes are complementary.** RIB alone (+11.6) contributes more than RASF alone (+2.5), but full AEGIS (+14.1) **exceeds the sum of the parts** — synergy concentrated on the motion-blur and noise axes.
+- **The two axes are complementary.** RIB alone (+11.6) contributes more than RASF alone (+2.5), and full AEGIS (+14.1) **matches the sum of the parts** — additive, with no measured super-additive synergy.
 
 ### Cross-suite generalization — LIBERO-V, Object + Goal (NEW)
 The modules are trained **only on Spatial**; Object and Goal are held-out suites. AEGIS generalizes with **0 regressions across 10 conditions, mean Δ +29.9** — and rescues the catastrophic cells where the base policy is effectively dead.
@@ -311,7 +311,7 @@ Three suites gain; **Long clean regresses −10.3** at full strength — the bot
 
 <sub>**3-seed mean** is the headline; **Δ peak** is the best-of-3-seed per suite (each suite's single best seed), averaged for reference — **not a deployable aggregate** (suites peak on different seeds, and a peak can land where the *baseline* was weakest). No per-category oracle; raw per-seed cells in [`sib_vla/results/act_plus_v2/`](sib_vla/results/act_plus_v2/).</sub>
 
-Robustness is reported at **honest uniform RIB = 1.0** — all four suites gain with no de-strengthing and **no gate closed**. (At Long RIB = 0.25 the Long robustness is +3.2, essentially unchanged, so the robustness story holds either way.)
+Robustness is reported at **honest uniform RIB = 1.0** — all four suites gain with no de-strengthing and **no gate closed**. (At Long RIB = 0.25 the Long robustness is +3.2 on LIBERO-Plus, essentially unchanged, so the robustness story holds either way. Note the paper's §ACT-Long table reports a separate single-seed *LIBERO-V internal* diagnostic with a different base — not this LIBERO-Plus number.)
 
 **Per-family** (mean over suites & seeds): Sensor Noise **+26.4**, Light **+11.1**, Objects Layout +2.1, Robot Init +1.4, Camera Viewpoints +0.0, Background −2.8, Language −2.8 — gains concentrate on the photometric axes the bottleneck targets; the small background/language dips are shown, not masked.
 
@@ -333,7 +333,7 @@ Full numbers, per-seed deltas, and CIs: [`sib_vla/ALL_ACT_RESULTS.md`](sib_vla/A
 
 ### The identity-preservation guarantee
 
-Both RIB and RASF are zero/identity-initialized. Removing either module (setting `α=0` for RIB; removing RASF) recovers the **exact** base policy output — not approximately, but bit-exactly (verified numerically: `max|out − base| = 0`). **No prior verified paper makes this guarantee.** It is the key property that lets us report an honest "gate-off = baseline exactly" in the results table — no regression is structurally possible before learning begins.
+Both RIB and RASF are zero/identity-initialized. Removing either module (setting `α=0` for RIB; removing RASF) recovers the **exact** base policy output — not approximately, but bit-exactly (verified numerically: `max|out − base| = 0`). **We are not aware of a VLA robustness module that provides this bit-exact identity-at-init guarantee.** It is the key property that lets us report an honest "gate-off = baseline exactly" in the results table — no regression is structurally possible before learning begins.
 
 ---
 
@@ -567,8 +567,8 @@ A preprint is in preparation. In the meantime:
 
 ```bibtex
 @misc{aegis2026,
-  title  = {AEGIS: An Adaptive Entropy-Gated Information Sieve for Additive, Provably-Safe
-            Robustness in Frozen Vision-Language-Action Policies},
+  title  = {AEGIS: An Adaptive Entropy-Gated Information Sieve for Additive Robustness
+            with Provable Non-Regression in Frozen Vision-Language-Action Policies},
   author = {Saptarshi and collaborators},
   year   = {2026},
   note   = {Preprint in preparation},
