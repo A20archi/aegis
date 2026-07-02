@@ -37,7 +37,7 @@ Vision-Language-Action (VLA) models collapse under the visual and dynamical pert
 
 | Setting | Result |
 |---|---|
-| **Clean SR** (4-suite, **3 seeds**, ungated) | **+2.0** mean (Object +6.2, Long +1.6; Spatial −0.1 within noise) |
+| **Clean SR** (4-suite, **3 seeds**, ungated) | **+2.0** mean (Object +6.2; Goal +0.3, Spatial −0.1 within noise; Long under-powered — see note) |
 | **Robustness — Spatial, 6 axes, n=200/axis** | wins **all 6**, mean **+14.1** |
 | **Robustness — Object+Goal cross-suite, 10 conditions** | mean **+29.9**, **0 regressions** |
 | **Graceful degradation** (Gaussian σ-sweep) | base dies (0/200) at σ≥0.30; AEGIS still completes 24.5% |
@@ -113,27 +113,17 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 
 ### Clean task success — 3 seeds (42, 123, 456), non-perturbed LIBERO
 
-**3-seed mean (the headline):** AEGIS improves the clean average **+2.0** (81.3 → 83.3) — a clear gain on **Object (+6.2)**, **Long** recovered to slightly positive (**+1.6**), **Goal** at parity (+0.3), **Spatial** within noise (−0.1). Reported **ungated**: the small Spatial dip is shown, not masked.
+**3-seed mean (the headline):** AEGIS improves the clean average **+2.0** (81.3 → 83.3) — a clear gain on **Object (+6.2)**, **Goal** at parity (+0.3), **Spatial** within noise (−0.1). **Long is under-powered** and reported honestly (see note). Per-seed values are read directly from raw `eval_clean.json`; `ᵖ` marks a cell whose run did not complete all 10 tasks (`n` ranges 15–100). Reported **ungated**: no dip is masked.
 
-| Suite | Base | AEGIS | Δ mean | per-seed Δ |
+| Suite | Base | AEGIS | Δ mean | per-seed Δ (s42/s123/s456) |
 |---|---:|---:|---:|---|
 | Object | 90.1 | 96.3 | **+6.2** | +9.0, +3.7, +6.0 |
-| Goal | 92.7 | 93.0 | +0.3 | +1, −2, +2 |
-| Spatial | 84.5 | 84.4 | −0.1 | −0.3, +2.1, −2 |
-| Long | 58.0 | 59.6 | **+1.6** | −6, 0, +10.7 |
+| Goal | 92.7 | 93.0 | +0.3 | +1.0, −2.0, +2.0 |
+| Spatial | 84.5 | 84.4 | −0.1 | −0.3ᵖ, +2.1, −2.0 |
+| Long | 58.0 | 59.6 | +1.6\* | −6.0ᵖ, 0.0, +10.7ᵖ |
 | **Avg** | **81.3** | **83.3** | **+2.0** | |
 
-**Best-of-3-seed (peak, labelled — *not* the headline):** each suite's single best seed.
-
-| Suite | best seed | Base | AEGIS | Δ peak |
-|---|---|---:|---:|---:|
-| Object | 42 | 88.0 | 97.0 | +9.0 |
-| Goal | 456 | 92.0 | 94.0 | +2.0 |
-| Spatial | 123 | 82.5 | 84.6 | +2.1 |
-| Long | 456 | 56.0 | 66.7 | **+10.7** |
-| **Avg** | | **79.6** | **85.6** | **+6.0** |
-
-<sub>3-seed **mean** is the headline (+2.0). The **best-of-3** "+6.0" is the mean of each suite's *single best* seed — **not a deployable aggregate** (each suite uses a different seed, and a suite's peak can land on the seed where the *baseline* happened to be weakest); shown for reference only. No per-category max() oracle. The earlier single-seed Long −8 was a noisy single seed; at 3 seeds Long is +1.6.</sub>
+<sub>**\*Long +1.6 is not trustworthy — it is small-`n` and partial.** Of the three seeds only **s123** is a matched, complete pair (`n=50` each, a tie at 64.0). Seed 42 is a partial pair that **regresses** (48.0 vs 54.0 = **−6.0**); seed 456 compares a **3-task** AEGIS run (`n=15`, 66.7%) against a 5-task base run (`n=25`, 56.0%) — not comparable, and the sole source of the "+10.7". **Restricting to matched-complete seeds (s42, s123) gives base 59.0 / AEGIS 56.0 = −3.0.** We show the raw 3-seed mean for continuity but read SmolVLA clean-Long as **flat-to-slightly-negative, pending a full-`n` re-run**. No best-of-3 "peak" is claimed for the clean suites — the earlier peak table folded the Long s456 partial into a spurious +10.7 and has been removed. The headline **robustness** result (LIBERO-Plus, below) is unaffected. No per-category max() oracle anywhere.</sub>
 
 
 ### Robustness on LIBERO-Plus (external benchmark) — 4 suites × 3 seeds
@@ -307,7 +297,7 @@ Three suites gain; **Long clean regresses −10.3** at full strength — the bot
 | Object | 70.0 | 80.0 | **+10.0** | +10.0 |
 | Goal | 73.5 | 76.5 | +3.0 | +6.0 |
 | Long | 55.5 | 68.2 | **+12.7** | +17.5 |
-| **Average** | **72.5** | **79.8** | **+7.4** (mean) | **+9.4** (peak) |
+| **Average** | **72.5** | **79.9** | **+7.4** (mean) | **+9.4** (peak) |
 
 ### Robustness on LIBERO-Plus — 7 perturbation families × 12 tasks/cat, 3 seeds (ungated, RIB = 1.0)
 
@@ -381,12 +371,15 @@ Both RIB and RASF are zero/identity-initialized. Removing either module (setting
 
 StableVLA inserts an IB-Adapter at the vision→LLM projection interface using **channel-covariance sigmoid gating** — feature statistics are computed across channels, a sigmoid gate suppresses individual channels, and the training loss is the downstream task loss only with **no explicit rate term**.
 
-**How we differ:**
-- **Locus.** Our RIB operates on the **action output** (RASF) *and* the vision→LLM tokens (RIB). StableVLA only addresses the token locus; it has no action-axis module.
-- **Rate term.** StableVLA has none — gating is a heuristic supervised by the task loss alone. This is why their gate is empirically **dormant** (`fusion_coeff → −0.006` on clean task loss). Our `β·Σ R_k` derived from the Gaussian channel mutual information is what forces engagement.
+**Be honest about the overlap:** our **RIB** sits at the *same* vision→LLM projector interface as StableVLA's IB-Adapter. RIB is best read as a *corrected* version of that idea — the rate term + identity-at-init make it engage where StableVLA's gate stays dormant — **not** as a new interface. So when we claim to beat StableVLA, the load-bearing differentiator is not RIB.
+
+**Where we actually differ — the action side (RASF):**
+- **A module StableVLA cannot express.** The structural novelty is **RASF**, a rate-limited DCT-domain filter on the **sampled action chunk**. StableVLA has *no action-side module at all* — this is a capability it lacks, not one it does differently. This is the piece we lead with.
+- **Rate term (fixes the shared-locus RIB).** StableVLA's gating is a heuristic on task loss alone, which is why it is empirically **dormant** (`fusion_coeff → −0.006`). Our `β·Σ R_k` from the Gaussian-channel mutual information is what forces the *same-locus* bottleneck to engage.
+- **Wiener gain vs sigmoid.** RASF's filter is the **closed-form MMSE solution** for a Gaussian channel; StableVLA's sigmoid has no principled connection to the signal's SNR.
 - **Corruption-augmented training.** StableVLA trains on clean data only. We train with 60% photometric/geometric corruption per mini-batch, on a frozen base — the eval perturbations are never seen during training.
-- **Wiener gain vs sigmoid.** Our filter is the **closed-form MMSE solution** for a Gaussian channel. StableVLA's sigmoid has no principled connection to the signal's SNR.
 - **Identity-preservation.** StableVLA makes no claim that gate-off recovers the base policy exactly. We prove and verify it numerically.
+- **Fair head-to-head.** Our VLA-Adapter-Pro comparison runs on StableVLA's own base at matched trainable budget, so the result isolates *what* each method adapts (action-side vs projector-only), not *how much*.
 
 ---
 
