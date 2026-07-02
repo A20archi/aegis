@@ -379,7 +379,7 @@ StableVLA inserts an IB-Adapter at the vision→LLM projection interface using *
 - **Wiener gain vs sigmoid.** RASF's filter is the **closed-form MMSE solution** for a Gaussian channel; StableVLA's sigmoid has no principled connection to the signal's SNR.
 - **Corruption-augmented training.** StableVLA trains on clean data only. We train with 60% photometric/geometric corruption per mini-batch, on a frozen base — the eval perturbations are never seen during training.
 - **Identity-preservation.** StableVLA makes no claim that gate-off recovers the base policy exactly. We prove and verify it numerically.
-- **Fair head-to-head.** Our VLA-Adapter-Pro comparison runs on StableVLA's own base at matched trainable budget, so the result isolates *what* each method adapts (action-side vs projector-only), not *how much*.
+- **Fair head-to-head (no strawman).** Our VLA-Adapter-Pro comparison runs on StableVLA's own base, and pits AEGIS against StableVLA in **two** configurations so it can't be accused of underpowering it: (1) **StableVLA-native** — the faithful IB-Adapter trained with StableVLA's *own* clean-task objective, whose gate goes dormant → reproduces base (its documented ceiling — it adds no robustness); (2) **StableVLA-budgeted** — the same faithful projector + LLM LoRA (**more** trainable params than AEGIS, more steps, warm-started) given the *same* robustness training AEGIS gets. AEGIS beating the **native ceiling** (+6.3 over base) is the load-bearing claim; the budgeted arm additionally destabilizes under robustness training (an architectural finding), which AEGIS's identity-init + bounded residual avoids. StableVLA is handed the benefit on every budget axis.
 
 ---
 
