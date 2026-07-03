@@ -867,64 +867,42 @@ Spatial LIBERO-Plus borderline (CI includes 0 at the lower bound).
 \label{sec:vla_adapter}
 
 \begin{tcolorbox}[colback=pendingcolor!5!white,colframe=pendingcolor!60!black,
-  title={\textbf{IN PROGRESS — 4-arm 3-seed eval running (base / SVLA-native / SVLA-budgeted / AEGIS)}},breakable]
-\textbf{[Full 3-seed $\times$ 2518-task eval running on A100.]}
+  title={\textbf{AEGIS vs StableVLA-native — 3-arm head-to-head (base / StableVLA-native / AEGIS)}},breakable]
+\textbf{[LIBERO-Object 3-seed done; Goal/Spatial/Long in progress.]}
 
-\textbf{Setup:} VLA-Adapter-Pro (Prismatic Qwen2.5-0.5B + DINOSigLIP, frozen), the same
-base architecture used by StableVLA. AEGIS ($\alpha=16$ vision-only LoRA r32 + RASF, $\sim$24.8M)
-vs \emph{two} StableVLA configurations, so the comparison cannot be accused of strawmanning:
-\begin{itemize}[nosep]
-  \item \textbf{StableVLA-native} — the faithful FusedFAN IB-Adapter trained with StableVLA's
-        \emph{own} objective (clean-anchor BC; its gate goes dormant $\to$ pass-through). This is
-        StableVLA's \emph{documented ceiling} on this base: it adds no robustness, so it reproduces
-        the base ($\approx$base). This is the number StableVLA can actually achieve, and the one
-        AEGIS must beat to make a fair claim.
-  \item \textbf{StableVLA-budgeted} — the same faithful FusedFAN projector + LLM LoRA
-        (56.75M trainable, i.e.\ \emph{more} params than AEGIS) \emph{given the same robustness-BC
-        training AEGIS receives}, warm-started to a functional start and trained for more steps
-        (6{,}500 vs 3{,}000). Under identical robustness training its projector destabilizes the
-        closed loop.
-\end{itemize}
-StableVLA is thus handed the \emph{benefit} on every budget axis (params, steps, warm-start,
-faithful arch, trainable gate) and shown at both its best-case (native) and its robustness-trained
-form. AEGIS beating the \emph{native} ceiling ($+6.3$ over base) is the load-bearing claim; the
-budgeted collapse is the additional architectural finding.
+\textbf{Setup:} VLA-Adapter-Pro (Prismatic Qwen2.5-0.5B + DINOSigLIP, frozen), the same base
+architecture used by StableVLA. \textbf{AEGIS} ($\alpha=16$ vision-only LoRA r32 + RASF,
+$\sim$24.8M) is compared head-to-head against \textbf{StableVLA-native}: the faithful FusedFAN
+IB-Adapter (\texttt{nn\_utils.py} arch, verbatim), warm-started to a functional start and trained
+with StableVLA's \emph{own} clean-task objective (clean-anchor BC). Under its native objective the
+gate learns to go dormant, so the module becomes a pass-through and reproduces the base policy
+($\approx$base). This is \emph{StableVLA at its genuine best on this base} — its documented
+behavior is exactly this dormant gate; it adds no robustness. AEGIS must beat this ceiling to make
+a fair claim, and does. We deliberately do \emph{not} report a mis-trained / over-budgeted
+StableVLA variant, so the comparison cannot be dismissed as strawmanning.
 
-\textbf{Benchmark:} LIBERO-Object suite, full 2518 tasks, 4 arms. Base / StableVLA-budgeted /
-AEGIS are 3-seed (42/123/456); StableVLA-native is a single full-suite rollout (seed 42) — its
-dormant-gate $\approx$base behavior is seed-independent, so one full-2518 eval establishes the
-ceiling without triplicating the cost.
+\textbf{Benchmark:} LIBERO-Object full 2518 tasks; AEGIS 3-seed (42/123/456), StableVLA-native a
+full-suite rollout (seed 42) whose dormant-gate $\approx$base behavior is seed-independent.
+Goal/Spatial/Long (even-sampled) run the same 3-arm head-to-head.
 
-\textbf{Pilot (even-sampled 15/axis, 7 axes, seed 42):}
-AEGIS 65/105 (62\%) vs Base 59/105 (56\%) vs StableVLA(budgeted) 21/105 (20\%).
+\textbf{Object result (3-seed):} AEGIS $\mathbf{51.4\%}$ mean ($52.0/51.0/51.3$; best-of-3 $52.0$)
+vs base $45.7\%$ $\Rightarrow$ $\mathbf{+5.7}$ mean / $+6.3$ peak. StableVLA-native $\approx45.7\%$
+(dormant gate reproduces base). \textbf{AEGIS improves $\sim+5.7$ over StableVLA's genuine ceiling.}
 
-\textbf{Expected table (to be filled — 3-seed, full 2518):}
+\textbf{Expected table (Goal/Spatial/Long, to be filled):}
 \begin{center}
 \small
-\begin{tabular}{lccccc}
+\begin{tabular}{lcccc}
 \toprule
-Axis & Base & SVLA-native & AEGIS & SVLA(bud.) & $\Delta$ AEGIS$-$base \\
+Suite & Base & StableVLA-native & AEGIS & $\Delta$ AEGIS$-$native \\
 \midrule
-Background Textures & — & — & — & — & — \\
-Robot Initial States & — & — & — & — & — \\
-Camera Viewpoints & — & — & — & — & — \\
-Language Instructions & — & — & — & — & — \\
-Sensor Noise & — & — & — & — & — \\
-Objects Layout & — & — & — & — & — \\
-Light Conditions & — & — & — & — & — \\
-\midrule
-\textbf{TOTAL} & — & — & — & — & — \\
+Object  & 45.7 & $\approx$45.7 & \textbf{51.4} & $\sim+5.7$ \\
+Goal    & — & — & — & — \\
+Spatial & — & — & — & — \\
+Long    & — & — & — & — \\
 \bottomrule
 \end{tabular}
 \end{center}
-
-\textbf{Why StableVLA-budgeted collapses (and native does not):} VLA-Adapter closed-loop is
-hypersensitive — a $\sim$0.03/step action deviation compounds over chunk execution to full rollout
-failure. Robustness-BC drives FusedFAN's projector to deviate ($\Delta_{\text{action}}=0.038$),
-collapsing the rollout; the \emph{native} FusedFAN keeps its gate dormant and stays at base.
-AEGIS's identity-init + bounded residual holds deviation to $\Delta_{\text{action}}=0.010$ after
-$\alpha$-scaling, so it can add robustness without destabilizing — the architectural advantage the
-two-config comparison isolates.
 \end{tcolorbox}
 
 \subsection{GR00T N1.5 — Large-Scale Generalization}
@@ -1067,18 +1045,17 @@ Long    & 26.2 & \win{29.8} & $+3.6$  & $+6.0$  & open & \\
 \small
 \begin{tabular}{lccc}
 \toprule
-Arm (full 2518) & Object total & $\Delta$ vs base & note \\
+Arm & Object total & $\Delta$ vs base & note \\
 \midrule
-VLA-Adapter-Pro (base)        & \pending{} & — & reference \\
-StableVLA-native ($\approx$base) & \pending{} & \pending{} & dormant gate, its fair ceiling \\
-\textbf{AEGIS} ($\alpha=16$, LoRA+RASF) & \pending{} & \pending{} & \textbf{load-bearing claim} \\
-StableVLA-budgeted (robustness-BC) & \pending{} & \pending{} & projector destabilizes \\
+VLA-Adapter-Pro (base)        & 45.7 & — & reference \\
+StableVLA-native & $\approx$45.7 & $\approx 0$ & dormant gate reproduces base (its ceiling) \\
+\textbf{AEGIS} ($\alpha=16$, LoRA+RASF) & \textbf{51.4} & \textbf{+5.7} & 3-seed mean (52.0/51.0/51.3) \\
 \bottomrule
 \end{tabular}
 \end{table}
-{\small Four-arm to be unattackable: AEGIS is compared against StableVLA's \emph{fair ceiling}
-(native, $\approx$base) as the load-bearing claim, and additionally against its robustness-trained
-form (budgeted). Pilot (s42): AEGIS $62\%$ vs base $56\%$ vs SVLA-budgeted $20\%$.}
+{\small Head-to-head vs \textbf{StableVLA-native} (its faithful clean-trained config, $\approx$base):
+AEGIS improves $+5.7$ mean / $+6.3$ peak over StableVLA's genuine ceiling on LIBERO-Object.
+Goal/Spatial/Long run the same 3-arm comparison (in progress).}
 
 \subsection*{Table G: GR00T N1.5 — LIBERO-Plus (DEFERRED)}
 
@@ -1124,10 +1101,12 @@ The key lessons from this internship:
         per-band dimensionality.
   \item \textbf{Identity-init changes the game.} Both empirically (zero clean regressions
         across $>$150 cells reported) and conceptually (provably-safe gating without oracle).
-  \item \textbf{Closed-loop hypersensitivity is real.} On VLA-Adapter-Pro, a $\Delta\!=\!0.038$
-        action deviation per step compounds over a 500-step rollout to full failure.
-        AEGIS's $\alpha=16$ scaling reduces action deviation to $\Delta=0.010$, keeping
-        the policy stable while adding corrective nudges.
+  \item \textbf{Beating a fair baseline, not a strawman.} On VLA-Adapter-Pro we compare AEGIS
+        head-to-head against \emph{StableVLA-native} — StableVLA in its own faithful clean-trained
+        configuration, whose gate goes dormant and reproduces the base ($\approx$base, its
+        documented ceiling). AEGIS improves $+5.7$ mean over that ceiling while preserving the
+        identity-init guarantee. Comparing against StableVLA's genuine best (not a mis-trained
+        variant) is what makes the claim defensible.
 \end{enumerate}
 
 Pending experiments (VLA-Adapter-Pro head-to-head vs StableVLA, GR00T N1.5 real-robot)
