@@ -27,7 +27,7 @@
 
 ## Contents
 
-**[TL;DR](#tldr)** · **[Contributions](#contributions)** · **[The problem, the gap, the insight](#the-problem-the-gap-the-insight)** · **[Method](#method)** (RIB · RASF · TE) · **[Results](#results)** (clean · LIBERO-Plus · ablations · cross-suite · degradation) · **[Second architecture — ACT](#aegis-on-act--second-architecture-libero--libero-plus)** · **[Novelty & 10-paper related work](#contributions-and-novelty)** · **[Reproduce](#reproduce)** · **[Limitations](#limitations--honesty-notes)**
+**[TL;DR](#tldr)** · **[Contributions](#contributions)** · **[The problem, the gap, the insight](#the-problem-the-gap-the-insight)** · **[Method](#method)** (RIB · RASF · TE) · **[Results](#results)** (clean · LIBERO-Plus · ablations · theory · cross-suite · degradation) · **[Second architecture — ACT](#aegis-on-act--second-architecture-libero--libero-plus)** · **[Novelty & 10-paper related work](#contributions-and-novelty)** · **[Reproduce](#reproduce)** · **[Limitations](#limitations--honesty-notes)**
 
 ---
 
@@ -49,6 +49,7 @@ Vision-Language-Action (VLA) models collapse under the visual and dynamical pert
 | Robustness — Spatial, 6 axes, n=200/axis *(in-distribution)* | 1 (42) | wins **all 6**, mean +14.1 |
 | Cross-suite generalization — Object+Goal, 10 conditions *(held-out suites)* | 1 (42) | mean +29.9, 0 regressions |
 | Graceful degradation — Gaussian σ-sweep | 1 (42) | base dies (0/200) at σ≥0.30; AEGIS still completes 24.5% |
+| **Theory** — reverse water-filling, learned allocation validated | — | proven to **5×10⁻¹⁶**; learned filter matches the analytic shape, **r up to 0.991** |
 | **Trainable params** | — | RIB ≈ 2.27M · RASF ≈ few-k · backbone **0** |
 
 <sub>Single-seed rows use **seed 42 — the modules' own design/training seed** — so they are in-distribution diagnostics (large effect sizes, no variance estimate), not held-out multi-seed evidence. The 3-seed rows above are the deployable headline.</sub>
@@ -150,6 +151,7 @@ A deliberately broad, all-measured evidence base (raw cells linked in place):
 - **Ablations** — a component ablation (6 configs isolating RIB / RASF / TE) **and** a design ablation (4 RASF variants).
 - **Stress tests** — 6-axis in-distribution robustness, a Gaussian noise-σ degradation sweep, and a **held-out** cross-suite generalization test.
 - **Rigor extras** — bootstrap 95% CIs, parameter + inference-overhead accounting, failure cases shown, qualitative rollouts.
+- **Theory, machine-checked** — the spectral allocation is *proven* to be reverse water-filling (θ=β/2) to 5×10⁻¹⁶, and the **learned** filter is verified against it (Pearson r up to 0.991); full proofs + honest ledger in the [rigor supplement](paper/rigor_supplement.tex).
 
 > Protocol: SmolVLA backbone, `n_action_steps=1`, 10 flow-matching denoise steps, per-suite max-steps, LIBERO fixed init-states. **Seeds per section:** Clean SR and LIBERO-Plus are **3-seed (42/123/456)**; the LIBERO-V robustness sweeps are **single-seed (42), n=200/condition**. Both arms carry TE; every Δ is a gain *on top of* the honest baseline.
 
@@ -242,6 +244,27 @@ Each row is a distinct configuration; the Δ columns are measured against the **
 - **Rate term is load-bearing.** The naive IB is *dormant* (+0.3 robustness vs TE's +3.3) — a bottleneck without an explicit `β·R` rate objective barely engages. Removing the rate term from RASF (`gain_no_rate`) costs −8.1 robustness.
 - **Spectral basis is the active ingredient.** Removing the DCT (`raw_vib`) costs −6.1 vs full SIB — it's the frequency decomposition, not just per-band gains, that recovers robustness.
 - **The two axes are complementary.** RIB alone (+11.6) contributes more than RASF alone (+2.5), and full AEGIS (+14.1) **matches the sum of the parts** — additive, with no measured super-additive synergy.
+
+### Theoretical grounding — the allocation is provably water-filling, and we verify the learned filter matches (NEW)
+
+The spectral design is not just empirically better (above) — it is the closed-form solution to a rate–distortion problem, and we **machine-check the theory and confirm the learned filter tracks it.**
+
+**Theorem (reverse water-filling, θ = β/2).** Minimising the β-penalised channel objective `D + β·R` over per-band noise is *exactly* reverse water-filling at water level **θ = β/2**: active bands carry constant distortion `D_k = β/2`, and low-variance bands drop out. Proven and unit-tested to machine precision — **max |D_k − β/2| = 5.1×10⁻¹⁶**, 6/6 tests pass. [`sib/waterfill.py`](sib_vla/sib/waterfill.py) · [`tests/test_waterfill.py`](sib_vla/tests/test_waterfill.py)
+
+**The learned filter tracks the analytic shape.** Across the full β-sweep, the *learned* per-band rate matches the reverse-water-filling **shape** — Pearson **r = 0.945 → 0.991** as β grows — even though it honestly does *not* reproduce the idealized water level (the deployed module trains a denoising target with an MMSE decode, so the fitted θ sits orders of magnitude above β/2). **Shape transfers; level does not — and we report both.**
+
+| β | learned-vs-water-filling *r* | fitted θ | β/2 | total rate (nats) |
+|---:|---:|---:|---:|---:|
+| 1×10⁻⁴ | 0.945 | 0.123 | 5×10⁻⁵ | 79.1 |
+| 3×10⁻⁴ | 0.960 | 0.201 | 1.5×10⁻⁴ | 62.2 |
+| 1×10⁻³ | 0.974 | 0.394 | 5×10⁻⁴ | 44.7 |
+| 1×10⁻² | 0.991 | 2.106 | 5×10⁻³ | 17.0 |
+
+<sub>Learned allocation vs. matched-rate reverse water-filling per β; *r* rises and total rate falls monotonically as β increases. [`scripts/validate_allocation.py`](sib_vla/scripts/validate_allocation.py); overlay figure [`allocation_corr_vs_beta.png`](sib_vla/results/allocation_corr_vs_beta.png). (`raw_vib` without the DCT basis reaches only r=0.889 at β=1e-3 — the spectral basis is what makes the allocation legible.)</sub>
+
+**Wiener/MMSE action variant — principled smoothness.** Decoding each band with the closed-form Wiener gain is **SR-neutral** under action noise (ΔSR +4.0 / +0.5 / −2.0 pp at σ = 0.05 / 0.1 / 0.2) while cutting **RMS jerk 4.1–5.5×**; a naive fixed low-pass of comparable smoothing instead *hurts* SR (−0.5 / −2.5 / −3.5). The smoothness is bought by the *right* filter, not by discarding signal.
+
+Three theorems with full proofs (each adversarially refereed for correctness **and** for the idealized-vs-deployed honesty split), the operational rate–distortion identity `R_k = ½ ln(λ_k/D_k)`, and a claim-by-claim **proven-idealized vs deployed-measured** ledger: [`paper/rigor_supplement.tex`](paper/rigor_supplement.tex) · [`paper/RIGOR_SUMMARY.md`](paper/RIGOR_SUMMARY.md).
 
 ### Cross-suite generalization — LIBERO-V, Object + Goal (NEW)
 > **Single-seed (42)**, n=200/condition. Suites are **held-out** (modules trained on Spatial only), so this tests generalization across suites — but not across seeds; variance is not yet quantified.

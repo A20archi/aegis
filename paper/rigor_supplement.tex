@@ -1,0 +1,788 @@
+\section{Rigor Supplement}
+\label{sec:rigor-supplement}
+
+This supplement collects the machine-checked theory, the measured validations of
+the learned system, the statistical treatment of the robustness deltas, the
+honest AEGIS-on-ACT reconciliation, and the known failure modes. Throughout we
+distinguish sharply between what is \emph{proven for the idealized model} and
+what is \emph{deployed and measured}. The deployed default RASF is a
+\emph{learned} per-band sigmoid gain trained with a four-term denoising MSE; the
+closed-form Wiener/MMSE decode is a Track-B variant; RIB is a deterministic-$L_2$
+bottleneck (not a variational-KL channel). These are never conflated below.
+
+%======================================================================
+\subsection{Verified theorems and proofs}
+%======================================================================
+
+%% THEOREM 1
+\begin{theorem}[The $\beta$-penalised Gaussian channel is exactly reverse water-filling at level $\theta=\beta/2$]
+\label{thm:beta-waterfill}
+Let $A=(A_1,\dots,A_K)$ be independent Gaussian source bands with variances
+$\lambda_1,\dots,\lambda_K>0$ (in nats/variance units, matching
+\texttt{sib/waterfill.py}). Encode each band through an additive white Gaussian
+channel of noise variance $\sigma_k^2>0$ and decode with the scalar Wiener gain,
+so that the operational per-band MMSE distortion and rate are
+\begin{equation}
+D_k \;=\; \frac{\lambda_k\,\sigma_k^2}{\lambda_k+\sigma_k^2},
+\qquad
+R_k \;=\; \tfrac12\ln\!\Bigl(1+\frac{\lambda_k}{\sigma_k^2}\Bigr)
+\quad\text{(nats).}
+\label{eq:DR}
+\end{equation}
+Consider the \emph{compression} objective (distortion target $=$ source $A$)
+\begin{equation}
+J(\sigma_1^2,\dots,\sigma_K^2)
+\;=\;\sum_{k=1}^{K}\bigl[\,D_k+\beta\,R_k\,\bigr],
+\qquad \beta>0,
+\label{eq:obj}
+\end{equation}
+minimised over $\sigma_k^2\in(0,\infty]$ (the endpoint $\sigma_k^2=\infty$
+denotes a dropped band, $D_k=\lambda_k$, $R_k=0$). Then the unique minimiser is
+\begin{equation}
+\boxed{\;\sigma_k^{2\,\star}=\dfrac{\beta\,\lambda_k}{2\lambda_k-\beta}\;\text{ if }2\lambda_k>\beta,
+\qquad
+\sigma_k^{2\,\star}=\infty\;\text{ (drop) if }2\lambda_k\le\beta,\;}
+\label{eq:sigma-star}
+\end{equation}
+and on every \emph{active} band ($2\lambda_k>\beta$) the operational distortion is
+the same constant
+\begin{equation}
+D_k^\star=\frac{\beta}{2},
+\qquad
+R_k^\star=\tfrac12\ln\!\frac{\lambda_k}{\beta/2}
+=\tfrac12\ln\!\frac{\lambda_k}{D_k^\star},
+\qquad
+g_k^\star=1-\frac{\beta/2}{\lambda_k},
+\label{eq:Dstar}
+\end{equation}
+while dropped bands ($\lambda_k\le\beta/2$) keep $D_k^\star=\lambda_k$, $R_k^\star=0$.
+Hence the $\beta$-penalised optimum coincides \emph{exactly} with reverse
+water-filling $D_k=\min(\theta,\lambda_k)$, $R_k=\max\!\bigl(0,\tfrac12\ln(\lambda_k/\theta)\bigr)$
+at water level
+\begin{equation}
+\theta=\frac{\beta}{2}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1 (eliminate $\sigma_k^2$; the rate is water-filling in $D_k$).}
+From \eqref{eq:DR}, invert the distortion relation. Writing $D_k=\lambda_k\sigma_k^2/(\lambda_k+\sigma_k^2)$ and taking reciprocals,
+\[
+\frac{1}{D_k}=\frac{1}{\sigma_k^2}+\frac{1}{\lambda_k}
+\;\Longrightarrow\;
+\frac{\lambda_k}{\sigma_k^2}=\frac{\lambda_k}{D_k}-1,
+\qquad
+1+\frac{\lambda_k}{\sigma_k^2}=\frac{\lambda_k}{D_k}.
+\]
+Substituting into $R_k$ in \eqref{eq:DR} gives the operational rate in terms of
+distortion, $R_k=\tfrac12\ln(\lambda_k/D_k)$, the reverse-water-filling form.
+As $\sigma_k^2$ ranges over $(0,\infty)$, $D_k$ ranges monotonically over
+$(0,\lambda_k)$: the map $\sigma_k^2\mapsto D_k$ is a smooth increasing bijection
+$(0,\infty)\to(0,\lambda_k)$, with the boundary $\sigma_k^2\to\infty$ giving
+$D_k\to\lambda_k$ (the dropped band). We may therefore reparametrise the
+per-band cost by $D_k\in(0,\lambda_k]$:
+\begin{equation}
+j_k(D_k)\;=\;D_k+\beta\,R_k
+\;=\;D_k+\frac{\beta}{2}\,\ln\!\frac{\lambda_k}{D_k}
+\;=\;D_k+\frac{\beta}{2}\bigl(\ln\lambda_k-\ln D_k\bigr).
+\label{eq:jk}
+\end{equation}
+Because \eqref{eq:obj} is separable, $J=\sum_k j_k(D_k)$ and each band is
+minimised independently.
+
+\textbf{Step 2 (interior stationarity).}
+$j_k$ is $C^\infty$ on $(0,\lambda_k)$. Differentiate \eqref{eq:jk}:
+\[
+j_k'(D_k)=1-\frac{\beta}{2}\cdot\frac{1}{D_k},
+\qquad
+j_k''(D_k)=\frac{\beta}{2}\cdot\frac{1}{D_k^{2}}>0 .
+\]
+$j_k''>0$ everywhere on $(0,\lambda_k)$, so $j_k$ is \emph{strictly convex} in
+$D_k$ and any interior stationary point is the unique global interior minimiser.
+Setting $j_k'(D_k)=0$,
+\begin{equation}
+1-\frac{\beta}{2D_k}=0
+\;\Longrightarrow\;
+D_k^\star=\frac{\beta}{2},
+\label{eq:Dstar-proof}
+\end{equation}
+a value independent of $k$ --- the ``constant operational distortion'' claim.
+
+\textbf{Step 3 (feasibility / the drop condition).}
+The stationary point \eqref{eq:Dstar-proof} lies in the feasible interior
+$(0,\lambda_k)$ iff $\beta/2<\lambda_k$, i.e. $2\lambda_k>\beta$ (active band).
+If instead $2\lambda_k\le\beta$, then $\beta/2\ge\lambda_k$ and $j_k'(D_k)=1-\beta/(2D_k)\le 1-\beta/(2\lambda_k)\le 0$ for \emph{all} $D_k\in(0,\lambda_k]$;
+thus $j_k$ is non-increasing across the whole feasible interval and its minimum
+is attained at the right endpoint $D_k=\lambda_k$, i.e. $\sigma_k^2=\infty$,
+$R_k=0$ --- the band is dropped. This is exactly the KKT statement: introducing
+the constraint $D_k\le\lambda_k$ with multiplier $\mu_k\ge0$, the Lagrangian is
+$j_k(D_k)+\mu_k(D_k-\lambda_k)$ with stationarity $1-\beta/(2D_k)+\mu_k=0$ and
+complementary slackness $\mu_k(\lambda_k-D_k)=0$. For active bands $\mu_k=0$
+recovers \eqref{eq:Dstar-proof}; for $2\lambda_k\le\beta$ the interior solution
+is infeasible and the binding constraint $D_k=\lambda_k$ forces
+$\mu_k=\beta/(2\lambda_k)-1\ge0$, which is admissible --- confirming the drop.
+(The lower endpoint $D_k\to0$, $\sigma_k^2\to0$, is never optimal since
+$j_k\to+\infty$ there.)
+
+\textbf{Step 4 (back-substitute to $\sigma_k^2$, rate, and gain).}
+For an active band, insert $D_k^\star=\beta/2$ into
+$1/D_k=1/\sigma_k^2+1/\lambda_k$ from Step 1:
+\[
+\frac{2}{\beta}=\frac{1}{\sigma_k^{2\,\star}}+\frac{1}{\lambda_k}
+\;\Longrightarrow\;
+\frac{1}{\sigma_k^{2\,\star}}=\frac{2}{\beta}-\frac{1}{\lambda_k}
+=\frac{2\lambda_k-\beta}{\beta\lambda_k}
+\;\Longrightarrow\;
+\sigma_k^{2\,\star}=\frac{\beta\lambda_k}{2\lambda_k-\beta},
+\]
+which is positive precisely when $2\lambda_k>\beta$, matching
+\eqref{eq:sigma-star} and \texttt{optimal\_sigma2\_for\_beta}. The rate follows
+from Step 1, $R_k^\star=\tfrac12\ln(\lambda_k/D_k^\star)=\tfrac12\ln(\lambda_k/(\beta/2))$.
+The Wiener decode gain is $g_k=\lambda_k/(\lambda_k+\sigma_k^2)=D_k/\sigma_k^2\cdot(\sigma_k^2/D_k)$; more directly, $g_k=1-D_k/\lambda_k$ (since the Wiener MMSE is $D_k=(1-g_k)\lambda_k$), giving $g_k^\star=1-(\beta/2)/\lambda_k$ as in \eqref{eq:Dstar}.
+
+\textbf{Step 5 (identification with reverse water-filling).}
+Reverse water-filling at level $\theta$ sets $D_k=\min(\theta,\lambda_k)$ and
+$R_k=\max\!\bigl(0,\tfrac12\ln(\lambda_k/\theta)\bigr)$
+(\texttt{reverse\_waterfilling}). Put $\theta=\beta/2$. For active bands
+$\lambda_k>\theta$: $\min(\theta,\lambda_k)=\theta=\beta/2=D_k^\star$ and
+$\tfrac12\ln(\lambda_k/\theta)=R_k^\star>0$. For $\lambda_k\le\theta=\beta/2$:
+$\min(\theta,\lambda_k)=\lambda_k$ and the rate clamps to $0$ --- exactly the
+dropped band of Step 3. The active/drop partition $\{2\lambda_k>\beta\}$ equals
+$\{\lambda_k>\theta\}$. Thus the $\beta$-penalised minimiser and reverse
+water-filling at $\theta=\beta/2$ produce identical $(D_k,R_k)$ band-by-band.
+Strict convexity in Step 2 (and monotonicity in Step 3) make each band's
+minimiser unique, so the two allocations coincide, not merely in value but as
+the unique optimum. $\qquad\blacksquare$
+\end{proof}
+
+\paragraph{Numerical anchor (verified).}
+On the deterministic band grid $\lambda=(0.1,0.2,\dots,4.0)$ and
+$\beta\in\{0.05,0.2,0.5,1.0,2.0,3.0,5.0\}$
+(\texttt{scripts/verify\_theta\_beta2.py}), the optimal Wiener channel produces
+constant active-band distortion $D_k^\star=\beta/2$ to machine precision: the
+worst deviation over all $\beta$ and bands is
+$\max_k|D_k^\star-\beta/2|=5.135\times10^{-16}$ (bar $10^{-6}$), the active-band
+count decreasing $40,39,38,35,30,25,15$ as $\beta$ grows exactly as
+$\{\lambda_k>\beta/2\}$ predicts, and dropped bands retain $D_k=\lambda_k$
+(verified to atol $10^{-9}$). The rate/level inverses
+(\texttt{waterlevel\_for\_rate}) round-trip to $\max|\mathrm{err}|=3.553\times10^{-15}$.
+The unit suite \texttt{tests/test\_waterfill.py} passes $6/6$, including
+\texttt{test\_beta\_equals\_two\_theta\_theorem} (operational
+$D_\mathrm{op}=\beta/2$ on active bands, operational rate $=$ reverse-WF rate at
+$\theta=\beta/2$, Wiener gain $g_k=1-(\beta/2)/\lambda_k$). Theorem
+\ref{thm:beta-waterfill} is therefore an exact, machine-checked statement about
+the idealised \emph{compression} objective, not an asymptotic approximation.
+
+\paragraph{Deployment scope.}
+Theorem~\ref{thm:beta-waterfill} is proven for the idealised compression channel
+whose reconstruction target is the source $A$ itself and whose decode is the
+closed-form Wiener/MMSE map. This is the \emph{analytic anchor}, and it is the
+Track-B variant of our module (the Wiener/MMSE decode). It is \emph{not} the
+deployed default RASF, which is a \emph{learned} per-band sigmoid gain trained
+with a four-term denoising MSE toward a task target $A^\star\!\neq\!A$; RIB is
+correspondingly a deterministic $L_2$ bottleneck rather than a variational-KL
+channel. Two consequences must not be conflated. First, the water \emph{level}
+does \emph{not} transfer: the level $\theta=\beta/2$ is a property of the
+source-reconstruction optimum, whereas the deployed level is set by the
+\emph{operational} total rate of the denoising fit. Empirically, for
+\texttt{sib\_b1e-4} the fitted level is $\theta=0.1233$, three-to-four orders of
+magnitude above $\beta/2=5\times10^{-5}$; across the sweep $\theta$ ranges
+$0.123$--$2.106$ against $\beta/2$ ranging $5\times10^{-5}$--$5\times10^{-3}$.
+Second, what \emph{does} transfer is the \emph{shape} of the allocation. The
+measured $\beta$-sweep (\texttt{scripts/validate\_allocation.py}) reports the
+Pearson correlation between the learned per-band rate $\{R_k\}$ and the analytic
+reverse-water-filling rate at matched total rate:
+$r=0.945,\,0.960,\,0.974,\,0.991$ for
+$\beta=10^{-4},3\!\times\!10^{-4},10^{-3},10^{-2}$
+(and $r=0.889$ for the identity-transform \texttt{raw\_vib\_b1e-3}), rising
+monotonically as $\beta$ grows and the total rate shrinks
+($79.13\to16.99$ nats), with the shape residual $\mathrm{relL1}$ falling
+$0.517\to0.153$. We therefore report this as a \emph{validation of the learned
+system against theory} --- the learned bottleneck spends bits with the correct
+reverse-water-filling \emph{profile} (high-$r$, monotone in $\beta$) --- and
+explicitly \emph{not} as a claim that the deployment solves the closed-form
+$\theta=\beta/2$ water level, which it provably does not at the measured
+operating point.
+
+%% THEOREM 2
+\begin{theorem}[Wiener/MMSE decode optimality and the operational rate--distortion identity]
+\label{thm:wiener-rd}
+Fix a band index $k$. Let the source coefficient $A_k \sim \mathcal{N}(0,\lambda_k)$ with $\lambda_k>0$ be observed through an additive white Gaussian channel
+\[
+Y_k \;=\; A_k + N_k, \qquad N_k \sim \mathcal{N}(0,\sigma_k^2), \quad N_k \perp A_k, \quad \sigma_k^2>0 .
+\]
+Then:
+\begin{enumerate}
+\item[\textup{(i)}] \emph{(Wiener/MMSE optimality.)} Among \emph{all} (measurable, possibly nonlinear) estimators $\hat A_k=f(Y_k)$, the minimum mean-squared error is attained by the \emph{linear} Wiener estimator
+\[
+\hat A_k \;=\; g_k\,Y_k, \qquad
+\boxed{\,g_k \;=\; \frac{\lambda_k}{\lambda_k+\sigma_k^2}\,}.
+\]
+\item[\textup{(ii)}] \emph{(MMSE value.)} The resulting error is the posterior variance
+\[
+\boxed{\,D_k \;=\; \mathbb{E}\!\left[(A_k-\hat A_k)^2\right] \;=\; \frac{\lambda_k\,\sigma_k^2}{\lambda_k+\sigma_k^2}\,}.
+\]
+\item[\textup{(iii)}] \emph{(Operational rate--distortion identity, nats.)} The information rate of the band is
+\[
+R_k \;=\; I(A_k;Y_k) \;=\; \tfrac12\ln\!\Big(1+\tfrac{\lambda_k}{\sigma_k^2}\Big),
+\]
+and eliminating $\sigma_k^2$ through (ii) gives the identity
+\[
+\boxed{\,R_k \;=\; \tfrac12\ln\!\Big(1+\tfrac{\lambda_k}{\sigma_k^2}\Big) \;=\; \tfrac12\ln\!\frac{\lambda_k}{D_k}\,}.
+\]
+\end{enumerate}
+Consequently the water-filling rate $R_k=\tfrac12\ln(\lambda_k/D_k)$ used in \texttt{reverse\_waterfilling} is \emph{operational}: it is exactly \emph{achieved} by the Gaussian channel with Wiener decode at operational distortion $D_k$, not merely a rate--distortion lower bound. Finally, on the compression objective $\sum_k D_k+\beta\sum_k R_k$, the stationary point of (i)--(iii) in $\sigma_k^2$ is $\sigma_k^{2\star}=\beta\lambda_k/(2\lambda_k-\beta)$ on active bands $2\lambda_k>\beta$, giving constant per-band distortion $D_k=\beta/2$ --- reverse water-filling at level $\theta=\beta/2$.
+\end{theorem}
+
+\begin{proof}
+Throughout, $k$ is fixed and $(A_k,N_k)$ is jointly Gaussian with $\operatorname{Var}(A_k)=\lambda_k$, $\operatorname{Var}(N_k)=\sigma_k^2$, $\operatorname{Cov}(A_k,N_k)=0$. All logarithms are natural (nats).
+
+\medskip
+\noindent\textbf{Step 1: The MMSE estimator is the posterior mean.}
+For any estimator $\hat A_k=f(Y_k)$ with finite second moment, write the standard bias--variance split conditioned on $Y_k$:
+\[
+\mathbb{E}\!\left[(A_k-f(Y_k))^2\right]
+=\mathbb{E}\Big[\underbrace{\mathbb{E}\!\left[(A_k-\mathbb{E}[A_k\mid Y_k])^2\mid Y_k\right]}_{\text{indep.\ of }f}
++\big(\mathbb{E}[A_k\mid Y_k]-f(Y_k)\big)^2\Big],
+\]
+which follows because the cross term
+$\mathbb{E}\!\big[(A_k-\mathbb{E}[A_k\mid Y_k])(\mathbb{E}[A_k\mid Y_k]-f(Y_k))\mid Y_k\big]=0$
+(the second factor is $Y_k$-measurable and the first has zero conditional mean). The first term does not depend on $f$; the second is nonnegative and vanishes iff $f(Y_k)=\mathbb{E}[A_k\mid Y_k]$ a.s. Hence the MMSE estimator is the posterior mean $\hat A_k=\mathbb{E}[A_k\mid Y_k]$, over \emph{all} measurable $f$.
+
+\medskip
+\noindent\textbf{Step 2: For jointly Gaussian variables the posterior mean is linear, and equals the Wiener gain.}
+Since $(A_k,Y_k)$ is jointly Gaussian, $\mathbb{E}[A_k\mid Y_k]$ is affine in $Y_k$. With $\mathbb{E}[A_k]=\mathbb{E}[Y_k]=0$,
+\[
+\mathbb{E}[A_k\mid Y_k]=\frac{\operatorname{Cov}(A_k,Y_k)}{\operatorname{Var}(Y_k)}\,Y_k .
+\]
+Compute the two moments from $Y_k=A_k+N_k$ and independence:
+\[
+\operatorname{Cov}(A_k,Y_k)=\operatorname{Var}(A_k)+\operatorname{Cov}(A_k,N_k)=\lambda_k,
+\qquad
+\operatorname{Var}(Y_k)=\lambda_k+\sigma_k^2 .
+\]
+Therefore
+\[
+\hat A_k=\mathbb{E}[A_k\mid Y_k]=\frac{\lambda_k}{\lambda_k+\sigma_k^2}\,Y_k=g_kY_k,
+\qquad g_k=\frac{\lambda_k}{\lambda_k+\sigma_k^2}\in(0,1),
+\]
+proving (i). (One may verify optimality of $g_k$ within linear estimators directly: for $\hat A_k=gY_k$, $\tfrac{d}{dg}\mathbb{E}[(A_k-gY_k)^2]=-2\operatorname{Cov}(A_k,Y_k)+2g\operatorname{Var}(Y_k)=0\Rightarrow g=\lambda_k/(\lambda_k+\sigma_k^2)$, with second derivative $2\operatorname{Var}(Y_k)>0$; Step~1--2 upgrade this to global optimality over nonlinear estimators.)
+
+\medskip
+\noindent\textbf{Step 3: The MMSE value is the posterior variance.}
+Insert $\hat A_k=g_kY_k$ and use $\operatorname{Cov}(A_k,Y_k)=\lambda_k$, $\operatorname{Var}(Y_k)=\lambda_k+\sigma_k^2$:
+\[
+\begin{aligned}
+D_k=\mathbb{E}\!\left[(A_k-g_kY_k)^2\right]
+&=\lambda_k-2g_k\operatorname{Cov}(A_k,Y_k)+g_k^2\operatorname{Var}(Y_k)\\
+&=\lambda_k-2\frac{\lambda_k}{\lambda_k+\sigma_k^2}\lambda_k+\frac{\lambda_k^2}{(\lambda_k+\sigma_k^2)^2}(\lambda_k+\sigma_k^2)\\
+&=\lambda_k-\frac{\lambda_k^2}{\lambda_k+\sigma_k^2}
+=\frac{\lambda_k(\lambda_k+\sigma_k^2)-\lambda_k^2}{\lambda_k+\sigma_k^2}
+=\frac{\lambda_k\sigma_k^2}{\lambda_k+\sigma_k^2},
+\end{aligned}
+\]
+proving (ii). Equivalently $D_k=(1-g_k)\lambda_k=g_k\sigma_k^2$, the Gaussian posterior variance $\big(\lambda_k^{-1}+\sigma_k^{-2}\big)^{-1}$. As a sanity check, $D_k\to\lambda_k$ as $\sigma_k^2\to\infty$ (channel useless, keep prior) and $D_k\to0$ as $\sigma_k^2\to0$ (channel perfect).
+
+\medskip
+\noindent\textbf{Step 4: The channel rate.}
+$A_k$ and $Y_k$ are jointly Gaussian, so
+\[
+I(A_k;Y_k)=h(Y_k)-h(Y_k\mid A_k)=h(Y_k)-h(N_k),
+\]
+using $Y_k\mid A_k = A_k+N_k\mid A_k \sim \mathcal{N}(A_k,\sigma_k^2)$ so $h(Y_k\mid A_k)=h(N_k)$. For a scalar Gaussian of variance $v$, $h=\tfrac12\ln(2\pi e\,v)$ nats. With $\operatorname{Var}(Y_k)=\lambda_k+\sigma_k^2$ and $\operatorname{Var}(N_k)=\sigma_k^2$,
+\[
+R_k=I(A_k;Y_k)=\tfrac12\ln\!\big(2\pi e(\lambda_k+\sigma_k^2)\big)-\tfrac12\ln\!\big(2\pi e\,\sigma_k^2\big)
+=\tfrac12\ln\frac{\lambda_k+\sigma_k^2}{\sigma_k^2}
+=\tfrac12\ln\!\Big(1+\frac{\lambda_k}{\sigma_k^2}\Big).
+\]
+
+\medskip
+\noindent\textbf{Step 5: Eliminate $\sigma_k^2$ to obtain the operational identity.}
+From (ii), invert for the noise-to-signal ratio:
+\[
+D_k=\frac{\lambda_k\sigma_k^2}{\lambda_k+\sigma_k^2}
+\;\Longrightarrow\;
+\frac{1}{D_k}=\frac{\lambda_k+\sigma_k^2}{\lambda_k\sigma_k^2}
+=\frac{1}{\sigma_k^2}+\frac{1}{\lambda_k}
+\;\Longrightarrow\;
+\frac{\lambda_k}{D_k}=1+\frac{\lambda_k}{\sigma_k^2}.
+\]
+Substituting into the rate of Step 4,
+\[
+R_k=\tfrac12\ln\!\Big(1+\frac{\lambda_k}{\sigma_k^2}\Big)=\tfrac12\ln\frac{\lambda_k}{D_k},
+\]
+proving (iii). This is exactly $R_k=0.5\ln(\lambda_k/D_k)$ as computed in \texttt{reverse\_waterfilling} (line~51, with $D_k$ playing the role of the clamped water level). Because every quantity here is the \emph{achieved} value of a concrete Gaussian channel with Wiener decode --- $g_k$ the deployed gain, $D_k$ the realized posterior MSE, $R_k$ the realized mutual information --- the water-filling rate is \emph{operational}: it is met with equality, not bounded from below. (It coincides with Shannon's Gaussian rate--distortion function $R(D_k)=\tfrac12\ln(\lambda_k/D_k)$ for $D_k\le\lambda_k$, so this operating point is also rate--distortion optimal; but the point of (iii) is achievability by the explicit estimator, independent of any converse.)
+
+\medskip
+\noindent\textbf{Step 6: The compression objective yields $\theta=\beta/2$.}
+Now allocate $\sigma_k^2$ across bands to minimize the separable compression cost $J=\sum_k\big(D_k+\beta R_k\big)$ with $D_k,R_k$ as above and $\beta>0$ (nats). Parametrize each band by $s:=\sigma_k^2>0$ and differentiate the per-band cost
+$J_k(s)=\dfrac{\lambda_k s}{\lambda_k+s}+\dfrac{\beta}{2}\ln\!\Big(1+\dfrac{\lambda_k}{s}\Big)$.
+Using
+\[
+\frac{d}{ds}\frac{\lambda_k s}{\lambda_k+s}=\frac{\lambda_k(\lambda_k+s)-\lambda_k s}{(\lambda_k+s)^2}=\frac{\lambda_k^2}{(\lambda_k+s)^2},
+\qquad
+\frac{d}{ds}\tfrac12\ln\!\Big(1+\frac{\lambda_k}{s}\Big)=\tfrac12\cdot\frac{-\lambda_k/s^2}{1+\lambda_k/s}=-\frac{\lambda_k}{2s(\lambda_k+s)},
+\]
+the stationarity condition $J_k'(s)=0$ reads
+\[
+\frac{\lambda_k^2}{(\lambda_k+s)^2}=\frac{\beta\lambda_k}{2s(\lambda_k+s)}
+\;\Longleftrightarrow\;
+\frac{\lambda_k}{\lambda_k+s}=\frac{\beta}{2s}
+\;\Longleftrightarrow\;
+2\lambda_k s=\beta(\lambda_k+s)
+\;\Longleftrightarrow\;
+s(2\lambda_k-\beta)=\beta\lambda_k .
+\]
+Hence, when $2\lambda_k>\beta$,
+\[
+\sigma_k^{2\star}=\frac{\beta\lambda_k}{2\lambda_k-\beta}>0
+\quad(\text{matching \texttt{optimal\_sigma2\_for\_beta}, line~107}).
+\]
+Feed this back into (ii):
+\[
+D_k^\star=\frac{\lambda_k\sigma_k^{2\star}}{\lambda_k+\sigma_k^{2\star}}
+=\frac{\lambda_k\cdot\frac{\beta\lambda_k}{2\lambda_k-\beta}}{\lambda_k+\frac{\beta\lambda_k}{2\lambda_k-\beta}}
+=\frac{\frac{\beta\lambda_k^2}{2\lambda_k-\beta}}{\frac{\lambda_k(2\lambda_k-\beta)+\beta\lambda_k}{2\lambda_k-\beta}}
+=\frac{\beta\lambda_k^2}{2\lambda_k^2}
+=\frac{\beta}{2},
+\]
+constant across all active bands. \emph{This unique interior critical point is the global minimizer, and we prove it without convexity of $J_k$ in $s$} (indeed $J_k$ is \emph{not} globally convex in $s$: one checks $J_k''(s)<0$ for large $s$). On the active branch $2\lambda_k>\beta$ the stationarity condition $2\lambda_k s=\beta(\lambda_k+s)$ is \emph{linear} in $s$, so $s^\star=\sigma_k^{2\star}=\beta\lambda_k/(2\lambda_k-\beta)$ is the \emph{unique} interior critical point on $s\in(0,\infty)$. Since $J_k(s)\to+\infty$ as $s\to0^+$ (the rate term $\tfrac{\beta}{2}\ln(1+\lambda_k/s)$ diverges) and $J_k(s)\to\lambda_k>\beta/2$ as $s\to\infty$ (both boundary values strictly exceed $J_k(s^\star)$, since $D_k^\star=\beta/2<\lambda_k$ and $R_k^\star>0$), while $J_k''(s^\star)>0$ (this unique critical point is a strict local minimum), the continuous $J_k$ can have no other interior extremum; a single interior critical point that is a local minimum, with both boundaries higher, is therefore the global minimizer. (Equivalently, reparametrizing by the gain $g=\lambda_k/(\lambda_k+s)\in[0,1)$ gives $J_k=(1-g)\lambda_k-\tfrac{\beta}{2}\ln(1-g)$, which is \emph{strictly convex} in $g$, so the critical point is the unique global minimizer in $g$ and hence in $s$.) The boundary case $2\lambda_k\le\beta$ gives $J_k'(s)=\big[(2\lambda_k-\beta)s-\beta\lambda_k\big]\cdot\tfrac{\lambda_k}{2s(\lambda_k+s)^2}<0$ for all $s>0$, so $J_k$ is strictly decreasing and the optimum pushes $s\to\infty$, i.e.\ the band is dropped ($D_k=\lambda_k\le\beta/2$, $R_k=0$). Writing $\theta:=\beta/2$, the active set is $\{k:\lambda_k>\theta\}$, the distortion is $D_k=\min(\theta,\lambda_k)$ and the rate is $R_k=\tfrac12\ln(\lambda_k/\theta)$ on active bands and $0$ otherwise --- exactly reverse water-filling at level $\theta=\beta/2$, as asserted, closing the loop with (iii).
+\end{proof}
+
+\paragraph{Deployment scope.}
+The theorem is proven for the \emph{idealized} Gaussian band model, and its analytic anchor $\theta=\beta/2$ is confirmed numerically to machine precision. On deterministic bands $\lambda=\{0.10,\dots,4.00\}$ over $\beta\in\{0.05,0.2,0.5,1.0,2.0,3.0,5.0\}$, the optimal Wiener channel gives constant active-band distortion $D_k=\beta/2$ with
+$\max_k|D_k-\beta/2|=5.135\times10^{-16}$ (worst case over all $\beta$; $<10^{-6}$ bar), dropped bands ($\lambda_k\le\beta/2$) retain full variance (atol $10^{-9}$), and the rate/water-level inversion round-trips at $\max|\mathrm{err}|=3.553\times10^{-15}$ over target rates $\{0.5,1.7,3.0,6.0,10.0\}$; the six unit tests in \texttt{tests/test\_waterfill.py} pass, and \texttt{scripts/verify\_theta\_beta2.py} reproduces these residuals. This is the \emph{compression} target (reconstruct the source $A$), the analytic anchor --- \emph{not} the deployed training objective. What is actually deployed is the \emph{learned} per-band sigmoid gain $w_k = w_{\min}+(1-w_{\min})\,\sigma(b_k+\mathrm{MLP}(e)_k)$ trained by a $4$-term denoising MSE toward a task target $A^\star\neq A$; the Wiener gain motivates this form but is not equal to it, which is why the fitted level $\theta\in[0.123,2.106]$ sits orders of magnitude above $\beta/2\in[5\times10^{-5},5\times10^{-3}]$ while the learned rate matches the reverse-water-filling \emph{shape} at $r=0.889$--$0.991$.
+
+%% THEOREM 3
+\begin{theorem}[RASF as a deterministic-$L_2$ information bottleneck on the action chunk; optimality and identity-preservation of the learned allocation]
+\label{thm:rasf-waterfill}
+Let the action chunk $A\in\mathbb R^{H\times d}$ (temporal horizon $H$, action dimension $d$) be transformed to the orthonormal DCT-II temporal basis (\texttt{sib/transforms.py}) and modelled, per spectral band, as an independent Gaussian source
+\[
+A \;=\; (A_1,\dots,A_K), \qquad A_k \sim \mathcal N\!\big(0,\lambda_k\big),\qquad \lambda_1\ge\cdots\ge\lambda_K>0,
+\]
+with $K$ the number of temporal bands and all rates measured in \emph{nats}. This is the ACTION-side spectral module (the \texttt{sib}/\texttt{raw\_vib} Gaussian-channel family; \texttt{raw\_vib} is the $C=I$ / no-DCT variant), which we denote RASF. It is the deterministic map $A\mapsto \hat A$ that, in each band $k$, transmits $A_k$ through an additive Gaussian channel $X_k = A_k + N_k$, $N_k\sim\mathcal N(0,\sigma_k^2)$, decoded by the scalar Wiener (MMSE) gain
+\[
+g_k \;=\; \frac{\lambda_k}{\lambda_k+\sigma_k^2},\qquad \hat A_k \;=\; g_k\,X_k .
+\]
+Its \emph{operational} per-band distortion and rate are
+\begin{equation}
+D_k \;=\; \mathbb E\,(\hat A_k-A_k)^2 \;=\; \frac{\lambda_k\,\sigma_k^2}{\lambda_k+\sigma_k^2},
+\qquad
+R_k \;=\; \tfrac12\ln\!\Big(1+\frac{\lambda_k}{\sigma_k^2}\Big)\ \text{(nats).}
+\label{eq:op-DR}
+\end{equation}
+Then:
+
+\emph{(i) Rate--distortion lower bound.} For any (possibly stochastic) representation $\hat A$ of the Gaussian source with $\sum_k \mathbb E(\hat A_k-A_k)^2 \le KD$, the mutual information obeys, per band,
+\begin{equation}
+I(A_k;\hat A_k)\;\ge\; h(A_k)-\tfrac12\ln(2\pi e\,D_k)\;=\;\tfrac12\ln\!\frac{\lambda_k}{D_k},
+\qquad
+R(D)\;\ge\;\sum_k \tfrac12\ln^{+}\!\frac{\lambda_k}{D_k},
+\label{eq:rd-lb}
+\end{equation}
+where $\ln^{+}(\cdot)=\max(0,\ln(\cdot))$, and the RASF channel \eqref{eq:op-DR} attains it with equality: $R_k=\tfrac12\ln(\lambda_k/D_k)$.
+
+\emph{(ii) Reverse water-filling / minimum-rate allocation.} Among all allocations meeting a target total distortion $\sum_k D_k = D_{\mathrm{tot}}$, the one of minimum total rate sets a single water level $\theta>0$ and
+\begin{equation}
+D_k=\min(\theta,\lambda_k),\qquad
+R_k=\tfrac12\ln^{+}\!\frac{\lambda_k}{\theta},
+\label{eq:rwf}
+\end{equation}
+i.e. every \emph{active} band ($\lambda_k>\theta$) carries the \emph{same} residual distortion $\theta$ and bands with $\lambda_k\le\theta$ are dropped ($R_k=0$).
+
+\emph{(iii) Compression objective $\Rightarrow$ $\theta=\beta/2$.} Minimising the unconstrained compression Lagrangian $\mathcal L(\{\sigma_k^2\})=\sum_k D_k+\beta\sum_k R_k$ (reconstruct the source $A$; $\beta>0$ in nats) over $\sigma_k^2\ge0$ yields
+\begin{equation}
+\sigma_k^{2\star}=\frac{\beta\,\lambda_k}{2\lambda_k-\beta}\ \ (\text{active iff }2\lambda_k>\beta),\qquad
+D_k^\star=\frac{\beta}{2},\qquad
+g_k^\star = 1-\frac{\beta/2}{\lambda_k},
+\label{eq:beta-half}
+\end{equation}
+so the $\beta$-penalised channel is \emph{exactly} reverse water-filling at water level $\theta=\beta/2$, with dropped bands ($\lambda_k\le\beta/2$) keeping full variance $D_k=\lambda_k$.
+
+\emph{(iv) Identity-at-init (no-harm), two distinct mechanisms.} For the \emph{idealized RASF channel}, initialising $g_k\equiv1$ (equivalently $\sigma_k^2\equiv0$, $\theta\to0$) gives $\hat A=A$ exactly, so at $t=0$ RASF is the identity on its input and cannot change any downstream action. This is an algebraic identity of the Gaussian-band model. The DEPLOYED perception-leg RIB at the vision$\to$LLM connector (\texttt{sib/robust\_ib.py}) achieves no-harm by a \emph{separate} construction that is not a $\sigma^2\!\to\!0$ Gaussian band: its decoder output layer is zero-initialised (\texttt{robust\_ib.py} L57--58, $Z_{\mathrm{ib}}=0$ at step~0) and fused as an identity-initialised residual $\text{out}=z_{\mathrm{mlp}}+\tanh(\texttt{fusion\_coeff})\cdot g(x)\cdot Z_{\mathrm{ib}}$ (L88--90, L169), so $\text{out}=z_{\mathrm{mlp}}$ exactly at init regardless of $\tanh(\texttt{fusion\_coeff})$; the per-sample gate $g(x)\!\to\!0$ (or \texttt{gate\_floor}$<1$) likewise recovers the base connector exactly. Corruption-augmented training subsequently moves the RASF gains $g_k$ off $1$ toward the compressive allocation of shape \eqref{eq:rwf}, and moves the connector RIB decoder off zero.
+\end{theorem}
+
+\begin{proof}
+Throughout, bands are independent, so distortion and rate sum over $k$ and each band is optimised separately.
+
+\medskip
+\noindent\emph{Step 0: operational $D_k,R_k$ (verifying \eqref{eq:op-DR}).}
+With $X_k=A_k+N_k$, $A_k\perp N_k$, the MMSE estimator of $A_k$ from $X_k$ is linear because $(A_k,X_k)$ is jointly Gaussian:
+\[
+\hat A_k=\mathbb E[A_k\mid X_k]=\frac{\operatorname{Cov}(A_k,X_k)}{\operatorname{Var}(X_k)}X_k=\frac{\lambda_k}{\lambda_k+\sigma_k^2}X_k=g_kX_k .
+\]
+Its error variance is the posterior variance
+\[
+D_k=\operatorname{Var}(A_k\mid X_k)=\lambda_k-\frac{\lambda_k^2}{\lambda_k+\sigma_k^2}=\frac{\lambda_k\sigma_k^2}{\lambda_k+\sigma_k^2}.
+\]
+For the Gaussian channel $A_k\to X_k$,
+\[
+R_k=I(A_k;X_k)=h(X_k)-h(X_k\mid A_k)=\tfrac12\ln\!\big(2\pi e(\lambda_k+\sigma_k^2)\big)-\tfrac12\ln(2\pi e\,\sigma_k^2)=\tfrac12\ln\!\Big(1+\frac{\lambda_k}{\sigma_k^2}\Big).
+\]
+Eliminating $\sigma_k^2$: from $D_k$ we get $1+\lambda_k/\sigma_k^2=\lambda_k/D_k$, hence $R_k=\tfrac12\ln(\lambda_k/D_k)$, matching the water-filling rate with $D_k$ the operational distortion. This proves the equality case of \eqref{eq:rd-lb}.
+
+\medskip
+\noindent\emph{Step 1: rate--distortion lower bound \eqref{eq:rd-lb}.}
+Fix a band and let $\hat A_k$ be any representation with $\mathbb E(\hat A_k-A_k)^2\le D_k$. Then
+\[
+I(A_k;\hat A_k)=h(A_k)-h(A_k\mid \hat A_k).
+\]
+Conditioning cannot increase differential entropy, and among all variables of a given second moment the Gaussian maximises differential entropy, so with $E_k:=A_k-\hat A_k$,
+\[
+h(A_k\mid\hat A_k)=h(A_k-\hat A_k\mid\hat A_k)\le h(E_k)\le\tfrac12\ln\!\big(2\pi e\,\mathbb E E_k^2\big)\le\tfrac12\ln(2\pi e\,D_k).
+\]
+The first equality uses translation invariance of differential entropy (subtracting the $\hat A_k$-measurable quantity $\hat A_k$). Since $A_k\sim\mathcal N(0,\lambda_k)$ has $h(A_k)=\tfrac12\ln(2\pi e\,\lambda_k)$,
+\[
+I(A_k;\hat A_k)\ \ge\ \tfrac12\ln(2\pi e\,\lambda_k)-\tfrac12\ln(2\pi e\,D_k)=\tfrac12\ln\frac{\lambda_k}{D_k}.
+\]
+If $D_k\ge\lambda_k$ the right side is $\le0$ and the bound is vacuous ($R_k\ge0$), giving the $\ln^{+}$ in \eqref{eq:rd-lb}. Summing over independent bands gives $R(D)\ge\sum_k\tfrac12\ln^{+}(\lambda_k/D_k)$. The Wiener channel of Step 0 meets each per-band bound with equality, so it is rate--distortion optimal band-by-band.
+
+\medskip
+\noindent\emph{Step 2: reverse water-filling \eqref{eq:rwf} by KKT.}
+Minimise total rate at fixed total distortion:
+\[
+\min_{\{D_k\}}\ \sum_k \tfrac12\ln^{+}\!\frac{\lambda_k}{D_k}
+\quad\text{s.t.}\quad \sum_k D_k=D_{\mathrm{tot}},\ \ 0<D_k\le\lambda_k .
+\]
+On the interior ($0<D_k<\lambda_k$) the objective term is $\tfrac12\ln(\lambda_k/D_k)$, differentiable with $\partial/\partial D_k=-1/(2D_k)$. Form the Lagrangian $\sum_k\tfrac12\ln(\lambda_k/D_k)+\mu\big(\sum_kD_k-D_{\mathrm{tot}}\big)$. Stationarity:
+\[
+-\frac{1}{2D_k}+\mu=0\ \Longrightarrow\ D_k=\frac{1}{2\mu}=:\theta\quad(\text{same constant for every active band}).
+\]
+The box constraint $D_k\le\lambda_k$ is the KKT switch. For a band with $\lambda_k\le\theta$ the interior stationary point $D_k=\theta$ would lie at or beyond $\lambda_k$; but on $D\ge\lambda_k$ the rate term $\tfrac12\ln^{+}(\lambda_k/D)=0$ is flat, so no rate is saved by pushing $D$ past $\lambda_k$ and every unit of distortion beyond $\lambda_k$ is pure waste. The minimum-rate optimum therefore clamps such a band at $D_k=\lambda_k$ with $R_k=0$ (band dropped). This yields exactly $D_k=\min(\theta,\lambda_k)$ and $R_k=\tfrac12\ln^{+}(\lambda_k/\theta)$, i.e. \eqref{eq:rwf}. Monotonicity of $\theta\mapsto\sum_kD_k$ (a sum of nondecreasing clamps $\min(\theta,\lambda_k)$) makes $\theta$ the unique water level meeting $D_{\mathrm{tot}}$; convexity of $-\ln$ makes the stationary point the global minimiser. (These monotone/invertible relations are the ones exercised numerically by \texttt{waterlevel\_for\_rate}/\texttt{waterlevel\_for\_distortion}.)
+
+\medskip
+\noindent\emph{Step 3: compression objective gives $\theta=\beta/2$ \eqref{eq:beta-half}.}
+Now drop the hard constraint and minimise the Lagrangian directly over the channel noise:
+\[
+\mathcal L(\{\sigma_k^2\})=\sum_k\underbrace{\frac{\lambda_k\sigma_k^2}{\lambda_k+\sigma_k^2}}_{D_k}
++\beta\sum_k\underbrace{\tfrac12\ln\!\Big(1+\frac{\lambda_k}{\sigma_k^2}\Big)}_{R_k}.
+\]
+Each summand depends only on its own $\sigma_k^2$. Differentiate. Writing $s=\sigma_k^2$,
+\[
+\frac{dD_k}{ds}=\frac{\lambda_k(\lambda_k+s)-\lambda_k s}{(\lambda_k+s)^2}=\frac{\lambda_k^2}{(\lambda_k+s)^2},
+\qquad
+\frac{dR_k}{ds}=\frac12\cdot\frac{1}{1+\lambda_k/s}\cdot\Big(-\frac{\lambda_k}{s^2}\Big)=-\frac{\lambda_k}{2s(\lambda_k+s)}.
+\]
+Setting $\dfrac{d\mathcal L}{ds}=\dfrac{\lambda_k^2}{(\lambda_k+s)^2}-\dfrac{\beta\lambda_k}{2s(\lambda_k+s)}=0$ and multiplying by $(\lambda_k+s)^2/\lambda_k>0$:
+\[
+\lambda_k-\frac{\beta(\lambda_k+s)}{2s}=0
+\ \Longrightarrow\ 2\lambda_k s=\beta(\lambda_k+s)
+\ \Longrightarrow\ s(2\lambda_k-\beta)=\beta\lambda_k
+\ \Longrightarrow\ \sigma_k^{2\star}=\frac{\beta\lambda_k}{2\lambda_k-\beta}.
+\]
+This is positive iff $2\lambda_k>\beta$; otherwise $d\mathcal L/ds>0$ for all $s>0$ (the rate saving never pays for the distortion), the minimiser is the boundary $\sigma_k^{2\star}\to\infty$, and the band is dropped ($g_k=0$, $R_k=0$, $D_k=\lambda_k$). Substituting $\sigma_k^{2\star}$ into $D_k$ for an active band:
+\[
+D_k^\star=\frac{\lambda_k\,\sigma_k^{2\star}}{\lambda_k+\sigma_k^{2\star}}
+=\lambda_k\cdot\frac{\sigma_k^{2\star}}{\lambda_k+\sigma_k^{2\star}}
+=\lambda_k\cdot\frac{\beta\lambda_k/(2\lambda_k-\beta)}{\lambda_k+\beta\lambda_k/(2\lambda_k-\beta)}
+=\lambda_k\cdot\frac{\beta}{(2\lambda_k-\beta)+\beta}
+=\lambda_k\cdot\frac{\beta}{2\lambda_k}=\frac{\beta}{2}.
+\]
+Hence every active band carries the identical residual distortion $D_k^\star=\beta/2$: the compression optimum is reverse water-filling with $\theta=\beta/2$, and the drop threshold $2\lambda_k>\beta\Leftrightarrow\lambda_k>\beta/2$ matches $\lambda_k>\theta$. The Wiener gain there is $g_k^\star=\lambda_k/(\lambda_k+\sigma_k^{2\star})=1-D_k^\star/\lambda_k=1-(\beta/2)/\lambda_k$. This closed form is the analytic \emph{anchor} verified to machine precision in Step~4.
+
+\medskip
+\noindent\emph{Step 4 (numerical confirmation of Step 3).}
+On deterministic bands $\lambda_k=0.1k,\ k=1,\dots,40$, the closed form \eqref{eq:beta-half} was evaluated at $\beta\in\{0.05,0.2,0.5,1.0,2.0,3.0,5.0\}$: active bands carry $D_k=\beta/2$ with $\max_k|D_k-\beta/2|=5.135\times10^{-16}$ (max over all $\beta$, well under the $10^{-6}$ bar), dropped bands ($\lambda_k\le\beta/2$) keep $D_k=\lambda_k$ to $\text{atol }10^{-9}$, and the rate$\leftrightarrow$water-level inversion is exact to $\max|\text{err}|=3.553\times10^{-15}$. The unit suite \texttt{tests/test\_waterfill.py} reports \emph{6 passed}, including \texttt{test\_beta\_equals\_two\_theta\_theorem} (operational $D_{\mathrm{op}}=\beta/2$ on active, $=\lambda_k$ on dropped; $g=1-(\beta/2)/\lambda$).
+
+\medskip
+\noindent\emph{Step 5: identity-at-init (idealized RASF channel).}
+Initialise $\sigma_k^2\equiv0$ for all $k$ (equivalently $g_k\equiv1$, $\theta\to0^+$). Then $X_k=A_k$ deterministically and $\hat A_k=g_kX_k=1\cdot A_k=A_k$ for every $k$, so $\hat A=A$ exactly. As $\sigma_k^2\downarrow0$ the limits are consistent: $D_k=\lambda_k\sigma_k^2/(\lambda_k+\sigma_k^2)\to0$ (no distortion) while $R_k=\tfrac12\ln(1+\lambda_k/\sigma_k^2)\to+\infty$ (the identity is the infinite-rate corner of \eqref{eq:rwf}). This is the no-harm identity for the Gaussian-band action channel; the connector RIB's no-harm is the separate zero-init-decoder / residual-fuse construction stated in (iv) and cited to \texttt{robust\_ib.py}, not this $\sigma^2\!\to\!0$ limit. $\qquad\blacksquare$
+\end{proof}
+
+\paragraph{Deployment scope (proven vs.\ deployed/measured).}
+Parts (i)--(iv) are proven for the \emph{idealized} model: an independent-Gaussian source on the DCT temporal bands of the action chunk, a Wiener-decoded additive-Gaussian channel, and the \emph{compression} objective $D+\beta R$ whose target is to reconstruct the source $A$. Under that objective the water level is \emph{exactly} $\theta=\beta/2$, confirmed to $5.135\times10^{-16}$ (Step~4). \textbf{Locus and scope.} All of this is the ACTION-side spectral module (RASF / the \texttt{sib} and \texttt{raw\_vib} Gaussian-channel family, \texttt{sib/transforms.py}); the measured allocation checkpoints \texttt{sib\_b\{1e\text{-}4,3e\text{-}4,1e\text{-}3,1e\text{-}2\}} and \texttt{raw\_vib\_b1e\text{-}3}, and the $\theta=\beta/2$ anchor, are all ACTION-side. The \emph{perception-leg} RIB at the vision$\to$LLM connector (\texttt{sib/robust\_ib.py}) is a \emph{distinct} neural module --- a deterministic-latent encoder/attention/decoder with an $L_2$-on-latent rate proxy (\texttt{z.pow(2).mean()}, L77) fused as an identity-initialised residual --- to which (i)--(iii) do \emph{not} apply: it is not a per-band Wiener channel, has no reverse water-filling and no measured water level, and its no-harm comes from the zero-init decoder plus $\tanh(\texttt{fusion\_coeff})$ residual fuse and the per-sample gate, not from $\sigma^2\!\to\!0$ on a Gaussian band. It is a \emph{deterministic-$L_2$ / rate-penalised} bottleneck, \emph{not} a variational-KL bottleneck (despite the historical ``VIB'' naming in the module).
+
+%======================================================================
+\subsection{Validation of the learned allocation (Track A)}
+%======================================================================
+
+Theorem~\ref{thm:beta-waterfill} fixes the idealised compression optimum. What we
+deploy is a \emph{learned} sigmoid-gain RASF trained with a four-term denoising
+MSE, so the water \emph{level} is not $\beta/2$ (see Deployment scope above).
+What is validated empirically is the \emph{shape}: the learned per-band rate
+$\{R_k\}$ against the analytic reverse-water-filling rate at matched total rate.
+Table~\ref{tab:alloc} reports the measured Pearson correlation over the full
+$\beta$-sweep (\texttt{scripts/validate\_allocation.py}); the correlation rises
+monotonically as $\beta$ grows and the total rate shrinks, and the shape residual
+$\mathrm{relL1}$ falls correspondingly.
+
+\begin{table}[h]
+\centering
+\caption{Learned-vs-analytic allocation shape (Track A), from
+\texttt{scripts/validate\_allocation.py}. The fitted water level $\theta$ sits
+three-to-four orders of magnitude above $\beta/2$, confirming the level does
+\emph{not} transfer while the profile (Pearson $r$, $\mathrm{relL1}$) does.}
+\label{tab:alloc}
+\begin{tabular}{lcccccc}
+\hline
+ckpt & $\beta$ & Pearson $r$ & $\theta$ & $\beta/2$ & total rate (nats) & $\mathrm{relL1}$ \\
+\hline
+\texttt{sib\_b1e-4}      & $10^{-4}$          & 0.945 & 0.1233 & $5\times10^{-5}$   & 79.13 & 0.517 \\
+\texttt{sib\_b3e-4}      & $3\times10^{-4}$   & 0.960 & 0.2012 & $1.5\times10^{-4}$ & 62.18 & 0.408 \\
+\texttt{sib\_b1e-3}      & $10^{-3}$          & 0.974 & 0.3941 & $5\times10^{-4}$   & 44.70 & 0.286 \\
+\texttt{sib\_b1e-2}      & $10^{-2}$          & 0.991 & 2.1057 & $5\times10^{-3}$   & 16.99 & 0.153 \\
+\texttt{raw\_vib\_b1e-3} & $10^{-3}$          & 0.889 & 0.2676 & $5\times10^{-4}$   & 198.76 & 0.196 \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent\emph{Interpretation.} This is a validation of the learned system
+\emph{against} theory --- the bottleneck spends bits with the correct
+reverse-water-filling \emph{profile} --- and explicitly \emph{not} a claim that
+the deployment solves the closed-form $\theta=\beta/2$ water level, which it
+provably does not at the measured operating point.
+
+%======================================================================
+\subsection{Wiener/MMSE action-side variant (Track B)}
+%======================================================================
+
+The closed-form Wiener/MMSE decode of Theorem~\ref{thm:wiener-rd} is deployed
+directly as a Track-B variant (\texttt{sib\_b1e-4}). Under injected action noise
+on \texttt{libero\_spatial} ($n=200$ per cell: $10$ tasks $\times\,20$
+init-states), it is SR-neutral-to-slightly-positive while running several-fold
+lower RMS jerk. Tables~\ref{tab:trackb-sr}--\ref{tab:trackb-clean} give the
+measured cells; the honest reading is \emph{smoothness upside, not an SR
+headline}. A naive fixed low-pass at comparable smoothing \emph{hurts} SR, so
+the smoothness gain is principled rather than a free-lunch low-pass artifact.
+
+\begin{table}[h]
+\centering
+\caption{Action-noise success rate ($n=200$ per cell). Track B is the
+Wiener/MMSE decode \texttt{sib\_b1e-4}; the learned default RASF
+(\texttt{sib\_adaptive}) and a naive fixed low-pass are shown for contrast.}
+\label{tab:trackb-sr}
+\begin{tabular}{lccc}
+\hline
+config & $n=0.05$ & $n=0.1$ & $n=0.2$ \\
+\hline
+vanilla (none)                       & 0.545 & 0.550 & 0.545 \\
+lowpass (naive fixed low-pass)       & 0.540 & 0.525 & 0.510 \\
+\texttt{sib\_adaptive} (learned RASF) & 0.540 & 0.530 & 0.515 \\
+\textbf{\texttt{sib\_b1e-4} (Wiener/MMSE)} & \textbf{0.585} & \textbf{0.555} & \textbf{0.525} \\
+$\Delta$ \texttt{sib\_b1e-4} $-$ vanilla (pp) & $+4.0$ & $+0.5$ & $-2.0$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{RMS jerk (smoothness), same action-noise cells, $n=200$ each. The final
+row is the vanilla$/$Wiener jerk ratio ($\times$ lower).}
+\label{tab:trackb-jerk}
+\begin{tabular}{lccc}
+\hline
+config & jerk@$0.05$ & jerk@$0.1$ & jerk@$0.2$ \\
+\hline
+vanilla (none)                & 0.4511 & 0.4886 & 0.6280 \\
+lowpass                       & 0.1160 & 0.1143 & 0.1231 \\
+\texttt{sib\_adaptive} (learned) & 0.1239 & 0.1297 & 0.1364 \\
+\texttt{sib\_b1e-4} (Wiener/MMSE) & 0.1108 & 0.1121 & 0.1141 \\
+\textbf{vanilla $/$ \texttt{sib\_b1e-4} ($\times$ lower)} & \textbf{4.07$\times$} & \textbf{4.36$\times$} & \textbf{5.50$\times$} \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Clean (no action-noise) reference, $n=200$.}
+\label{tab:trackb-clean}
+\begin{tabular}{lccc}
+\hline
+config & RMS jerk & HF-energy frac & clean SR \\
+\hline
+vanilla\_n25                        & 0.4089 & 0.02570 & 0.570 \\
+\texttt{sib\_b1e-4} (Wiener/MMSE)   & 0.1109 & 0.00231 & 0.595 \\
+jerk-run (RASF variant, \texttt{eval\_jerk.json}) & 0.09248 & 0.00186 & 0.570 \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent On clean rollouts the Wiener/MMSE decode holds SR ($0.595$ vs.\ vanilla
+$0.570$) at $\approx 3.7\times$ lower jerk ($0.1109$ vs.\ $0.4089$) with
+$\approx 11\times$ lower high-frequency energy fraction ($0.00231$ vs.\
+$0.02570$). The operational value of the identity is the certified
+$D_k=\lambda_k\sigma_k^2/(\lambda_k+\sigma_k^2)$ MMSE decode delivering large,
+principled jerk reductions at SR-neutral-to-slightly-positive task success ---
+not a success-rate claim.
+
+%======================================================================
+\subsection{Statistical rigor}
+%======================================================================
+
+Robustness deltas are reported with $95\%$ paired bootstrap CIs over $n=3$ seed
+means (seeds $42/123/456$), alongside stratified-bootstrap CIs, IQM, and Wilson
+intervals. Tables~\ref{tab:clean-ci}--\ref{tab:iqm} give the measured cells.
+Because only three seeds are available, paired-$\Delta$ CIs are bootstrapped over
+$n=3$ seed means; narrow/degenerate CIs (e.g.\ Object) are an $n=3$ artifact, not
+an estimate of true zero variance.
+
+\begin{table}[h]
+\centering
+\caption{CLEAN success rate --- per-suite $95\%$ stratified-bootstrap CI and
+paired $\Delta$ CI (AEGIS-on-ACT, proper frozen base).}
+\label{tab:clean-ci}
+\begin{tabular}{lcccc}
+\hline
+Suite & base SR [95\% CI] & AEGIS SR [95\% CI] & paired $\Delta$ [95\% CI] & Excludes 0? \\
+\hline
+Spatial & 90.8 [83.5, 96.7] & 94.7 [90.8, 98.0] & $+3.8$ [$+3.5$, $+4.0$] & YES (real) \\
+Object  & 70.0 [53.3, 86.7] & 80.0 [66.7, 93.3] & $+10.0$ [$+10.0$, $+10.0$] & YES (real; $n=3$ degenerate) \\
+Goal    & 73.5 [62.0, 84.0] & 76.5 [65.3, 86.0] & $+3.0$ [$+0.5$, $+6.0$] & YES (real) \\
+Long    & 55.5 [41.3, 69.0] & 45.2 [30.5, 59.7] & $-10.3$ [$-16.5$, $-4.5$] & YES --- significant REGRESSION \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{LIBERO-Plus success rate --- per-suite $95\%$ stratified-bootstrap CI and
+paired $\Delta$ CI.}
+\label{tab:plus-ci}
+\begin{tabular}{lcccc}
+\hline
+Suite & base SR [95\% CI] & AEGIS SR [95\% CI] & paired $\Delta$ [95\% CI] & Excludes 0? \\
+\hline
+Spatial & 55.6 [49.2, 61.5] & 58.3 [52.4, 64.3] & $+2.8$ [$+0.0$, $+6.0$] & NO --- includes 0 (inconclusive) \\
+Object  & 51.2 [45.2, 57.5] & 61.9 [56.0, 67.9] & $+10.7$ [$+2.4$, $+16.7$] & YES (real) \\
+Goal    & 57.5 [51.6, 63.5] & 60.7 [54.4, 66.7] & $+3.2$ [$+1.2$, $+7.1$] & YES (real) \\
+Long    & 26.2 [20.6, 31.7] & 29.8 [24.2, 35.3] & $+3.6$ [$+1.2$, $+6.0$] & YES (real) \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Long-bridge --- de-strengthed RIB (mult$=0.25$) vs.\ base, 3-seed paired
+$\Delta$ [95\% CI]. Base Long: clean 55.5, robust 26.2. The mult$=0.5$ cells are
+$0/3$ seeds and are withheld as INCOMPLETE by the script (no CI fabricated).}
+\label{tab:long-bridge}
+\begin{tabular}{lcccccc}
+\hline
+Cell & base & AEGIS & $\Delta$ [95\% CI] & $\Delta$peak & seeds \\
+\hline
+mult$=0.25$ CLEAN  & 55.5 & 68.2 & $+12.7$ [$+10.0$, $+17.5$] & $+17.5$ & 3/3 \\
+mult$=0.25$ ROBUST & 26.2 & 29.4 & $+3.2$ [$+0.0$, $+6.0$]    & $+6.0$  & 3/3 (includes 0) \\
+mult$=0.5$ CLEAN   & --- & --- & INCOMPLETE, stats withheld & --- & 0/3 \\
+mult$=0.5$ ROBUST  & --- & --- & INCOMPLETE, stats withheld & --- & 0/3 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{IQM (interquartile mean) per pooled cell (base $/$ AEGIS).}
+\label{tab:iqm}
+\begin{tabular}{lcc}
+\hline
+Suite & CLEAN base/AEGIS IQM & PLUS base/AEGIS IQM \\
+\hline
+Spatial & 99.0 / 99.3  & 61.1 / 66.7 \\
+Object  & 86.7 / 100.0 & 52.4 / 73.8 \\
+Goal    & 83.0 / 85.3  & 65.1 / 71.4 \\
+Long    & 58.7 / 39.7  & 2.4 / 9.5   \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Which deltas exclude zero (explicit).}
+The following paired $\Delta$ CIs \emph{exclude} zero and are reported as
+statistically real: CLEAN Spatial $+3.8\,[+3.5,+4.0]$, CLEAN Object
+$+10.0\,[+10.0,+10.0]$ ($n=3$-degenerate), CLEAN Goal $+3.0\,[+0.5,+6.0]$;
+LIBERO-Plus Object $+10.7\,[+2.4,+16.7]$, LIBERO-Plus Goal $+3.2\,[+1.2,+7.1]$,
+LIBERO-Plus Long $+3.6\,[+1.2,+6.0]$; and the long-bridge mult$=0.25$ CLEAN
+$+12.7\,[+10.0,+17.5]$. CLEAN Long $-10.3\,[-16.5,-4.5]$ also excludes zero but
+is a significant \emph{regression}. The following \emph{include} zero and are
+reported as inconclusive: LIBERO-Plus Spatial $+2.8\,[+0.0,+6.0]$ (lower bound
+exactly $+0.0$) and long-bridge mult$=0.25$ ROBUST $+3.2\,[+0.0,+6.0]$. The
+long-bridge mult$=0.5$ cells are $0/3$ seeds --- INCOMPLETE, no CI computed.
+
+%======================================================================
+\subsection{AEGIS-on-ACT reconciliation}
+%======================================================================
+
+On the proper (colleague's frozen) ACT base, AEGIS adds $+5.06$ mean $/$ $+8.93$
+($\approx +9.0$) peak LIBERO-Plus robustness ($47.62\%\to52.68\%$, four suites
+$\times$ three seeds, all gates open), computed from
+\texttt{results/act\_plus\_v2/*/\{base,aegis\}/seed\{42,123,456\}/result.json}.
+Table~\ref{tab:act-reconcile} states this with provenance and, for honesty,
+contrasts it against the OLD disposable base that it supersedes.
+
+\begin{table}[h]
+\centering
+\caption{AEGIS-on-ACT LIBERO-Plus reconciliation. PROPER = colleague's frozen ACT
+base (\texttt{results/act\_plus\_v2/}); OLD = our disposable ACT
+(\texttt{aegis\_act\_sweep\_cap220}), shown only for provenance. $\Delta$mean is
+the mean of per-suite paired 3-seed mean deltas (gate-off $=$ baseline exactly,
+no oracle); per-suite $\Delta$peak is the best-of-3-seed delta; the aggregate
+peak is the mean of the four per-suite $\Delta$peak.}
+\label{tab:act-reconcile}
+\begin{tabular}{llrrrrl}
+\hline
+Base & Suite & base SR & AEGIS SR & $\Delta$mean & $\Delta$peak & seeds \\
+\hline
+PROPER (\texttt{act\_plus\_v2}) & Spatial & 55.56 & 58.33 & $+2.78$ & $+5.95$ & 42/123/456 \\
+PROPER (\texttt{act\_plus\_v2}) & Object  & 51.19 & 61.90 & $+10.71$ & $+16.67$ & 42/123/456 \\
+PROPER (\texttt{act\_plus\_v2}) & Goal    & 57.54 & 60.71 & $+3.17$ & $+7.14$ & 42/123/456 \\
+PROPER (\texttt{act\_plus\_v2}) & Long    & 26.19 & 29.76 & $+3.57$ & $+5.95$ & 42/123/456 \\
+\textbf{PROPER --- Average} & --- & \textbf{47.62} & \textbf{52.68} & \textbf{+5.06} & \textbf{+8.93 ($\approx$+9.0)} & 3/3 all suites \\
+\hline
+OLD (\texttt{aegis\_act\_sweep\_cap220}) & Spatial & 32.54 & 39.29 & $+6.75$ & $+11.90$ & 42/123/456 \\
+OLD (\texttt{aegis\_act\_sweep\_cap220}) & Object  & 22.62 & 38.89 & $+16.27$ & $+17.86$ & 42/123/456 \\
+OLD (\texttt{aegis\_act\_sweep\_cap220}) & Goal    & 11.11 & 17.46 & $+6.35$ & $+10.71$ & 42/123/456 \\
+OLD (\texttt{aegis\_act\_sweep\_cap220}) & Long    & 2.38 & 3.97 & $+1.59$ & $+3.57$ & 42/123/456 \\
+\textbf{OLD --- Average} & --- & \textbf{17.16} & \textbf{24.90} & \textbf{+7.74} & \textbf{+11.01} & 3/3 all suites \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent The honest headline is the PROPER-base $+5.06$ mean $/$ $+8.93$ peak.
+The OLD-base $+7.74$ mean $/$ $+11.01$ peak is on a weaker disposable base and is
+retained only for provenance; it is \emph{superseded} and should not be quoted as
+the result.
+
+%======================================================================
+\subsection{Limitations / failure modes}
+%======================================================================
+
+\begin{itemize}
+\item \textbf{RASF is blind to blur/viewpoint.} The action-side spectral module
+operates on the temporal DCT of the action chunk and carries no visual pathway;
+it cannot correct photometric blur or camera-viewpoint corruptions. Visual
+robustness is the job of the perception-leg RIB, and even there viewpoint is at
+the floor (see the axis-gap analysis).
+
+\item \textbf{Suites whose CI includes zero.} LIBERO-Plus Spatial
+$+2.8\,[+0.0,+6.0]$ has a lower bound of exactly $+0.0$ and therefore does
+\emph{not} exclude zero --- reported as inconclusive, not a win. The long-bridge
+mult$=0.25$ ROBUST cell $+3.2\,[+0.0,+6.0]$ is likewise inconclusive. CLEAN Long
+$-10.3\,[-16.5,-4.5]$ is a \emph{significant regression} on the full-strength RIB
+bridge; the de-strengthed mult$=0.25$ bridge recovers clean Long to
+$+12.7\,[+10.0,+17.5]$ while robust Long stays inconclusive. The mult$=0.5$
+bridge cells are $0/3$ seeds (INCOMPLETE) and no CI is computed for them.
+
+\item \textbf{$\theta=\beta/2$ holds only for the compression objective.} The
+water level $\theta=\beta/2$ is proven and machine-verified
+($\max|D_k-\beta/2|=5.135\times10^{-16}$) for the idealised compression channel
+(reconstruct source $A$, Wiener decode). The deployed learned RASF matches the
+allocation \emph{shape} ($r=0.889$--$0.991$) but not the \emph{level}: the fitted
+$\theta\in[0.123,2.106]$ sits orders of magnitude above
+$\beta/2\in[5\times10^{-5},5\times10^{-3}]$. Deployment matches shape, not level.
+
+\item \textbf{Track B is smoothness-dominant, not an SR headline.} The
+Wiener/MMSE decode delivers $4.07$--$5.50\times$ lower RMS jerk at
+SR-neutral-to-slightly-positive success ($+4.0/+0.5/-2.0$ pp under action noise);
+it is reported as a smoothness result, not a success-rate claim.
+
+\item \textbf{Single-base ACT caveat.} The AEGIS-on-ACT robustness numbers come
+from one frozen ACT base (colleague's \texttt{act\_plus\_v2}); no official
+combined ACT base exists, so cross-base generality of the $+5.06/+8.93$ result is
+not established here. The superseded OLD disposable base is retained only for
+provenance.
+
+\item \textbf{RIB is not a variational-KL bottleneck.} Despite the historical
+``VIB'' naming, the deployed perception-leg RIB is a deterministic-$L_2$ /
+rate-penalised bottleneck (\texttt{z.pow(2).mean()} proxy), and the water-filling
+theorems (i)--(iii) do \emph{not} apply to it. Its no-harm property comes from a
+zero-init decoder plus residual fuse and a per-sample gate, not from a
+$\sigma^2\!\to\!0$ Gaussian band.
+\end{itemize}
