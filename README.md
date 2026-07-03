@@ -12,7 +12,7 @@
 
 [![Method](https://img.shields.io/badge/method-dual--locus%20IB-blue)]()
 [![Backbone](https://img.shields.io/badge/backbone-frozen-success)]()
-[![Robustness](https://img.shields.io/badge/LIBERO--V-+29.9%20pts%20%7C%200%20regressions-orange)]()
+[![Robustness](https://img.shields.io/badge/LIBERO--Plus-+5.65%20mean%20(3--seed)%20%7C%200%20regressions-orange)]()
 [![Status](https://img.shields.io/badge/paper-in%20preparation-lightgrey)]()
 
 ***AEGIS** — **A**daptive **E**ntropy-**G**ated **I**nformation **S**ieve = **RIB** (perception) + **RASF** (action) + **TE** (temporal consensus). External label "SmolVLA+SIB".*
@@ -25,6 +25,12 @@
 
 ---
 
+## Contents
+
+**[TL;DR](#tldr)** · **[Contributions](#contributions)** · **[The problem, the gap, the insight](#the-problem-the-gap-the-insight)** · **[Method](#method)** (RIB · RASF · TE) · **[Results](#results)** (clean · LIBERO-Plus · ablations · cross-suite · degradation) · **[Second architecture — ACT](#aegis-on-act--second-architecture-libero--libero-plus)** · **[Novelty & 10-paper related work](#contributions-and-novelty)** · **[Reproduce](#reproduce)** · **[Limitations](#limitations--honesty-notes)**
+
+---
+
 ## TL;DR
 
 Vision-Language-Action (VLA) models collapse under the visual and dynamical perturbations any real deployment guarantees — motion blur, sensor noise, lighting and viewpoint shift. Existing robustness fixes either **retrain the backbone** (expensive, risks the clean-task competence the model was bought for) or **bolt on heuristics that can silently degrade clean success**.
@@ -33,15 +39,41 @@ Vision-Language-Action (VLA) models collapse under the visual and dynamical pert
 
 > **One principle, two interfaces, one consensus.** Compress away what corruption lives in; keep everything the policy actually uses; never touch the backbone.
 
-**Headline numbers (LIBERO, SmolVLA backbone, single seed):**
+**Headline numbers (LIBERO, SmolVLA backbone).** The primary claims are **multi-seed**; single-seed sweeps are labelled as such and treated as diagnostics, not headlines.
 
-| Setting | Result |
-|---|---|
-| **Clean SR** (4-suite, **3 seeds**) | **+1.6** mean (Object +6.2; Goal +0.3, Spatial −0.1 within noise; Long gated = base, disclosed) |
-| **Robustness — Spatial, 6 axes, n=200/axis** | wins **all 6**, mean **+14.1** |
-| **Robustness — Object+Goal cross-suite, 10 conditions** | mean **+29.9**, **0 regressions** |
-| **Graceful degradation** (Gaussian σ-sweep) | base dies (0/200) at σ≥0.30; AEGIS still completes 24.5% |
-| **Trainable params** | RIB ≈ 2.27M · RASF ≈ few-k · backbone **0** |
+| Setting | Seeds | Result |
+|---|---|---|
+| **Robustness — LIBERO-Plus** (external benchmark, 4 suites) | **3** | **+5.65** mean · **every suite up, 0 regressions** |
+| **Clean SR** (4-suite) | **3** | **+1.6** mean (Object +6.2; Goal/Spatial ~parity; Long gated = base, disclosed) |
+| **Second architecture — ACT** (88M CVAE) — LIBERO-Plus | **3** | **+5.1** mean · backbone-agnostic |
+| Robustness — Spatial, 6 axes, n=200/axis *(in-distribution)* | 1 (42) | wins **all 6**, mean +14.1 |
+| Cross-suite generalization — Object+Goal, 10 conditions *(held-out suites)* | 1 (42) | mean +29.9, 0 regressions |
+| Graceful degradation — Gaussian σ-sweep | 1 (42) | base dies (0/200) at σ≥0.30; AEGIS still completes 24.5% |
+| **Trainable params** | — | RIB ≈ 2.27M · RASF ≈ few-k · backbone **0** |
+
+<sub>Single-seed rows use **seed 42 — the modules' own design/training seed** — so they are in-distribution diagnostics (large effect sizes, no variance estimate), not held-out multi-seed evidence. The 3-seed rows above are the deployable headline.</sub>
+
+---
+
+## Contributions
+
+1. **A structural non-regression guarantee for VLA robustness (identity at initialization).** Both robustness modules are *exact pass-throughs at step 0* — verified numerically (`max|out − base| = 0`) — so clean-task success cannot degrade *by construction*, and disabling a module per-suite recovers the base policy **bit-exactly**, not approximately. We are not aware of a prior VLA robustness module with this property; it is what makes per-suite gating *provably* safe rather than empirically hopeful.
+2. **Dual-locus, strictly-additive robustness on a fully frozen backbone.** One rate-limited information bottleneck applied at *two* interfaces — perception (vision→LLM connector, **RIB**) and action (sampled action chunk, **RASF**) — trained post-hoc on *cached* policy outputs, differentiating through no backbone weight. Result: **+5.65 mean** LIBERO-Plus (SmolVLA, 3-seed), every suite improved, zero regressions.
+3. **RASF — rate-distortion theory applied to the temporal action spectrum.** A DCT-II filter on the action chunk with a **closed-form MMSE Wiener gain** and a per-band mutual-information rate objective. This is the action-side capability the closest competitor (StableVLA) *structurally lacks*, and — to our knowledge — a new application of rate-distortion to robot action chunks.
+4. **Backbone-agnostic generality — demonstrated, not asserted.** The identical method and identity guarantee transfer across two structurally different VLAs — a 0.5B flow-matching model (**SmolVLA**, +5.65 LIBERO-Plus) and an 88M CVAE model (**ACT**, +5.1 LIBERO-Plus) — with a 3B model (**GR00T N1.5**) in progress.
+5. **Honest, gated, reproducible evaluation.** 3-seed clean + LIBERO-Plus, **disclosed** per-suite gating (no per-category max() oracle), bootstrap 95% CIs, failure cases and regressions shown rather than pruned, and a full pinned environment + configs + code.
+
+---
+
+## The problem, the gap, the insight
+
+**Problem.** VLA policies collapse under the perturbations any real deployment guarantees — motion blur, sensor noise, lighting and viewpoint shift.
+
+**Gap.** Existing robustness fixes either **retrain the backbone** (expensive, and it risks the clean-task competence the model was bought for) or **bolt on inference-time heuristics that can silently reduce clean success**. Across the ten closest methods we survey [below](#contributions-and-novelty), *none* guarantee the clean policy is preserved.
+
+**Insight — one sentence.** *If the robustness module is an exact identity at initialization, robustness becomes strictly additive and gating becomes provably safe — you can never do worse than the policy you started with.*
+
+**Method — one line.** One rate-limited information bottleneck, inserted at two frozen interfaces (perception and action), each initialized as an exact pass-through and trained only on cached outputs.
 
 ---
 
@@ -109,6 +141,16 @@ Position-aligned exponential consensus over overlapping chunks (newer prediction
 
 ## Results
 
+### Evidence in this report
+A deliberately broad, all-measured evidence base (raw cells linked in place):
+
+- **Two backbones** — SmolVLA (0.5B, flow-matching) and [ACT](#aegis-on-act--second-architecture-libero--libero-plus) (88M, CVAE) — same method, same identity guarantee.
+- **Primary robustness** — LIBERO-Plus, 4 suites × 3 seeds × 7 perturbation families (published external benchmark).
+- **Clean-task success** — 4 suites × 3 seeds, reported *ungated* where it gains and *gated (disclosed)* where it doesn't.
+- **Ablations** — a component ablation (6 configs isolating RIB / RASF / TE) **and** a design ablation (4 RASF variants).
+- **Stress tests** — 6-axis in-distribution robustness, a Gaussian noise-σ degradation sweep, and a **held-out** cross-suite generalization test.
+- **Rigor extras** — bootstrap 95% CIs, parameter + inference-overhead accounting, failure cases shown, qualitative rollouts.
+
 > Protocol: SmolVLA backbone, `n_action_steps=1`, 10 flow-matching denoise steps, per-suite max-steps, LIBERO fixed init-states. **Seeds per section:** Clean SR and LIBERO-Plus are **3-seed (42/123/456)**; the LIBERO-V robustness sweeps are **single-seed (42), n=200/condition**. Both arms carry TE; every Δ is a gain *on top of* the honest baseline.
 
 ### Clean task success — 3 seeds (42, 123, 456), non-perturbed LIBERO
@@ -156,6 +198,8 @@ All four gates are **open** — AEGIS genuinely beats baseline on every suite, n
 </div>
 
 ### In-distribution robustness — LIBERO-V, Spatial (n=200/axis)
+> **Single-seed (42)** — Spatial is the modules' training suite and 42 is their design seed, so this is an **in-distribution diagnostic** (large effect sizes, no variance estimate), not a held-out multi-seed result. See the 3-seed LIBERO-Plus table above for the deployable headline.
+
 AEGIS **wins all six axes**, mean **+14.1**.
 
 <div align="center">
@@ -185,7 +229,7 @@ Each row is a distinct configuration; the Δ columns are measured against the **
 | RIB only | 84.5 | 48.1 | 0.0 | +11.6 |
 | **AEGIS (RIB + RASF + TE)** | **85.5** | **50.6** | +1.0 | **+14.1** |
 
-Design ablations (RASF variants, trained on Spatial):
+**We did not assume the spectral design — we tested the alternatives.** Each RASF variant below is a distinct design choice held to the identical protocol; the full DCT + rate filter wins decisively, and each ablation isolates *why* (basis vs. rate vs. gain):
 
 | variant | clean SR | rob. mean | Δ rob. |
 |---|---:|---:|---:|
@@ -200,6 +244,8 @@ Design ablations (RASF variants, trained on Spatial):
 - **The two axes are complementary.** RIB alone (+11.6) contributes more than RASF alone (+2.5), and full AEGIS (+14.1) **matches the sum of the parts** — additive, with no measured super-additive synergy.
 
 ### Cross-suite generalization — LIBERO-V, Object + Goal (NEW)
+> **Single-seed (42)**, n=200/condition. Suites are **held-out** (modules trained on Spatial only), so this tests generalization across suites — but not across seeds; variance is not yet quantified.
+
 The modules are trained **only on Spatial**; Object and Goal are held-out suites. AEGIS generalizes with **0 regressions across 10 conditions, mean Δ +29.9** — and rescues the catastrophic cells where the base policy is effectively dead.
 
 <div align="center">
@@ -224,6 +270,8 @@ The modules are trained **only on Spatial**; Object and Goal are held-out suites
 *`object/viewpoint (moderate)` is an honest +0 wash — both arms fail under this large viewpoint shift; reported, not pruned, and not a regression.*
 
 ### Graceful degradation under noise (Spatial, n=200/level)
+> **Single-seed (42)**, n=200/level — in-distribution diagnostic (Spatial, design seed).
+
 Δ peaks at **+24.5 at σ=0.30, where base+TE is dead (0/200) and AEGIS still completes 24.5%**. The base flatlines at 0% for every σ≥0.30; AEGIS keeps operating.
 
 | σ (Gaussian) | base+TE | AEGIS | Δ | |
@@ -546,7 +594,7 @@ sib_vla/contributions_and_novelty.md   per-paper related-work positioning
 
 AEGIS is designed to be **architecture- and embodiment-agnostic** — one principle (identity-init rate-limited bottleneck) that drops onto any frozen VLA with a vision→LLM connector and a chunked action head.
 
-- **Cross-architecture — GR00T N1.5 (3B).** Wiring complete and verified on the real model: RIB @ `backbone.eagle_model.mlp1` (1152→2048 connector, 2.46M params, identity-init), RASF @ `(H=16, d=32)`. Sim-eval reproduction in progress. *(LIBERO-Spatial ≈92% third-party baseline.)*
+- **Cross-architecture — GR00T N1.5 (3B), third backbone.** Wiring verified on the real model: RIB @ `backbone.eagle_model.mlp1` (1152→2048 connector, identity-init), RASF @ `(H=16, d=32)`. The full **4-suite clean + LIBERO-Plus, 3-seed** evaluation pipeline is built — a client/server harness (GR00T policy server ↔ LIBERO/LIBERO-Plus sim client) over per-suite [Tacoin GR00T-N1.5 LIBERO](https://huggingface.co/Tacoin) bases — and is queued to run; numbers will be reported when complete (no results claimed yet). *(LIBERO-Spatial ≈92–97% third-party baseline.)*
 - **Paper-protocol robustness — LIBERO-Plus.** **Complete** — 4 suites × 3 seeds, n=84/cell (see Results, +5.65 mean). Perturbed-bddl benchmark via the Modal port.
 - **Real-robot validation — WidowX.** AEGIS + GR00T N1.5 on a physical Trossen WidowX, training on **BridgeData V2** (the exact dataset NVIDIA's GR00T recipe uses) and evaluating with the community-standard **OpenVLA WidowX robustness suite** (17 tasks × 10 trials × 4 perturbation axes). No self-collected data.
 
