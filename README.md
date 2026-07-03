@@ -251,6 +251,17 @@ The spectral design is not just empirically better (above) — it is the closed-
 
 **Theorem (reverse water-filling, θ = β/2).** Minimising the β-penalised channel objective `D + β·R` over per-band noise is *exactly* reverse water-filling at water level **θ = β/2**: active bands carry constant distortion `D_k = β/2`, and low-variance bands drop out. Proven and unit-tested to machine precision — **max |D_k − β/2| = 5.1×10⁻¹⁶**, 6/6 tests pass. [`sib/waterfill.py`](sib_vla/sib/waterfill.py) · [`tests/test_waterfill.py`](sib_vla/tests/test_waterfill.py)
 
+$$D_k=\min(\theta,\lambda_k),\qquad R_k=\tfrac{1}{2}\max\!\big(0,\ \ln(\lambda_k/\theta)\big),\qquad \theta=\tfrac{\beta}{2}.$$
+
+Minimising the compression objective $\sum_k D_k+\beta R_k$ over the channel noise $\sigma_k^2$ has the closed form (full derivation in the supplement, verified numerically):
+
+$$\sigma_k^{2\star}=\frac{\beta\,\lambda_k}{2\lambda_k-\beta}\quad(\text{active iff }2\lambda_k>\beta),\qquad D_k^\star=\frac{\beta}{2}\ \text{ (constant across active bands).}$$
+
+<div align="center">
+<img src="sib_vla/docs/figures/fig_waterfilling_theory.png" alt="Reverse water-filling schematic (left) and the learned filter matching it at r=0.991 (right)" width="940"/>
+<br/><sub><b>Left — the theorem:</b> pour water to level θ=β/2; bands above the line keep signal and carry rate, bands below drop out. <b>Right — reality:</b> the <i>learned</i> filter (β=10⁻²) lands on the analytic allocation, Pearson <b>r=0.991</b> — measured, not fit.</sub>
+</div>
+
 **The learned filter tracks the analytic shape.** Across the full β-sweep, the *learned* per-band rate matches the reverse-water-filling **shape** — Pearson **r = 0.945 → 0.991** as β grows — even though it honestly does *not* reproduce the idealized water level (the deployed module trains a denoising target with an MMSE decode, so the fitted θ sits orders of magnitude above β/2). **Shape transfers; level does not — and we report both.**
 
 | β | learned-vs-water-filling *r* | fitted θ | β/2 | total rate (nats) |
@@ -260,9 +271,21 @@ The spectral design is not just empirically better (above) — it is the closed-
 | 1×10⁻³ | 0.974 | 0.394 | 5×10⁻⁴ | 44.7 |
 | 1×10⁻² | 0.991 | 2.106 | 5×10⁻³ | 17.0 |
 
-<sub>Learned allocation vs. matched-rate reverse water-filling per β; *r* rises and total rate falls monotonically as β increases. [`scripts/validate_allocation.py`](sib_vla/scripts/validate_allocation.py); overlay figure [`allocation_corr_vs_beta.png`](sib_vla/results/allocation_corr_vs_beta.png). (`raw_vib` without the DCT basis reaches only r=0.889 at β=1e-3 — the spectral basis is what makes the allocation legible.)</sub>
+<sub>Learned allocation vs. matched-rate reverse water-filling per β; *r* rises and total rate falls monotonically as β increases. [`scripts/validate_allocation.py`](sib_vla/scripts/validate_allocation.py); overlay figure below. (`raw_vib` without the DCT basis reaches only r=0.889 at β=1e-3 — the spectral basis is what makes the allocation legible.)</sub>
+
+<div align="center">
+<img src="sib_vla/results/allocation_corr_vs_beta.png" alt="Left: learned-vs-water-filling Pearson r rising 0.945 to 0.991 as beta grows. Right: fitted water level theta vs the compression prediction beta over 2." width="900"/>
+<br/><sub><b>Left:</b> shape match (Pearson r) climbs <b>0.945 → 0.991</b> as β increases and the rate budget tightens. <b>Right:</b> the fitted water level θ sits well <i>above</i> the idealized β/2 line — the honest gap we disclose: the deployed module optimises a <i>denoising</i> target, so it inherits water-filling's <i>shape</i> but not its <i>level</i>.</sub>
+</div>
 
 **Wiener/MMSE action variant — principled smoothness.** Decoding each band with the closed-form Wiener gain is **SR-neutral** under action noise (ΔSR +4.0 / +0.5 / −2.0 pp at σ = 0.05 / 0.1 / 0.2) while cutting **RMS jerk 4.1–5.5×**; a naive fixed low-pass of comparable smoothing instead *hurts* SR (−0.5 / −2.5 / −3.5). The smoothness is bought by the *right* filter, not by discarding signal.
+
+$$g_k=\frac{\lambda_k}{\lambda_k+\sigma_k^2},\qquad D_k=\frac{\lambda_k\,\sigma_k^2}{\lambda_k+\sigma_k^2},\qquad R_k=\tfrac{1}{2}\ln\!\Big(1+\frac{\lambda_k}{\sigma_k^2}\Big)=\tfrac{1}{2}\ln\frac{\lambda_k}{D_k}.$$
+
+<div align="center">
+<img src="sib_vla/docs/figures/fig_smoothness_trackb.png" alt="Left: Wiener/MMSE decode cuts RMS jerk 4 to 5.5x vs vanilla. Right: Wiener keeps SR (+4.0/+0.5/-2.0) while a naive low-pass of comparable smoothing hurts SR (-0.5/-2.5/-3.5)." width="940"/>
+<br/><sub><b>Left:</b> the Wiener/MMSE decode cuts RMS jerk <b>4.1–5.5×</b>. <b>Right:</b> same smoothing budget, opposite outcome — the principled decode keeps success rate; a naive low-pass of comparable smoothing throws away signal and loses SR.</sub>
+</div>
 
 Three theorems with full proofs (each adversarially refereed for correctness **and** for the idealized-vs-deployed honesty split), the operational rate–distortion identity `R_k = ½ ln(λ_k/D_k)`, and a claim-by-claim **proven-idealized vs deployed-measured** ledger: [`paper/rigor_supplement.tex`](paper/rigor_supplement.tex) · [`paper/RIGOR_SUMMARY.md`](paper/RIGOR_SUMMARY.md).
 
