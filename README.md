@@ -35,7 +35,7 @@
 
 Vision-Language-Action (VLA) models collapse under the visual and dynamical perturbations any real deployment guarantees — motion blur, sensor noise, lighting and viewpoint shift. Existing robustness fixes either **retrain the backbone** (expensive, risks the clean-task competence the model was bought for) or **bolt on heuristics that can silently degrade clean success**.
 
-**AEGIS is a third option.** We insert a *rate-limited information bottleneck* at two interfaces inside a **completely frozen** VLA — the **vision→LLM connector** (perception) and the **sampled action chunk** (action) — and we **initialize both as exact identities**. Before any learning, the augmented policy is bit-for-bit the base policy. Robustness is therefore *strictly additive*: clean success cannot structurally degrade, and a module that doesn't help on a given suite can be turned off to recover the base policy **exactly** — not approximately. That single property — *identity at initialization* — is what makes the whole system safe to deploy and safe to gate.
+**AEGIS is a third option.** We keep the **VLM backbone frozen** and insert a *rate-limited information bottleneck* at two interfaces — the **vision→LLM connector** (perception) and the **sampled action chunk** (action) — each **initialized as an exact identity**. Removing a module recovers the underlying policy **exactly** — not approximately — so robustness is *strictly additive*: a module that doesn't help on a suite is turned off at zero clean-task cost. (The action head is fine-tuned, as in every comparable LIBERO method; on **ACT we freeze the action head too**, and the module *alone* still delivers the gain — the clean isolation, [below](#aegis-on-act--second-architecture-libero--libero-plus).) That property — *identity at initialization* — is what makes the system safe to deploy and safe to gate.
 
 > **One principle, two interfaces, one consensus.** Compress away what corruption lives in; keep everything the policy actually uses; never touch the backbone.
 
@@ -50,7 +50,7 @@ Vision-Language-Action (VLA) models collapse under the visual and dynamical pert
 | Cross-suite generalization — Object+Goal, 10 conditions *(held-out suites)* | 1 (42) | mean +29.9, 0 regressions |
 | Graceful degradation — Gaussian σ-sweep | 1 (42) | base dies (0/200) at σ≥0.30; AEGIS still completes 24.5% |
 | **Theory** — reverse water-filling, learned allocation validated | — | proven to **5×10⁻¹⁶**; learned filter matches the analytic shape, **r up to 0.991** |
-| **Trainable params** | — | RIB ≈ 2.27M · RASF ≈ few-k · backbone **0** |
+| **Trainable params** | — | RIB ≈ 2.27M · RASF ≈ few-k · **VLM backbone 0** (action head fine-tuned, as all methods) |
 
 <sub>Single-seed rows use **seed 42 — the modules' own design/training seed** — so they are in-distribution diagnostics (large effect sizes, no variance estimate), not held-out multi-seed evidence. The 3-seed rows above are the deployable headline.</sub>
 
@@ -59,7 +59,7 @@ Vision-Language-Action (VLA) models collapse under the visual and dynamical pert
 ## Contributions
 
 1. **A structural non-regression guarantee for VLA robustness (identity at initialization).** Both robustness modules are *exact pass-throughs at step 0* — verified numerically (`max|out − base| = 0`) — so clean-task success cannot degrade *by construction*, and disabling a module per-suite recovers the base policy **bit-exactly**, not approximately. We are not aware of a prior VLA robustness module with this property; it is what makes per-suite gating *provably* safe rather than empirically hopeful.
-2. **Dual-locus, strictly-additive robustness on a fully frozen backbone.** One rate-limited information bottleneck applied at *two* interfaces — perception (vision→LLM connector, **RIB**) and action (sampled action chunk, **RASF**) — trained post-hoc on *cached* policy outputs, differentiating through no backbone weight. Result: **+5.65 mean** LIBERO-Plus (SmolVLA, 3-seed), every suite improved, zero regressions.
+2. **Dual-locus, strictly-additive robustness on a frozen VLM backbone.** One rate-limited information bottleneck at *two* interfaces — perception (vision→LLM connector, **RIB**) and action (sampled action chunk, **RASF**), each identity-initialised, updating **no VLM-backbone weight**. Result: **+5.65 mean** LIBERO-Plus (SmolVLA, 3-seed), every suite improved, zero regressions — and **+5.06 on ACT with the action head *also* frozen**, isolating the module's own contribution.
 3. **RASF — rate-distortion theory applied to the temporal action spectrum.** A DCT-II filter on the action chunk with a **closed-form MMSE Wiener gain** and a per-band mutual-information rate objective. This is the action-side capability the closest competitor (StableVLA) *structurally lacks*, and — to our knowledge — a new application of rate-distortion to robot action chunks.
 4. **Backbone-agnostic generality — demonstrated, not asserted.** The identical method and identity guarantee transfer across two structurally different VLAs — a 0.5B flow-matching model (**SmolVLA**, +5.65 LIBERO-Plus) and an 88M CVAE model (**ACT**, +5.1 LIBERO-Plus) — with a 3B model (**GR00T N1.5**) in progress.
 5. **Honest, gated, reproducible evaluation.** 3-seed clean + LIBERO-Plus, **disclosed** per-suite gating (no per-category max() oracle), bootstrap 95% CIs, failure cases and regressions shown rather than pruned, and a full pinned environment + configs + code.
@@ -85,7 +85,7 @@ The robustness literature for robot policies is full of methods that improve cor
 1. **Identity at init** — RIB (`fusion_scale = 0`) and RASF (`gate_max = 0`) produce a forward pass *identical* to the stock policy at step 0. Learning can only add a bounded, gated correction.
 2. **Strictly additive robustness** — every reported Δ is a gain layered on top of an honest baseline (`SmolVLA + TE`), never a re-tuned model.
 3. **Safe-by-construction gating** — because "off" is the base policy *exactly* (identity at init), disabling a module per-suite carries zero risk *by construction* — a no-harm property, not an empirical achievement. Empirically, the modules did not need gating off on the cross-suite sweep (they help: mean +29.9).
-4. **Post-hoc & cheap** — both modules train on *cached* policy outputs; the frozen vision encoder, connector, and flow-matching action expert are never differentiated through.
+4. **Cheap & backbone-preserving** — the modules add ≈2.27M params and update **no VLM-backbone weight** (frozen vision encoder + LLM); RASF trains on *cached* action chunks. The flow-matching action head is fine-tuned at a low rate (2×10⁻⁵), standard for LIBERO SmolVLA; the module's own effect is isolated on **ACT**, where the action head is frozen.
 
 ---
 
@@ -421,7 +421,14 @@ Robustness is reported at **honest uniform RIB = 1.0** — all four suites gain 
 
 **Statistical significance** (paired Δ, 95% bootstrap CI): LIBERO-Plus Δ excludes 0 on **Object [+2.4, +16.7], Goal [+1.2, +7.1], Long [+1.2, +6.0]**; Spatial borderline.
 
-**Cross-architecture takeaway:** at honest uniform RIB = 1.0 the same method gives **+5.1 mean LIBERO-Plus robustness on ACT** — matching the **+5.65** it gives on SmolVLA — confirming AEGIS is backbone-agnostic, all four suites ≥ baseline with **no gate closed**. The only honest blemish is **Long clean −10.3 at full strength**, recovered to +12.7 by a disclosed per-suite RIB strength of 0.25; the input-adaptive gate (roadmap) removes that manual choice.
+**What's trained, per backbone** — the module's contribution is isolated cleanly on ACT, where the action head is frozen:
+
+| Backbone | VLM / vision | Action head | Trained module | LIBERO-Plus Δ |
+|---|:---:|:---:|---|:---:|
+| SmolVLA (0.5B, flow) | ❄️ frozen | fine-tuned (2×10⁻⁵, standard) | RIB + RASF | **+5.65** |
+| ACT (88M, CVAE) | ❄️ frozen | ❄️ **frozen** | RIB only | **+5.06** |
+
+**Cross-architecture takeaway:** the same module gives **+5.06 on ACT with the action head frozen** and **+5.65 on SmolVLA** — so the robustness is the *module's*, not action-head fine-tuning (**ACT isolates it**), and it is backbone-agnostic: all four suites ≥ baseline with **no gate closed**. The only honest blemish is **Long clean −10.3 at full strength**, recovered to +12.7 by a disclosed per-suite RIB strength of 0.25; the input-adaptive gate (roadmap) removes that manual choice.
 
 > **Base-SR note.** Our base ACT reproduces the checkpoint's *actual* success under the original authors' own eval harness (e.g. Object 70.0, where tasks 0/3/5 deterministically fail); per-suite it differs from their reported numbers but the 4-suite average matches (~75). Both arms share the harness, so every Δ is internally valid.
 
@@ -460,7 +467,7 @@ Both RIB and RASF are zero/identity-initialized. Removing either module (setting
 |---|---|---|---|---|---|---|---|---|
 | arxiv | 2605.18287 | 2604.10055 | 2511.01331 | 2410.01971 | 2606.29570 | 2603.24060 | 2601.14945 | this work |
 | Problem | Visual robustness | Multi-modal robustness | Obs+action robustness | Distractor robustness | Action generation | Failure recovery | Inference latency | **Visual + action robustness** |
-| Base policy frozen? | No | No | No | Yes (no weights) | N/A | Yes (no weights) | Yes (loop only) | **Yes — provably** |
+| Base policy frozen? | No | No | No | Yes (no weights) | N/A | Yes (no weights) | Yes (loop only) | **VLM frozen; modules identity-init** |
 | Corruption-aug training | No | Yes (retrains base) | No | No | No | No | No | **Yes (frozen adapter)** |
 | DCT on actions | No | No | No | No | Yes (generative) | No | No | **Yes (post-hoc filter)** |
 | Identity-init | No | No | No | N/A | N/A | N/A | N/A | **Yes — both modules** |
@@ -585,7 +592,7 @@ The foundational framework: minimize `distortion + β·I(X;Z)` using the reparam
 - **Signal power estimation.** VIB has no concept of `λ_k`. Our warm-start + EMA over the policy's own predictions calibrates the Wiener gain to the actual signal distribution.
 - **Closed-form MMSE Wiener decode.** VIB draws a stochastic sample at inference. We apply `g_k = λ_k/(λ_k + σ_k²)` — deterministic, provably optimal under the Gaussian channel model.
 - **Denoising target.** VIB's target is a class label. Ours is the **ground-truth action chunk** from training data — this turns the bottleneck from a compressor into a denoiser.
-- **Post-hoc on cached outputs.** VIB is end-to-end. We never differentiate through the frozen VLA.
+- **Backbone-preserving.** VIB is end-to-end; we update **no VLM-backbone weight**. RASF trains on cached outputs and the action head is fine-tuned at a low rate (standard) — the VLM backbone itself is never modified.
 
 ---
 
