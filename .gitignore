@@ -81,3 +81,4 @@ sib_vla/results/rib_v2/
 # tiny-n exploratory vanilla pilots (superseded by 3-seed tables)
 sib_vla/results/**/eval_vanilla_n[0-9].json
 sib_vla/results/**/eval_vanilla_n1[0-9].json
+SAVED_STATE.md
