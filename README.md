@@ -262,6 +262,16 @@ $$\sigma_k^{2\star}=\frac{\beta\,\lambda_k}{2\lambda_k-\beta}\quad(\text{active 
 <br/><sub><b>Left — the theorem:</b> pour water to level θ=β/2; bands above the line keep signal and carry rate, bands below drop out. <b>Right — reality:</b> the <i>learned</i> filter (β=10⁻²) lands on the analytic allocation, Pearson <b>r=0.991</b> — measured, not fit.</sub>
 </div>
 
+**Machine-checked (not just claimed).** Across β ∈ {0.05 … 5.0} the operational distortion on every active band equals β/2 to machine precision — the browsable data:
+
+| β | active bands | D_k on active bands | max \|D_k − β/2\| |
+|---:|:---:|:---:|---:|
+| 0.20 | 39/40 | 0.1000000000 | 5.13e-16 |
+| 1.00 | 35/40 | 0.5000000000 | 2.22e-16 |
+| 5.00 | 15/40 | 2.5000000000 | 4.44e-16 |
+
+<sub>Full 7-β table + rate↔level inversion (max err 3.6×10⁻¹⁵) in [`results/theory_machine_check.json`](sib_vla/results/theory_machine_check.json); the **6/6** unit tests (each named, with what it asserts) in [`results/test_waterfill_output.txt`](sib_vla/results/test_waterfill_output.txt). **Rendered proofs + every table + data links → [`paper/RIGOR.md`](paper/RIGOR.md).**</sub>
+
 **The learned filter tracks the analytic shape.** Across the full β-sweep, the *learned* per-band rate matches the reverse-water-filling **shape** — Pearson **r = 0.945 → 0.991** as β grows — even though it honestly does *not* reproduce the idealized water level (the deployed module trains a denoising target with an MMSE decode, so the fitted θ sits orders of magnitude above β/2). **Shape transfers; level does not — and we report both.**
 
 | β | learned-vs-water-filling *r* | fitted θ | β/2 | total rate (nats) |
@@ -287,7 +297,7 @@ $$g_k=\frac{\lambda_k}{\lambda_k+\sigma_k^2},\qquad D_k=\frac{\lambda_k\,\sigma_
 <br/><sub><b>Left:</b> the Wiener/MMSE decode cuts RMS jerk <b>4.1–5.5×</b>. <b>Right:</b> same smoothing budget, opposite outcome — the principled decode keeps success rate; a naive low-pass of comparable smoothing throws away signal and loses SR.</sub>
 </div>
 
-Three theorems with full proofs (each adversarially refereed for correctness **and** for the idealized-vs-deployed honesty split), the operational rate–distortion identity `R_k = ½ ln(λ_k/D_k)`, and a claim-by-claim **proven-idealized vs deployed-measured** ledger: [`paper/rigor_supplement.tex`](paper/rigor_supplement.tex) · [`paper/RIGOR_SUMMARY.md`](paper/RIGOR_SUMMARY.md).
+Three theorems with full proofs (each adversarially refereed for correctness **and** for the idealized-vs-deployed honesty split), the operational rate–distortion identity `R_k = ½ ln(λ_k/D_k)`, the machine-check tables, and a claim-by-claim **proven-idealized vs deployed-measured** ledger — all rendered and browsable: **[`paper/RIGOR.md`](paper/RIGOR.md)** (proofs · tables · data links) · [`paper/rigor_supplement.tex`](paper/rigor_supplement.tex) (LaTeX source) · [`paper/RIGOR_SUMMARY.md`](paper/RIGOR_SUMMARY.md) (honesty ledger).
 
 ### Cross-suite generalization — LIBERO-V, Object + Goal (NEW)
 > **Single-seed (42)**, n=200/condition. Suites are **held-out** (modules trained on Spatial only), so this tests generalization across suites — but not across seeds; variance is not yet quantified.

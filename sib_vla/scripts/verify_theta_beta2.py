@@ -29,6 +29,8 @@ BETAS = [0.05, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0]
 print(f"lambda bands (n={LAM.numel()}): {LAM.min().item():.2f} .. {LAM.max().item():.2f}")
 print(f"betas: {BETAS}\n")
 
+import json, pathlib
+rows = []
 max_resid = 0.0
 for beta in BETAS:
     sigma2 = optimal_sigma2_for_beta(LAM, beta)
@@ -39,6 +41,9 @@ for beta in BETAS:
     resid = (D_op[active] - target).abs().max().item()
     max_resid = max(max_resid, resid)
     n_active = int(active.sum())
+    rows.append({"beta": beta, "active_bands": n_active, "total_bands": int(LAM.numel()),
+                 "D_min_active": float(D_op[active].min()), "D_max_active": float(D_op[active].max()),
+                 "max_abs_resid_vs_beta_over_2": resid})
     print(f"beta={beta:<5} active={n_active:2d}/{LAM.numel()}  "
           f"D_k range on active=[{D_op[active].min():.10f}, {D_op[active].max():.10f}]  "
           f"max|D_k - beta/2|={resid:.3e}")
@@ -51,14 +56,30 @@ print(f"\nMAX |D_k - beta/2| across all betas/bands: {max_resid:.3e}  (< 1e-6)")
 # total_rate_at <-> waterlevel_for_rate inversion.
 print("\nInversion total_rate_at / waterlevel_for_rate:")
 max_inv = 0.0
+inv_rows = []
 for target_rate in [0.5, 1.7, 3.0, 6.0, 10.0]:
     theta = waterlevel_for_rate(LAM, target_rate)
     got = total_rate_at(LAM, theta)
     err = abs(got - target_rate)
     max_inv = max(max_inv, err)
+    inv_rows.append({"target_rate": target_rate, "theta": float(theta),
+                     "total_rate_at": float(got), "abs_err": float(err)})
     print(f"  target R={target_rate:<5} -> theta={theta:.8f} -> total_rate_at={got:.8f}  |err|={err:.3e}")
     assert err < 1e-4, f"inversion failed at rate {target_rate}: {err}"
 
 print(f"\nMAX inversion |err|: {max_inv:.3e}  (< 1e-4)")
 print("\nCONFIRMED: theta = beta/2 exactly on the compression objective; "
       "inversions hold. (Compression target, not the deployed denoising MSE.)")
+
+# ---- browsable data artifact backing the machine-check claim ----
+out = pathlib.Path(__file__).resolve().parents[1] / "results" / "theory_machine_check.json"
+json.dump({"theorem": "theta = beta/2 on the compression objective D + beta*R",
+           "lambda_bands": {"n": int(LAM.numel()), "min": float(LAM.min()), "max": float(LAM.max())},
+           "betas": BETAS, "per_beta": rows,
+           "max_abs_resid_vs_beta_over_2": max_resid, "resid_tolerance": 1e-6,
+           "inversion": inv_rows, "max_inversion_err": max_inv, "inversion_tolerance": 1e-4,
+           "conclusion": ("theta=beta/2 holds to %.3e (< 1e-6); rate<->level inversion holds to %.3e "
+                          "(< 1e-4). Compression target only — NOT the deployed denoising MSE."
+                          % (max_resid, max_inv))},
+          open(out, "w"), indent=2)
+print(f"[data] wrote {out}")

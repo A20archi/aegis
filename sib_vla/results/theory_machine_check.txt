@@ -1,0 +1,24 @@
+lambda bands (n=40): 0.10 .. 4.00
+betas: [0.05, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0]
+
+beta=0.05  active=40/40  D_k range on active=[0.0250000000, 0.0250000000]  max|D_k - beta/2|=3.539e-16
+beta=0.2   active=39/40  D_k range on active=[0.1000000000, 0.1000000000]  max|D_k - beta/2|=5.135e-16
+beta=0.5   active=38/40  D_k range on active=[0.2500000000, 0.2500000000]  max|D_k - beta/2|=4.718e-16
+beta=1.0   active=35/40  D_k range on active=[0.5000000000, 0.5000000000]  max|D_k - beta/2|=2.220e-16
+beta=2.0   active=30/40  D_k range on active=[1.0000000000, 1.0000000000]  max|D_k - beta/2|=4.441e-16
+beta=3.0   active=25/40  D_k range on active=[1.5000000000, 1.5000000000]  max|D_k - beta/2|=2.220e-16
+beta=5.0   active=15/40  D_k range on active=[2.5000000000, 2.5000000000]  max|D_k - beta/2|=4.441e-16
+
+MAX |D_k - beta/2| across all betas/bands: 5.135e-16  (< 1e-6)
+
+Inversion total_rate_at / waterlevel_for_rate:
+  target R=0.5   -> theta=3.21475111 -> total_rate_at=0.50000000  |err|=1.110e-16
+  target R=1.7   -> theta=2.60847985 -> total_rate_at=1.70000000  |err|=6.661e-16
+  target R=3.0   -> theta=2.22590282 -> total_rate_at=3.00000000  |err|=8.882e-16
+  target R=6.0   -> theta=1.67550407 -> total_rate_at=6.00000000  |err|=1.776e-15
+  target R=10.0  -> theta=1.23284308 -> total_rate_at=10.00000000  |err|=3.553e-15
+
+MAX inversion |err|: 3.553e-15  (< 1e-4)
+
+CONFIRMED: theta = beta/2 exactly on the compression objective; inversions hold. (Compression target, not the deployed denoising MSE.)
+[data] wrote /home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla/results/theory_machine_check.json

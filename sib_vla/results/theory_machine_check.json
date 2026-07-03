@@ -1,0 +1,112 @@
+{
+  "theorem": "theta = beta/2 on the compression objective D + beta*R",
+  "lambda_bands": {
+    "n": 40,
+    "min": 0.1,
+    "max": 4.0
+  },
+  "betas": [
+    0.05,
+    0.2,
+    0.5,
+    1.0,
+    2.0,
+    3.0,
+    5.0
+  ],
+  "per_beta": [
+    {
+      "beta": 0.05,
+      "active_bands": 40,
+      "total_bands": 40,
+      "D_min_active": 0.02499999999999968,
+      "D_max_active": 0.025000000000000355,
+      "max_abs_resid_vs_beta_over_2": 3.5388358909926865e-16
+    },
+    {
+      "beta": 0.2,
+      "active_bands": 39,
+      "total_bands": 40,
+      "D_min_active": 0.09999999999999964,
+      "D_max_active": 0.10000000000000052,
+      "max_abs_resid_vs_beta_over_2": 5.134781488891349e-16
+    },
+    {
+      "beta": 0.5,
+      "active_bands": 38,
+      "total_bands": 40,
+      "D_min_active": 0.24999999999999953,
+      "D_max_active": 0.25000000000000044,
+      "max_abs_resid_vs_beta_over_2": 4.718447854656915e-16
+    },
+    {
+      "beta": 1.0,
+      "active_bands": 35,
+      "total_bands": 40,
+      "D_min_active": 0.4999999999999998,
+      "D_max_active": 0.5000000000000002,
+      "max_abs_resid_vs_beta_over_2": 2.220446049250313e-16
+    },
+    {
+      "beta": 2.0,
+      "active_bands": 30,
+      "total_bands": 40,
+      "D_min_active": 0.9999999999999996,
+      "D_max_active": 1.0000000000000004,
+      "max_abs_resid_vs_beta_over_2": 4.440892098500626e-16
+    },
+    {
+      "beta": 3.0,
+      "active_bands": 25,
+      "total_bands": 40,
+      "D_min_active": 1.4999999999999998,
+      "D_max_active": 1.5000000000000002,
+      "max_abs_resid_vs_beta_over_2": 2.220446049250313e-16
+    },
+    {
+      "beta": 5.0,
+      "active_bands": 15,
+      "total_bands": 40,
+      "D_min_active": 2.4999999999999996,
+      "D_max_active": 2.5000000000000004,
+      "max_abs_resid_vs_beta_over_2": 4.440892098500626e-16
+    }
+  ],
+  "max_abs_resid_vs_beta_over_2": 5.134781488891349e-16,
+  "resid_tolerance": 1e-06,
+  "inversion": [
+    {
+      "target_rate": 0.5,
+      "theta": 3.2147511096284984,
+      "total_rate_at": 0.4999999999999999,
+      "abs_err": 1.1102230246251565e-16
+    },
+    {
+      "target_rate": 1.7,
+      "theta": 2.6084798481324083,
+      "total_rate_at": 1.7000000000000006,
+      "abs_err": 6.661338147750939e-16
+    },
+    {
+      "target_rate": 3.0,
+      "theta": 2.2259028171465354,
+      "total_rate_at": 2.999999999999999,
+      "abs_err": 8.881784197001252e-16
+    },
+    {
+      "target_rate": 6.0,
+      "theta": 1.675504070083059,
+      "total_rate_at": 6.000000000000002,
+      "abs_err": 1.7763568394002505e-15
+    },
+    {
+      "target_rate": 10.0,
+      "theta": 1.2328430815914215,
+      "total_rate_at": 10.000000000000004,
+      "abs_err": 3.552713678800501e-15
+    }
+  ],
+  "max_inversion_err": 3.552713678800501e-15,
+  "inversion_tolerance": 0.0001,
+  "conclusion": "theta=beta/2 holds to 5.135e-16 (< 1e-6); rate<->level inversion holds to 3.553e-15 (< 1e-4). Compression target only \u2014 NOT the deployed denoising MSE."
+}

@@ -1,0 +1,16 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.16, pytest-8.4.1, pluggy-1.6.0 -- /home/user/anaconda3/envs/vla-adapter/bin/python
+cachedir: .pytest_cache
+rootdir: /home/user/Desktop/SAPTARSHI_ALT/steer_information_Saptarshi/sib_vla
+configfile: pyproject.toml
+plugins: anyio-4.14.0, typeguard-2.13.3
+collecting ... collected 6 items
+
+tests/test_waterfill.py::test_reverse_waterfilling_values_and_drops PASSED [ 16%]
+tests/test_waterfill.py::test_total_rate_monotone_decreasing_in_theta PASSED [ 33%]
+tests/test_waterfill.py::test_waterlevel_for_rate_inverts PASSED         [ 50%]
+tests/test_waterfill.py::test_waterlevel_for_distortion_inverts PASSED   [ 66%]
+tests/test_waterfill.py::test_beta_equals_two_theta_theorem PASSED       [ 83%]
+tests/test_waterfill.py::test_matched_allocation_hits_target_rate PASSED [100%]
+
+============================== 6 passed in 1.53s ===============================
