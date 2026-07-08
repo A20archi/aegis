@@ -1,0 +1,22 @@
+{
+  "arm": "base",
+  "suite": "libero_10",
+  "seed": 42,
+  "clean": true,
+  "per_task": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.2,
+    0.6
+  ],
+  "total_sr": 0.88,
+  "n_episodes": 50,
+  "tau": 0.0,
+  "rasf_tau": 0.0
+}

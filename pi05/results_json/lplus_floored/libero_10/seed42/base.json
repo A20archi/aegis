@@ -1,0 +1,19 @@
+{
+  "arm": "base",
+  "suite": "libero_10",
+  "seed": 42,
+  "per_cat": {
+    "Background Textures": 1.0,
+    "Camera Viewpoints": 0.5,
+    "Language Instructions": 0.8333333333333334,
+    "Light Conditions": 1.0,
+    "Objects Layout": 0.6666666666666666,
+    "Robot Initial States": 0.6666666666666666,
+    "Sensor Noise": 0.8333333333333334
+  },
+  "total_sr": 0.7857142857142857,
+  "n_episodes": 42,
+  "tau": 0.0,
+  "rasf_tau": 0.0,
+  "te_weight": 0.0
+}

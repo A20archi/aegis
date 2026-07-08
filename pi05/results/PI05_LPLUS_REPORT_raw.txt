@@ -1,0 +1,26 @@
+==============================================================================
+pi0.5  vs  pi0.5 + AEGIS  —  LIBERO-Plus (7 perturbation axes, 3 seeds {42,123,456})
+FIRST published pi0.5-on-LIBERO-Plus number + AEGIS Δ. gate-closed = pi0.5 exactly
+(identity-preserving, no clean tax). No oracle, no best-of-seeds; base = paired ref.
+==============================================================================
+
+Suite        pi0.5   +AEGIS       Δ   per-seed base -> aegis
+------------------------------------------------------------------------------
+Spatial       88.9     92.9    +4.0   81->88 90->95 95->95
+Object        92.9     88.9    -4.0   93->90 93->93 93->83
+Goal          81.0     82.5    +1.6   83->86 76->81 83->81
+Long          79.4     78.6    -0.8   79->79 76->76 83->81
+------------------------------------------------------------------------------
+NET           85.5     85.7    +0.2   [paired 95% CI on Δ: -2.2, +2.6]
+  net AEGIS Δ = +0.20  -> WIN  (CI includes 0)   (4/4 suites complete)
+
+Perturbation axis           pi0.5   +AEGIS       Δ
+----------------------------------------------------
+Background Textures          97.2     98.6    +1.4
+Camera Viewpoints            75.0     69.4    -5.6
+Language Instructions        91.7     88.9    -2.8
+Light Conditions             95.8     95.8    +0.0
+Objects Layout               88.9     94.4    +5.6
+Robot Initial States         58.3     58.3    +0.0
+Sensor Noise                 91.7     94.4    +2.8
+
