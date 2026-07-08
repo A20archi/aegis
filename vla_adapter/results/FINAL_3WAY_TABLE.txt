@@ -1,0 +1,13 @@
+======================================================================================
+VLA-Adapter Pro (base)  vs  AEGIS (3-seed)  vs  StableVLA-native (3-seed) — LIBERO-Plus
+RAW SR, no oracle. CI = 95% paired task-bootstrap on the delta.  * = CI excludes 0 (significant)
+======================================================================================
+suite       base   AEGIS        Δ vs base [95% CI]   StVLA        Δ vs base [95% CI]
+Object      45.7    51.4         +5.7 [+4.6,+6.9]*    41.7         -4.0 [-5.2,-2.8]*
+Goal        54.6    57.9         +3.2 [+0.7,+5.8]*    49.3         -5.4 [-8.2,-2.5]*
+Long        54.0    54.2         +0.2 [-2.5,+2.7]     37.8      -16.2 [-19.4,-12.9]*
+Spatial     86.8    87.0         +0.2 [-1.4,+1.8]     81.4         -5.4 [-7.3,-3.6]*
+--------------------------------------------------------------------------------------
+OVERALL                               AEGIS Δ +2.3                      StVLA Δ -7.8  (equal-suite-weight)
+
+AEGIS: 3 training seeds [42, 123, 456].  StableVLA-native seeds present: [42, 123, 456] (3-SEED COMPLETE).

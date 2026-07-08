@@ -1,0 +1,27 @@
+
+==========================================================================
+VLA-Adapter Pro — CLEAN LIBERO (target: match/beat 98.5 avg)
+==========================================================================
+suite        pub    base  AEGIS-raw   Δraw  AEGIS-flr   Δflr
+Spatial     99.6    98.5       98.0   -0.5         --       
+Object      99.6    98.5       96.7   -1.8         --       
+Goal        98.2    97.5       97.8   +0.3         --       
+Long        96.4    93.5       92.7   -0.8         --       
+--------------------------------------------------------------------------
+NET         98.4    97.0              -0.7                  
+  net AEGIS-raw: -0.71  -> statistical TIE (no clean tax)
+
+==========================================================================
+GR00T-N1.5 3B — CLEAN LIBERO (its OWN generalist baseline, NOT 98.5)
+==========================================================================
+suite        base  AEGIS-raw   Δraw  AEGIS-flr   Δflr
+Spatial      98.0         --                --       
+Object              (pending)
+Goal                (pending)
+Long         82.0       86.7   +4.7       84.0   +2.0
+--------------------------------------------------------------------------
+NET          90.0              +4.7              +2.0
+  net AEGIS-raw: +4.67  -> WIN
+  net AEGIS-floored: +2.00  -> WIN
+
+NOTE: base = deterministic reference (no training seed). AEGIS-raw = as-trained gate. AEGIS-floored = clean-calibrated OOD gate (closes on clean = base by construction). |Δ|<1.5 = within clean binomial noise = no regression. GR00T target is its own base, not VLA's 98.5.

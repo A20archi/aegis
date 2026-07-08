@@ -1,0 +1,15 @@
+==========================================================================
+VLA-Adapter Pro CLEAN — per-suite HELD-OUT gated AEGIS (disclosed, non-oracle)
+decide gate on task_id%2==0 half, REPORT on the odd half. gate OFF = base (identity floor).
+==========================================================================
+Suite        base  AEGIS(rep)   gate    gated      Δ
+--------------------------------------------------------------------------
+Spatial      98.0        96.7    off     98.0   +0.0
+Object       99.0        97.0    off     99.0   +0.0
+Goal         99.0        97.3     ON     97.3   -1.7
+Long         95.0        96.7    off     95.0   +0.0
+--------------------------------------------------------------------------
+NET          97.8                        97.3   -0.4
+
+  net gated Δ = -0.42  -> below base
+  (reported on held-out half only; gate decided on the disjoint decision half = no oracle-peek)
