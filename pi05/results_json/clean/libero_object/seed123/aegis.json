@@ -1,0 +1,22 @@
+{
+  "arm": "aegis",
+  "suite": "libero_object",
+  "seed": 123,
+  "clean": true,
+  "per_task": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.6,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "total_sr": 0.96,
+  "n_episodes": 50,
+  "tau": 0.8,
+  "rasf_tau": 0.0
+}

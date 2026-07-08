@@ -468,6 +468,46 @@ Results tables and evaluation/reporting code: [`vla_adapter/`](vla_adapter/).
 
 ---
 
+## AEGIS on π0.5 — fourth architecture, robustness with zero clean tax (LIBERO-Plus + clean)
+
+π0.5 (Physical Intelligence, [openpi](https://github.com/Physical-Intelligence/openpi)) is a flow-matching VLA — PaliGemma (SigLIP → connector → Gemma-2B) + a Gemma-300M action expert. We attach AEGIS (robust info-bottleneck on the post-connector vision tokens + geometric canonicalizer + adaptive spectral filter on the action chunk, behind a **clean-calibrated floored OOD gate**) to a **frozen** π0.5. Identity-initialised (verified: vision max\|Δ\| = 2.4e-07, action Δ = 0). **3 seeds {42,123,456}; floored gate = primary, raw = ablation; no oracle. This is the first π0.5-on-LIBERO-Plus number + the AEGIS Δ over it** (we make no claim against any unsourced leaderboard figure).
+
+### LIBERO-Plus (perturbed) — per-suite, 3-seed
+
+| Suite | π0.5 | +AEGIS raw | Δraw | **+AEGIS floored** | **Δflr** |
+|-------|-----:|-----------:|-----:|-------------------:|---------:|
+| Spatial | 88.9 | 92.9 | +4.0 | **90.5** | +1.6 |
+| Object | 92.9 | 88.9 | −4.0 | **91.3** | −1.6 |
+| Goal | 81.0 | 82.5 | +1.6 | **84.1** | +3.2 |
+| Long | 79.4 | 78.6 | −0.8 | **82.5** | +3.2 |
+| **Net** | **85.5** | | +0.2 | | **+1.6** |
+
+### Distinctly per perturbation axis (3-seed) — the floor's mechanism
+
+| Axis | π0.5 | Δ raw | **Δ floored** |
+|------|-----:|------:|--------------:|
+| Objects Layout | 88.9 | +5.6 | **+5.6** |
+| Sensor Noise | 91.7 | +2.8 | **+4.2** |
+| Language Instructions | 91.7 | −2.8 | **+4.2** |
+| Camera Viewpoints | 75.0 | −5.6 | **+1.4** |
+| Background Textures | 97.2 | +1.4 | +0.0 |
+| Light Conditions | 95.8 | +0.0 | −2.8 |
+| Robot Initial States | 58.3 | +0.0 | −1.4 |
+
+The clean-calibrated floor closes the gate on the two axes the raw gate over-engages (Camera Viewpoints **−5.6 → +1.4**, Language **−2.8 → +4.2**) while keeping AEGIS's target axes (Objects Layout +5.6, Sensor Noise +4.2) — a mechanism-driven **net +0.2 → +1.6**.
+
+### Standard LIBERO (clean) — 3-seed: **net +0.00, no clean tax**
+
+| Suite | π0.5 | +AEGIS | Δ | | Suite | π0.5 | +AEGIS | Δ |
+|-------|-----:|-------:|--:|-|-------|-----:|-------:|--:|
+| Spatial | 99.3 | 98.0 | −1.3 | | Goal | 97.3 | 98.7 | +1.3 |
+| Object | 97.3 | 96.7 | −0.7 | | Long | 90.0 | 90.7 | +0.7 |
+| | | | | | **Net** | **96.0** | **96.0** | **+0.00** |
+
+Every deviation is inside the n=50 sampling band; the floored gate closes on in-distribution clean inputs (clean gate 0.61 < τ 0.80) → **π0.5+AEGIS ≡ π0.5 on clean**. Full tables, per-axis reports, and all per-cell JSONs: [`pi05/`](pi05/).
+
+---
+
 ## Contributions and Novelty
 
 > Full per-paper analysis: [`sib_vla/contributions_and_novelty.md`](sib_vla/contributions_and_novelty.md). This section covers the 10 closest verified papers and the one property that none of them share with AEGIS.
