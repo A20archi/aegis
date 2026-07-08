@@ -436,6 +436,38 @@ Full numbers, per-seed deltas, and CIs: [`sib_vla/ALL_ACT_RESULTS.md`](sib_vla/A
 
 ---
 
+## AEGIS on VLA-Adapter Pro — third architecture, head-to-head vs StableVLA (LIBERO-Plus)
+
+VLA-Adapter Pro is a strong, compact VLA (near-ceiling on clean LIBERO). We attach AEGIS to a **frozen** VLA-Adapter Pro and run the **direct head-to-head that motivates AEGIS**: our RIB perception bottleneck versus **StableVLA's fused info-bottleneck at the *same* projector locus**, trained with StableVLA's own clean-anchor objective. Both are info-bottlenecks on the vision→LLM projector — so the comparison isolates the **objective**, not the locus.
+
+### How AEGIS embeds onto VLA-Adapter Pro
+
+- **RIB** — identity-initialised robust information bottleneck on the vision→LLM projector: `out = projector(x) + tanh(fusion)·RIB(projector(x))`. The RIB decoder is zero-initialised ⇒ **out ≡ projector(x) at init** (exact pass-through), so AEGIS cannot harm the frozen policy before training.
+- **RASF** — residual adaptive spectral filter on the predicted action chunk (identity at init).
+
+### Robustness on LIBERO-Plus — 4 suites × 3 seeds {42, 123, 456}
+
+Raw success rate, paired task-bootstrap 95% CI on Δ vs the frozen base. `*` = CI excludes 0 (significant).
+
+| Suite | base | AEGIS | Δ AEGIS [95% CI] | StableVLA-native | Δ StableVLA [95% CI] |
+|---|---:|---:|:---:|---:|:---:|
+| Object | 45.7 | **51.4** | **+5.7 [+4.6, +6.9]** \* | 41.7 | −4.0 [−5.2, −2.8] \* |
+| Goal | 54.6 | **57.9** | **+3.2 [+0.7, +5.8]** \* | 49.3 | −5.4 [−8.2, −2.5] \* |
+| Long | 54.0 | 54.2 | +0.2 [−2.5, +2.7] | 37.8 | −16.2 [−19.4, −12.9] \* |
+| Spatial | 86.8 | 87.0 | +0.2 [−1.4, +1.8] | 81.4 | −5.4 [−7.3, −3.6] \* |
+| **Net** | | | **AEGIS +2.3** | | **StableVLA −7.8** |
+
+AEGIS: **two significant wins (Object, Goal), zero regressions.** StableVLA-native — the same fused info-bottleneck at the same projector locus, trained with the clean-anchor objective — is **significantly harmful on all four suites**. AEGIS is **+10.1 net ahead of the competitor**: with the locus identical, the head-to-head attributes the gain to the *objective*.
+
+### Clean no-regression — standard LIBERO, 3 seeds
+
+- **RIB residual on clean = 0.000000** across 1,433 forward passes → the perception module is a **measured exact identity on in-distribution inputs** (it fires only under corruption).
+- Full-pipeline clean net Δ = **−0.4** (held-out per-axis gated) / **−0.7** (ungated) — both **within the ±1.5 clean binomial-noise band ⇒ a statistical tie, no clean tax**. The small residual is RASF action-side variance, not perception. Held-out gate (decide on task_id%2, report on the disjoint half), no oracle.
+
+Results tables and evaluation/reporting code: [`vla_adapter/`](vla_adapter/).
+
+---
+
 ## Contributions and Novelty
 
 > Full per-paper analysis: [`sib_vla/contributions_and_novelty.md`](sib_vla/contributions_and_novelty.md). This section covers the 10 closest verified papers and the one property that none of them share with AEGIS.
