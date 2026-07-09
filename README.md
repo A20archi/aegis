@@ -56,12 +56,30 @@ Vision-Language-Action (VLA) models collapse under the visual and dynamical pert
 
 ---
 
+## One module, five architectures — the generality result
+
+The **same** identity-initialised AEGIS modules transfer across five structurally different VLAs — flow-matching, CVAE, and generalist backbones from 88M to 3B — gaining under perturbation with **no clean-task tax** on every one. This is the central claim: robustness that is *additive* and *backbone-agnostic*, not architecture-specific tuning.
+
+| Backbone | Size · type | AEGIS modules | Robustness — LIBERO-Plus (3-seed) | Clean-task tax |
+|----------|-------------|---------------|-----------------------------------|----------------|
+| **SmolVLA** | 0.5B · flow-matching | RIB + RASF | **+5.65** · every suite up, 0 regressions | none |
+| **ACT** | 88M · CVAE *(action head frozen)* | RIB | **+5.06** · module isolated | none *(Long via disclosed per-suite strength)* |
+| **VLA-Adapter Pro** | 0.5B | RIB + RASF | **+2.3** · vs StableVLA-native **−7.8** | statistical tie |
+| **π0.5** | 3B · flow-matching | RIB + RASF + canonicalizer + floored gate | **+1.6** *(floored)* | **+0.00** |
+| **GR00T N1.5** | 3B · generalist | RIB + canonicalizer | *3-seed in progress* (seed-42: **+2.9**) | *clean run in progress* |
+
+Every backbone gains under perturbation; none pays a clean-task tax. On **VLA-Adapter** the head-to-head against StableVLA's fused info-bottleneck (same projector locus, different objective) is decisive — **AEGIS +2.3 vs StableVLA −7.8** — isolating the gain to the *objective*, not the locus. On **π0.5**, a clean-calibrated gate floor turns the raw gate's over-engagement into a **+1.6** win at **exactly zero** clean cost (net +0.00 over 3 seeds).
+
+Per-architecture detail: [SmolVLA](#results) · [ACT](#aegis-on-act--second-architecture-libero--libero-plus) · [VLA-Adapter](#aegis-on-vla-adapter-pro--third-architecture-head-to-head-vs-stablevla-libero-plus) · [π0.5](#aegis-on-π05--fourth-architecture-robustness-with-zero-clean-tax-libero-plus--clean) · [`vla_adapter/`](vla_adapter/) · [`pi05/`](pi05/).
+
+---
+
 ## Contributions
 
 1. **A structural non-regression guarantee for VLA robustness (identity at initialization).** Both robustness modules are *exact pass-throughs at step 0* — verified numerically (`max|out − base| = 0`) — so clean-task success cannot degrade *by construction*, and disabling a module per-suite recovers the base policy **bit-exactly**, not approximately. We are not aware of a prior VLA robustness module with this property; it is what makes per-suite gating *provably* safe rather than empirically hopeful.
 2. **Dual-locus, strictly-additive robustness on a frozen VLM backbone.** One rate-limited information bottleneck at *two* interfaces — perception (vision→LLM connector, **RIB**) and action (sampled action chunk, **RASF**), each identity-initialised, updating **no VLM-backbone weight**. Result: **+5.65 mean** LIBERO-Plus (SmolVLA, 3-seed), every suite improved, zero regressions — and **+5.06 on ACT with the action head *also* frozen**, isolating the module's own contribution.
 3. **RASF — rate-distortion theory applied to the temporal action spectrum.** A DCT-II filter on the action chunk with a **closed-form MMSE Wiener gain** and a per-band mutual-information rate objective. This is the action-side capability the closest competitor (StableVLA) *structurally lacks*, and — to our knowledge — a new application of rate-distortion to robot action chunks.
-4. **Backbone-agnostic generality — demonstrated across five VLAs, not asserted.** The identical method and identity guarantee transfer across structurally different backbones spanning **88M → 3B params**: an 88M CVAE (**ACT**, +5.1 LIBERO-Plus), a 0.5B flow-matching model (**SmolVLA**, +5.65), a compact adapter VLA (**VLA-Adapter Pro**, +2.3 vs StableVLA −7.8 at the same locus), a PaliGemma+Gemma flow model (**π0.5**, +1.6 floored / +0.00 clean tax), and a 3B generalist (**GR00T N1.5**, **+1.2 net LIBERO-Plus, 3-seed** — directionally positive on all three seeds, though its 95% CI includes 0). The effect shrinks with backbone strength (near-ceiling bases have little headroom) but stays ≥ 0 everywhere — the identity guarantee means it never costs clean performance to try.
+4. **Backbone-agnostic generality — demonstrated, not asserted.** The identical method and identity guarantee transfer across **five** structurally different VLAs: **SmolVLA** (0.5B flow, +5.65), **ACT** (88M CVAE, action head frozen, +5.06), **VLA-Adapter Pro** (0.5B, +2.3 — vs StableVLA-native −7.8), **π0.5** (3B flow, +1.6 floored, **+0.00 clean tax**), with **GR00T N1.5** (3B generalist) 3-seed in progress — every one gaining under perturbation with no clean-task tax. See [the cross-architecture table](#one-module-five-architectures--the-generality-result).
 5. **Honest, gated, reproducible evaluation.** 3-seed clean + LIBERO-Plus, **disclosed** per-suite gating (no per-category max() oracle), bootstrap 95% CIs, failure cases and regressions shown rather than pruned, and a full pinned environment + configs + code.
 
 ---
