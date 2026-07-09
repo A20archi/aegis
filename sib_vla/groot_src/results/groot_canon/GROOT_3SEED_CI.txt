@@ -1,0 +1,17 @@
+
+=== GR00T N1.5 — LIBERO-Plus, 3 seeds {42,123,456} — paired task-bootstrap 95% CI ===
+
+Suite      base  AEGIS   Δ mean            95% CI                 seeds Δ
+Object     84.4   83.9    -0.51  [ -3.83, +2.81]            +1.8/-1.4/-1.4
+Spatial    81.9   84.7    +2.81  [ -1.28, +6.63]            +6.2/-0.7/+3.6
+Goal       19.6   19.9    +0.26  [ -2.55, +3.06]            -1.8/-1.4/+3.6
+Long       63.8   66.1    +2.30  [ -2.81, +7.40]            +5.4/+4.3/-2.1
+------------------------------------------------------------------------
+NET        62.4   63.6    +1.21  [ -0.70, +3.25]  
+
+Per-seed net Δ (mean over 4 suites):
+  s42: +2.90   (Object +1.8  Spatial +6.2  Goal -1.8  Long +5.4)
+  s123: +0.18   (Object -1.4  Spatial -0.7  Goal -1.4  Long +4.3)
+  s456: +0.89   (Object -1.4  Spatial +3.6  Goal +3.6  Long -2.1)
+
+* = 95% CI excludes 0
