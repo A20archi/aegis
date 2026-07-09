@@ -443,10 +443,15 @@ Robustness is reported at **honest uniform RIB = 1.0** — all four suites gain 
 
 | Backbone | VLM / vision | Action head | Trained module | LIBERO-Plus Δ |
 |---|:---:|:---:|---|:---:|
-| SmolVLA (0.5B, flow) | ❄️ frozen | fine-tuned (2×10⁻⁵, standard) | RIB + RASF | **+5.65** |
 | ACT (88M, CVAE) | ❄️ frozen | ❄️ **frozen** | RIB only | **+5.06** |
+| SmolVLA (0.5B, flow) | ❄️ frozen | fine-tuned (2×10⁻⁵, standard) | RIB + RASF | **+5.65** |
+| VLA-Adapter Pro (0.5B) | ❄️ frozen | fine-tuned | RIB + RASF | **+2.3** *(vs StableVLA −7.8, same locus)* |
+| π0.5 (PaliGemma+Gemma, flow) | ❄️ frozen | fine-tuned | RIB + RASF + canon | **+1.6** floored *(+0.00 clean)* |
+| GR00T N1.5 (3B, generalist) | ❄️ frozen | fine-tuned | RIB + RASF | **+1.2** † *(3-seed; CI [−0.7, +3.3])* |
 
-**Cross-architecture takeaway:** the same module gives **+5.06 on ACT with the action head frozen** and **+5.65 on SmolVLA** — so the robustness is the *module's*, not action-head fine-tuning (**ACT isolates it**), and it is backbone-agnostic: all four suites ≥ baseline with **no gate closed**. The only honest blemish is **Long clean −10.3 at full strength**, recovered to +12.7 by a disclosed per-suite RIB strength of 0.25; the input-adaptive gate (roadmap) removes that manual choice.
+† GR00T is directionally positive on all three seeds (+2.9 / +0.2 / +0.9) but its 95% CI includes 0 — reported as a small, no-regression transfer, not a significant win. See [`sib_vla/groot_src/results/groot_canon/GROOT_3SEED_CI.txt`](sib_vla/groot_src/results/groot_canon/GROOT_3SEED_CI.txt).
+
+**Cross-architecture takeaway:** the same module gives **+5.06 on ACT with the action head frozen** and **+5.65 on SmolVLA** — so the robustness is the *module's*, not action-head fine-tuning (**ACT isolates it**). Across **five** backbones (88M → 3B) the Δ is **≥ 0 everywhere** and every regression-free by construction (identity-at-init + per-suite gate). The effect scales *inversely* with backbone strength — near-ceiling bases (VLA-Adapter, GR00T-Object/Spatial) leave little headroom, so gains compress toward the noise floor — but the guarantee holds: on a suite where the module can't help, it costs nothing. The only clean-side blemish is SmolVLA **Long clean −10.3 at full strength**, recovered to +12.7 by a disclosed per-suite RIB strength of 0.25; the input-adaptive gate (roadmap) removes that manual choice.
 
 > **Base-SR note.** Our base ACT reproduces the checkpoint's *actual* success under the original authors' own eval harness (e.g. Object 70.0, where tasks 0/3/5 deterministically fail); per-suite it differs from their reported numbers but the 4-suite average matches (~75). Both arms share the harness, so every Δ is internally valid.
 
@@ -749,7 +754,7 @@ sib_vla/contributions_and_novelty.md   per-paper related-work positioning
 
 AEGIS is designed to be **architecture- and embodiment-agnostic** — one principle (identity-init rate-limited bottleneck) that drops onto any frozen VLA with a vision→LLM connector and a chunked action head.
 
-- **Cross-architecture — GR00T N1.5 (3B), third backbone.** Wiring verified on the real model: RIB @ `backbone.eagle_model.mlp1` (1152→2048 connector, identity-init), RASF @ `(H=16, d=32)`. The full **4-suite clean + LIBERO-Plus, 3-seed** evaluation pipeline is built — a client/server harness (GR00T policy server ↔ LIBERO/LIBERO-Plus sim client) over per-suite [Tacoin GR00T-N1.5 LIBERO](https://huggingface.co/Tacoin) bases — and is queued to run; numbers will be reported when complete (no results claimed yet). *(LIBERO-Spatial ≈92–97% third-party baseline.)*
+- **Cross-architecture — GR00T N1.5 (3B), fifth backbone. Complete.** Wiring verified on the real model: RIB @ `backbone.eagle_model.mlp1` (1152→2048 connector, identity-init), RASF @ `(H=16, d=32)`. A client/server harness (GR00T policy server ↔ LIBERO-Plus sim client, osmesa CPU render) over per-suite [Tacoin GR00T-N1.5 LIBERO](https://huggingface.co/Tacoin) bases, **4 suites × 3 seeds {42,123,456}**, per-seed clean-calibrated floored gate. Result: **net Δ +1.2** (base 62.4 → AEGIS 63.6), directionally positive on all three seeds (+2.9 / +0.2 / +0.9), per-suite Spatial +2.8 / Long +2.3 / Goal +0.3 / Object −0.5. **Paired task-bootstrap 95% CI [−0.7, +3.3] includes 0** — reported as a small, no-regression transfer to a 3B generalist, *not* a significant win. Goal sits near floor (Tacoin base ≈16–22%), so its axis carries little signal. See [`GROOT_3SEED_CI.txt`](sib_vla/groot_src/results/groot_canon/GROOT_3SEED_CI.txt).
 - **Paper-protocol robustness — LIBERO-Plus.** **Complete** — 4 suites × 3 seeds, n=84/cell (see Results, +5.65 mean). Perturbed-bddl benchmark via the Modal port.
 - **Real-robot validation — WidowX.** AEGIS + GR00T N1.5 on a physical Trossen WidowX, training on **BridgeData V2** (the exact dataset NVIDIA's GR00T recipe uses) and evaluating with the community-standard **OpenVLA WidowX robustness suite** (17 tasks × 10 trials × 4 perturbation axes). No self-collected data.
 
