@@ -1,0 +1,199 @@
+{
+  "benchmark": "ImageNet-C on standard LIBERO",
+  "host": "frozen ACT-40",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "episodes_per_task": 5,
+  "tasks_per_cell": 10,
+  "note": "BN-adapt inapplicable (0 BatchNorm in VLA encoders); TTA is the applicable no-train control",
+  "conditions": [
+    {
+      "corruption": "gaussian_noise",
+      "severity": 3,
+      "suite": "Spatial",
+      "base": 49.3,
+      "tta": 50.0,
+      "aegis": 58.7,
+      "delta_aegis_base": 9.3,
+      "ci95": [
+        -2.7,
+        22.0
+      ],
+      "delta_aegis_tta": 8.7
+    },
+    {
+      "corruption": "gaussian_noise",
+      "severity": 3,
+      "suite": "Object",
+      "base": 30.0,
+      "tta": 32.0,
+      "aegis": 50.0,
+      "delta_aegis_base": 20.0,
+      "ci95": [
+        0.0,
+        40.0
+      ],
+      "delta_aegis_tta": 18.0
+    },
+    {
+      "corruption": "gaussian_noise",
+      "severity": 5,
+      "suite": "Spatial",
+      "base": 8.7,
+      "tta": 11.3,
+      "aegis": 46.0,
+      "delta_aegis_base": 37.3,
+      "ci95": [
+        24.0,
+        52.0
+      ],
+      "delta_aegis_tta": 34.7
+    },
+    {
+      "corruption": "gaussian_noise",
+      "severity": 5,
+      "suite": "Object",
+      "base": 0.0,
+      "tta": 4.0,
+      "aegis": 50.0,
+      "delta_aegis_base": 50.0,
+      "ci95": [
+        33.3,
+        66.7
+      ],
+      "delta_aegis_tta": 46.0
+    },
+    {
+      "corruption": "motion_blur",
+      "severity": 3,
+      "suite": "Spatial",
+      "base": 67.3,
+      "tta": 66.0,
+      "aegis": 78.0,
+      "delta_aegis_base": 10.7,
+      "ci95": [
+        -4.7,
+        26.0
+      ],
+      "delta_aegis_tta": 12.0
+    },
+    {
+      "corruption": "motion_blur",
+      "severity": 3,
+      "suite": "Object",
+      "base": 60.0,
+      "tta": 26.0,
+      "aegis": 50.0,
+      "delta_aegis_base": -10.0,
+      "ci95": [
+        -23.3,
+        0.0
+      ],
+      "delta_aegis_tta": 24.0
+    },
+    {
+      "corruption": "motion_blur",
+      "severity": 5,
+      "suite": "Spatial",
+      "base": 40.7,
+      "tta": 38.7,
+      "aegis": 66.7,
+      "delta_aegis_base": 26.0,
+      "ci95": [
+        9.3,
+        42.7
+      ],
+      "delta_aegis_tta": 28.0
+    },
+    {
+      "corruption": "motion_blur",
+      "severity": 5,
+      "suite": "Object",
+      "base": 0.0,
+      "tta": 2.0,
+      "aegis": 20.0,
+      "delta_aegis_base": 20.0,
+      "ci95": [
+        6.7,
+        33.3
+      ],
+      "delta_aegis_tta": 18.0
+    },
+    {
+      "corruption": "fog",
+      "severity": 3,
+      "suite": "Spatial",
+      "base": 66.0,
+      "tta": 63.3,
+      "aegis": 71.3,
+      "delta_aegis_base": 5.3,
+      "ci95": [
+        -1.3,
+        12.7
+      ],
+      "delta_aegis_tta": 8.0
+    },
+    {
+      "corruption": "fog",
+      "severity": 3,
+      "suite": "Object",
+      "base": 30.0,
+      "tta": 50.0,
+      "aegis": 50.0,
+      "delta_aegis_base": 20.0,
+      "ci95": [
+        -3.3,
+        40.0
+      ],
+      "delta_aegis_tta": -0.0
+    },
+    {
+      "corruption": "fog",
+      "severity": 5,
+      "suite": "Spatial",
+      "base": 58.0,
+      "tta": 58.7,
+      "aegis": 82.0,
+      "delta_aegis_base": 24.0,
+      "ci95": [
+        10.7,
+        38.0
+      ],
+      "delta_aegis_tta": 23.3
+    },
+    {
+      "corruption": "fog",
+      "severity": 5,
+      "suite": "Object",
+      "base": 30.0,
+      "tta": 20.0,
+      "aegis": 30.0,
+      "delta_aegis_base": 0.0,
+      "ci95": [
+        -23.3,
+        23.3
+      ],
+      "delta_aegis_tta": 10.0
+    }
+  ],
+  "net": {
+    "aegis_vs_base": {
+      "delta": 17.7,
+      "ci95": [
+        12.8,
+        22.7
+      ]
+    },
+    "aegis_vs_tta": {
+      "delta": 19.2,
+      "ci95": [
+        14.4,
+        24.1
+      ]
+    },
+    "n_conditions": 36
+  }
+}
