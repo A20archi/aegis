@@ -1,0 +1,15 @@
+corr            sev suite      base    tta  aegis            A-base[CI]   A-tta
+Gaussian noise     3 Spatial     49     50     59    +9.3[-2.7,+22.0]    +8.7
+Gaussian noise     3  Object     30     32     50   +20.0[+0.0,+40.0]   +18.0
+Gaussian noise     5 Spatial      9     11     46   +37.3[+24.0,+52.0]   +34.7
+Gaussian noise     5  Object      0      4     50   +50.0[+33.3,+66.7]   +46.0
+Motion blur        3 Spatial     67     66     78   +10.7[-4.7,+26.0]   +12.0
+Motion blur        3  Object     60     26     50   -10.0[-23.3,+0.0]   +24.0
+Motion blur        5 Spatial     41     39     67   +26.0[+9.3,+42.7]   +28.0
+Motion blur        5  Object      0      2     20   +20.0[+6.7,+33.3]   +18.0
+Fog                3 Spatial     66     63     71    +5.3[-1.3,+12.7]    +8.0
+Fog                3  Object     30     50     50   +20.0[-3.3,+40.0]    -0.0
+Fog                5 Spatial     58     59     82   +24.0[+10.7,+38.0]   +23.3
+Fog                5  Object     30     20     30    +0.0[-23.3,+23.3]   +10.0
+
+NET AEGIS-base: +17.7 [+12.8,+22.7]  | NET AEGIS-TTA: +19.2 [+14.4,+24.1]
